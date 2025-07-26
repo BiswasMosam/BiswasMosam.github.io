@@ -220,6 +220,10 @@
     border-radius: 12px;
     margin-bottom: 0.5rem;
   }
+  .about > div[style*="min-width"] {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
 }
 
 @media (max-width: 600px) {
@@ -242,8 +246,8 @@
     padding: 4rem 0.5rem 1rem;
     min-height: auto;
   }
-  .about img {
-    width: 140px !important;
+  .about img[alt="Profile Photo"] {
+    width: 120px !important;
     height: auto !important;
     display: block;
     margin: 0 auto 0.7rem auto;
@@ -253,16 +257,58 @@
     display: flex;
     justify-content: center;
   }
+  .about > div[style*="min-width"] {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
   /* Keep education images small */
   .about img:not([alt="Profile Photo"]),
   .about [alt*="School"],
   .about [alt*="College"],
   .about [alt*="Institute"] {
-    width: 60px !important;
-    height: 60px !important;
+    width: 50px !important;
+    height: 50px !important;
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 0.5rem;
+  }
+  .about h3 {
+    font-size: 1.1rem !important;
+  }
+  .about div[style*="background: rgba(0,0,0,0.5)"] {
+    flex-direction: row !important;
+    min-height: 60px !important;
+    padding: 0.7rem !important;
+  }
+  .skills > div,
+  .projects > div {
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+  }
+  .projects > div {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .projects > div > div {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .projects img {
+    height: 120px !important;
+  }
+  .contact {
+    padding: 2rem 0.5rem !important;
+  }
+  .contact li {
+    font-size: 0.95em;
+    padding: 0.4rem 0.7rem;
+  }
+  footer {
+    font-size: 0.95em;
+    padding: 0.7rem 0 !important;
+    border-radius: 8px !important;
+    margin-top: 1rem !important;
   }
 }
   </style>
