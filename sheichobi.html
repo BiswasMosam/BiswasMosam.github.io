@@ -318,7 +318,15 @@
     function openModal(img) {
       var modal = document.getElementById('photoModal');
       var modalImg = document.getElementById('modalImg');
-      modalImg.src = img.src;
+      // Try .jpg first, then .JPG if not found
+      var src = img.src;
+      var fallbackSrc = src.replace(/\.jpg$/i, '.JPG');
+      modalImg.onerror = function() {
+        if (modalImg.src !== fallbackSrc) {
+          modalImg.src = fallbackSrc;
+        }
+      };
+      modalImg.src = src;
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
