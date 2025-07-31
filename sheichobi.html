@@ -315,28 +315,83 @@
     POWERED BY SHEI CHOBI PORTFOLIO
   </footer>
   <script>
-    function openModal(img) {
-      var modal = document.getElementById('photoModal');
-      var modalImg = document.getElementById('modalImg');
-      // Try .jpg first, then .JPG if not found
-      var src = img.src;
-      var fallbackSrc = src.replace(/\.jpg$/i, '.JPG');
-      modalImg.onerror = function() {
-        if (modalImg.src !== fallbackSrc) {
-          modalImg.src = fallbackSrc;
-        }
-      };
-      modalImg.src = src;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+  // Store all images in an array for navigation
+  const allImages = Array.from(document.querySelectorAll('.grid-item img'));
+  let currentIndex = -1;
+
+  function openModal(img) {
+    var modal = document.getElementById('photoModal');
+    var modalImg = document.getElementById('modalImg');
+    // Find index of clicked image
+    currentIndex = allImages.indexOf(img);
+
+    // Try .jpg first, then .JPG if not found
+    var src = img.src;
+    var fallbackSrc = src.replace(/\.jpg$/i, '.JPG');
+    modalImg.onerror = function() {
+      if (modalImg.src !== fallbackSrc) {
+        modalImg.src = fallbackSrc;
+      }
+    };
+    modalImg.src = src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(event) {
+    // Only close if clicking outside the image or on the close button
+    if (event.target.classList.contains('modal') || event.target.classList.contains('close-modal')) {
+      document.getElementById('photoModal').classList.remove('active');
+      document.body.style.overflow = '';
     }
-    function closeModal(event) {
-      // Only close if clicking outside the image or on the close button
-      if (event.target.classList.contains('modal') || event.target.classList.contains('close-modal')) {
-        document.getElementById('photoModal').classList.remove('active');
-        document.body.style.overflow = '';
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('photoModal');
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'ArrowRight') {
+      showNextImage();
+    } else if (e.key === 'ArrowLeft') {
+      showPrevImage();
+    } else if (e.key === 'Escape') {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  function showNextImage() {
+    if (currentIndex < 0) return;
+    currentIndex = (currentIndex + 1) % allImages.length;
+    openModal(allImages[currentIndex]);
+  }
+
+  function showPrevImage() {
+    if (currentIndex < 0) return;
+    currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+    openModal(allImages[currentIndex]);
+  }
+
+  // Touch swipe navigation for mobile
+  let touchStartX = null;
+  document.getElementById('photoModal').addEventListener('touchstart', function(e) {
+    if (e.touches.length === 1) {
+      touchStartX = e.touches[0].clientX;
+    }
+  });
+  document.getElementById('photoModal').addEventListener('touchend', function(e) {
+    if (touchStartX === null) return;
+    let touchEndX = e.changedTouches[0].clientX;
+    let diff = touchEndX - touchStartX;
+    if (Math.abs(diff) > 50) { // swipe threshold
+      if (diff < 0) {
+        showNextImage();
+      } else {
+        showPrevImage();
       }
     }
+    touchStartX = null;
+  });
   </script>
 </body>
 </html>
