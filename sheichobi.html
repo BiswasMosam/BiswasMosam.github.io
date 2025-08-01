@@ -241,6 +241,9 @@
       background: none;
       border: none;
     }
+    #insta-link-fixed.hide {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -314,15 +317,21 @@
   <footer>
     POWERED BY SHEI CHOBI PORTFOLIO
   </footer>
+  <a href="https://www.instagram.com/shei_chobi/" target="_blank" id="insta-link-fixed"
+     style="position: fixed; top: 2.2rem; right: 3rem; z-index: 10000;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+         alt="Instagram"
+         style="width: 32px; height: 32px; filter: invert(1); vertical-align: middle;" />
+  </a>
   <script>
   // Store all images in an array for navigation
   const allImages = Array.from(document.querySelectorAll('.grid-item img'));
   let currentIndex = -1;
+  const instaLink = document.getElementById('insta-link-fixed');
 
   function openModal(img) {
     var modal = document.getElementById('photoModal');
     var modalImg = document.getElementById('modalImg');
-    // Find index of clicked image
     currentIndex = allImages.indexOf(img);
 
     // Try .jpg first, then .JPG if not found
@@ -336,6 +345,7 @@
     modalImg.src = src;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    if (instaLink) instaLink.classList.add('hide');
   }
 
   function closeModal(event) {
@@ -343,6 +353,7 @@
     if (event.target.classList.contains('modal') || event.target.classList.contains('close-modal')) {
       document.getElementById('photoModal').classList.remove('active');
       document.body.style.overflow = '';
+      if (instaLink) instaLink.classList.remove('hide');
     }
   }
 
