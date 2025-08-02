@@ -186,30 +186,11 @@
     flex-direction: column;
     align-items: stretch;
     gap: 1.2rem;
+    padding: 1rem;
   }
-  .dotted-btn {
-    border-radius: 1rem;
-    border: 2px dashed #000;
-    background: #fff;
-    color: #000;
-    padding: 0.75rem 2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    box-shadow: none;
-    display: inline-block;
-    margin-left: 2rem;
-    white-space: nowrap;
-  }
-  .dotted-btn:hover {
-    transform: translate(-4px, -4px);
-    border-radius: 0.5rem;
-    box-shadow: 4px 4px 0px #000;
-  }
-  .dotted-btn:active {
-    transform: translate(0px, 0px);
-    border-radius: 1rem;
-    box-shadow: none;
+  .about img {
+    width: 160px !important;
+    margin-bottom: 0.5rem;
   }
   .resume-btn {
     width: 100%;
@@ -377,9 +358,9 @@
     <div style="display: flex; flex-direction: column; align-items: flex-start; min-width: 340px; max-width: 420px;">
       <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 1.2rem;">
         <img class="fade-in" src="profile.jpg" alt="Profile Photo" style="width: 220px; height: auto; border-radius: 20px; box-shadow: 0 0 15px rgba(255,255,255,0.2);">
-        <a class="dotted-btn" href="MosamBiswasResume.pdf" download>
-          Download Resume
-        </a>
+        <a class="resume-btn" href="MosamBiswasResume.pdf" download style="background: rgba(0,0,0,0.4); color: #fff; border: none; box-shadow: 0 0 10px #222; transition: transform 0.3s ease, box-shadow 0.3s ease; margin-left: 2rem; white-space: nowrap;">
+  Download Resume
+</a>
       </div>
       <div style="background: rgba(0,0,0,0.18); border-radius: 16px; padding: 1.2rem; margin-top: 0.5rem; width: 200%;">
         <p class="fade-in" style="line-height: 1.6; margin: 0; color: #fff; font-size: 1.08rem;">
