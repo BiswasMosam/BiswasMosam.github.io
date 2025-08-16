@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shei Chobi | Photography Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Samarkan&family=Orbitron:wght@400;700&family=Yatra+One&display=swap" rel="stylesheet">
   <style>
     body {
       background: #111;
@@ -244,40 +244,200 @@
     #insta-link-fixed.hide {
       display: none !important;
     }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 0 0 0.5rem 0;
+      font-family: 'Oswald', Arial, sans-serif;
+      letter-spacing: 2px;
+    }
+    .section-description {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #ccc;
+      margin: 0 0 2rem 0;
+      font-family: 'Oswald', Arial, sans-serif;
+      letter-spacing: 1px;
+      font-weight: 400;
+    }
+    /* Chrome Tab Style Navigation */
+    .tab-container {
+      display: flex;
+      justify-content: flex-start;
+      margin: 2rem 0 0 3rem;
+      padding: 0;
+      position: relative;
+    }
+    .tab {
+      background: #333;
+      border: none;
+      color: #ccc;
+      padding: 12px 24px;
+      font-family: 'Oswald', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-right: 2px;
+      border-radius: 12px 12px 0 0;
+      position: relative;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      border-bottom: 3px solid transparent;
+      border-left: 1px solid #555;
+      border-right: 1px solid #555;
+      border-top: 1px solid #555;
+    }
+    /* Individual tab fonts */
+    .tab[data-section="photo-walks"] {
+      font-family: 'Samarkan', cursive;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+    }
+    .tab[data-section="friendly-shoots"] {
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .tab[data-section="event-shoots"] {
+      font-family: 'Yatra One', cursive;
+      font-weight: 400;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .tab:hover {
+      background: #444;
+      color: #fff;
+      transform: translateY(-2px);
+      border-left: 1px solid #666;
+      border-right: 1px solid #666;
+      border-top: 1px solid #666;
+    }
+    .tab.active {
+      background: #111;
+      color: #fff;
+      border-bottom: 3px solid #111;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      border-left: 1px solid #444;
+      border-right: 1px solid #444;
+      border-top: 1px solid #444;
+      z-index: 10;
+      margin-left: -1px;
+      margin-right: -1px;
+    }
+    .tab.active::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: -1px;
+      right: -1px;
+      height: 3px;
+      background: #111;
+      z-index: 11;
+    }
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: -8px;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle at top right, transparent 8px, #111 8px);
+      z-index: 9;
+    }
+    .tab.active + .tab::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: -8px;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle at top left, transparent 8px, #111 8px);
+      z-index: 9;
+    }
+    .tab:last-child {
+      margin-right: 0;
+    }
+    /* Tab content area */
+    .tab-content {
+      background: #111;
+      border-top: 1px solid #444;
+      border-left: 1px solid #444;
+      border-right: 1px solid #444;
+      margin-top: -1px;
+      padding-top: 2rem;
+      min-height: 60vh;
+      position: relative;
+      border-radius: 8px 8px 12px 12px;
+      overflow: hidden;
+    }
+    .tab-content::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: #111;
+      border-radius: 8px 8px 0 0;
+      z-index: 5;
+    }
+    @media (max-width: 768px) {
+      .tab-container {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 1.5rem 0 0 1rem;
+      }
+      .tab {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+        margin-right: 0;
+        flex: 1;
+        text-align: center;
+        min-width: 120px;
+      }
+    }
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.3rem;
+        padding: 1.2rem 0 0.7rem 0;
+      }
+      nav {
+        padding-left: 1rem;
+        font-size: 1rem;
+      }
+      .grid {
+        grid-template-rows: repeat(4, 30vh);
+      }
+    }
   </style>
 </head>
 <body>
   <nav>
-    <a href="#work" class="active">WORK</a>
     <a href="#contact">CONTACT</a>
   </nav>
   <header>
     SHEI CHOBI
   </header>
-  <div class="container" id="work">
+  
+  <!-- Chrome-style Tab Navigation -->
+  <div class="tab-container">
+    <button class="tab active" data-section="photo-walks">PHOTO WALKS</button>
+    <button class="tab" data-section="friendly-shoots">FRIENDLY SHOOTS</button>
+    <button class="tab" data-section="event-shoots">EVENT SHOOTS</button>
+  </div>
+  
+  <div class="tab-content">
+    <div class="container" id="photo-walks">
+      <h2 class="section-title">PHOTO WALKS</h2>
+      <p class="section-description">Capturing moments during street photography walks and urban exploration</p>
     <div class="grid">
-      <!-- Monochrome Photos -->
-      <div class="grid-item"><img src="Photographs/mono1.jpg" alt="Monochrome Photo 1" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono2.jpg" alt="Monochrome Photo 2" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono3.jpg" alt="Monochrome Photo 3" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono4.jpg" alt="Monochrome Photo 4" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono5.jpg" alt="Monochrome Photo 5" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono6.jpg" alt="Monochrome Photo 6" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono7.jpg" alt="Monochrome Photo 7" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono8.jpg" alt="Monochrome Photo 8" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono9.jpg" alt="Monochrome Photo 9" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/mono10.jpg" alt="Monochrome Photo 10" onclick="openModal(this)"></div>
-      <!-- Traditional Photos -->
-      <div class="grid-item"><img src="Photographs/trad1.jpg" alt="Traditional Photo 1" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad2.jpg" alt="Traditional Photo 2" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad3.jpg" alt="Traditional Photo 3" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad4.jpg" alt="Traditional Photo 4" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad5.jpg" alt="Traditional Photo 5" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad6.jpg" alt="Traditional Photo 6" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad7.jpg" alt="Traditional Photo 7" onclick="openModal(this)"></div>
-      <!-- <div class="grid-item"><img src="Photographs/trad8.jpg" alt="Traditional Photo 8" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad9.jpg" alt="Traditional Photo 9" onclick="openModal(this)"></div>
-      <div class="grid-item"><img src="Photographs/trad10.jpg" alt="Traditional Photo 10" onclick="openModal(this)"></div> -->
       <!-- Street Photos -->
       <div class="grid-item"><img src="Photographs/street1.jpg" alt="Street Photo 1" onclick="openModal(this)"></div>
       <div class="grid-item"><img src="Photographs/street2.jpg" alt="Street Photo 2" onclick="openModal(this)"></div>
@@ -295,6 +455,43 @@
       <div class="grid-item"><img src="Photographs/street14.jpg" alt="Street Photo 14" onclick="openModal(this)"></div>
     </div>
   </div>
+
+  <div class="container" id="friendly-shoots" style="display: none;">
+    <h2 class="section-title">FRIENDLY SHOOTS</h2>
+    <p class="section-description">Artistic and creative portraits with friends and collaborators</p>
+    <div class="grid">
+      <!-- Monochrome Photos -->
+      <div class="grid-item"><img src="Photographs/mono1.jpg" alt="Monochrome Photo 1" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono2.jpg" alt="Monochrome Photo 2" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono3.jpg" alt="Monochrome Photo 3" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono4.jpg" alt="Monochrome Photo 4" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono5.jpg" alt="Monochrome Photo 5" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono6.jpg" alt="Monochrome Photo 6" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono7.jpg" alt="Monochrome Photo 7" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono8.jpg" alt="Monochrome Photo 8" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono9.jpg" alt="Monochrome Photo 9" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/mono10.jpg" alt="Monochrome Photo 10" onclick="openModal(this)"></div>
+    </div>
+  </div>
+
+  <div class="container" id="event-shoots" style="display: none;">
+    <h2 class="section-title">EVENT SHOOTS</h2>
+    <p class="section-description">Cultural events, festivals, and traditional celebrations</p>
+    <div class="grid">
+      <!-- Traditional Photos -->
+      <div class="grid-item"><img src="Photographs/trad1.jpg" alt="Traditional Photo 1" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad2.jpg" alt="Traditional Photo 2" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad3.jpg" alt="Traditional Photo 3" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad4.jpg" alt="Traditional Photo 4" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad5.jpg" alt="Traditional Photo 5" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad6.jpg" alt="Traditional Photo 6" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad7.jpg" alt="Traditional Photo 7" onclick="openModal(this)"></div>
+      <!-- <div class="grid-item"><img src="Photographs/trad8.jpg" alt="Traditional Photo 8" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad9.jpg" alt="Traditional Photo 9" onclick="openModal(this)"></div>
+      <div class="grid-item"><img src="Photographs/trad10.jpg" alt="Traditional Photo 10" onclick="openModal(this)"></div> -->
+    </div>
+  </div>
+  </div> <!-- End tab-content -->
   <!-- Modal for enlarged photo -->
   <div id="photoModal" class="modal" onclick="closeModal(event)">
     <div class="modal-content">
@@ -328,6 +525,51 @@
   const allImages = Array.from(document.querySelectorAll('.grid-item img'));
   let currentIndex = -1;
   const instaLink = document.getElementById('insta-link-fixed');
+
+  // Section navigation
+  function showSection(sectionId) {
+    // Hide all sections
+    document.getElementById('photo-walks').style.display = 'none';
+    document.getElementById('friendly-shoots').style.display = 'none';
+    document.getElementById('event-shoots').style.display = 'none';
+    
+    // Show selected section
+    document.getElementById(sectionId).style.display = 'block';
+    
+    // Update active tab
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelector(`.tab[data-section="${sectionId}"]`).classList.add('active');
+    
+    // Update images array for modal navigation
+    const currentSection = document.getElementById(sectionId);
+    const sectionImages = Array.from(currentSection.querySelectorAll('.grid-item img'));
+    allImages.length = 0;
+    allImages.push(...sectionImages);
+  }
+
+  // Add click events to tab buttons
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const sectionId = this.getAttribute('data-section');
+        showSection(sectionId);
+      });
+    });
+    
+    // Add click events to nav links (for contact)
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        if (href === '#contact') {
+          document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+    
+    // Initialize with photo-walks section
+    showSection('photo-walks');
+  });
 
   function openModal(img) {
     var modal = document.getElementById('photoModal');
