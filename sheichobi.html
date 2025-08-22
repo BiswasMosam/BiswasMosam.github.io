@@ -7,6 +7,13 @@
   <link rel="icon" type="image/png" href="logos/favicon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Samarkan&family=Orbitron:wght@400;700&family=Yatra+One&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'GabrielWeissFriends';
+      src: url('fonts/GABRWFFR.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     body {
       background: #111;
       color: #fff;
@@ -193,12 +200,25 @@
       text-transform: uppercase;
       font-size: 1.1rem;
     }
+    #photo-walks .slideshow-title {
+      font-family: 'Samarkan', cursive;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
     .tab[data-section="friendly-shoots"] {
-      font-family: 'Orbitron', monospace;
+      font-family: 'GabrielWeissFriends', 'Orbitron', monospace;
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
+    #friendly-shoots .slideshow-title {
+      font-family: 'GabrielWeissFriends', 'Oswald', Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
     .tab[data-section="event-shoots"] {
       font-family: 'Yatra One', cursive;
       font-weight: 400;
