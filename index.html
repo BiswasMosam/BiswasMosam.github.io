@@ -183,6 +183,25 @@
   opacity: 1;
 }
 
+.about-desc {
+  display: block;
+  max-width: 100%;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* Responsive fix for mobile */
+@media (max-width: 900px) {
+  .about-desc {
+    max-width: 100vw !important;
+    width: 100% !important;
+    padding: 0.5rem !important;
+    font-size: 1em !important;
+  }
+}
+
 @media (max-width: 900px) {
   .about > div {
     flex-direction: column;
@@ -398,10 +417,10 @@
 </a>
       </div>
       <div style="background: rgba(0,0,0,0.18); border-radius: 16px; padding: 1.2rem; margin-top: 0.5rem; width: 200%;">
-        <p class="fade-in" style="line-height: 1.6; margin: 0; color: #fff; font-size: 1.08rem;">
-          Aspiring software developer with a keen interest in <strong style="color:#00bfff;">programming</strong>, <strong style="color:#00bfff;">AI</strong>, and <strong style="color:#00bfff;">software development</strong>. Skilled in <strong style="color:#00bfff;">Python</strong>, <strong style="color:#00bfff;">problem-solving</strong>, and collaborative project work. Looking to contribute to innovative tech solutions while continuously <strong style="color:#00bfff;">learning and growing</strong>.
-        </p>
-      </div>
+  <p class="fade-in about-desc" style="line-height: 1.6; margin: 0; color: #fff; font-size: 1.08rem;">
+    Aspiring software developer with a keen interest in <strong style="color:#00bfff;">programming</strong>, <strong style="color:#00bfff;">AI</strong>, and <strong style="color:#00bfff;">software development</strong>. Skilled in <strong style="color:#00bfff;">Python</strong>, <strong style="color:#00bfff;">problem-solving</strong>, and collaborative project work. Looking to contribute to innovative tech solutions while continuously <strong style="color:#00bfff;">learning and growing</strong>.
+  </p>
+</div>
     </div>
     <!-- Right side: Education (moved to rightmost side) -->
     <div style="min-width: 380px; max-width: 520px; margin-left: auto;">
@@ -474,19 +493,19 @@
   <h2 style="text-align: left; margin-bottom: 2.5rem; font-size: 2rem;">Certificates</h2>
   <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;max-width: 1920px; width: 100%;">
     <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; text-align: center; color: #000;">
-      <a href="cert1.png" download>
+      <a href="cert1.png" download onclick="openCertModal('cert1.png'); return false;">
         <img src="cert1.png" alt="Certificate 1" style="width: 100%; height: 250px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
       </a>
       <p style="margin-top: 0.7rem; font-weight: 500;"> Android Compose Camp</p>
     </div>
     <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; text-align: center; color: #000;">
-      <a href="cert2.png" download>
+      <a href="cert2.png" download onclick="openCertModal('cert2.png'); return false;">
         <img src="cert2.png" alt="Certificate 2" style="width: 100%; border-radius: 10px;height: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
       </a>
       <p style="margin-top: 0.7rem; font-weight: 500;"> AWS Machine Learning</p>
     </div>
     <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; text-align: center; color: #000;">
-      <a href="cert3.png" download>
+      <a href="cert3.png" download onclick="openCertModal('cert3.png'); return false;">
         <img src="cert3.png" alt="Certificate 3" style="width: 100%; border-radius: 10px;height: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
       </a>
       <p style="margin-top: 0.7rem; font-weight: 500;">Generative AI</p>
@@ -677,6 +696,31 @@
   document.getElementById('mosam-link').ondblclick = function() {
     window.open('sheichobi.html', '_blank');
   };
+</script>
+<div id="certModal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.96); justify-content:center; align-items:center;">
+  <button onclick="closeCertModal()" style="position:absolute; top:32px; right:48px; font-size:2.5rem; color:#fff; background:none; border:none; cursor:pointer; z-index:10001;">&times;</button>
+  <img id="certModalImg" src="" alt="Certificate Preview" style="max-width:90vw; max-height:90vh; border-radius:18px; box-shadow:0 8px 32px #000a;">
+</div>
+
+<script>
+  // Open certificate modal
+  function openCertModal(src) {
+    document.getElementById('certModalImg').src = src;
+    document.getElementById('certModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  // Close certificate modal
+  function closeCertModal() {
+    document.getElementById('certModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  // Close modal on background or Escape key
+  document.getElementById('certModal').onclick = function(e) {
+    if (e.target === this) closeCertModal();
+  };
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeCertModal();
+  });
 </script>
 </body>
 
