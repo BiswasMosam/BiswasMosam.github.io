@@ -1,0 +1,153 @@
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem 2rem;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: #fff;
+  margin-left: 1.5rem;
+  text-decoration: none;
+  font-weight: 300;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+section {
+  min-height: 100vh;
+  padding: 6rem 2rem 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+section.visible {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.blobs {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  width: 300px;
+  opacity: 0.40;
+  animation: float 20s ease-in-out infinite;
+}
+
+.blob:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.blob:nth-child(2) {
+  top: 30%;
+  right: 10%;
+  animation-delay: 5s;
+}
+
+.blob:nth-child(3) {
+  bottom: 10%;
+  left: 20%;
+  animation-delay: 10s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+}
+
+.resume-btn {
+  margin-top: 1.5rem;
+  padding: 0.5rem 1.2rem;
+  background: #fff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-btn:hover {
+  box-shadow: 0 0 10px #fff;
+  transform: scale(1.05);
+}
+
+/* ...rest of your CSS for about, skills, projects, certificates, contact, modal, and responsive styles... */
+
+/* Example for modal */
+#certModal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.96);
+  justify-content: center;
+  align-items: center;
+}
+#certModal img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #000a;
+}
+
+/* Responsive styles (copy from your original CSS) */
+@media (max-width: 900px) {
+  /* ...responsive styles... */
+}
+@media (max-width: 600px) {
+  /* ...responsive styles... */
+}
