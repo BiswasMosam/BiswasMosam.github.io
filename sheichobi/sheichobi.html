@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shei Chobi | Photography Portfolio</title>
+  <link rel="icon" type="image/png" href="logos/favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Samarkan&family=Orbitron:wght@400;700&family=Yatra+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sheichobi.css" />
+</head>
+<body>
+  <nav>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <header>
+    SHEI CHOBI
+  </header>
+  
+  <!-- Chrome-style Tab Navigation -->
+  <div class="tab-container">
+    <button class="tab active" data-section="photo-walks">PHOTO WALKS</button>
+    <button class="tab" data-section="friendly-shoots">FRIENDLY SHOOTS</button>
+    <button class="tab" data-section="event-shoots">EVENT SHOOTS</button>
+  </div>
+  
+  <div class="tab-content">
+    <div class="container" id="photo-walks">
+      <div class="slideshow-container">
+        <div class="slideshow-wrapper" id="slideshow-photo-walks"></div>
+        <div class="slideshow-overlay">
+          <h2 class="slideshow-title">PHOTO WALKS</h2>
+          <p class="slideshow-description">Capturing moments during street photography walks and urban exploration</p>
+        </div>
+      </div>
+      <div class="photo-grid">
+        <div class="grid" id="grid-photo-walks"></div>
+      </div>
+    </div>
+
+    <div class="container" id="friendly-shoots" style="display: none;">
+      <div class="slideshow-container">
+        <div class="slideshow-wrapper" id="slideshow-friendly-shoots"></div>
+        <div class="slideshow-overlay">
+          <h2 class="slideshow-title">FRIENDLY SHOOTS</h2>
+          <p class="slideshow-description">Artistic and creative portraits with friends and collaborators</p>
+        </div>
+      </div>
+      <div class="photo-grid">
+        <div class="grid" id="grid-friendly-shoots"></div>
+      </div>
+    </div>
+
+    <div class="container" id="event-shoots" style="display: none;">
+      <div class="slideshow-container">
+        <div class="slideshow-wrapper" id="slideshow-event-shoots"></div>
+        <div class="slideshow-overlay">
+          <h2 class="slideshow-title">EVENT SHOOTS</h2>
+          <p class="slideshow-description">Cultural events, festivals, and traditional celebrations</p>
+        </div>
+      </div>
+      <div class="photo-grid">
+        <div class="grid" id="grid-event-shoots"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal for enlarged photo -->
+  <div id="photoModal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal(event)">&times;</button>
+      <img id="modalImg" src="" alt="Enlarged Photo">
+    </div>
+  </div>
+  
+  <div class="contact-section" id="contact">
+    <h2>CONTACT</h2>
+    <form class="contact-form">
+      <label for="name">NAME *</label>
+      <input type="text" id="name" name="name" placeholder="YOUR NAME..." required>
+      <label for="email">EMAIL ADDRESS *</label>
+      <input type="email" id="email" name="email" placeholder="YOUR EMAIL ADDRESS..." required>
+      <label for="message">MESSAGE *</label>
+      <textarea id="message" name="message" placeholder="YOUR MESSAGE..." required></textarea>
+      <button type="submit">SUBMIT</button>
+    </form>
+  </div>
+  
+  <footer>
+    POWERED BY SHEI CHOBI PORTFOLIO
+  </footer>
+  
+  <a href="https://www.instagram.com/shei_chobi/" target="_blank" id="insta-link-fixed"
+     style="position: fixed; top: 2.2rem; right: 3rem; z-index: 10000;">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg"
+         alt="Instagram"
+         style="width: 32px; height: 32px; filter: invert(1); vertical-align: middle;" />
+  </a>
+  
+  <script src="sheichobi.js"></script>
+</body>
+</html>

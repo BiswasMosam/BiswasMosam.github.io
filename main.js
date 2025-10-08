@@ -34,7 +34,7 @@ window.addEventListener('load', type);
 
 // Secret double-click on "Mosam Biswas" opens photography page
 document.getElementById('mosam-link').ondblclick = function() {
-  window.open('sheichobi.html', '_blank');
+  window.open('sheichobi/sheichobi.html', '_blank');
 };
 
 // Certificate modal logic
