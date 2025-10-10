@@ -53,3 +53,27 @@ document.getElementById('certModal').onclick = function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeCertModal();
 });
+
+function blobPath(cx, cy, r, t, points = 32, wobble = 13, freq = 1.9) {
+  let d = '';
+  for (let i = 0; i < 360; i += 360 / points) {
+    let rad = (i * Math.PI) / 180;
+    let offset = Math.sin(rad * freq + t) * wobble;
+    let x = cx + Math.cos(rad) * (r + offset);
+    let y = cy + Math.sin(rad) * (r + offset);
+    d += (i === 0 ? 'M' : 'L') + x + ',' + y + ' ';
+  }
+  d += 'Z';
+  return d;
+}
+
+function animateBlobs() {
+  const t = Date.now() / 900;
+  document.getElementById('blob1').setAttribute('d', blobPath(320 + Math.sin(t)*40, 320 + Math.cos(t)*40, 120, t));
+  document.getElementById('blob2').setAttribute('d', blobPath(700 + Math.cos(t/2)*60, 400 + Math.sin(t/2)*60, 140, t+2));
+  document.getElementById('blob3').setAttribute('d', blobPath(500 + Math.sin(t/1.5)*50, 600 + Math.cos(t/1.5)*50, 100, t+4));
+  document.getElementById('blob4').setAttribute('d', blobPath(900 + Math.sin(t/1.3)*50, 200 + Math.cos(t/1.3)*50, 90, t+6));
+  document.getElementById('blob5').setAttribute('d', blobPath(200 + Math.cos(t/1.7)*60, 650 + Math.sin(t/1.7)*60, 80, t+8));
+  requestAnimationFrame(animateBlobs);
+}
+animateBlobs();

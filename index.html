@@ -61,10 +61,49 @@
     </nav>
   </header>
 
-  <div class="blobs">
-    <img class="blob" src="https://i.postimg.cc/FHbjJFNC/b1.png" alt="blob 1" />
-    <img class="blob" src="https://i.postimg.cc/252h2Hq4/b2.png" alt="blob 2" />
-    <img class="blob" src="https://i.postimg.cc/vmQ57RmY/b3.png" alt="blob 3" />
+  <div class="blobs-bg">
+    <svg id="liquid-blobs" width="100vw" height="100vh" viewBox="0 0 1200 800" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; filter: url(#gooey);">
+      <defs>
+        <linearGradient id="blobYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fca311"/>
+          <stop offset="100%" stop-color="#ffd600"/>
+        </linearGradient>
+        <linearGradient id="blobPink" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f83de8"/>
+          <stop offset="100%" stop-color="#ff5e62"/>
+        </linearGradient>
+        <linearGradient id="blobBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00dbff"/>
+          <stop offset="100%" stop-color="#3a86ff"/>
+        </linearGradient>
+        <linearGradient id="blobGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="50%" stop-color="#00ff99"/>
+          <stop offset="100%" stop-color="#00c853"/>
+        </linearGradient>
+        <linearGradient id="blobPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#a259ff"/>
+          <stop offset="100%" stop-color="#3f2b96"/>
+        </linearGradient>
+      </defs>
+      <path id="blob1" fill="url(#blobYellow)"/>
+      <path id="blob2" fill="url(#blobPink)"/>
+      <path id="blob3" fill="url(#blobBlue)"/>
+      <path id="blob4" fill="url(#blobGreen)"/>
+      <path id="blob5" fill="url(#blobPurple)"/>
+    </svg>
+    <svg width="0" height="0">
+      <filter id="gooey">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 18 -7"
+          result="gooey"
+        />
+        <feBlend in="SourceGraphic" in2="gooey" />
+      </filter>
+    </svg>
   </div>
 
   <section id="home" class="hero">

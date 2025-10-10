@@ -192,3 +192,122 @@ section.visible {
     box-sizing: border-box;
   }
 }
+
+/* Responsive blobs background */
+.blobs-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#liquid-blobs {
+  width: 100vw !important;
+  height: 100vh !important;
+  min-width: 100vw;
+  min-height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  display: block;
+}
+
+/* Responsive sections and cards */
+@media (max-width: 900px) {
+  .about,
+  .about > div,
+  .education-card,
+  .resume-btn,
+  .projects > div,
+  .certificates > div {
+    max-width: 98vw !important;
+    width: 98vw !important;
+    min-width: 0 !important;
+    margin: 0 auto !important;
+    box-sizing: border-box;
+    padding: 1rem !important;
+    border-radius: 18px !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  .about-desc {
+    font-size: 1em !important;
+    line-height: 1.5 !important;
+    padding: 0.5rem !important;
+    word-break: break-word;
+    text-align: left;
+    max-width: 98vw !important;
+    background: none !important;
+  }
+  .education-card .school-logo {
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 0.7rem !important;
+  }
+  .education-card .school-info {
+    font-size: 0.95em !important;
+    word-break: break-word;
+  }
+  .resume-btn {
+    width: 100%;
+    font-size: 1em;
+    margin-top: 1rem;
+    padding: 0.7rem 0;
+    box-sizing: border-box;
+  }
+  .projects > div,
+  .certificates > div {
+    width: 98vw !important;
+    min-width: 0 !important;
+    margin: 0 auto 1rem auto !important;
+  }
+  .projects {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  .certificates {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 600px) {
+  header {
+    font-size: 1.1rem;
+    padding: 1rem 0 0.5rem 0;
+  }
+  nav {
+    padding-left: 1rem;
+    font-size: 1rem;
+  }
+  .about > div {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+  }
+  .about > div > div {
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+  }
+  .about-desc {
+    font-size: 0.95em !important;
+    padding: 0.5rem !important;
+  }
+  .education-card .school-logo {
+    width: 32px !important;
+    height: 32px !important;
+    margin-right: 0.5rem !important;
+  }
+  .resume-btn {
+    font-size: 0.95em;
+    padding: 0.6rem 0;
+  }
+  .projects > div,
+  .certificates > div {
+    width: 98vw !important;
+    min-width: 0 !important;
+    margin: 0 auto 1rem auto !important;
+  }
+}
