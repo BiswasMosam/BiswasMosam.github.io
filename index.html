@@ -63,26 +63,35 @@
 
   <div class="blobs-bg">
     <svg id="liquid-blobs" width="100vw" height="100vh" viewBox="0 0 1200 800" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; filter: url(#gooey);">
+      <!-- Replace your <defs> gradients with these ultra-vibrant, saturated neon versions -->
       <defs>
         <linearGradient id="blobYellow" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fca311"/>
+          <stop offset="0%" stop-color="#fff900"/>
           <stop offset="100%" stop-color="#ffd600"/>
         </linearGradient>
         <linearGradient id="blobPink" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#f83de8"/>
-          <stop offset="100%" stop-color="#ff5e62"/>
+          <stop offset="0%" stop-color="#ff00c8"/>
+          <stop offset="100%" stop-color="#ff3b6e"/>
         </linearGradient>
         <linearGradient id="blobBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00dbff"/>
-          <stop offset="100%" stop-color="#3a86ff"/>
+          <stop offset="0%" stop-color="#00f6ff"/>
+          <stop offset="100%" stop-color="#007bff"/>
         </linearGradient>
         <linearGradient id="blobGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="50%" stop-color="#00ff99"/>
-          <stop offset="100%" stop-color="#00c853"/>
+          <stop offset="0%" stop-color="#00ffb3"/>
+          <stop offset="100%" stop-color="#00ff22"/>
         </linearGradient>
         <linearGradient id="blobPurple" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#a259ff"/>
-          <stop offset="100%" stop-color="#3f2b96"/>
+          <stop offset="0%" stop-color="#e100ff"/>
+          <stop offset="100%" stop-color="#7f00ff"/>
+        </linearGradient>
+        <linearGradient id="blobRed" x1="20%" y1="50%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ff003c"/>
+          <stop offset="100%" stop-color="#ff4a4a"/>
+        </linearGradient>
+        <linearGradient id="blobSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f8f8ff"/>
+          <stop offset="100%" stop-color="#c0c0c0"/>
         </linearGradient>
       </defs>
       <path id="blob1" fill="url(#blobYellow)"/>
@@ -90,6 +99,9 @@
       <path id="blob3" fill="url(#blobBlue)"/>
       <path id="blob4" fill="url(#blobGreen)"/>
       <path id="blob5" fill="url(#blobPurple)"/>
+      <!-- Update your blob6 and blob7 paths to use these gradients -->
+      <path id="blob6" fill="url(#blobRed)" pointer-events="all"/>
+      <path id="blob7" fill="url(#blobSilver)" pointer-events="all"/>
     </svg>
     <svg width="0" height="0">
       <filter id="gooey">
