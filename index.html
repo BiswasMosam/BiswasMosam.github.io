@@ -48,21 +48,13 @@
   <meta name="college" content="Ramrao Adik Institute of Technology, DY PATIL" />
   <meta name="college" content="RAIT, DY PATIL" />
   <meta name="college" content="dy patil" />
+  <!-- Add Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body>
-  <header>
-    <div style="display: flex; align-items: center;">
-      <img src="logos/favicon.png" alt="Favicon" style="width: 24px; height: 24px; margin-right: 8px;">
-      <a href="#home" id="mosam-link" style="color: #fff; text-decoration: none;">Mosam Biswas</a>
-    </div>
-    <nav>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
   <div class="blobs-bg">
-    <svg id="liquid-blobs" width="100vw" height="100vh" viewBox="0 0 1200 800" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; filter: url(#gooey);">
+  <svg id="liquid-blobs" width="100vw" height="100vh" viewBox="0 0 1200 800" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; filter: url(#gooey);">
       <!-- Replace your <defs> gradients with these ultra-vibrant, saturated neon versions -->
       <defs>
         <linearGradient id="blobYellow" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -99,7 +91,6 @@
       <path id="blob3" fill="url(#blobBlue)"/>
       <path id="blob4" fill="url(#blobGreen)"/>
       <path id="blob5" fill="url(#blobPurple)"/>
-      <!-- Update your blob6 and blob7 paths to use these gradients -->
       <path id="blob6" fill="url(#blobRed)" pointer-events="all"/>
       <path id="blob7" fill="url(#blobSilver)" pointer-events="all"/>
     </svg>
@@ -379,6 +370,15 @@
   </div>
 
   <script src="main.js"></script>
+
+  <!-- New Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a href="#home" title="Home"><i class="fas fa-home"></i></a>
+    <a href="#about" title="About"><i class="fas fa-user"></i></a>
+    <a href="#projects" title="Projects"><i class="fas fa-code"></i></a>
+    <a href="#certificates" title="Certificates"><i class="fas fa-certificate"></i></a>
+    <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+  </nav>
 </body>
 
 </html>

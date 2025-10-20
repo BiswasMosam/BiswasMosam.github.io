@@ -25,15 +25,41 @@ header {
   align-items: center;
 }
 
+/* Bottom centered navigation bar */
+nav {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 15px 30px;
+  display: flex;
+  gap: 20px;
+  z-index: 9999;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 nav a {
   color: #fff;
-  margin-left: 1.5rem;
   text-decoration: none;
-  font-weight: 300;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 nav a:hover {
-  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Icon-based navigation (like the reference image) */
+nav a i {
+  font-size: 1.5rem;
 }
 
 section {
@@ -75,6 +101,10 @@ section.visible {
   overflow: hidden;
 }
 
+/* Older simple blob style (handled mainly by SVG + JS) */
+
+/* Remove the old .blob selector and its children, or just update it as above */
+/*
 .blob {
   position: absolute;
   width: 300px;
@@ -99,6 +129,7 @@ section.visible {
   left: 20%;
   animation-delay: 10s;
 }
+*/
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -120,6 +151,44 @@ section.visible {
 .resume-btn:hover {
   box-shadow: 0 0 10px #fff;
   transform: scale(1.05);
+}
+
+/* --- New Bottom Navigation Bar Styles --- */
+.bottom-nav {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 30, 30, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+}
+
+.bottom-nav a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1.2rem;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bottom-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
 /* ...rest of your CSS for about, skills, projects, certificates, contact, modal, and responsive styles... */

@@ -32,10 +32,13 @@ function type() {
 }
 window.addEventListener('load', type);
 
-// Secret double-click on "Mosam Biswas" opens photography page
-document.getElementById('mosam-link').ondblclick = function() {
-  window.open('sheichobi/sheichobi.html', '_blank');
-};
+// Secret double-click on "Mosam Biswas" opens photography page (guard if element missing)
+const mosamLink = document.getElementById('mosam-link');
+if (mosamLink) {
+  mosamLink.ondblclick = function() {
+    window.open('sheichobi/sheichobi.html', '_blank');
+  };
+}
 
 // Certificate modal logic
 function openCertModal(src) {
@@ -79,7 +82,10 @@ function animateBlobs() {
   document.getElementById('blob7').setAttribute('d', blobPath(1050 + Math.sin(t/1.4)*70, 500 + Math.cos(t/2.9)*70, 75, t+12));
   requestAnimationFrame(animateBlobs);
 }
-animateBlobs();
+// Start animation only if blobs are present to avoid null errors
+if (document.getElementById('blob1')) {
+  animateBlobs();
+}
 
 document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
