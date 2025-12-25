@@ -271,6 +271,49 @@ section.visible {
   z-index: 0;
 }
 
+/* Card-local blobs (for section containers) */
+.card-with-blobs {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.card-with-blobs > :not(.card-blob) {
+  position: relative;
+  z-index: 1;
+}
+
+.card-with-blobs .card-blob {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.30;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card-with-blobs--subtle .card-blob {
+  opacity: 0.18;
+}
+
+.card-with-blobs .card-blob.blob-a {
+  top: -190px;
+  left: -180px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 0, 200, 0.95), rgba(255, 0, 200, 0) 62%),
+    radial-gradient(circle at 65% 60%, rgba(255, 249, 0, 0.80), rgba(255, 249, 0, 0) 58%);
+}
+
+.card-with-blobs .card-blob.blob-b {
+  right: -200px;
+  bottom: -210px;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(0, 246, 255, 0.90), rgba(0, 246, 255, 0) 62%),
+    radial-gradient(circle at 70% 65%, rgba(127, 0, 255, 0.75), rgba(127, 0, 255, 0) 58%);
+}
+
 #liquid-blobs {
   width: 100vw !important;
   height: 100vh !important;
