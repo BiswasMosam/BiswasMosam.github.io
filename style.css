@@ -381,6 +381,62 @@ section.visible {
     radial-gradient(circle at 70% 65%, rgba(127, 0, 255, 0.75), rgba(127, 0, 255, 0) 58%);
 }
 
+/* About card: side app-logo tiles */
+.card-with-blobs > .about-logo-rail {
+  position: absolute;
+  top: 4.5rem;
+  bottom: 4.5rem;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 220px;
+  align-items: flex-start;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card-with-blobs > .about-logo-rail--left {
+  left: 1.25rem;
+}
+
+.card-with-blobs > .about-logo-rail--right {
+  right: 1.25rem;
+}
+
+.about-app-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+  padding: 10px;
+  box-sizing: border-box;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
+}
+
+/* Zig-zag (alternate horizontal offset) */
+.about-logo-rail--left .about-app-logo:nth-child(even) {
+  align-self: flex-end;
+}
+
+.about-logo-rail--right .about-app-logo:nth-child(odd) {
+  align-self: flex-end;
+}
+
+.about-logo-rail--left .about-app-logo:nth-child(1) { transform: rotate(-18deg); }
+.about-logo-rail--left .about-app-logo:nth-child(2) { transform: rotate(14deg); }
+.about-logo-rail--left .about-app-logo:nth-child(3) { transform: rotate(-10deg); }
+.about-logo-rail--left .about-app-logo:nth-child(4) { transform: rotate(16deg); }
+
+.about-logo-rail--right .about-app-logo:nth-child(1) { transform: rotate(18deg); }
+.about-logo-rail--right .about-app-logo:nth-child(2) { transform: rotate(-14deg); }
+.about-logo-rail--right .about-app-logo:nth-child(3) { transform: rotate(10deg); }
+.about-logo-rail--right .about-app-logo:nth-child(4) { transform: rotate(-16deg); }
+
 #liquid-blobs {
   width: 100vw !important;
   height: 100vh !important;
@@ -408,6 +464,10 @@ section.visible {
     border-radius: 18px !important;
     overflow-wrap: break-word;
     word-break: break-word;
+  }
+
+  .card-with-blobs > .about-logo-rail {
+    display: none;
   }
   .about-desc {
     font-size: 1em !important;
