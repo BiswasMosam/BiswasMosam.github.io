@@ -60,6 +60,42 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeCertModal();
 });
 
+// Contact: copy Gmail address
+document.addEventListener('click', async (e) => {
+  const copyBtn = e.target && e.target.closest ? e.target.closest('.contact-pill__copy') : null;
+  if (!copyBtn) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  const textToCopy = copyBtn.getAttribute('data-copy') || '';
+  if (!textToCopy) return;
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(textToCopy);
+    } else {
+      const temp = document.createElement('textarea');
+      temp.value = textToCopy;
+      temp.setAttribute('readonly', '');
+      temp.style.position = 'absolute';
+      temp.style.left = '-9999px';
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+    }
+
+    const prev = copyBtn.textContent;
+    copyBtn.textContent = 'Copied';
+    setTimeout(() => {
+      copyBtn.textContent = prev || 'Copy';
+    }, 900);
+  } catch {
+    // no-op
+  }
+});
+
 function blobPath(cx, cy, r, t, points = 32, wobble = 13, freq = 1.9) {
   let d = '';
   for (let i = 0; i < 360; i += 360 / points) {

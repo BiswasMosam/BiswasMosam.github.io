@@ -25,6 +25,52 @@ body {
   border: 0;
 }
 
+/* Contact: Gmail pill expands on hover to reveal email + copy */
+.contact-pill--gmail {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 150px;
+  transition: max-width 220ms ease;
+  gap: 0.6rem;
+}
+
+.contact-pill--gmail:hover {
+  max-width: 520px;
+}
+
+.contact-pill--gmail .contact-pill__reveal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.contact-pill--gmail:hover .contact-pill__reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contact-pill--gmail .contact-pill__email {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+}
+
+.contact-pill--gmail .contact-pill__copy {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  padding: 0.25rem 0.6rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.contact-pill--gmail .contact-pill__copy:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
 header {
   position: fixed;
   top: 0;
