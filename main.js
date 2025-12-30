@@ -19,6 +19,7 @@ const typingElement = document.getElementById('typing-text');
 let index = 0;
 function type() {
   if (!typingElement) return;
+  if (typingElement.dataset.typingStarted !== '1') typingElement.dataset.typingStarted = '1';
   if (index === 0) typingElement.textContent = '';
   if (index < text.length) {
     typingElement.textContent = text.slice(0, index + 1);
