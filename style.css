@@ -53,8 +53,14 @@ body {
 }
 
 .contact-pill--gmail .contact-pill__email {
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.98);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
 }
 
 .contact-pill--gmail .contact-pill__copy {
@@ -65,6 +71,9 @@ body {
   padding: 0.25rem 0.6rem;
   font: inherit;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .contact-pill--gmail .contact-pill__copy:hover {

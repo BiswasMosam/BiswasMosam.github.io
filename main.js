@@ -86,10 +86,10 @@ document.addEventListener('click', async (e) => {
       document.body.removeChild(temp);
     }
 
-    const prev = copyBtn.textContent;
-    copyBtn.textContent = 'Copied';
+    if (!copyBtn.dataset.originalHtml) copyBtn.dataset.originalHtml = copyBtn.innerHTML;
+    copyBtn.innerHTML = '<i class="fa-solid fa-copy" aria-hidden="true"></i><span>Copied</span>';
     setTimeout(() => {
-      copyBtn.textContent = prev || 'Copy';
+      copyBtn.innerHTML = copyBtn.dataset.originalHtml || '<i class="fa-solid fa-copy" aria-hidden="true"></i><span>Copy</span>';
     }, 900);
   } catch {
     // no-op
