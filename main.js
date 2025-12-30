@@ -18,17 +18,19 @@ const text = '> Hi, I\'m Mosam Biswas';
 const typingElement = document.getElementById('typing-text');
 let index = 0;
 function type() {
+  if (!typingElement) return;
+  if (index === 0) typingElement.textContent = '';
   if (index < text.length) {
-    typingElement.innerHTML += text.charAt(index);
+    typingElement.textContent = text.slice(0, index + 1);
     index++;
     setTimeout(type, 100);
-  } else {
-    setTimeout(() => {
-      typingElement.innerHTML = '';
-      index = 0;
-      type();
-    }, 10000);
+    return;
   }
+
+  setTimeout(() => {
+    index = 0;
+    type();
+  }, 10000);
 }
 window.addEventListener('load', type);
 
