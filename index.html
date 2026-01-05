@@ -125,7 +125,7 @@
   </section>
 
   <section id="about" class="about">
-  <div class="card-with-blobs" style="display: flex; column-gap: 2.5rem; row-gap: 0.9rem; flex-wrap: wrap; align-items: flex-start; justify-content: center; padding: 2rem; background: linear-gradient(120deg, #522b5b 0%, #7c3aed 50%, #00bfff 100%); border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); margin-bottom: 1.5rem;">
+  <div class="card-with-blobs" style="display: flex; column-gap: 2.5rem; row-gap: 0.9rem; flex-wrap: wrap; align-items: flex-start; justify-content: center; padding: 2rem; background: linear-gradient(120deg, #522b5b 0%, #7c3aed 50%, #00bfff 100%); border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); margin-bottom: 1.5rem; max-width: 1920px; width: 100%; margin-left: auto; margin-right: auto; min-height: auto;">
     <div class="card-blob blob-a"></div>
     <div class="card-blob blob-b"></div>
 
@@ -146,7 +146,7 @@
       <h3 style="color: rgba(255,255,255,0.92); margin-bottom: 0.3rem; text-shadow: 0 4px 18px rgba(0,0,0,0.35);">About Me</h3>
     </div>
     <!-- Left side: Profile, Resume, Description -->
-    <div style="display: flex; flex: 1 1 420px; flex-direction: column; align-items: flex-start; min-width: 340px; max-width: 520px;">
+    <div style="display: flex; flex: 1 1 420px; flex-direction: column; align-items: flex-start; min-width: 0; max-width: 520px; width: 100%;">
       <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; row-gap: 1rem;">
         <img class="fade-in" src="profile.jpg" alt="Profile Photo" style="width: 220px; height: auto; border-radius: 20px; box-shadow: 0 0 15px rgba(255,255,255,0.2);">
           <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-left: 2rem;">
@@ -185,7 +185,7 @@
         </div>
     </div>
     <!-- Right side: Education (moved to rightmost side) -->
-    <div style="flex: 1 1 520px; min-width: 340px; max-width: 520px;">
+    <div style="flex: 1 1 520px; min-width: 0; max-width: 520px; width: 100%;">
       <h3 style="color:#00bfff; margin-bottom:1rem;">Education</h3>
       <div style="display: flex; flex-direction: column; gap: 1rem;">
         <div style="background: rgba(0,0,0,0.5); border-radius: 16px; padding: 1rem; display: flex; align-items: center; min-height: 70px; width: 100%;">
@@ -228,7 +228,14 @@
   <div class="card-with-blobs card-with-blobs--subtle" style="background: linear-gradient(90deg, #f5cc00 60%, #fffbe0 100%); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 2rem; margin-top: 1.5rem; width: 100%; max-width: 1920px; margin-left: auto; margin-right: auto; min-height: auto;">
     <div class="card-blob blob-a"></div>
     <div class="card-blob blob-b"></div>
-    <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap;">
+      <!-- Image on top for mobile only -->
+      <div style="flex: 0 0 100%; order: -1; margin-bottom: 1.5rem; display: none;" class="pcr-image-container">
+        <a href="sheichobi/sheichobi.html" aria-label="Open SheiChobi" style="display:block; line-height:0;">
+          <img src="logos/pcrphoto.png" alt="Experience Big Photo" style="width: 100%; height: auto; border-radius: 20px; object-fit: cover;">
+        </a>
+      </div>
+      <!-- Content -->
       <div style="flex: 1; min-width: 0;">
         <div style="display: flex; align-items: center; gap: 1.5rem;">
           <a href="https://www.instagram.com/photocircle_rait/" target="_blank" rel="noopener noreferrer" aria-label="Photocircle RAIT Instagram" style="display:inline-block; line-height:0;">
@@ -244,14 +251,10 @@
           I’ve been an active member of Photocircle RAIT (PCR) for over two years, during which I’ve grown both creatively and technically as a photographer. Being part of this community has allowed me to contribute to a variety of college events, exhibitions, and themed photography projects. I’ve also taken part in organizing workshops and collaborative shoots, which improved my teamwork, event coordination, and communication skills. PCR has not only strengthened my visual storytelling but also given me a platform to express my ideas and connect with like-minded creatives across the campus.
         </div>
       </div>
-      <div style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%;">
+      <!-- Desktop image on the right -->
+      <div style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%;" class="pcr-desktop-image">
         <a href="sheichobi/sheichobi.html" aria-label="Open SheiChobi" style="display:inline-block; line-height:0;">
-          <img
-            src="logos/pcrphoto.png"
-            alt="Experience Big Photo"
-            id="pcr-main-photo"
-            style="width: 300px; height: auto; border-radius: 20px; object-fit: cover; margin-left: 2rem;"
-          >
+          <img src="logos/pcrphoto.png" alt="Experience Big Photo" id="pcr-main-photo" style="width: 300px; height: auto; border-radius: 20px; object-fit: cover; margin-left: 2rem;">
         </a>
       </div>
     </div>
@@ -260,7 +263,12 @@
       <section id="research" class="card-with-blobs card-with-blobs--subtle" style="background: linear-gradient(90deg, #00c6ff 60%, #e0f7ff 100%); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 2rem; margin-top: 1.5rem; width: 100%; max-width: 1920px; margin-left: auto; margin-right: auto; min-height: auto;">
         <div class="card-blob blob-a"></div>
         <div class="card-blob blob-b"></div>
-        <div style="display: flex; align-items: flex-start; justify-content: space-between;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap;">
+          <!-- Image on top for mobile only -->
+          <div style="flex: 0 0 100%; order: -1; margin-bottom: 1.5rem; display: none;" class="research-image-container">
+            <img src="logos/research-photo.png" alt="Research Publication" style="width: 100%; height: auto; border-radius: 20px; object-fit: cover; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+          </div>
+          <!-- Content -->
           <div style="flex: 1; min-width: 0;">
             <div style="display: flex; align-items: center; gap: 1.5rem;">
               <div>
@@ -272,41 +280,37 @@
             </div>
             <a href="ResearchPaper.pdf" target="_blank" style="display:inline-block; margin-top:0.8rem; color:#005f99; text-decoration:none;">Read Paper</a>
           </div>
-          <div style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%;">
-            <img
-              src="logos/research-photo.png"
-              alt="Research Visual"
-              id="research-main-photo"
-              style="width: 300px; height: auto; border-radius: 20px; object-fit: cover; margin-left: 2rem;"
-            >
+          <!-- Desktop image on the right -->
+          <div style="display: flex; align-items: flex-end; justify-content: flex-end; height: 100%;" class="research-desktop-image">
+            <img src="logos/research-photo.png" alt="Research Visual" id="research-main-photo" style="width: 300px; height: auto; border-radius: 20px; object-fit: cover; margin-left: 2rem;">
           </div>
         </div>
       </section>
   <!-- Certificates Section -->
-<section id="certificates" class="card-with-blobs" style="background: linear-gradient(90deg, #f32559 0%, #f83de8 100%); padding: 4rem 2rem; border-radius: 20px; color: #fff; margin-top: 1.5rem; min-height: auto; max-width: 1920px; width: 100%;">
+<section id="certificates" class="card-with-blobs" style="background: linear-gradient(90deg, #f32559 0%, #f83de8 100%); padding: 2rem; border-radius: 20px; color: #fff; margin-top: 1.5rem; min-height: auto; max-width: 1920px; width: 100%; margin-left: auto; margin-right: auto;">
   <div class="card-blob blob-a"></div>
   <div class="card-blob blob-b"></div>
   <h2 style="text-align: left; margin-bottom: 2.5rem; font-size: 2rem;">Certificates</h2>
   <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;max-width: 1920px; width: 100%;">
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; text-align: center; color: #000;">
+    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; color: #000;">
       <a href="cert1.png" download onclick="openCertModal('cert1.png'); return false;">
         <img src="cert1.png" alt="Certificate 1" style="width: 100%; height: 250px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
       </a>
       <p style="margin-top: 0.7rem; font-weight: 500;"> Android Compose Camp</p>
     </div>
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; text-align: center; color: #000;">
+    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; color: #000;">
       <a href="cert2.png" download onclick="openCertModal('cert2.png'); return false;">
         <img src="cert2.png" alt="Certificate 2" style="width: 100%; border-radius: 10px;height: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
       </a>
       <p style="margin-top: 0.7rem; font-weight: 500;"> AWS Machine Learning</p>
     </div>
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; text-align: center; color: #000;">
+    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; color: #000;">
       <a href="cert3.png" download onclick="openCertModal('cert3.png'); return false;">
         <img src="cert3.png" alt="Certificate 3" style="width: 100%; border-radius: 10px;height: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
       </a>
       <p style="margin-top: 0.7rem; font-weight: 500;">Generative AI</p>
     </div>
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #000;">
+    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #000;">
       <p style="margin-bottom: 1rem; font-weight: bold; font-size: 1.1rem;">+ More</p>
       <a href="certificates.html" target="_blank" style="background: #f83de8; color: #fff; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">View All</a>
     </div>
@@ -319,7 +323,7 @@
     <h2>Projects</h2>
     <p>Things I have worked on</p>
     <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center;">
-      <div style="background-color: #111; border-radius: 12px; width: 300px; overflow: hidden;">
+      <div style="background-color: #111; border-radius: 12px; width: 300px; max-width: 100%; overflow: hidden;">
         <div style="width: 100%; height: 180px; background: linear-gradient(120deg, #ff00c8 0%, #00f6ff 100%); display: flex; align-items: center; justify-content: center;">
           <div style="font-weight: 700; font-size: 1.4rem; color: rgba(255,255,255,0.95); text-shadow: 0 8px 26px rgba(0,0,0,0.35);">MindFirst</div>
         </div>
@@ -336,7 +340,7 @@
         </div>
       </div>
 
-      <div style="background-color: #111; border-radius: 12px; width: 300px; overflow: hidden;">
+      <div style="background-color: #111; border-radius: 12px; width: 300px; max-width: 100%; overflow: hidden;">
         <div style="width: 100%; height: 180px; background: linear-gradient(120deg, #007bff 0%, #7c3aed 100%); display: flex; align-items: center; justify-content: center;">
           <div style="font-weight: 700; font-size: 1.4rem; color: rgba(255,255,255,0.95); text-shadow: 0 8px 26px rgba(0,0,0,0.35);">Sim Sim</div>
         </div>
@@ -353,7 +357,7 @@
         </div>
       </div>
 
-      <div style="background-color: #111; border-radius: 12px; width: 300px; overflow: hidden;">
+      <div style="background-color: #111; border-radius: 12px; width: 300px; max-width: 100%; overflow: hidden;">
         <div style="width: 100%; height: 180px; background: linear-gradient(120deg, #00ffb3 0%, #007bff 100%); display: flex; align-items: center; justify-content: center;">
           <div style="font-weight: 700; font-size: 1.25rem; color: rgba(255,255,255,0.95); text-shadow: 0 8px 26px rgba(0,0,0,0.35);">Committee Connect</div>
         </div>
@@ -370,7 +374,7 @@
         </div>
       </div>
 
-      <div style="background-color: #111; border-radius: 12px; width: 300px; overflow: hidden;">
+      <div style="background-color: #111; border-radius: 12px; width: 300px; max-width: 100%; overflow: hidden;">
         <img src="logos/p4.png" alt="Project 4" style="width: 100%; height: 180px; object-fit: cover;">
         <div style="padding: 1rem;">
     <h3>Rail Mitra</h3>
@@ -386,7 +390,7 @@
         </div>
       </div>
 
-      <div style="background-color: #111; border-radius: 12px; width: 300px; overflow: hidden;">
+      <div style="background-color: #111; border-radius: 12px; width: 300px; max-width: 100%; overflow: hidden;">
         <div style="width: 100%; height: 180px; background: linear-gradient(120deg, #7c3aed 0%, #00f6ff 100%); display: flex; align-items: center; justify-content: center;">
           <div style="font-weight: 700; font-size: 1.4rem; color: rgba(255,255,255,0.95); text-shadow: 0 8px 26px rgba(0,0,0,0.35);">PixelForge</div>
         </div>
@@ -404,7 +408,7 @@
         </div>
       </div>
 
-      <div style="background-color: #111; border-radius: 12px; width: 300px; overflow: hidden;">
+      <div style="background-color: #111; border-radius: 12px; width: 300px; max-width: 100%; overflow: hidden;">
         <div style="width: 100%; height: 180px; background: linear-gradient(120deg, #00ffb3 0%, #f5cc00 100%); display: flex; align-items: center; justify-content: center;">
           <div style="font-weight: 700; font-size: 1.3rem; color: rgba(255,255,255,0.95); text-shadow: 0 8px 26px rgba(0,0,0,0.35);">IntelliStatement</div>
         </div>

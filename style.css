@@ -482,105 +482,517 @@ section.visible {
 
 /* Responsive sections and cards */
 @media (max-width: 900px) {
-  .about,
-  .about > div,
-  .education-card,
-  .resume-btn,
-  .projects > div,
-  .certificates > div {
-    max-width: 98vw !important;
-    width: 98vw !important;
-    min-width: 0 !important;
-    margin: 0 auto !important;
-    box-sizing: border-box;
-    padding: 1rem !important;
-    border-radius: 18px !important;
-    overflow-wrap: break-word;
-    word-break: break-word;
+  section {
+    padding: 4rem 1rem 2rem !important;
+    min-height: auto !important;
+  }
+
+  .hero h1 {
+    font-size: 2rem !important;
+  }
+
+  .hero p {
+    font-size: 1rem !important;
+    padding: 0 1rem;
   }
 
   .card-with-blobs > .about-logo-rail {
-    display: none;
+    display: none !important;
   }
+
+  .card-with-blobs {
+    padding: 1.5rem 1rem !important;
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    width: calc(100% - 1rem) !important;
+    max-width: calc(100% - 1rem) !important;
+  }
+
   .about-desc {
-    font-size: 1em !important;
+    font-size: 0.95rem !important;
     line-height: 1.5 !important;
-    padding: 0.5rem !important;
+    padding: 1rem !important;
     word-break: break-word;
     text-align: left;
-    max-width: 98vw !important;
-    background: none !important;
   }
-  .education-card .school-logo {
+
+  /* Profile image responsive */
+  .about img[src="profile.jpg"] {
+    width: 160px !important;
+    max-width: 100% !important;
+  }
+
+  /* Resume button */
+  .resume-btn {
+    width: 100% !important;
+    max-width: 200px !important;
+    font-size: 0.9rem !important;
+    padding: 0.6rem 1rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Education cards */
+  .about > div > div > div[style*="background: rgba(0,0,0,0.5)"] {
+    min-height: auto !important;
+    padding: 0.8rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  .about > div > div > div[style*="background: rgba(0,0,0,0.5)"] img {
     width: 40px !important;
     height: 40px !important;
-    margin-right: 0.7rem !important;
+    margin-right: 0.8rem !important;
   }
-  .education-card .school-info {
-    font-size: 0.95em !important;
-    word-break: break-word;
+
+  /* Experience (PhotoCircle) and Research sections - Full screen cards on mobile */
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"],
+  section[style*="background: linear-gradient(90deg, #f5cc00"],
+  section[style*="background: linear-gradient(90deg, #00c6ff"] {
+    padding: 1.5rem 1rem !important;
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    width: calc(100% - 1rem) !important;
+    max-width: calc(100% - 1rem) !important;
+    border-radius: 20px !important;
+    min-height: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
   }
-  .resume-btn {
-    width: 100%;
-    font-size: 1em;
-    margin-top: 1rem;
-    padding: 0.7rem 0;
-    box-sizing: border-box;
+
+  /* Show mobile image, hide desktop image */
+  .pcr-image-container,
+  .research-image-container {
+    display: block !important;
   }
-  .projects > div,
-  .certificates > div {
-    width: 98vw !important;
-    min-width: 0 !important;
-    margin: 0 auto 1rem auto !important;
+
+  .pcr-desktop-image,
+  .research-desktop-image {
+    display: none !important;
   }
-  .projects {
+
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] > div[style*="display: flex"],
+  section[style*="background: linear-gradient(90deg, #f5cc00"] > div,
+  section[style*="background: linear-gradient(90deg, #00c6ff"] > div {
+    width: 100% !important;
+    display: flex !important;
     flex-direction: column !important;
     gap: 1rem !important;
   }
-  .certificates {
-    flex-direction: column !important;
+
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] h3,
+  section[style*="background: linear-gradient(90deg, #f5cc00"] h3,
+  section[style*="background: linear-gradient(90deg, #00c6ff"] h3 {
+    font-size: 1.3rem !important;
+  }
+
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] img,
+  section[style*="background: linear-gradient(90deg, #f5cc00"] img,
+  section[style*="background: linear-gradient(90deg, #00c6ff"] img {
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 12px !important;
+  }
+
+  /* PhotoCircle main photo specific */
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] img#pcr-main-photo {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
+  }
+
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] div[style*="font-size:1rem"],
+  section[style*="background: linear-gradient(90deg, #f5cc00"] div[style*="font-size:1rem"],
+  section[style*="background: linear-gradient(90deg, #00c6ff"] div[style*="font-size:1rem"] {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    text-align: left !important;
+  }
+
+  /* Certificates section */
+  #certificates {
+    padding: 2rem 1rem !important;
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    width: calc(100% - 1rem) !important;
+    max-width: calc(100% - 1rem) !important;
+  }
+
+  #certificates h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  #certificates > div {
     gap: 1rem !important;
+  }
+
+  #certificates > div > div {
+    width: 100% !important;
+    max-width: 350px !important;
+  }
+
+  /* Projects section */
+  #projects {
+    padding: 4rem 1rem 2rem !important;
+  }
+
+  #projects h2 {
+    font-size: 1.8rem !important;
+  }
+
+  #projects > div {
+    gap: 1rem !important;
+  }
+
+  #projects > div > div {
+    width: 100% !important;
+    max-width: 350px !important;
+  }
+
+  /* Contact section */
+  #contact {
+    padding: 3rem 1rem !important;
+  }
+
+  #contact h2 {
+    font-size: 1.8rem !important;
+  }
+
+  #contact ul {
+    gap: 0.5rem !important;
+    justify-content: center !important;
+  }
+
+  #contact ul li {
+    font-size: 0.9rem !important;
+    padding: 0.4rem 0.8rem !important;
+  }
+
+  #contact ul li img,
+  #contact ul li i {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 20px !important;
+  }
+
+  /* Bottom navigation */
+  .bottom-nav {
+    bottom: 15px !important;
+    padding: 8px 12px !important;
+    gap: 5px !important;
+  }
+
+  .bottom-nav a {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1rem !important;
   }
 }
 
 /* For very small screens */
 @media (max-width: 600px) {
-  header {
-    font-size: 1.1rem;
-    padding: 1rem 0 0.5rem 0;
+  body {
+    font-size: 14px !important;
   }
-  nav {
-    padding-left: 1rem;
-    font-size: 1rem;
+
+  section {
+    padding: 3rem 0.5rem 2rem !important;
   }
+
+  .hero h1 {
+    font-size: 1.5rem !important;
+    padding: 0 1rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem !important;
+    padding: 0 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .card-with-blobs {
+    padding: 1rem 0.8rem !important;
+    margin-left: 0.25rem !important;
+    margin-right: 0.25rem !important;
+    width: calc(100% - 0.5rem) !important;
+    max-width: calc(100% - 0.5rem) !important;
+    border-radius: 16px !important;
+  }
+
   .about > div {
     flex-direction: column !important;
     gap: 1rem !important;
-    padding: 1rem !important;
   }
+
   .about > div > div {
     min-width: 0 !important;
-    max-width: 100vw !important;
-    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
   }
+
   .about-desc {
-    font-size: 0.95em !important;
-    padding: 0.5rem !important;
+    font-size: 0.9rem !important;
+    padding: 0.8rem !important;
   }
-  .education-card .school-logo {
-    width: 32px !important;
-    height: 32px !important;
-    margin-right: 0.5rem !important;
+
+  /* Profile and resume button container */
+  .about > div > div > div[style*="display: flex; flex-direction: row"] {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
   }
+
+  .about img[src="profile.jpg"] {
+    width: 140px !important;
+    margin: 0 auto !important;
+  }
+
   .resume-btn {
-    font-size: 0.95em;
-    padding: 0.6rem 0;
+    width: 100% !important;
+    max-width: 180px !important;
+    font-size: 0.85rem !important;
+    padding: 0.5rem 0.8rem !important;
   }
-  .projects > div,
-  .certificates > div {
-    width: 98vw !important;
-    min-width: 0 !important;
-    margin: 0 auto 1rem auto !important;
+
+  /* Education cards */
+  .about > div > div > div[style*="background: rgba(0,0,0,0.5)"] {
+    padding: 0.7rem !important;
+    min-height: auto !important;
+  }
+
+  .about > div > div > div[style*="background: rgba(0,0,0,0.5)"] img {
+    width: 36px !important;
+    height: 36px !important;
+    margin-right: 0.6rem !important;
+  }
+
+  .about > div > div > div[style*="background: rgba(0,0,0,0.5)"] > div {
+    font-size: 0.85rem !important;
+  }
+
+  /* Badges section */
+  .about > div > div > div[style*="Featured badges"] {
+    padding: 0.8rem !important;
+  }
+
+  .about > div > div > div[style*="Featured badges"] a {
+    font-size: 0.8rem !important;
+    padding: 0.3rem 0.6rem !important;
+  }
+
+  /* Experience and Research sections - Full screen cards on small mobile */
+  section[style*="background: linear-gradient(90deg, #f5cc00"],
+  section[style*="background: linear-gradient(90deg, #00c6ff"],
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] {
+    padding: 1.5rem 1rem !important;
+    margin: 1rem 0.5rem !important;
+    width: calc(100% - 1rem) !important;
+    max-width: calc(100% - 1rem) !important;
+    border-radius: 20px !important;
+    min-height: auto !important;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
+
+  /* Show mobile image, hide desktop image */
+  .pcr-image-container,
+  .research-image-container {
+    display: block !important;
+  }
+
+  .pcr-desktop-image,
+  .research-desktop-image {
+    display: none !important;
+  }
+
+  section[style*="background: linear-gradient(90deg, #f5cc00"] > div,
+  section[style*="background: linear-gradient(90deg, #00c6ff"] > div,
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] > div[style*="display: flex"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    align-items: stretch !important;
+  }
+
+  section[style*="background: linear-gradient(90deg, #f5cc00"] > div > div,
+  section[style*="background: linear-gradient(90deg, #00c6ff"] > div > div,
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] > div > div {
+    width: 100% !important;
+    flex-direction: column !important;
+  }
+
+  section[style*="background: linear-gradient(90deg, #f5cc00"] h3,
+  section[style*="background: linear-gradient(90deg, #00c6ff"] h3,
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] h3 {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.8rem !important;
+  }
+
+  section[style*="background: linear-gradient(90deg, #f5cc00"] img,
+  section[style*="background: linear-gradient(90deg, #00c6ff"] img,
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    border-radius: 12px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] img#pcr-main-photo {
+    margin-left: 0 !important;
+    margin-top: 1rem !important;
+  }
+
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] img[src*="pcr.png"] {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  section[style*="background: linear-gradient(90deg, #f5cc00"] div[style*="color:#222"],
+  section[style*="background: linear-gradient(90deg, #00c6ff"] div[style*="color:#222"],
+  section[style*="background: linear-gradient(90deg, #00c6ff"] div[style*="color:#004d66"],
+  .card-with-blobs--subtle[style*="background: linear-gradient(90deg, #f5cc00"] div[style*="color:#222"] {
+    font-size: 0.9rem !important;
+    line-height: 1.7 !important;
+    text-align: left !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Certificates */
+  #certificates {
+    padding: 1.5rem 0.8rem !important;
+    margin-left: 0.25rem !important;
+    margin-right: 0.25rem !important;
+    width: calc(100% - 0.5rem) !important;
+  }
+
+  #certificates h2 {
+    font-size: 1.3rem !important;
+  }
+
+  #certificates > div > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.8rem !important;
+  }
+
+  #certificates > div > div img {
+    height: 180px !important;
+  }
+
+  #certificates > div > div p {
+    font-size: 0.9rem !important;
+  }
+
+  /* Projects */
+  #projects {
+    padding: 3rem 0.5rem 2rem !important;
+  }
+
+  #projects h2 {
+    font-size: 1.5rem !important;
+  }
+
+  #projects p {
+    font-size: 0.9rem !important;
+  }
+
+  #projects > div > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #projects > div > div > div[style*="height: 180px"] {
+    height: 150px !important;
+  }
+
+  #projects > div > div h3 {
+    font-size: 1rem !important;
+  }
+
+  #projects > div > div p {
+    font-size: 0.85rem !important;
+  }
+
+  #projects > div > div span {
+    font-size: 0.75rem !important;
+    padding: 0.15rem 0.4rem !important;
+  }
+
+  /* Contact */
+  #contact {
+    padding: 2.5rem 0.8rem !important;
+  }
+
+  #contact h2 {
+    font-size: 1.5rem !important;
+  }
+
+  #contact ul {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.4rem !important;
+  }
+
+  #contact ul li {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+    justify-content: center !important;
+  }
+
+  .contact-pill--gmail {
+    max-width: 100% !important;
+  }
+
+  .contact-pill--gmail:hover {
+    max-width: 100% !important;
+  }
+
+  /* Footer */
+  footer {
+    font-size: 0.85rem !important;
+    padding: 0.8rem 0.5rem !important;
+  }
+
+  /* Bottom navigation */
+  .bottom-nav {
+    bottom: 10px !important;
+    padding: 6px 10px !important;
+    gap: 3px !important;
+  }
+
+  .bottom-nav a {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Modal */
+  #certModal button {
+    top: 20px !important;
+    right: 20px !important;
+    font-size: 2rem !important;
+  }
+
+  #certModal img {
+    max-width: 95vw !important;
+    max-height: 85vh !important;
   }
 }
 
