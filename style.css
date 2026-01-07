@@ -678,6 +678,15 @@ section.visible {
     font-size: 20px !important;
   }
 
+  /* Contact pill Gmail - hide reveal section on mobile */
+  .contact-pill--gmail {
+    max-width: 150px !important;
+  }
+
+  .contact-pill--gmail .contact-pill__reveal {
+    display: none !important;
+  }
+
   /* Bottom navigation */
   .bottom-nav {
     bottom: 15px !important;
