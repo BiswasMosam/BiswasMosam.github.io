@@ -1,139 +1,118 @@
-// Photo collections
-const photoCollections = {
-  'photo-walks': [
-    'Photographs/street1.jpg', 'Photographs/street2.jpg', 'Photographs/street3.jpg',
-    'Photographs/street4.jpg', 'Photographs/street5.jpg', 'Photographs/street6.jpg',
-    'Photographs/street7.jpg', 'Photographs/street8.jpg', 'Photographs/street9.jpg',
-    'Photographs/street10.jpg', 'Photographs/street11.jpg', 'Photographs/street12.jpg',
-    'Photographs/street13.jpg', 'Photographs/street14.jpg'
-  ],
-  'friendly-shoots': [
-    'Photographs/mono1.jpg', 'Photographs/mono2.jpg', 'Photographs/mono3.jpg',
-    'Photographs/mono4.jpg', 'Photographs/mono5.jpg', 'Photographs/mono6.jpg',
-    'Photographs/mono7.jpg', 'Photographs/mono8.jpg', 'Photographs/mono9.jpg',
-    'Photographs/mono10.jpg'
-  ],
-  'event-shoots': [
-    'Photographs/trad1.jpg', 'Photographs/trad2.jpg', 'Photographs/trad3.jpg',
-    'Photographs/trad4.jpg', 'Photographs/trad5.jpg', 'Photographs/trad6.jpg',
-    'Photographs/trad7.jpg'
-  ]
-};
+// All photos collection - will be loaded from photos.json
+let allPhotos = [];
 
-// Slideshow state
-const slideshowState = {
-  'photo-walks': { currentIndex: 0, interval: null },
-  'friendly-shoots': { currentIndex: 0, interval: null },
-  'event-shoots': { currentIndex: 0, interval: null }
-};
+// Categorize photos by orientation
+const horizontalPhotos = [];
+const verticalPhotos = [];
 
-const SLIDE_DURATION = 3000; // 3 seconds per slide
-const instaLink = document.getElementById('insta-link-fixed');
+// Fallback photos if JSON fails to load
+const fallbackPhotos = [
+  'Photographs/street1.jpg', 'Photographs/street2.jpg', 'Photographs/street3.jpg',
+  'Photographs/street4.jpg', 'Photographs/street5.jpg', 'Photographs/street6.jpg',
+  'Photographs/street7.jpg', 'Photographs/street8.jpg', 'Photographs/street9.jpg',
+  'Photographs/street10.jpg', 'Photographs/street11.jpg', 'Photographs/street12.jpg',
+  'Photographs/street13.jpg', 'Photographs/street14.jpg',
+  'Photographs/mono1.jpg', 'Photographs/mono2.jpg', 'Photographs/mono3.jpg',
+  'Photographs/mono4.jpg', 'Photographs/mono5.jpg', 'Photographs/mono6.jpg',
+  'Photographs/mono7.jpg', 'Photographs/mono8.jpg', 'Photographs/mono9.jpg',
+  'Photographs/mono10.jpg',
+  'Photographs/trad1.jpg', 'Photographs/trad2.jpg', 'Photographs/trad3.jpg',
+  'Photographs/trad4.jpg', 'Photographs/trad5.jpg', 'Photographs/trad6.jpg',
+  'Photographs/trad7.jpg'
+];
 
-// Initialize slideshows and grids
-function initializeSection(sectionId) {
-  const photos = photoCollections[sectionId];
-  const slideshowContainer = document.getElementById(`slideshow-${sectionId}`);
-  slideshowContainer.innerHTML = '';
-  photos.forEach((photo, index) => {
-    const slide = document.createElement('div');
-    slide.className = `slide ${index === 0 ? 'active' : ''}`;
-    slide.innerHTML = `<img src="${photo}" alt="${sectionId} Photo ${index + 1}" onclick="openModal(this)">`;
-    slideshowContainer.appendChild(slide);
-  });
-
-  const gridContainer = document.getElementById(`grid-${sectionId}`);
-  gridContainer.innerHTML = '';
-  photos.forEach((photo, index) => {
-    const gridItem = document.createElement('div');
-    gridItem.className = 'grid-item';
-    gridItem.innerHTML = `<img src="${photo}" alt="${sectionId} Photo ${index + 1}" onclick="openModal(this)">`;
-    gridContainer.appendChild(gridItem);
-  });
-}
-
-// Show specific slide with zoom effect
-function showSlide(sectionId, index) {
-  const slides = document.querySelectorAll(`#slideshow-${sectionId} .slide`);
-  const state = slideshowState[sectionId];
-
-  if (slides[state.currentIndex]) {
-    slides[state.currentIndex].classList.add('zoom-out');
-  }
-
-  slides.forEach(slide => {
-    slide.classList.remove('active');
-    slide.classList.remove('zoom-out');
-  });
-
-  setTimeout(() => {
-    if (slides[index]) {
-      slides[index].classList.add('active');
-      state.currentIndex = index;
+// Load photos from JSON file
+async function loadPhotoList() {
+  try {
+    const response = await fetch('photos.json');
+    if (response.ok) {
+      allPhotos = await response.json();
+      console.log(`Loaded ${allPhotos.length} photos from photos.json`);
+    } else {
+      throw new Error('Failed to load photos.json');
     }
-  }, 100);
-}
-
-// Next slide
-function nextSlide(sectionId) {
-  const photos = photoCollections[sectionId];
-  const state = slideshowState[sectionId];
-  const nextIndex = (state.currentIndex + 1) % photos.length;
-  showSlide(sectionId, nextIndex);
-}
-
-// Start slideshow
-function startSlideshow(sectionId) {
-  const state = slideshowState[sectionId];
-  if (state.interval) clearInterval(state.interval);
-
-  state.interval = setInterval(() => {
-    nextSlide(sectionId);
-  }, SLIDE_DURATION);
-}
-
-// Stop slideshow
-function stopSlideshow(sectionId) {
-  const state = slideshowState[sectionId];
-  if (state.interval) {
-    clearInterval(state.interval);
-    state.interval = null;
+  } catch (error) {
+    console.warn('Could not load photos.json, using fallback list:', error);
+    allPhotos = fallbackPhotos;
   }
+  categorizeImages();
 }
 
-// Section navigation
-function showSection(sectionId) {
-  Object.keys(photoCollections).forEach(id => {
-    document.getElementById(id).style.display = 'none';
-    stopSlideshow(id);
+// Function to check if image is horizontal or vertical
+function categorizeImages() {
+  let loadedCount = 0;
+  const totalImages = allPhotos.length;
+
+  allPhotos.forEach(photoSrc => {
+    const img = new Image();
+    img.onload = function() {
+      if (this.width >= this.height) {
+        horizontalPhotos.push(photoSrc);
+      } else {
+        verticalPhotos.push(photoSrc);
+      }
+      
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        initializeMarquees();
+      }
+    };
+    img.onerror = function() {
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        initializeMarquees();
+      }
+    };
+    img.src = photoSrc;
   });
+}
 
-  document.getElementById(sectionId).style.display = 'block';
+// Initialize all marquee sections
+function initializeMarquees() {
+  // Distribute horizontal photos across 3 marquees
+  const horizontalSet1 = horizontalPhotos.filter((_, i) => i % 3 === 0);
+  const horizontalSet2 = horizontalPhotos.filter((_, i) => i % 3 === 1);
+  const horizontalSet3 = horizontalPhotos.filter((_, i) => i % 3 === 2);
 
-  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-  document.querySelector(`.tab[data-section="${sectionId}"]`).classList.add('active');
+  createMarquee('marquee-1', horizontalSet1.length > 0 ? horizontalSet1 : allPhotos.slice(0, 10));
+  createMarquee('marquee-2', horizontalSet2.length > 0 ? horizontalSet2 : allPhotos.slice(10, 20));
+  createMarquee('marquee-3', horizontalSet3.length > 0 ? horizontalSet3 : allPhotos.slice(20, 30));
+  createMarquee('marquee-vertical', verticalPhotos.length > 0 ? verticalPhotos : allPhotos.slice(0, 10));
+}
 
-  setTimeout(() => {
-    startSlideshow(sectionId);
-  }, 300);
+// Create marquee content
+function createMarquee(containerId, photos) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  // Duplicate the photos array to create seamless loop
+  const extendedPhotos = [...photos, ...photos];
+
+  extendedPhotos.forEach((photo, index) => {
+    const item = document.createElement('div');
+    item.className = 'marquee-item';
+    item.innerHTML = `<img src="${photo}" alt="Photo ${index + 1}" loading="lazy">`;
+    item.onclick = function() {
+      openModal(item.querySelector('img'));
+    };
+    container.appendChild(item);
+  });
 }
 
 // Modal functions
 function openModal(img) {
-  var modal = document.getElementById('photoModal');
-  var modalImg = document.getElementById('modalImg');
+  const modal = document.getElementById('photoModal');
+  const modalImg = document.getElementById('modalImg');
 
   modalImg.src = img.src;
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  if (instaLink) instaLink.classList.add('hide');
 }
 
 function closeModal(event) {
   if (event.target.classList.contains('modal') || event.target.classList.contains('close-modal')) {
     document.getElementById('photoModal').classList.remove('active');
     document.body.style.overflow = '';
-    if (instaLink) instaLink.classList.remove('hide');
   }
 }
 
@@ -143,81 +122,29 @@ document.addEventListener('keydown', function(e) {
   if (modal.classList.contains('active') && e.key === 'Escape') {
     modal.classList.remove('active');
     document.body.style.overflow = '';
-    if (instaLink) instaLink.classList.remove('hide');
   }
 });
 
-// Initialize everything when page loads
+// Pause marquee on hover
 document.addEventListener('DOMContentLoaded', function() {
-  Object.keys(photoCollections).forEach(sectionId => {
-    initializeSection(sectionId);
-  });
+  // Load photos and start
+  loadPhotoList();
 
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', function() {
-      const sectionId = this.getAttribute('data-section');
-      showSection(sectionId);
+  // Add hover pause functionality to all marquee containers
+  const marqueeContainers = document.querySelectorAll('.marquee-container');
+  marqueeContainers.forEach(container => {
+    container.addEventListener('mouseenter', function() {
+      const track = this.querySelector('.marquee-track');
+      if (track) {
+        track.style.animationPlayState = 'paused';
+      }
     });
-  });
 
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const href = this.getAttribute('href');
-      if (href === '#contact') {
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    container.addEventListener('mouseleave', function() {
+      const track = this.querySelector('.marquee-track');
+      if (track) {
+        track.style.animationPlayState = 'running';
       }
     });
   });
-
-  showSection('photo-walks');
 });
-
-/*
-
-                              ::::::::::::::::::::                              
-                        -::::::::::::::::::::::::::::::-                        
-                     ::::::::::::::::::::::::::::::::::::::-                    
-                  :::::-+%@@+::::::::::::::::::::::-%#+-::::::-                 
-               :::::=%@@@@@@@-:::::::::::::::::::::%@@@@@%=:::::-               
-             :::::#@@@@@@@@#::::-*%@@@@@@@@@@@*-:::*@@@@@@@@@=::::-             
-           ::::-%@@@@@@@@=:::*@@@@@@@@@@@@@@@@@@@@*:::#@@@@@@@@+::::-           
-         :::::#@@@@@@@@+::-%@@@@@@@@@@@@@@@@@@@@@@@@%-:-#@@@@@@@@+::::=         
-        ::::+@@@@@@@@%-:-%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%-:=%@@@@@@@%-:::-        
-       ::::*@@@@@@@@*::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::#@@@@@@@@+::::+      
-     ::::-%@@@@@@@@*::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*::%@@@@@@@@#::::=     
-    :::::%@@@@@@@@#::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::#@@@@@@@@#::::=    
-    ::::%@@@@@@@@@-:=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=:=@@@@@@@@@#::::@   
-   ::::*@@@@@@@@@*::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#::*@@@@@@@@@+::::+  
-  ::::+@@@@@@@@@@-::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%::-@@@@@@@@@@=:::-  
- :::::%@@@@@@@@@%-::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-::%@@@@@@@@@#::::+ 
- ::::+@@@@@@@@@@%-::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:::%@@@@@@@@@@=:::: 
-:::::@@@@@@@@@@@%-::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%:::%@@@@@@@@@@%::::-
-::::=@@@@@@@@@@@@-::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#::-%@@@@@@@@@@@=:::=
-::::+@@@@@@@@@@@@*::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=::+@@@@@@@@@@@@*:::=
-::::*@@@@@@@@@@@@@-::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+:::%@@@@@@@@@@@@#:::-
-::::#@@@@@@@@@@@@@*:::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*:::+@@@@@@@@@@@@@#::::
-::::#@@@@@@@@@@@@@@=:::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::::%@@@@@@@@@@@@@#::::
-::::*@@@@@@@@@@@@@@@-::::#@@@@@@@@@@@@@@@@@@@@@@@@@@@@%:::::%@@@@@@@@@@@@@@#:::-
-::::+@@@@@@@@@@@@%-:::::::-%@@@@@@@@@@@@@@@@@@@@@@@@%-:::::::*@@@@@@@@@@@@@*:::-
-::::=@@@@@@@@@%=:::::::::::::+@@@@@@@@@@@@@@@@@@@@@@@%-::::::::-#@@@@@@@@@@+:::=
-:::::%@@@@@@+:::::::::::::::::::-+%@@@@@@@@@@%+-:=%@@@@%-:::::::::=%@@@@@@@::::=
- ::::-%@@#-::::::::::::::::::::::::::::::::::::::::=%@@@@%+:::::::::-+%@@@+::::# 
- -::::==::::::::::::-#-::::::::::::::::::::::::::::::-#@@@@@*::::::::::-##::::+ 
-  ::::::::::::::::=@@@@@#-::::::::::::::::::::::::::::::*@@@@@#-:::::::::::::-  
-   :::::::::::::*@@@@@@@@@@@*-:::::::::::::::::::=*:::::::+%@@@@%-:::::::::::*  
-    :::::::::-%@@@@@*::+%@@@@@@@@%#+-:::::-=*%%@@@@@#:::::::-%@@@@%=::::::::%   
-    -::::::+%@@@@%=:::::::-+%@@@@@@@@@@@@@@@@@@@@@%=::::::::::-#@@@@@*:::::=    
-     -:::*@@@@@#-::::::::::::::-=+#%@@@@@@@%#*=-:::::::::::::::#@@@@*:::::+     
-      -*@@@@@*::::::::::::::::::::::::::::::::::::::::::::::-#@@@@%-::::-*      
-        #@%=:::::::::--:::::::::::::::::::::::::::::::::::=%@@@@%=:::::-        
-         :::::::::::#@@@#-:::::::::::::::::::::::::::::=%@@@@@%=::::::+         
-           -:::::::=@@@@@@@@%+:::::::::::::::::::::+%@@@@@@@%-::::::=           
-             :::::::::=%@@@@@@@@@%%%#**+++**#%%%@@@@@@@@@%=:::::::=             
-               -::::::::::=*%@@@@@@@@@@@@@@@@@@@@@@@@%+-::::::::=               
-                 =:::::::::::::-=+*#%%@@@@@@%%#*+=-::::::::::-+                 
-                    =-::::::::::::::::::::::::::::::::::::-+                    
-                        =-::::::::::::::::::::::::::::-*                        
-                              +-::::::::::::::::-+                              
-
-*/
