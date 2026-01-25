@@ -18,6 +18,9 @@
   <meta name="msapplication-TileColor" content="#000000" />
   <meta name="msapplication-TileImage" content="/favicon.png" />
 
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+
   <!-- SEO and Social Meta Tags -->
   <meta name="description" content="Mosam Biswas - Software Developer, AI enthusiast, photographer. Portfolio showcasing projects like MindFirst, Sim Sim, Committee Connect, Rail Mitra, PixelForge, IntelliStatement, and To-Do built with Python, Java, HTML/CSS/JavaScript, Next.js, Flask, FastAPI, Streamlit, PyTorch, and Android." />
   <meta name="keywords" content="Mosam Biswas, Mosam Biswas portfolio, Software Developer, AI enthusiast, Python Developer, Java Developer, Web Developer, Machine Learning, Android Developer, HTML, CSS, JavaScript, Next.js, Flask, FastAPI, Streamlit, Node.js, PyTorch, OR-Tools, Jupyter, PySide6, GANs, MindFirst, Sim Sim, Committee Connect, Rail Mitra, PixelForge, IntelliStatement, To-Do, GitHub projects, Resume, Photography" />
@@ -763,6 +766,21 @@
     <a href="#projects" title="Projects"><i class="fas fa-code"></i></a>
     <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
   </nav>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('ServiceWorker registration successful:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('ServiceWorker registration failed:', error);
+          });
+      });
+    }
+  </script>
 </body>
 
 </html>
