@@ -202,13 +202,31 @@
 }
 
 .profile-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
+  aspect-ratio: 1;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
   margin: 0 auto 15px;
   border: 4px solid white;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Desktop view - larger circular profile picture */
+@media (min-width: 969px) {
+  .profile-image {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/* Mobile view - keep smaller for space */
+@media (max-width: 480px) {
+  .profile-image {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .card-icon {
