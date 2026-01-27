@@ -1,11 +1,21 @@
-const CACHE_NAME = 'mosam-biswas-portfolio-v1';
+const CACHE_NAME = 'mosam-biswas-portfolio-v2';
 const urlsToCache = [
   '/',
   '/index.html',
   '/style.css',
   '/main.js',
+  '/modern-about.css',
   '/favicon.png',
-  '/profile.jpg'
+  '/profile.jpg',
+  '/6978ea793781699417a81c0a.glb',
+  '/cert1.png',
+  '/cert2.png',
+  '/cert3.png',
+  '/aws-academy-graduate-aws-academy-machine-learning-foundations.png',
+  '/logos/e1.png',
+  '/logos/e2.png',
+  '/logos/e3.png',
+  '/manifest.json'
 ];
 
 // Install event - cache assets

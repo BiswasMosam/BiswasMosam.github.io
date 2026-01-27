@@ -27,6 +27,12 @@
       "sizes": "1280x720",
       "type": "image/jpeg",
       "form_factor": "wide"
+    },
+    {
+      "src": "/cert1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ],
   "categories": ["portfolio", "technology", "photography"],
