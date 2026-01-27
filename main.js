@@ -179,3 +179,137 @@ document.addEventListener('contextmenu', function(e) {
                               +-::::::::::::::::-+                              
 
 */
+// 3D Model viewer enhancements
+let currentAnimationIndex = 0;
+let availableAnimations = [];
+
+// Function to play greeting animation
+function playGreeting() {
+  const modelViewer = document.getElementById('about-3d-model');
+  if (!modelViewer) return;
+  
+  if (availableAnimations.length > 0) {
+    // Play the first animation or cycle through them
+    const animationName = availableAnimations[currentAnimationIndex];
+    modelViewer.animationName = animationName;
+    modelViewer.play();
+    
+    // Cycle to next animation for next click
+    currentAnimationIndex = (currentAnimationIndex + 1) % availableAnimations.length;
+    
+    // Pause auto-rotate while animating
+    modelViewer.autoRotate = false;
+    
+    // Resume auto-rotate after animation
+    setTimeout(() => {
+      modelViewer.autoRotate = true;
+    }, 3000);
+  } else {
+    // If no animations, do a fun camera movement
+    animateCamera();
+  }
+}
+
+// Animate camera as fallback
+function animateCamera() {
+  const modelViewer = document.getElementById('about-3d-model');
+  if (!modelViewer) return;
+  
+  const originalOrbit = modelViewer.getCameraOrbit();
+  
+  // Zoom in and rotate
+  modelViewer.cameraOrbit = '45deg 75deg 80%';
+  
+  setTimeout(() => {
+    modelViewer.cameraOrbit = '-45deg 75deg 80%';
+  }, 500);
+  
+  setTimeout(() => {
+    modelViewer.cameraOrbit = '0deg 75deg 105%';
+  }, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modelViewer = document.getElementById('about-3d-model');
+  
+  if (modelViewer) {
+    // Add loading complete event
+    modelViewer.addEventListener('load', () => {
+      console.log('3D Model loaded successfully!');
+      
+      // Get available animations
+      availableAnimations = modelViewer.availableAnimations || [];
+      console.log('Available animations:', availableAnimations);
+      
+      // Auto-play first animation on load
+      if (availableAnimations.length > 0) {
+        setTimeout(() => {
+          playGreeting();
+        }, 1000);
+      }
+    });
+
+    // Add error handling
+    modelViewer.addEventListener('error', (event) => {
+      console.error('Failed to load 3D model:', event);
+    });
+
+    // Add interaction events for enhanced UX
+    modelViewer.addEventListener('camera-change', () => {
+      // Model is being interacted with
+      modelViewer.style.filter = 'drop-shadow(0 0 30px rgba(124, 58, 237, 0.6))';
+    });
+
+    // Reset glow after interaction
+    let interactionTimeout;
+    modelViewer.addEventListener('camera-change', () => {
+      clearTimeout(interactionTimeout);
+      interactionTimeout = setTimeout(() => {
+        modelViewer.style.filter = '';
+      }, 1000);
+    });
+
+    // Add touch/click visual feedback
+    modelViewer.addEventListener('mousedown', () => {
+      modelViewer.style.transform = 'scale(0.98)';
+      modelViewer.style.transition = 'transform 0.1s ease';
+    });
+
+    modelViewer.addEventListener('mouseup', () => {
+      modelViewer.style.transform = 'scale(1)';
+    });
+  }
+
+  // Badge hover effects with ripple
+  const badges = document.querySelectorAll('.about a[style*="border-radius: 9999px"]');
+  badges.forEach(badge => {
+    badge.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-3px) scale(1.05)';
+    });
+    badge.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+
+  // Education cards parallax effect on hover
+  const eduCards = document.querySelectorAll('.about div[style*="border: 2px solid"]');
+  eduCards.forEach(card => {
+    card.addEventListener('mousemove', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(10px) scale(1.02)`;
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+    });
+  });
+});

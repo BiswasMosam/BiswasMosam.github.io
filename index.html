@@ -91,6 +91,7 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="modern-about.css" />
   <link rel="me" href="https://github.com/BiswasMosam" />
   <link rel="me" href="https://linkedin.com/in/mosambiswas" />
   <link rel="me" href="https://g.dev/MosamBiswas" />
@@ -280,6 +281,8 @@
   <meta name="college" content="dy patil" />
   <!-- Add Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Model Viewer for 3D models -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -348,106 +351,165 @@
     <p class="fade-in">Aspiring Software Developer passionate about AI & automation.</p>
   </section>
 
+    <!-- About Section -->
   <section id="about" class="about">
-  <div class="card-with-blobs" style="display: flex; column-gap: 2.5rem; row-gap: 0.9rem; flex-wrap: wrap; align-items: flex-start; justify-content: center; padding: 2rem; background: linear-gradient(120deg, #522b5b 0%, #7c3aed 50%, #00bfff 100%); border-radius: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); margin-bottom: 1.5rem; max-width: 1920px; width: 100%; margin-left: auto; margin-right: auto; min-height: auto;">
-    <div class="card-blob blob-a"></div>
-    <div class="card-blob blob-b"></div>
-
-    <div class="about-logo-rail about-logo-rail--left" aria-hidden="true">
-      <img class="about-app-logo" src="logos/figma.png" alt="" title="Figma" loading="lazy" decoding="async">
-      <img class="about-app-logo" src="logos/Notion.png" alt="" title="Notion" loading="lazy" decoding="async">
-      <img class="about-app-logo" src="logos/AndroidStudio.png" alt="" title="Android Studio" loading="lazy" decoding="async">
-      <img class="about-app-logo" src="logos/VSCode.png" alt="" title="VS Code" loading="lazy" decoding="async">
-    </div>
-    <div class="about-logo-rail about-logo-rail--right" aria-hidden="true">
-      <img class="about-app-logo" src="logos/ChatGPT.png" alt="" title="ChatGPT" loading="lazy" decoding="async">
-      <img class="about-app-logo" src="logos/github.png" alt="" title="GitHub" loading="lazy" decoding="async">
-      <img class="about-app-logo" src="logos/Postman.png" alt="" title="Postman" loading="lazy" decoding="async">
-      <img class="about-app-logo" src="logos/Firebase.png" alt="" title="Firebase" loading="lazy" decoding="async">
-    </div>
-
-    <div style="flex: 1 1 100%; min-width: 0;">
-      <h3 style="color: rgba(255,255,255,0.92); margin-bottom: 0.3rem; text-shadow: 0 4px 18px rgba(0,0,0,0.35);">About Me</h3>
-    </div>
-    <!-- Left side: Profile, Resume, Description -->
-    <div style="display: flex; flex: 1 1 420px; flex-direction: column; align-items: flex-start; min-width: 0; max-width: 520px; width: 100%;">
-      <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 1.2rem; flex-wrap: wrap; row-gap: 1rem;">
-        <img class="fade-in" src="profile.jpg" alt="Profile Photo" style="width: 220px; height: auto; border-radius: 20px; box-shadow: 0 0 15px rgba(255,255,255,0.2);">
-          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-left: 2rem;">
-            <a class="resume-btn" href="MosamBiswasResume.pdf" download="MosamBiswasResume.pdf" style="background: rgba(0,0,0,0.4); color: #fff; border: none; box-shadow: 0 0 10px #222; transition: transform 0.3s ease, box-shadow 0.3s ease; white-space: nowrap; text-align: center;">
-              Download Resume
-            </a>
-            <a class="resume-btn" href="https://g.dev/MosamBiswas" target="_blank" rel="noopener noreferrer" style="background: rgba(0,0,0,0.4); color: #fff; border: none; box-shadow: 0 0 10px #222; transition: transform 0.3s ease, box-shadow 0.3s ease; white-space: nowrap; text-align: center;">
-              <i class="fa-brands fa-google" style="margin-right: 8px;"></i>Google Dev Profile
-            </a>
-          </div>
+    <div class="modern-about-container">
+      <div class="section-header">
+        <span class="section-badge">About Me</span>
+        <h2 class="section-title">Creative Developer & <span class="gradient-text">Problem Solver</span></h2>
+        <p class="section-subtitle">Building digital experiences that make a difference</p>
       </div>
-      <div style="background: rgba(0,0,0,0.18); border-radius: 16px; padding: 1.2rem; margin-top: 0.5rem; width: 100%;">
-  <p class="fade-in about-desc" style="line-height: 1.6; margin: 0; color: #fff; font-size: 1.08rem;">
-    Aspiring software developer with a keen interest in <strong style="color:#00bfff;">programming</strong>, <strong style="color:#00bfff;">AI</strong>, and <strong style="color:#00bfff;">software development</strong>. Skilled in <strong style="color:#00bfff;">Python</strong>, <strong style="color:#00bfff;">problem-solving</strong>, and collaborative project work. Looking to contribute to innovative tech solutions while continuously <strong style="color:#00bfff;">learning and growing</strong>.
-  </p>
-</div>
-        <div style="background: rgba(0,0,0,0.18); border-radius: 16px; padding: 1.1rem; margin-top: 0.9rem; width: 100%;">
-          <div style="color: rgba(255,255,255,0.92); font-weight: 700; margin-bottom: 0.6rem;">Featured badges</div>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
-            <a href="https://g.dev/MosamBiswas" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fff; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.18); padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.95rem;">
-              Completed 25+ Codelabs
-            </a>
-            <a href="https://g.dev/MosamBiswas" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fff; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.18); padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.95rem;">
-              Android Studio User
-            </a>
-            <a href="https://g.dev/MosamBiswas" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fff; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.18); padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.95rem;">
-              Google Cloud Innovator
-            </a>
-            <a href="https://g.dev/MosamBiswas" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fff; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.18); padding: 0.35rem 0.75rem; border-radius: 9999px; font-size: 0.95rem;">
-              Joined Google Developer Program
-            </a>
+
+      <div class="about-grid">
+        <!-- 3D Model Showcase -->
+        <div class="model-showcase">
+          <div class="model-wrapper">
+            <model-viewer 
+              id="about-3d-model"
+              src="6978ea793781699417a81c0a.glb" 
+              alt="3D Avatar" 
+              auto-rotate 
+              camera-controls 
+              shadow-intensity="1"
+              exposure="1"
+              style="width: 100%; height: 100%;"
+              environment-image="neutral"
+              camera-orbit="0deg 75deg 105%"
+              animation-name=""
+              autoplay>
+              <div class="model-loading" slot="poster">
+                <div class="loading-ring"></div>
+                <p>Loading...</p>
+              </div>
+            </model-viewer>
           </div>
-          <div style="margin-top: 0.7rem; font-size: 0.95rem; color: rgba(255,255,255,0.88);">
-            <a href="https://g.dev/MosamBiswas" target="_blank" rel="noopener noreferrer" style="color:#00bfff; text-decoration:none; font-weight: 600;">See full badge list on Google Developer Profile →</a>
-          </div>
+          <div class="model-label">Interactive 3D Model</div>
         </div>
-    </div>
-    <!-- Right side: Education (moved to rightmost side) -->
-    <div style="flex: 1 1 520px; min-width: 0; max-width: 520px; width: 100%;">
-      <h3 style="color:#00bfff; margin-bottom:1rem;">Education</h3>
-      <div style="display: flex; flex-direction: column; gap: 1rem;">
-        <div style="background: rgba(0,0,0,0.5); border-radius: 16px; padding: 1rem; display: flex; align-items: center; min-height: 70px; width: 100%;">
-          <img src="logos/e1.png" alt="Omkar International School" style="width:48px; height:48px; border-radius:12px; margin-right:1rem;">
-          <div style="white-space: nowrap;">
-            <strong>
-              <a href="https://www.omkaricse.in/" target="_blank" style="color:#ff8800; text-decoration:none;">
-                Omkar International School
-              </a>
-            </strong><br>
-            <span style="font-size:0.95em;">School (2010-2020)</span>
+
+        <!-- Info Cards Grid -->
+        <div class="info-cards">
+          <!-- Profile Card -->
+          <div class="info-card profile-card">
+            <img src="profile.jpg" alt="Profile" class="profile-image" />
+            <h3>Mosam Biswas</h3>
+            <p class="role">Software Developer & Tech Enthusiast</p>
+            <p class="location">📍 Mumbai, India</p>
+            <div class="quick-stats">
+              <div class="stat">
+                <span class="stat-value">25+</span>
+                <span class="stat-label">Codelabs</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">Active</span>
+                <span class="stat-label">GDG Member</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div style="background: rgba(0,0,0,0.5); border-radius: 16px; padding: 1rem; display: flex; align-items: center; min-height: 70px; width: 100%;">
-          <img src="logos/e2.png" alt="Narayana E-Techno School & Jr. College" style="width:48px; height:48px; border-radius:12px; margin-right:1rem;">
-          <div style="white-space: nowrap;">
-            <strong>
-              <a href="https://www.narayanaschools.in/mumbai/dombivli" target="_blank" style="color:#00bfff; text-decoration:none;">
-                Narayana E-Techno School & Jr. College
-              </a>
-            </strong><br>
-            <span style="font-size:0.95em;">Jr. College (2020 - 2022)</span>
+
+          <!-- Bio Card -->
+          <div class="info-card bio-card">
+            <h4>About</h4>
+            <p>Passionate developer exploring the intersections of AI, machine learning, and web technologies. Active Google Developer community member focused on building innovative solutions that solve real-world problems.</p>
+            <div class="interests">
+              <span class="interest-tag">AI/ML</span>
+              <span class="interest-tag">Web Dev</span>
+              <span class="interest-tag">Mobile Apps</span>
+              <span class="interest-tag">Cloud</span>
+            </div>
           </div>
-        </div>
-        <div style="background: rgba(0,0,0,0.5); border-radius: 16px; padding: 1rem; display: flex; align-items: center; min-height: 70px; width: 100%;">
-          <img src="logos/e3.png" alt="Ramrao Adik Institute of Technology" style="width:48px; height:48px; border-radius:12px; margin-right:1rem;">
-          <div style="white-space: nowrap;">
-            <strong>
-              <a href="https://dypatil.edu/schools/ramrao-adik-institute-of-technology" target="_blank" style="color:#9f1c33; text-decoration:none;">
-                Ramrao Adik Institute of Technology
+
+          <!-- Skills Card -->
+          <div class="info-card skills-card">
+            <h4>Core Skills</h4>
+            <div class="skills-list">
+              <div class="skill-item">
+                <span class="skill-name">Python</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Web Development</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Android</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%;"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Machine Learning</span>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education Card -->
+          <div class="info-card education-card">
+            <h4>Education Journey</h4>
+            <div class="education-timeline">
+              <div class="edu-item rait-edu">
+                <div class="edu-logo-container">
+                  <img src="logos/e3.png" alt="RAIT" class="edu-icon" />
+                  <div class="edu-content">
+                    <strong>RAIT College</strong>
+                    <span>Current</span>
+                  </div>
+                </div>
+              </div>
+              <div class="edu-item narayana-edu">
+                <div class="edu-logo-container">
+                  <img src="logos/e2.png" alt="Narayana" class="edu-icon" />
+                  <div class="edu-content">
+                    <strong>Narayana E-Techno School</strong>
+                    <span>Secondary Education</span>
+                  </div>
+                </div>
+              </div>
+              <div class="edu-item omkar-edu">
+                <div class="edu-logo-container">
+                  <img src="logos/e1.png" alt="Omkar" class="edu-icon" />
+                  <div class="edu-content">
+                    <strong>Omkar International School</strong>
+                    <span>Primary Education</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Card -->
+          <div class="info-card cta-card">
+            <h4>Let's Connect</h4>
+            <div class="cta-buttons">
+              <a href="MosamBiswasResume.pdf" download class="cta-btn primary">
+                <span class="btn-icon">📄</span>
+                <span>Download Resume</span>
               </a>
-            </strong><br>
-            <span style="font-size:0.95em;">B.Tech in AI-DS<br>June 2022 - June 2026</span>
+              <a href="https://g.dev/MosamBiswas" target="_blank" class="cta-btn secondary">
+                <span class="btn-icon">🔗</span>
+                <span>Google Dev Profile</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- Floating Tech Icons -->
+      <div class="floating-tech">
+        <img src="https://img.icons8.com/color/48/python.png" alt="Python" class="float-icon" style="--float-delay: 0s;" />
+        <img src="https://img.icons8.com/color/48/javascript.png" alt="JavaScript" class="float-icon" style="--float-delay: 1s;" />
+        <img src="https://img.icons8.com/color/48/firebase.png" alt="Firebase" class="float-icon" style="--float-delay: 2s;" />
+        <img src="https://img.icons8.com/color/48/android-studio--v3.png" alt="Android" class="float-icon" style="--float-delay: 3s;" />
+        <img src="https://img.icons8.com/color/48/figma.png" alt="Figma" class="float-icon" style="--float-delay: 4s;" />
+      </div>
     </div>
-  </div>
+  </section>
   <!-- Experience Section -->
   <div class="card-with-blobs card-with-blobs--subtle" style="background: linear-gradient(90deg, #f5cc00 60%, #fffbe0 100%); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); padding: 2rem; margin-top: 1.5rem; width: 100%; max-width: 1920px; margin-left: auto; margin-right: auto; min-height: auto;">
     <div class="card-blob blob-a"></div>
