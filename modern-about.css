@@ -411,7 +411,7 @@
 /* CTA Card */
 .cta-card {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  display: none;
+  display: block;
 }
 
 .cta-card h4 {
@@ -610,5 +610,68 @@
   
   .info-card {
     padding: 20px;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .info-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .floating-tech {
+    display: none;
+  }
+  
+  .section-badge {
+    font-size: 12px;
+    padding: 6px 16px;
+  }
+  
+  .section-subtitle {
+    font-size: 14px;
+  }
+}
+
+/* Extra small devices (below 380px) */
+@media (max-width: 380px) {
+  .modern-about-container {
+    padding: 40px 10px;
+  }
+  
+  .section-header {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+  }
+  
+  .model-wrapper {
+    height: 300px;
+    padding: 15px;
+    border-radius: 20px;
+  }
+  
+  .info-card {
+    padding: 15px;
+    border-radius: 12px;
+  }
+  
+  .cta-btn {
+    padding: 10px 12px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  
+  .btn-icon {
+    font-size: 16px;
   }
 }

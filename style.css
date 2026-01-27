@@ -1145,3 +1145,56 @@ model-viewer::part(default-progress-mask) {
   box-shadow: 0 4px 15px rgba(124, 58, 237, 0.5) !important;
   background: linear-gradient(135deg, rgba(124, 58, 237, 0.5), rgba(0, 191, 255, 0.5)) !important;
 }
+
+/* Mobile-first responsive improvements */
+@media (max-width: 480px) {
+  #projects > div {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #projects > div > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .card-with-blobs {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  
+  .card-with-blobs > div > div:last-child {
+    display: none !important;
+  }
+  
+  .pcr-desktop-image,
+  .research-desktop-image {
+    display: none !important;
+  }
+  
+  .pcr-image-container,
+  .research-image-container {
+    display: block !important;
+    order: -1 !important;
+  }
+}
+
+@media (max-width: 380px) {
+  #projects {
+    padding: 2rem 0.5rem !important;
+  }
+  
+  section {
+    padding: 2rem 0.5rem 1.5rem !important;
+  }
+  
+  .contact-pill {
+    flex-wrap: wrap !important;
+  }
+  
+  footer {
+    padding: 0.75rem 0.25rem !important;
+    font-size: 0.85rem !important;
+  }
+}
