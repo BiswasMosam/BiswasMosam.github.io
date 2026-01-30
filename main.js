@@ -44,18 +44,28 @@ if (mosamLink) {
 }
 
 // Certificate modal logic
-function openCertModal(src) {
-  document.getElementById('certModalImg').src = src;
-  document.getElementById('certModal').style.display = 'flex';
+function openCertModal(src, altText) {
+  const modal = document.getElementById('certModal');
+  const modalImg = document.getElementById('certModalImg');
+  if (!modal || !modalImg) return;
+
+  modalImg.src = src;
+  if (altText) modalImg.alt = altText;
+  modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
 function closeCertModal() {
-  document.getElementById('certModal').style.display = 'none';
+  const modal = document.getElementById('certModal');
+  if (!modal) return;
+  modal.style.display = 'none';
   document.body.style.overflow = '';
 }
-document.getElementById('certModal').onclick = function(e) {
-  if (e.target === this) closeCertModal();
-};
+const certModal = document.getElementById('certModal');
+if (certModal) {
+  certModal.onclick = function(e) {
+    if (e.target === this) closeCertModal();
+  };
+}
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeCertModal();
 });

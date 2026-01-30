@@ -175,8 +175,23 @@
 
 /* Info Cards Grid */
 .info-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  gap: 25px;
+  align-items: start;
+}
+
+.info-column {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Stack two cards in one grid cell (Education + Research) */
+.info-card-stack {
+  display: flex;
+  flex-direction: column;
   gap: 25px;
 }
 
@@ -187,12 +202,148 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+/* Slightly tighter padding for the skills card only */
+.skills-card {
+  padding: 22px;
 }
 
 .info-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
+
+/* PhotoCircle (PCR) card under 3D model */
+.pcr-card {
+  margin-top: 18px;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffd400 0%, #ffef7a 55%, #fff6c9 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.pcr-card__media {
+  display: block;
+  line-height: 0;
+  height: 448px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.pcr-card__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Foreground image is never cropped */
+.pcr-card__img {
+  object-fit: contain;
+  padding: 0;
+}
+
+.pcr-card__content {
+  padding: 18px 20px 20px;
+  color: #222;
+}
+
+.pcr-card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pcr-card__logo-link {
+  display: inline-block;
+  line-height: 0;
+  flex: 0 0 auto;
+}
+
+.pcr-card__logo-link img {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.pcr-card__title h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #b48a00;
+  line-height: 1.2;
+}
+
+.pcr-card__role {
+  margin-top: 3px;
+  font-weight: 800;
+  color: #222;
+}
+
+.pcr-card__meta {
+  margin-top: 2px;
+  font-size: 0.92rem;
+  color: #444;
+}
+
+.pcr-card__text {
+  margin: 12px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Research card under Education */
+.research-card {
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #00c6ff 0%, #b8f1ff 60%, #e9fbff 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.research-card__media {
+  display: block;
+  line-height: 0;
+  height: 240px;
+  overflow: hidden;
+}
+
+.research-card__media img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  display: block;
+}
+
+.research-card__content {
+  padding: 18px 20px 20px;
+  color: #0b2a35;
+}
+
+.research-card__content h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.research-card__title-link {
+  color: #005f99;
+  text-decoration: none;
+}
+
+.research-card__title-link:hover {
+  text-decoration: underline;
+}
+
+.research-card__text {
+  margin: 10px 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
 
 /* Profile Card */
 .profile-card {
@@ -318,7 +469,7 @@
 
 /* Skills Card */
 .skills-card h4 {
-  margin: 0 0 20px 0;
+  margin: 0 0 12px 0;
   font-size: 20px;
   color: #1a1a2e;
   font-weight: 700;
@@ -327,13 +478,13 @@
 .skills-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .skill-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .skill-name {
@@ -597,7 +748,7 @@
   }
   
   .info-cards {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   
   .model-wrapper {
@@ -641,7 +792,7 @@
   }
   
   .info-cards {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   
   .floating-tech {
