@@ -821,10 +821,38 @@
         navigator.serviceWorker.register('/service-worker.js')
           .then((registration) => {
             console.log('ServiceWorker registration successful:', registration.scope);
+
+            const notifyUpdate = () => {
+              if (registration.waiting) {
+                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+              }
+            };
+
+            registration.addEventListener('updatefound', () => {
+              const newWorker = registration.installing;
+              if (!newWorker) return;
+
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  notifyUpdate();
+                }
+              });
+            });
+
+            if (registration.waiting && navigator.serviceWorker.controller) {
+              notifyUpdate();
+            }
           })
           .catch((error) => {
             console.log('ServiceWorker registration failed:', error);
           });
+
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (refreshing) return;
+          refreshing = true;
+          window.location.reload();
+        });
       });
     }
   </script>
