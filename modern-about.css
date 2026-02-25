@@ -519,6 +519,12 @@
   font-size: 20px;
   color: #1a1a2e;
   font-weight: 700;
+  transition: color 0.35s ease;
+}
+
+.education-card {
+  border-radius: 28px;
+  transition: background-color 0.35s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .education-timeline {
@@ -531,6 +537,8 @@
   display: flex;
   align-items: flex-start;
   gap: 15px;
+  width: 100%;
+  cursor: pointer;
 }
 
 .edu-logo-container {
@@ -558,10 +566,14 @@
 }
 
 .edu-icon {
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   margin-right: 10px;
   flex-shrink: 0;
+  border-radius: 10px;
+  background: #fff;
+  padding: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .edu-content strong {
@@ -570,11 +582,49 @@
   color: #667eea;
   font-weight: 700;
   margin-bottom: 5px;
+  transition: color 0.35s ease;
+}
+
+.edu-content strong a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.edu-content strong a:hover {
+  text-decoration: underline;
 }
 
 .edu-content span {
   font-size: 13px;
   color: #666;
+  transition: color 0.35s ease;
+}
+
+/* Interactive hover states for individual education rows */
+.education-card:has(.rait-edu:hover) {
+  background-color: #d32f2f;
+}
+
+.education-card:has(.narayana-edu:hover) {
+  background-color: #1976d2;
+}
+
+.education-card:has(.omkar-edu:hover) {
+  background-color: #f57c00;
+}
+
+.education-card:has(.edu-item:hover) h4 {
+  color: #fff;
+}
+
+.education-card:has(.rait-edu:hover) .rait-edu .edu-content strong,
+.education-card:has(.narayana-edu:hover) .narayana-edu .edu-content strong,
+.education-card:has(.omkar-edu:hover) .omkar-edu .edu-content strong {
+  color: #fff !important;
+}
+
+.education-card:has(.edu-item:hover) .edu-content span {
+  color: rgba(255, 255, 255, 0.92);
 }
 
 /* CTA Card */

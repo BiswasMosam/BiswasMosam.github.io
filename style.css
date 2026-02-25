@@ -313,6 +313,200 @@ section.visible {
   box-shadow: 0 8px 32px #000a;
 }
 
+/* Projects fan deck redesign */
+.projects-fan {
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-fan h2,
+.projects-fan > p {
+  text-align: center;
+}
+
+.projects-fan__viewport {
+  position: relative;
+  width: min(1100px, 100%);
+  margin: 2.2rem auto 0;
+  height: clamp(360px, 54vw, 500px);
+  perspective: 1300px;
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.projects-fan.projects-fan--entered .projects-fan__viewport {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-fan__deck {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.project-fan-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(240px, 28vw, 300px);
+  height: clamp(330px, 37vw, 360px);
+  background: #101114;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
+  transform-origin: center bottom;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity, filter, clip-path;
+}
+
+.projects-fan.projects-fan--entered .project-fan-card {
+  animation: projectsCardGush 0.95s cubic-bezier(0.2, 0.85, 0.26, 1) both;
+  animation-delay: calc(var(--card-order, 0) * 90ms);
+}
+
+.projects-fan.projects-fan--active .project-fan-card {
+  animation: none;
+}
+
+.project-fan-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to var(--overlay-direction, right), transparent 0 78%, rgba(0, 0, 0, 0.48) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease;
+}
+
+.project-fan-card.is-side-1::after {
+  opacity: 1;
+}
+
+.project-fan-card.is-side-2::after {
+  background: linear-gradient(to var(--overlay-direction, right), transparent 0 48%, rgba(0, 0, 0, 0.62) 100%);
+  opacity: 1;
+}
+
+.project-fan-card.is-left {
+  --overlay-direction: left;
+}
+
+.project-fan-card.is-right {
+  --overlay-direction: right;
+}
+
+.project-fan-card.is-center {
+  pointer-events: auto;
+}
+
+.project-fan-card__media {
+  height: 180px;
+  background: var(--project-gradient, linear-gradient(120deg, #00bfff 0%, #7c3aed 100%));
+  color: var(--project-ink, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+.project-fan-card__media span {
+  font-weight: 800;
+  font-size: clamp(1.08rem, 2vw, 1.38rem);
+  letter-spacing: 0.2px;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.33);
+}
+
+.project-fan-card__media--image {
+  padding: 0;
+  background: #fff;
+}
+
+.project-fan-card__media--image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-fan-card__body {
+  height: calc(100% - 180px);
+  padding: 0.95rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-fan-card__body h3 {
+  font-size: 1.08rem;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+.project-fan-card__body p {
+  font-size: 0.9rem;
+  line-height: 1.44;
+  color: rgba(255, 255, 255, 0.9);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-fan-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.36rem;
+  margin-top: 0.62rem;
+}
+
+.project-fan-card__tags span {
+  display: inline-flex;
+  align-items: center;
+  background: #333;
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.15rem 0.48rem;
+  font-size: 0.73rem;
+  font-weight: 600;
+}
+
+.project-fan-card__body a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: auto;
+  color: #00bfff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.project-fan-card__body a:hover {
+  text-decoration: underline;
+}
+
+@keyframes projectsCardGush {
+  0% {
+    opacity: 0;
+    transform: translate3d(-170px, -42px, -220px) rotate(-28deg) scale(0.56);
+    filter: blur(2px);
+  }
+  72% {
+    opacity: 1;
+    transform: translate3d(42px, 8px, 25px) rotate(5deg) scale(1.03);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    filter: blur(0);
+  }
+}
+
 /* Responsive styles (copy from your original CSS) */
 @media (max-width: 900px) {
   /* ...responsive styles... */
@@ -643,13 +837,15 @@ section.visible {
     font-size: 1.8rem !important;
   }
 
-  #projects > div {
-    gap: 1rem !important;
+  #projects .projects-fan__viewport {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: clamp(330px, 62vw, 430px) !important;
   }
 
-  #projects > div > div {
+  #projects .projects-fan__deck {
     width: 100% !important;
-    max-width: 350px !important;
+    max-width: none !important;
   }
 
   /* Contact section */
@@ -921,24 +1117,26 @@ section.visible {
     font-size: 0.9rem !important;
   }
 
-  #projects > div > div {
+  #projects .projects-fan__viewport {
     width: 100% !important;
     max-width: 100% !important;
+    height: clamp(300px, 84vw, 370px) !important;
   }
 
-  #projects > div > div > div[style*="height: 180px"] {
-    height: 150px !important;
+  #projects .project-fan-card {
+    width: clamp(200px, 64vw, 285px) !important;
+    height: clamp(300px, 72vw, 330px) !important;
   }
 
-  #projects > div > div h3 {
+  #projects .project-fan-card__body h3 {
     font-size: 1rem !important;
   }
 
-  #projects > div > div p {
+  #projects .project-fan-card__body p {
     font-size: 0.85rem !important;
   }
 
-  #projects > div > div span {
+  #projects .project-fan-card__tags span {
     font-size: 0.75rem !important;
     padding: 0.15rem 0.4rem !important;
   }
@@ -1148,14 +1346,20 @@ model-viewer::part(default-progress-mask) {
 
 /* Mobile-first responsive improvements */
 @media (max-width: 480px) {
-  #projects > div {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #projects > div > div {
+  #projects .projects-fan__viewport {
     width: 100% !important;
     max-width: 100% !important;
+    height: clamp(280px, 94vw, 340px) !important;
+  }
+  
+  #projects .projects-fan__deck {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  #projects .project-fan-card {
+    width: clamp(190px, 72vw, 260px) !important;
+    height: clamp(270px, 82vw, 300px) !important;
   }
   
   .card-with-blobs {

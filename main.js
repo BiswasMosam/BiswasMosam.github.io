@@ -141,6 +141,252 @@ document.addEventListener('contextmenu', function(e) {
             alert("Right-click is disabled on this website.");
         });
 
+function initProjectsFanDeck() {
+  const section = document.querySelector('[data-projects-fan]');
+  const viewport = section ? section.querySelector('[data-projects-control]') : null;
+  const deck = section ? section.querySelector('[data-projects-deck]') : null;
+  const cards = deck ? Array.from(deck.querySelectorAll('[data-project-card]')) : [];
+
+  if (!section || !viewport || !deck || cards.length < 3) return;
+
+  const wrap = (value, size) => ((value % size) + size) % size;
+  const easeInOut = (t) => 0.5 - Math.cos(Math.PI * t) / 2;
+  const shortestSignedDelta = (index, center, total) => {
+    let delta = index - center;
+    if (delta > total / 2) delta -= total;
+    if (delta < -total / 2) delta += total;
+    return delta;
+  };
+
+  cards.forEach((card, index) => {
+    card.style.setProperty('--card-order', String(index));
+  });
+
+  let centerIndex = Math.floor(cards.length / 2);
+  let centerFloat = centerIndex;
+  let direction = 1;
+  let isControlMode = false;
+  let isHoverPaused = false;
+  let phase = 'hold';
+  let phaseElapsed = 0;
+  let lastTimestamp = 0;
+  let rafId = null;
+
+  const NORMAL_HOLD_MS = 10000;
+  const NORMAL_MOVE_MS = 900;
+  const CONTROL_MOVE_MS = 2000;
+
+  const renderDeck = (activeCenter, centerHovered = false) => {
+    const spread = Math.max(90, Math.min(170, viewport.clientWidth * 0.19));
+    const lift = Math.max(14, Math.min(28, viewport.clientHeight * 0.06));
+
+    cards.forEach((card, index) => {
+      const delta = shortestSignedDelta(index, activeCenter, cards.length);
+      const absDelta = Math.abs(delta);
+
+      card.classList.remove('is-center', 'is-side-1', 'is-side-2', 'is-left', 'is-right');
+
+      if (absDelta > 2.6) {
+        card.style.opacity = '0';
+        card.style.pointerEvents = 'none';
+        card.style.transform = 'translate3d(-50%, -50%, -320px) scale(0.6)';
+        card.style.zIndex = '0';
+        return;
+      }
+
+      const x = delta * spread;
+      const y = Math.pow(absDelta, 1.45) * lift;
+      const rotate = delta * 14;
+      let scale = 1 - absDelta * 0.12;
+      const z = 320 - absDelta * 120;
+      const opacity = 1 - absDelta * 0.16;
+
+      if (absDelta < 0.5) {
+        card.classList.add('is-center');
+        card.style.pointerEvents = 'auto';
+        if (centerHovered) scale += 0.06;
+      } else if (absDelta < 1.5) {
+        card.classList.add('is-side-1');
+        card.style.pointerEvents = 'none';
+      } else {
+        card.classList.add('is-side-2');
+        card.style.pointerEvents = 'none';
+      }
+
+      card.classList.add(delta < 0 ? 'is-left' : 'is-right');
+      card.style.opacity = String(Math.max(0.25, opacity));
+      card.style.zIndex = String(Math.round(100 - absDelta * 18));
+      card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), ${z}px) rotate(${rotate}deg) scale(${Math.max(0.72, scale)})`;
+    });
+  };
+
+  const restartMovePhase = () => {
+    centerIndex = wrap(Math.round(centerFloat), cards.length);
+    centerFloat = centerIndex;
+    phase = 'move';
+    phaseElapsed = 0;
+  };
+
+  const tick = (timestamp) => {
+    if (!lastTimestamp) lastTimestamp = timestamp;
+    const delta = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    if (isHoverPaused) {
+      renderDeck(centerIndex, true);
+      rafId = requestAnimationFrame(tick);
+      return;
+    }
+
+    phaseElapsed += delta;
+
+    if (phase === 'hold') {
+      centerFloat = centerIndex;
+      renderDeck(centerFloat, false);
+
+      if (isControlMode) {
+        phase = 'move';
+        phaseElapsed = 0;
+      } else if (phaseElapsed >= NORMAL_HOLD_MS) {
+        phase = 'move';
+        phaseElapsed = 0;
+      }
+    } else {
+      const moveDuration = isControlMode ? CONTROL_MOVE_MS : NORMAL_MOVE_MS;
+      const progress = Math.min(phaseElapsed / moveDuration, 1);
+      const eased = easeInOut(progress);
+      centerFloat = centerIndex + direction * eased;
+      renderDeck(centerFloat, false);
+
+      if (progress >= 1) {
+        centerIndex = wrap(centerIndex + direction, cards.length);
+        centerFloat = centerIndex;
+
+        if (isControlMode) {
+          phase = 'move';
+          phaseElapsed = 0;
+        } else {
+          phase = 'hold';
+          phaseElapsed = 0;
+        }
+      }
+    }
+
+    rafId = requestAnimationFrame(tick);
+  };
+
+  cards.forEach((card) => {
+    const links = Array.from(card.querySelectorAll('a[href]'));
+
+    links.forEach((link) => {
+      link.addEventListener('pointerdown', () => {
+        if (!card.classList.contains('is-center')) return;
+        isHoverPaused = true;
+        section.classList.add('projects-fan--paused');
+      });
+
+      link.addEventListener('mouseenter', () => {
+        if (!card.classList.contains('is-center')) return;
+        isHoverPaused = true;
+        section.classList.add('projects-fan--paused');
+      });
+
+      link.addEventListener('mouseleave', () => {
+        if (!isHoverPaused) return;
+        isHoverPaused = false;
+        section.classList.remove('projects-fan--paused');
+        lastTimestamp = performance.now();
+      });
+    });
+
+    card.addEventListener('mouseenter', () => {
+      if (!card.classList.contains('is-center')) return;
+      isHoverPaused = true;
+      section.classList.add('projects-fan--paused');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      if (!isHoverPaused) return;
+      isHoverPaused = false;
+      section.classList.remove('projects-fan--paused');
+      lastTimestamp = performance.now();
+    });
+  });
+
+  viewport.addEventListener('mousemove', (event) => {
+    const bounds = viewport.getBoundingClientRect();
+    const ratio = (event.clientX - bounds.left) / bounds.width;
+
+    if (ratio < 0.38) {
+      if (direction !== -1 || !isControlMode) {
+        direction = -1;
+        isControlMode = true;
+        restartMovePhase();
+      }
+      return;
+    }
+
+    if (ratio > 0.62) {
+      if (direction !== 1 || !isControlMode) {
+        direction = 1;
+        isControlMode = true;
+        restartMovePhase();
+      }
+      return;
+    }
+
+    isControlMode = false;
+  });
+
+  viewport.addEventListener('mouseleave', () => {
+    isControlMode = false;
+  });
+
+  const startRotation = () => {
+    if (rafId) cancelAnimationFrame(rafId);
+    phase = 'hold';
+    phaseElapsed = 0;
+    lastTimestamp = 0;
+    section.classList.add('projects-fan--active');
+    renderDeck(centerIndex, false);
+    rafId = requestAnimationFrame(tick);
+  };
+
+  deck.addEventListener('click', (event) => {
+    const link = event.target && event.target.closest ? event.target.closest('.project-fan-card a[href]') : null;
+    if (!link) return;
+
+    const parentCard = link.closest('.project-fan-card');
+    if (!parentCard || !parentCard.classList.contains('is-center')) {
+      event.preventDefault();
+      return;
+    }
+
+    event.preventDefault();
+    const href = link.getAttribute('href');
+    if (!href) return;
+    window.location.assign(href);
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observerInstance) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        section.classList.add('projects-fan--entered');
+        observerInstance.unobserve(section);
+
+        setTimeout(() => {
+          startRotation();
+        }, 1200);
+      });
+    },
+    { threshold: 0.85 }
+  );
+
+  revealObserver.observe(section);
+}
+
 /*
 
                               ::::::::::::::::::::                              
@@ -240,6 +486,8 @@ function animateCamera() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initProjectsFanDeck();
+
   const modelViewer = document.getElementById('about-3d-model');
   
   if (modelViewer) {
