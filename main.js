@@ -279,6 +279,10 @@ function initProjectsFanDeck() {
     const links = Array.from(card.querySelectorAll('a[href]'));
 
     links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+      });
+
       link.addEventListener('pointerdown', () => {
         if (!card.classList.contains('is-center')) return;
         isHoverPaused = true;
@@ -303,6 +307,24 @@ function initProjectsFanDeck() {
       if (!card.classList.contains('is-center')) return;
       isHoverPaused = true;
       section.classList.add('projects-fan--paused');
+    });
+
+    card.addEventListener('click', () => {
+      if (!card.classList.contains('is-center')) return;
+
+      const link = card.querySelector('.project-fan-card__body a[href]');
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      const target = link.getAttribute('target');
+      if (!href) return;
+
+      if (target === '_blank') {
+        window.open(href, '_blank', 'noopener,noreferrer');
+        return;
+      }
+
+      window.location.assign(href);
     });
 
     card.addEventListener('mouseleave', () => {
@@ -351,22 +373,6 @@ function initProjectsFanDeck() {
     renderDeck(centerIndex, false);
     rafId = requestAnimationFrame(tick);
   };
-
-  deck.addEventListener('click', (event) => {
-    const link = event.target && event.target.closest ? event.target.closest('.project-fan-card a[href]') : null;
-    if (!link) return;
-
-    const parentCard = link.closest('.project-fan-card');
-    if (!parentCard || !parentCard.classList.contains('is-center')) {
-      event.preventDefault();
-      return;
-    }
-
-    event.preventDefault();
-    const href = link.getAttribute('href');
-    if (!href) return;
-    window.location.assign(href);
-  });
 
   const revealObserver = new IntersectionObserver(
     (entries, observerInstance) => {

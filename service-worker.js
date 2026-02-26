@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mosam-biswas-portfolio-v3';
+const CACHE_NAME = 'mosam-biswas-portfolio-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -37,8 +37,26 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   const isNavigation = request.mode === 'navigate' || request.destination === 'document';
+  const isScriptOrStyle = request.destination === 'script' || request.destination === 'style';
 
   if (isNavigation) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  if (isScriptOrStyle) {
     event.respondWith(
       fetch(request)
         .then((response) => {

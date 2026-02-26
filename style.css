@@ -403,6 +403,7 @@ section.visible {
 
 .project-fan-card.is-center {
   pointer-events: auto;
+  cursor: pointer;
 }
 
 .project-fan-card__media {
@@ -436,9 +437,10 @@ section.visible {
 
 .project-fan-card__body {
   height: calc(100% - 180px);
-  padding: 0.95rem 1rem 1rem;
+  padding: 0.95rem 1rem 2.6rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .project-fan-card__body h3 {
@@ -479,7 +481,13 @@ section.visible {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  margin-top: auto;
+  margin-top: 0;
+  position: absolute;
+  left: 1rem;
+  bottom: 0.7rem;
+  z-index: 3;
+  pointer-events: none;
+  cursor: pointer;
   color: #00bfff;
   text-decoration: none;
   font-weight: 700;
