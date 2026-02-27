@@ -561,39 +561,44 @@
       <div class="floating-tech">
         <img src="https://img.icons8.com/color/48/python.png" alt="Python" class="float-icon" style="--float-delay: 0s;" />
         <img src="https://img.icons8.com/color/48/javascript.png" alt="JavaScript" class="float-icon" style="--float-delay: 1s;" />
-        <img src="https://img.icons8.com/color/48/firebase.png" alt="Firebase" class="float-icon" style="--float-delay: 2s;" />
-        <img src="https://img.icons8.com/color/48/android-studio--v3.png" alt="Android" class="float-icon" style="--float-delay: 3s;" />
         <img src="https://img.icons8.com/color/48/figma.png" alt="Figma" class="float-icon" style="--float-delay: 4s;" />
+        <img src="https://img.icons8.com/color/48/react-native.png" alt="React" class="float-icon" style="--float-delay: 5s;" />
+        <img src="https://img.icons8.com/color/48/nodejs.png" alt="Node.js" class="float-icon" style="--float-delay: 7s;" />
+        <img src="https://img.icons8.com/color/48/html-5--v1.png" alt="HTML5" class="float-icon" style="--float-delay: 8s;" />
+        <img src="https://img.icons8.com/color/48/css3.png" alt="CSS3" class="float-icon" style="--float-delay: 9s;" />
       </div>
     </div>
   </section>
   <!-- Certificates Section -->
-<section id="certificates" class="card-with-blobs" style="background: linear-gradient(90deg, #f32559 0%, #f83de8 100%); padding: 2rem; border-radius: 20px; color: #fff; margin-top: 1.5rem; min-height: auto; max-width: 1920px; width: 100%; margin-left: auto; margin-right: auto;">
+<section id="certificates" class="card-with-blobs cert-showcase">
   <div class="card-blob blob-a"></div>
   <div class="card-blob blob-b"></div>
-  <h2 style="text-align: left; margin-bottom: 2.5rem; font-size: 2rem;">Certificates</h2>
-  <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;max-width: 1920px; width: 100%;">
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; color: #000;">
+  <div class="cert-showcase__header">
+    <h2>Certificates</h2>
+    <p>Learning milestones and recognized achievements</p>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card">
       <a href="cert1.png" download onclick="openCertModal('cert1.png'); return false;">
-        <img src="cert1.png" alt="Certificate 1" style="width: 100%; height: 250px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <img src="cert1.png" alt="Android Compose Camp certificate" class="cert-card__img">
       </a>
-      <p style="margin-top: 0.7rem; font-weight: 500;"> Android Compose Camp</p>
+      <p class="cert-card__title">Android Compose Camp</p>
     </div>
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; color: #000;">
+    <div class="cert-card">
       <a href="cert2.png" download onclick="openCertModal('cert2.png'); return false;">
-        <img src="cert2.png" alt="Certificate 2" style="width: 100%; border-radius: 10px;height: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <img src="cert2.png" alt="AWS Machine Learning certificate" class="cert-card__img">
       </a>
-      <p style="margin-top: 0.7rem; font-weight: 500;"> AWS Machine Learning</p>
+      <p class="cert-card__title">AWS Machine Learning</p>
     </div>
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; color: #000;">
+    <div class="cert-card">
       <a href="cert3.png" download onclick="openCertModal('cert3.png'); return false;">
-        <img src="cert3.png" alt="Certificate 3" style="width: 100%; border-radius: 10px;height: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <img src="cert3.png" alt="Generative AI certificate" class="cert-card__img">
       </a>
-      <p style="margin-top: 0.7rem; font-weight: 500;">Generative AI</p>
+      <p class="cert-card__title">Generative AI</p>
     </div>
-    <div style="background: #fff; padding: 1rem; border-radius: 16px; width: 400px; max-width: 100%; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #000;">
-      <p style="margin-bottom: 1rem; font-weight: bold; font-size: 1.1rem;">+ More</p>
-      <a href="certificates.html" target="_blank" style="background: #f83de8; color: #fff; padding: 0.6rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">View All</a>
+    <div class="cert-card cert-card--more">
+      <p class="cert-card__more-label">+ More</p>
+      <a href="certificates.html" target="_blank" class="cert-card__cta">View All</a>
     </div>
   </div>
 </section>
