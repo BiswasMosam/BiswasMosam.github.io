@@ -136,6 +136,20 @@ if (document.getElementById('blob1')) {
   animateBlobs();
 }
 
+function syncBlobBackgroundMode() {
+  const heroSection = document.getElementById('home');
+  if (!heroSection) return;
+
+  const triggerPoint = Math.max(48, heroSection.offsetHeight * 0.24);
+  const shouldUseBackgroundMode = window.scrollY > triggerPoint;
+
+  document.body.classList.toggle('blob-background-active', shouldUseBackgroundMode);
+}
+
+window.addEventListener('scroll', syncBlobBackgroundMode, { passive: true });
+window.addEventListener('resize', syncBlobBackgroundMode);
+window.addEventListener('load', syncBlobBackgroundMode);
+
 document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             alert("Right-click is disabled on this website.");
