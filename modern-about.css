@@ -38,6 +38,10 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.section-title-main {
+  color: #ffffff;
+}
+
 .gradient-text {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
