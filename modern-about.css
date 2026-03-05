@@ -498,10 +498,39 @@
 }
 
 .profile-card h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   margin: 0 0 10px 0;
   font-size: 26px;
   font-weight: 700;
   color: #fff;
+}
+
+.profile-badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.profile-badge-link .material-symbols-outlined {
+  font-size: 26px;
+  line-height: 1;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.profile-badge-link:hover {
+  transform: translateY(-1px) scale(1.06);
+  opacity: 0.9;
 }
 
 .profile-card .role {

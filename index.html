@@ -90,6 +90,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=workspace_premium" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="modern-about.css" />
   <link rel="me" href="https://github.com/BiswasMosam" />
@@ -424,7 +425,12 @@
             <!-- Profile Card -->
             <div class="info-card profile-card">
               <img src="profile.jpg" alt="Profile" class="profile-image" />
-              <h3>Mosam Biswas</h3>
+              <h3>
+                Mosam Biswas
+                <a class="profile-badge-link" href="certificates.html" aria-label="View certificates" title="View certificates">
+                  <span class="material-symbols-outlined" aria-hidden="true">workspace_premium</span>
+                </a>
+              </h3>
               <p class="role">Software Developer & Tech Enthusiast</p>
               <p class="location">📍 Mumbai, India</p>
               <div class="quick-stats">
@@ -569,40 +575,7 @@
       </div>
     </div>
   </section>
-  <!-- Certificates Section -->
-<section id="certificates" class="card-with-blobs cert-showcase">
-  <div class="card-blob blob-a"></div>
-  <div class="card-blob blob-b"></div>
-  <div class="cert-showcase__header">
-    <h2>Certificates</h2>
-    <p>Learning milestones and recognized achievements</p>
-  </div>
-  <div class="cert-grid">
-    <div class="cert-card">
-      <a href="cert1.png" download onclick="openCertModal('cert1.png'); return false;">
-        <img src="cert1.png" alt="Android Compose Camp certificate" class="cert-card__img">
-      </a>
-      <p class="cert-card__title">Android Compose Camp</p>
-    </div>
-    <div class="cert-card">
-      <a href="cert2.png" download onclick="openCertModal('cert2.png'); return false;">
-        <img src="cert2.png" alt="AWS Machine Learning certificate" class="cert-card__img">
-      </a>
-      <p class="cert-card__title">AWS Machine Learning</p>
-    </div>
-    <div class="cert-card">
-      <a href="cert3.png" download onclick="openCertModal('cert3.png'); return false;">
-        <img src="cert3.png" alt="Generative AI certificate" class="cert-card__img">
-      </a>
-      <p class="cert-card__title">Generative AI</p>
-    </div>
-    <div class="cert-card cert-card--more">
-      <p class="cert-card__more-label">+ More</p>
-      <a href="certificates.html" target="_blank" class="cert-card__cta">View All</a>
-    </div>
-  </div>
-</section>
-</section>
+
 
 
   <section id="projects" class="projects projects-fan" data-projects-fan>
@@ -783,7 +756,6 @@
   <nav class="bottom-nav">
     <a href="#home" title="Home"><i class="fas fa-home"></i></a>
     <a href="#about" title="About"><i class="fas fa-user"></i></a>
-    <a href="#certificates" title="Certificates"><i class="fas fa-certificate"></i></a>
     <a href="#projects" title="Projects"><i class="fas fa-code"></i></a>
     <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
   </nav>
