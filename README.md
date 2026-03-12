@@ -2,14 +2,14 @@
 
 # 🌟 Mosam Biswas - Portfolio
 
-[![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fwww.mosambiswas.me)](https://www.mosambiswas.me)
+[![Website](https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fwww.mosambiswas.com)](https://www.mosambiswas.com)
 [![GitHub Stars](https://img.shields.io/github/stars/BiswasMosam/BiswasMosam.github.io?style=social)](https://github.com/BiswasMosam/BiswasMosam.github.io/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/BiswasMosam/BiswasMosam.github.io?style=social)](https://github.com/BiswasMosam/BiswasMosam.github.io/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **A modern, elegant, and performant personal portfolio website showcasing my work, skills, and journey as a developer.**
 
-[🌐 Live Demo](https://www.mosambiswas.me) • [📧 Contact Me](https://www.mosambiswas.me#contact) • [🎨 Photography](https://www.mosambiswas.me/sheichobi/sheichobi.html)
+[🌐 Live Demo](https://www.mosambiswas.com) • [📧 Contact Me](https://www.mosambiswas.com#contact) • [🎨 Photography](https://www.mosambiswas.com/sheichobi/sheichobi.html)
 
 </div>
 
@@ -195,7 +195,7 @@ You're free to use this project as inspiration or template for your own portfoli
 
 **Mosam Biswas**
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-www.mosambiswas.me-blue?style=for-the-badge&logo=google-chrome)](https://www.mosambiswas.me)
+[![Portfolio](https://img.shields.io/badge/Portfolio-www.mosambiswas.com-blue?style=for-the-badge&logo=google-chrome)](https://www.mosambiswas.com)
 [![GitHub](https://img.shields.io/badge/GitHub-BiswasMosam-181717?style=for-the-badge&logo=github)](https://github.com/BiswasMosam)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-mosambiswas-0077B5?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/mosambiswas)
 [![Email](https://img.shields.io/badge/Email-mosambiswas999@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mosambiswas999@gmail.com)

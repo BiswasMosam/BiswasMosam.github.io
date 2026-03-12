@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mosambiswas.me/sitemap.xml
+Sitemap: https://www.mosambiswas.com/sitemap.xml
 
 #
 #                              ::::::::::::::::::::                              
