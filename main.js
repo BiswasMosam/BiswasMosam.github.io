@@ -150,10 +150,29 @@ window.addEventListener('scroll', syncBlobBackgroundMode, { passive: true });
 window.addEventListener('resize', syncBlobBackgroundMode);
 window.addEventListener('load', syncBlobBackgroundMode);
 
-document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert("Right-click is disabled on this website.");
-        });
+// Basic devtools deterrent (not a security boundary)
+function initInteractionGuards() {
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const key = (e.key || '').toLowerCase();
+    const ctrlOrMeta = e.ctrlKey || e.metaKey;
+
+    const blockedShortcut =
+      key === 'f12' ||
+      (ctrlOrMeta && e.shiftKey && (key === 'i' || key === 'j' || key === 'c' || key === 'k')) ||
+      (ctrlOrMeta && (key === 'u' || key === 's'));
+
+    if (blockedShortcut) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+}
+
+initInteractionGuards();
 
 function initProjectsFanDeck() {
   const section = document.querySelector('[data-projects-fan]');
