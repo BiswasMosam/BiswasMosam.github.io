@@ -35,6 +35,97 @@ function type() {
 }
 window.addEventListener('load', type);
 
+function initHeroAppLogosTray() {
+  const tray = document.getElementById('appLogosTray');
+  if (!tray) return;
+
+  const slots = Array.from(tray.querySelectorAll('.app-logo-slot'));
+  if (slots.length < 4) return;
+
+  const logoSources = [
+    'logos/Apps/android-logo.png',
+    'logos/Apps/css-3.png',
+    'logos/Apps/figma.png',
+    'logos/Apps/github.png',
+    'logos/Apps/html.png',
+    'logos/Apps/java-script.png',
+    'logos/Apps/java.png',
+    'logos/Apps/mysql.png',
+    'logos/Apps/photoshop.png',
+    'logos/Apps/python.png',
+    'logos/Apps/typescript.png',
+    'logos/Apps/visual-basic.png'
+  ];
+
+  if (logoSources.length <= slots.length) return;
+
+  const buildAlt = (source) => {
+    const fileName = source.split('/').pop() || 'App';
+    const baseName = fileName.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+    return `${baseName} logo`;
+  };
+
+  slots.forEach((slot, slotIndex) => {
+    const current = slot.querySelector('.app-logo-current');
+    const next = slot.querySelector('.app-logo-next');
+    if (!current || !next) return;
+
+    const startSource = logoSources[slotIndex % logoSources.length];
+    current.src = startSource;
+    current.alt = buildAlt(startSource);
+    next.src = '';
+    next.alt = '';
+  });
+
+  let nextSourceIndex = slots.length % logoSources.length;
+  const consumeNextSource = () => {
+    const source = logoSources[nextSourceIndex % logoSources.length];
+    nextSourceIndex = (nextSourceIndex + 1) % logoSources.length;
+    return source;
+  };
+
+  const animateSlotSwap = (slot, incomingSource) => {
+    const current = slot.querySelector('.app-logo-current');
+    const next = slot.querySelector('.app-logo-next');
+    if (!current || !next || slot.classList.contains('is-animating')) return;
+
+    next.src = incomingSource;
+    next.alt = buildAlt(incomingSource);
+
+    slot.classList.remove('is-animating');
+    void slot.offsetWidth;
+    slot.classList.add('is-animating');
+
+    const completeSwap = () => {
+      current.src = incomingSource;
+      current.alt = next.alt;
+      next.src = '';
+      next.alt = '';
+      slot.classList.remove('is-animating');
+      next.removeEventListener('animationend', completeSwap);
+    };
+
+    next.addEventListener('animationend', completeSwap);
+  };
+
+  const runCycle = () => {
+    animateSlotSwap(slots[0], consumeNextSource());
+    setTimeout(() => {
+      animateSlotSwap(slots[1], consumeNextSource());
+    }, 420);
+    setTimeout(() => {
+      animateSlotSwap(slots[2], consumeNextSource());
+    }, 840);
+    setTimeout(() => {
+      animateSlotSwap(slots[3], consumeNextSource());
+    }, 1260);
+  };
+
+  setInterval(runCycle, 4400);
+}
+
+initHeroAppLogosTray();
+
 // Secret double-click on "Mosam Biswas" opens photography page (guard if element missing)
 const mosamLink = document.getElementById('mosam-link');
 if (mosamLink) {

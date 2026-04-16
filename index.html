@@ -69,7 +69,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="stylesheet" href="https://use.typekit.net/tpy3qjm.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=workspace_premium" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="modern-about.css" />
@@ -140,12 +142,74 @@
   </div>
 
   <section id="home" class="hero">
-    <h1 class="fade-in">
-      <span class="sr-only">Mosam Biswas</span>
-      <span id="typing-text" aria-hidden="true"></span>
-      <noscript>&gt; Hi, I&apos;m Mosam Biswas</noscript>
-    </h1>
-    <p class="fade-in">Aspiring Software Developer passionate about AI & automation.</p>
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-content">
+          <h1 class="hero-title fade-in">
+            <span class="sr-only">Mosam Biswas</span>
+            <span id="typing-text" aria-hidden="true"></span>
+            <noscript>&gt; Hi, I&apos;m Mosam Biswas</noscript>
+          </h1>
+          <p class="hero-subtitle fade-in">Aspiring Software Developer passionate about AI & automation.</p>
+
+          <!-- What I Do Section -->
+          <div class="what-i-do-box fade-in">
+            <p class="what-i-do-title">What i do.</p>
+            <p class="what-i-do-text">I specialize in building intelligent solutions through AI and machine learning, creating seamless web experiences with modern frameworks, developing mobile applications, and architecting cloud-based systems. With a passion for automation and optimization, I transform complex problems into elegant, scalable solutions that drive real-world impact.</p>
+          </div>
+
+          <!-- Projects Counter + GitHub -->
+          <div class="projects-row fade-in">
+            <a class="projects-counter" href="#projects" aria-label="Go to projects section">
+              <div class="counter-number">20+</div>
+              <div class="counter-label">Projects done</div>
+            </a>
+            <a href="https://github.com/BiswasMosam" target="_blank" rel="noopener noreferrer" class="contact-pill contact-pill__main hero-social-pill--left" title="GitHub">
+              <img class="contact-icon" src="https://img.icons8.com/ios-glyphs/30/ffffff/github.png" alt="github icon">GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- Social Buttons & App Logos -->
+        <div class="hero-sidebar">
+          <!-- App Logos Section -->
+          <div class="hero-app-logos">
+            <div class="app-logos-tray" id="appLogosTray" aria-label="Rotating app logos tray">
+              <div class="app-logo-slot" data-slot-index="0">
+                <img class="app-logo-img app-logo-current" src="logos/Apps/html.png" alt="HTML logo" loading="lazy" decoding="async" />
+                <img class="app-logo-img app-logo-next" src="" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="app-logo-slot" data-slot-index="1">
+                <img class="app-logo-img app-logo-current" src="logos/Apps/css-3.png" alt="CSS logo" loading="lazy" decoding="async" />
+                <img class="app-logo-img app-logo-next" src="" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="app-logo-slot" data-slot-index="2">
+                <img class="app-logo-img app-logo-current" src="logos/Apps/java-script.png" alt="JavaScript logo" loading="lazy" decoding="async" />
+                <img class="app-logo-img app-logo-next" src="" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="app-logo-slot" data-slot-index="3">
+                <img class="app-logo-img app-logo-current" src="logos/Apps/python.png" alt="Python logo" loading="lazy" decoding="async" />
+                <img class="app-logo-img app-logo-next" src="" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Buttons -->
+          <div class="hero-socials">
+            <a href="https://linkedin.com/in/mosambiswas" target="_blank" rel="noopener noreferrer" class="hero-social-pill" title="LinkedIn">
+              <i class="fab fa-linkedin" aria-hidden="true"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://www.instagram.com/mosam.999/?hl=en" target="_blank" rel="noopener noreferrer" class="hero-social-pill" title="Instagram">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+              <span>Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
     <!-- About Section -->

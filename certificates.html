@@ -494,6 +494,16 @@
       letter-spacing: 0.01em;
     }
 
+    .research-feature__meta a {
+      color: inherit;
+      text-decoration-color: rgba(255, 255, 255, 0.45);
+      text-underline-offset: 2px;
+    }
+
+    .research-feature__meta a:hover {
+      text-decoration-color: rgba(255, 255, 255, 0.9);
+    }
+
     .research-feature__text {
       margin: 0.78rem 0 0;
       font-size: 0.95rem;
@@ -506,6 +516,27 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.62rem;
+    }
+
+    .internship-feature {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 214, 0, 0.09));
+    }
+
+    .internship-feature__meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.55rem;
+      padding: 0.34rem 0.62rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 214, 0, 0.2);
+      border: 1px solid rgba(255, 214, 0, 0.35);
+      width: fit-content;
     }
 
     .cert-list {
@@ -680,6 +711,21 @@
         <div class="research-feature__actions">
           <a class="nav-link" href="ResearchPaper.pdf" target="_blank" rel="noopener noreferrer">Read Full Paper</a>
           <a class="nav-link" href="certificates/research-photo.png" data-lightbox-image>View Publication Certificate</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="research-feature internship-feature" aria-labelledby="internship-title">
+      <a class="research-feature__media" href="certificates/Internship-Sedna.png" data-lightbox-image>
+        <img src="certificates/Internship-Sedna.png" alt="Internship certificate from Sedna Technologies">
+      </a>
+      <div class="research-feature__content">
+        <h2 id="internship-title">Featured Internship Experience</h2>
+        <p class="research-feature__meta"><a href="https://www.sednainfosystems.com/" target="_blank" rel="noopener noreferrer">Sedna Technologies</a> | Software Development Internship</p>
+        <span class="internship-feature__meta-badge">Completed</span>
+        <p class="research-feature__text">Completed a 3-month software development internship at Sedna Technologies focused on real-world engineering workflows, consistent delivery, and hands-on problem-solving. This experience strengthened practical development skills beyond classroom theory.</p>
+        <div class="research-feature__actions">
+          <a class="nav-link" href="certificates/Internship-Sedna.png" data-lightbox-image>View Internship Certificate</a>
         </div>
       </div>
     </section>

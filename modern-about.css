@@ -75,11 +75,13 @@
 
 .model-wrapper {
   position: relative;
-  background: linear-gradient(120deg, #171a2b 0%, #36206f 45%, #d42d88 100%);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 30px;
   padding: 30px;
   height: 500px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 24px 44px rgba(0, 0, 0, 0.36);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -239,22 +241,27 @@
 }
 
 .info-card {
-  background: white;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   transition: all 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   width: 100%;
+  color: #fff;
 }
 
 .profile-card,
 .bio-card,
 .skills-card,
 .cta-card {
-  background: linear-gradient(120deg, #171a2b 0%, #36206f 45%, #d42d88 100%);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 24px 44px rgba(0, 0, 0, 0.36);
   position: relative;
   overflow: hidden;
@@ -277,7 +284,7 @@
 .bio-card::after,
 .skills-card::after,
 .cta-card::after {
-  content: "";
+  content: none;
   position: absolute;
   width: 280px;
   height: 280px;
@@ -659,7 +666,7 @@
 .education-card h4 {
   margin: 0 0 20px 0;
   font-size: 20px;
-  color: #1a1a2e;
+  color: #ffffff;
   font-weight: 700;
   transition: color 0.35s ease;
 }
