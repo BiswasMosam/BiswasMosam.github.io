@@ -464,6 +464,31 @@
   text-align: left;
 }
 
+.research-card__actions {
+  margin-top: 14px;
+}
+
+.research-card__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #005f99;
+  border: 1px solid rgba(0, 95, 153, 0.35);
+  background: rgba(255, 255, 255, 0.78);
+  transition: transform 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.research-card__action:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 18px rgba(0, 95, 153, 0.18);
+}
+
 
 /* Profile Card */
 .profile-card {
