@@ -4,97 +4,103 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shei Chobi | Photography Portfolio</title>
-  <link rel="icon" type="image/png" href="logos/favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Shei Chobi is a photography portfolio by Mosam Biswas featuring street, monochrome, and cultural frames." />
+  <link rel="icon" type="image/svg+xml" href="logos/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="sheichobi.css" />
 </head>
 <body>
-  <header>
-    <h1>Shei chobi</h1>
-    <a href="https://www.instagram.com/shei_chobi/" target="_blank" class="insta-link">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" />
+  <header class="site-header" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="Shei Chobi home">
+      <span class="brand-mark">SC</span>
+      <span class="brand-text">Shei Chobi</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Portfolio sections">
+      <a href="#work">Work</a>
+      <a href="#story">Story</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="icon-link" href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noreferrer" aria-label="Shei Chobi on Instagram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="" />
     </a>
   </header>
-  
-  <main class="marquee-layout">
-    <!-- Top Horizontal Marquee (slides left) -->
-    <div class="marquee-container horizontal top">
-      <div class="marquee-track" id="marquee-1"></div>
-    </div>
-    
-    <!-- Middle Horizontal Marquee (slides right) -->
-    <div class="marquee-container horizontal middle">
-      <div class="marquee-track reverse" id="marquee-2"></div>
-    </div>
-    
-    <!-- Bottom Horizontal Marquee (slides left) -->
-    <div class="marquee-container horizontal bottom">
-      <div class="marquee-track" id="marquee-3"></div>
-    </div>
-    
-    <!-- Vertical Marquee on the right (slides up) -->
-    <div class="marquee-container vertical">
-      <div class="marquee-track vertical-track" id="marquee-vertical"></div>
-    </div>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-backdrop" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="eyebrow">Photography Portfolio</p>
+        <h1 id="hero-title">Shei Chobi</h1>
+        <p class="hero-intro">Quiet streets, sharp contrasts, and living traditions framed with a cinematic eye.</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#work">View Work</a>
+          <a class="secondary-action" href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noreferrer">Instagram</a>
+        </div>
+      </div>
+
+      <div class="hero-stage" aria-label="Featured photographs">
+        <div class="photo-scene" id="photoScene"></div>
+      </div>
+    </section>
+
+    <section class="work-section" id="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Selected Frames</p>
+          <h2 id="work-title">A moving wall of moments</h2>
+        </div>
+        <div class="filter-bar" aria-label="Filter photographs">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="street">Street</button>
+          <button class="filter-button" type="button" data-filter="mono">Mono</button>
+          <button class="filter-button" type="button" data-filter="trad">Tradition</button>
+        </div>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="story-section" id="story" aria-labelledby="story-title">
+      <div class="story-copy">
+        <p class="eyebrow">Visual Language</p>
+        <h2 id="story-title">Documentary feeling, gallery polish.</h2>
+      </div>
+      <div class="story-metrics" aria-label="Portfolio highlights">
+        <div>
+          <strong id="photoCount">31</strong>
+          <span>Photographs</span>
+        </div>
+        <div>
+          <strong>03</strong>
+          <span>Collections</span>
+        </div>
+        <div>
+          <strong>360</strong>
+          <span>Visual Motion</span>
+        </div>
+      </div>
+    </section>
   </main>
-  
-  <!-- Modal for enlarged photo -->
-  <div id="photoModal" class="modal" onclick="closeModal(event)">
-    <div class="modal-content">
-      <button class="close-modal" onclick="closeModal(event)">&times;</button>
-      <img id="modalImg" src="" alt="Enlarged Photo">
-    </div>
+
+  <footer class="site-footer" id="contact">
+    <span>Shei Chobi</span>
+    <a href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noreferrer">@shei_chobi</a>
+  </footer>
+
+  <div id="photoModal" class="modal" aria-hidden="true" role="dialog" aria-label="Photograph preview">
+    <button class="modal-close" type="button" aria-label="Close preview">&times;</button>
+    <button class="modal-nav modal-prev" type="button" aria-label="Previous photograph">&#8249;</button>
+    <figure class="modal-frame">
+      <img id="modalImg" src="" alt="" />
+      <figcaption id="modalCaption"></figcaption>
+    </figure>
+    <button class="modal-nav modal-next" type="button" aria-label="Next photograph">&#8250;</button>
   </div>
-  
+
   <script src="sheichobi.js"></script>
 </body>
 </html>
-
-<!--
-
-                              ::::::::::::::::::::                              
-                        -::::::::::::::::::::::::::::::-                        
-                     ::::::::::::::::::::::::::::::::::::::-                    
-                  :::::-+%@@+::::::::::::::::::::::-%#+-::::::-                 
-               :::::=%@@@@@@@-:::::::::::::::::::::%@@@@@%=:::::-               
-             :::::#@@@@@@@@#::::-*%@@@@@@@@@@@*-:::*@@@@@@@@@=::::-             
-           ::::-%@@@@@@@@=:::*@@@@@@@@@@@@@@@@@@@@*:::#@@@@@@@@+::::-           
-         :::::#@@@@@@@@+::-%@@@@@@@@@@@@@@@@@@@@@@@@%-:-#@@@@@@@@+::::=         
-        ::::+@@@@@@@@%-:-%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%-:=%@@@@@@@%-:::-        
-       ::::*@@@@@@@@*::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::#@@@@@@@@+::::+      
-     ::::-%@@@@@@@@*::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*::%@@@@@@@@#::::=     
-    :::::%@@@@@@@@#::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::#@@@@@@@@#::::=    
-    ::::%@@@@@@@@@-:=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=:=@@@@@@@@@#::::@   
-   ::::*@@@@@@@@@*::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#::*@@@@@@@@@+::::+  
-  ::::+@@@@@@@@@@-::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%::-@@@@@@@@@@=:::-  
- :::::%@@@@@@@@@%-::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-::%@@@@@@@@@#::::+ 
- ::::+@@@@@@@@@@%-::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:::%@@@@@@@@@@=:::: 
-:::::@@@@@@@@@@@%-::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%:::%@@@@@@@@@@%::::-
-::::=@@@@@@@@@@@@-::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#::-%@@@@@@@@@@@=:::=
-::::+@@@@@@@@@@@@*::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=::+@@@@@@@@@@@@*:::=
-::::*@@@@@@@@@@@@@-::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+:::%@@@@@@@@@@@@#:::-
-::::#@@@@@@@@@@@@@*:::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*:::+@@@@@@@@@@@@@#::::
-::::#@@@@@@@@@@@@@@=:::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::::%@@@@@@@@@@@@@#::::
-::::*@@@@@@@@@@@@@@@-::::#@@@@@@@@@@@@@@@@@@@@@@@@@@@@%:::::%@@@@@@@@@@@@@@#:::-
-::::+@@@@@@@@@@@@%-:::::::-%@@@@@@@@@@@@@@@@@@@@@@@@%-:::::::*@@@@@@@@@@@@@*:::-
-::::=@@@@@@@@@%=:::::::::::::+@@@@@@@@@@@@@@@@@@@@@@@%-::::::::-#@@@@@@@@@@+:::=
-:::::%@@@@@@+:::::::::::::::::::-+%@@@@@@@@@@%+-:=%@@@@%-:::::::::=%@@@@@@@::::=
- ::::-%@@#-::::::::::::::::::::::::::::::::::::::::=%@@@@%+:::::::::-+%@@@+::::# 
- -::::==::::::::::::-#-::::::::::::::::::::::::::::::-#@@@@@*::::::::::-##::::+ 
-  ::::::::::::::::=@@@@@#-::::::::::::::::::::::::::::::*@@@@@#-:::::::::::::-  
-   :::::::::::::*@@@@@@@@@@@*-:::::::::::::::::::=*:::::::+%@@@@%-:::::::::::*  
-    :::::::::-%@@@@@*::+%@@@@@@@@%#+-:::::-=*%%@@@@@#:::::::-%@@@@%=::::::::%   
-    -::::::+%@@@@%=:::::::-+%@@@@@@@@@@@@@@@@@@@@@%=::::::::::-#@@@@@*:::::=    
-     -:::*@@@@@#-::::::::::::::-=+#%@@@@@@@%#*=-:::::::::::::::#@@@@*:::::+     
-      -*@@@@@*::::::::::::::::::::::::::::::::::::::::::::::-#@@@@%-::::-*      
-        #@%=:::::::::--:::::::::::::::::::::::::::::::::::=%@@@@%=:::::-        
-         :::::::::::#@@@#-:::::::::::::::::::::::::::::=%@@@@@%=::::::+         
-           -:::::::=@@@@@@@@%+:::::::::::::::::::::+%@@@@@@@%-::::::=           
-             :::::::::=%@@@@@@@@@%%%#**+++**#%%%@@@@@@@@@%=:::::::=             
-               -::::::::::=*%@@@@@@@@@@@@@@@@@@@@@@@@%+-::::::::=               
-                 =:::::::::::::-=+*#%%@@@@@@%%#*+=-::::::::::-+                 
-                    =-::::::::::::::::::::::::::::::::::::-+                    
-                        =-::::::::::::::::::::::::::::-*                        
-                              +-::::::::::::::::-+                              
-
--->

@@ -1,11 +1,8 @@
-// All photos collection - will be loaded from photos.json
 let allPhotos = [];
+let activePhotos = [];
+let activeIndex = 0;
+let activeFilter = 'all';
 
-// Categorize photos by orientation
-const horizontalPhotos = [];
-const verticalPhotos = [];
-
-// Fallback photos if JSON fails to load
 const fallbackPhotos = [
   'Photographs/street1.jpg', 'Photographs/street2.jpg', 'Photographs/street3.jpg',
   'Photographs/street4.jpg', 'Photographs/street5.jpg', 'Photographs/street6.jpg',
@@ -21,130 +18,251 @@ const fallbackPhotos = [
   'Photographs/trad7.jpg'
 ];
 
-// Load photos from JSON file
+const frameLayout = [
+  { x: '-34vw', y: '-42%', z: '-120px', rx: '2deg', ry: '18deg', rz: '-7deg', ratio: '4 / 5', speed: '8s' },
+  { x: '-12vw', y: '-52%', z: '110px', rx: '-3deg', ry: '-12deg', rz: '4deg', ratio: '3 / 4', speed: '7s' },
+  { x: '10vw', y: '-45%', z: '-40px', rx: '4deg', ry: '16deg', rz: '8deg', ratio: '5 / 4', speed: '9s' },
+  { x: '25vw', y: '-20%', z: '170px', rx: '-4deg', ry: '-16deg', rz: '-4deg', ratio: '4 / 5', speed: '7.5s' },
+  { x: '-28vw', y: '-2%', z: '160px', rx: '3deg', ry: '20deg', rz: '5deg', ratio: '5 / 4', speed: '8.5s' },
+  { x: '-4vw', y: '-4%', z: '260px', rx: '-2deg', ry: '-5deg', rz: '-1deg', ratio: '4 / 5', speed: '7.8s' },
+  { x: '18vw', y: '7%', z: '20px', rx: '5deg', ry: '13deg', rz: '7deg', ratio: '3 / 4', speed: '9.5s' },
+  { x: '-16vw', y: '30%', z: '-30px', rx: '-4deg', ry: '14deg', rz: '-6deg', ratio: '4 / 3', speed: '8.8s' },
+  { x: '7vw', y: '34%', z: '120px', rx: '3deg', ry: '-15deg', rz: '4deg', ratio: '5 / 4', speed: '7.2s' }
+];
+
 async function loadPhotoList() {
   try {
-    const response = await fetch('photos.json');
-    if (response.ok) {
-      allPhotos = await response.json();
-      console.log(`Loaded ${allPhotos.length} photos from photos.json`);
-    } else {
-      throw new Error('Failed to load photos.json');
+    const response = await fetch('photos.json', { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error('Unable to load photos.json');
     }
+    allPhotos = await response.json();
   } catch (error) {
-    console.warn('Could not load photos.json, using fallback list:', error);
+    console.warn('Using fallback photo list:', error);
     allPhotos = fallbackPhotos;
   }
-  categorizeImages();
+
+  activePhotos = [...allPhotos];
+  updatePhotoCount();
+  renderHeroScene();
+  renderGallery();
+  bindFilters();
+  bindHeroTilt();
+  bindModalControls();
 }
 
-// Function to check if image is horizontal or vertical
-function categorizeImages() {
-  let loadedCount = 0;
-  const totalImages = allPhotos.length;
+function getCategory(photo) {
+  const fileName = photo.split('/').pop().toLowerCase();
 
-  allPhotos.forEach(photoSrc => {
-    const img = new Image();
-    img.onload = function() {
-      if (this.width >= this.height) {
-        horizontalPhotos.push(photoSrc);
-      } else {
-        verticalPhotos.push(photoSrc);
-      }
-      
-      loadedCount++;
-      if (loadedCount === totalImages) {
-        initializeMarquees();
-      }
-    };
-    img.onerror = function() {
-      loadedCount++;
-      if (loadedCount === totalImages) {
-        initializeMarquees();
-      }
-    };
-    img.src = photoSrc;
+  if (fileName.startsWith('mono')) return 'mono';
+  if (fileName.startsWith('trad')) return 'trad';
+  return 'street';
+}
+
+function getCategoryLabel(category) {
+  return {
+    street: 'Street',
+    mono: 'Monochrome',
+    trad: 'Tradition'
+  }[category] || 'Photograph';
+}
+
+function getPhotoTitle(photo) {
+  const fileName = photo.split('/').pop().replace(/\.[^.]+$/, '');
+  const category = getCategory(photo);
+  const number = fileName.replace(/[^\d]/g, '').padStart(2, '0');
+  return `${getCategoryLabel(category)} ${number}`;
+}
+
+function renderHeroScene() {
+  const scene = document.getElementById('photoScene');
+  if (!scene) return;
+
+  const featured = getFeaturedPhotos();
+  scene.innerHTML = '';
+
+  featured.forEach((photo, index) => {
+    const layout = frameLayout[index];
+    const frame = document.createElement('button');
+    frame.type = 'button';
+    frame.className = 'floating-frame';
+    frame.setAttribute('aria-label', `Open ${getPhotoTitle(photo)}`);
+    frame.style.setProperty('--x', layout.x);
+    frame.style.setProperty('--y', layout.y);
+    frame.style.setProperty('--z', layout.z);
+    frame.style.setProperty('--rx', layout.rx);
+    frame.style.setProperty('--ry', layout.ry);
+    frame.style.setProperty('--rz', layout.rz);
+    frame.style.setProperty('--ratio', layout.ratio);
+    frame.style.setProperty('--float-speed', layout.speed);
+    frame.innerHTML = `<img src="${photo}" alt="${getPhotoTitle(photo)}" loading="${index < 3 ? 'eager' : 'lazy'}">`;
+    frame.addEventListener('click', () => openModalByPhoto(photo));
+    scene.appendChild(frame);
   });
 }
 
-// Initialize all marquee sections
-function initializeMarquees() {
-  // Distribute horizontal photos across 3 marquees
-  const horizontalSet1 = horizontalPhotos.filter((_, i) => i % 3 === 0);
-  const horizontalSet2 = horizontalPhotos.filter((_, i) => i % 3 === 1);
-  const horizontalSet3 = horizontalPhotos.filter((_, i) => i % 3 === 2);
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
 
-  createMarquee('marquee-1', horizontalSet1.length > 0 ? horizontalSet1 : allPhotos.slice(0, 10));
-  createMarquee('marquee-2', horizontalSet2.length > 0 ? horizontalSet2 : allPhotos.slice(10, 20));
-  createMarquee('marquee-3', horizontalSet3.length > 0 ? horizontalSet3 : allPhotos.slice(20, 30));
-  createMarquee('marquee-vertical', verticalPhotos.length > 0 ? verticalPhotos : allPhotos.slice(0, 10));
-}
+  activePhotos = activeFilter === 'all'
+    ? [...allPhotos]
+    : allPhotos.filter(photo => getCategory(photo) === activeFilter);
 
-// Create marquee content
-function createMarquee(containerId, photos) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
+  grid.innerHTML = '';
 
-  // Duplicate the photos array to create seamless loop
-  const extendedPhotos = [...photos, ...photos];
-
-  extendedPhotos.forEach((photo, index) => {
-    const item = document.createElement('div');
-    item.className = 'marquee-item';
-    item.innerHTML = `<img src="${photo}" alt="Photo ${index + 1}" loading="lazy">`;
-    item.onclick = function() {
-      openModal(item.querySelector('img'));
-    };
-    container.appendChild(item);
+  activePhotos.forEach((photo, index) => {
+    const category = getCategory(photo);
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'photo-card';
+    card.setAttribute('aria-label', `Open ${getPhotoTitle(photo)}`);
+    card.innerHTML = `
+      <img src="${photo}" alt="${getPhotoTitle(photo)}" loading="lazy">
+      <span class="photo-caption">
+        <span>${getPhotoTitle(photo)}</span>
+        <span>${getCategoryLabel(category)}</span>
+      </span>
+    `;
+    card.addEventListener('click', () => openModal(index));
+    grid.appendChild(card);
   });
 }
 
-// Modal functions
-function openModal(img) {
+function getFeaturedPhotos() {
+  const byCategory = {
+    street: allPhotos.filter(photo => getCategory(photo) === 'street'),
+    mono: allPhotos.filter(photo => getCategory(photo) === 'mono'),
+    trad: allPhotos.filter(photo => getCategory(photo) === 'trad')
+  };
+
+  const mixed = [
+    byCategory.street[0],
+    byCategory.mono[0],
+    byCategory.trad[0],
+    byCategory.street[5],
+    byCategory.trad[2],
+    byCategory.mono[4],
+    byCategory.street[9],
+    byCategory.trad[5],
+    byCategory.mono[8]
+  ].filter(Boolean);
+
+  return [...new Set(mixed)].slice(0, frameLayout.length);
+}
+
+function bindFilters() {
+  document.querySelectorAll('.filter-button').forEach(button => {
+    button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      document.querySelectorAll('.filter-button').forEach(item => {
+        item.classList.toggle('active', item === button);
+      });
+      renderGallery();
+    });
+  });
+}
+
+function bindHeroTilt() {
+  const hero = document.querySelector('.hero');
+  const scene = document.getElementById('photoScene');
+
+  if (!hero || !scene || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  hero.addEventListener('mousemove', event => {
+    const bounds = hero.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+    scene.style.setProperty('--tilt-y', `${-8 + x * 12}deg`);
+    scene.style.setProperty('--tilt-x', `${y * -8}deg`);
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    scene.style.setProperty('--tilt-y', '-8deg');
+    scene.style.setProperty('--tilt-x', '0deg');
+  });
+}
+
+function openModalByPhoto(photo) {
+  const index = activePhotos.indexOf(photo);
+
+  if (index >= 0) {
+    openModal(index);
+    return;
+  }
+
+  activePhotos = [...allPhotos];
+  activeIndex = allPhotos.indexOf(photo);
+  showModalPhoto();
+}
+
+function openModal(index) {
+  activeIndex = index;
+  showModalPhoto();
+}
+
+function showModalPhoto() {
   const modal = document.getElementById('photoModal');
   const modalImg = document.getElementById('modalImg');
+  const modalCaption = document.getElementById('modalCaption');
+  const photo = activePhotos[activeIndex];
 
-  modalImg.src = img.src;
+  if (!modal || !modalImg || !photo) return;
+
+  modalImg.src = photo;
+  modalImg.alt = getPhotoTitle(photo);
+  modalCaption.textContent = `${getPhotoTitle(photo)} / ${getCategoryLabel(getCategory(photo))}`;
   modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
 }
 
-function closeModal(event) {
-  if (event.target.classList.contains('modal') || event.target.classList.contains('close-modal')) {
-    document.getElementById('photoModal').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
+function closeModal() {
   const modal = document.getElementById('photoModal');
-  if (modal.classList.contains('active') && e.key === 'Escape') {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-});
+  if (!modal) return;
 
-// Pause marquee on hover
-document.addEventListener('DOMContentLoaded', function() {
-  // Load photos and start
-  loadPhotoList();
+  modal.classList.remove('active');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
 
-  // Add hover pause functionality to all marquee containers
-  const marqueeContainers = document.querySelectorAll('.marquee-container');
-  marqueeContainers.forEach(container => {
-    container.addEventListener('mouseenter', function() {
-      const track = this.querySelector('.marquee-track');
-      if (track) {
-        track.style.animationPlayState = 'paused';
-      }
-    });
+function showAdjacentPhoto(direction) {
+  if (!activePhotos.length) return;
+  activeIndex = (activeIndex + direction + activePhotos.length) % activePhotos.length;
+  showModalPhoto();
+}
 
-    container.addEventListener('mouseleave', function() {
-      const track = this.querySelector('.marquee-track');
-      if (track) {
-        track.style.animationPlayState = 'running';
-      }
-    });
+function bindModalControls() {
+  const modal = document.getElementById('photoModal');
+  const closeButton = document.querySelector('.modal-close');
+  const prevButton = document.querySelector('.modal-prev');
+  const nextButton = document.querySelector('.modal-next');
+
+  closeButton?.addEventListener('click', closeModal);
+  prevButton?.addEventListener('click', () => showAdjacentPhoto(-1));
+  nextButton?.addEventListener('click', () => showAdjacentPhoto(1));
+
+  modal?.addEventListener('click', event => {
+    if (event.target === modal) {
+      closeModal();
+    }
   });
-});
+
+  document.addEventListener('keydown', event => {
+    if (!modal?.classList.contains('active')) return;
+
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'ArrowLeft') showAdjacentPhoto(-1);
+    if (event.key === 'ArrowRight') showAdjacentPhoto(1);
+  });
+}
+
+function updatePhotoCount() {
+  const photoCount = document.getElementById('photoCount');
+  if (photoCount) {
+    photoCount.textContent = String(allPhotos.length).padStart(2, '0');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadPhotoList);
