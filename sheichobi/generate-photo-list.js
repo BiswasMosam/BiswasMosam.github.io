@@ -6,6 +6,7 @@ const path = require('path');
 
 const photosDir = './Photographs';
 const outputFile = './photos.json';
+const naturalSort = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
 
 // Read all files from the Photographs directory
 fs.readdir(photosDir, (err, files) => {
@@ -22,7 +23,7 @@ fs.readdir(photosDir, (err, files) => {
       return imageExtensions.includes(ext);
     })
     .map(file => `Photographs/${file}`)
-    .sort(); // Sort alphabetically
+    .sort((a, b) => naturalSort.compare(a, b));
 
   // Write to JSON file
   fs.writeFile(outputFile, JSON.stringify(photoList, null, 2), (err) => {
@@ -30,7 +31,7 @@ fs.readdir(photosDir, (err, files) => {
       console.error('Error writing file:', err);
       return;
     }
-    console.log(`✓ Generated ${outputFile} with ${photoList.length} photos`);
+    console.log(`Generated ${outputFile} with ${photoList.length} photos`);
     console.log('Photos found:', photoList);
   });
 });

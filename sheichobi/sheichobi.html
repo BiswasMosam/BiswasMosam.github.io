@@ -19,6 +19,7 @@
     </a>
 
     <nav class="nav-links" aria-label="Portfolio sections">
+      <a href="#collections">Collections</a>
       <a href="#work">Work</a>
       <a href="#story">Story</a>
       <a href="#contact">Contact</a>
@@ -37,7 +38,7 @@
         <h1 id="hero-title">Shei Chobi</h1>
         <p class="hero-intro">Quiet streets, sharp contrasts, and living traditions framed with a cinematic eye.</p>
         <div class="hero-actions">
-          <a class="primary-action" href="#work">View Work</a>
+          <a class="primary-action" href="#collections">View Collections</a>
           <a class="secondary-action" href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noreferrer">Instagram</a>
         </div>
       </div>
@@ -47,21 +48,34 @@
       </div>
     </section>
 
+    <section class="collections-section" id="collections" aria-labelledby="collections-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Collections</p>
+          <h2 id="collections-title">Choose a visual lane</h2>
+        </div>
+        <p class="section-note">The gallery stays curated first. Open a collection, then expand only when you want more.</p>
+      </div>
+
+      <div class="collection-grid" id="collectionGrid" aria-live="polite"></div>
+    </section>
+
     <section class="work-section" id="work" aria-labelledby="work-title">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Selected Frames</p>
-          <h2 id="work-title">A moving wall of moments</h2>
+          <h2 id="work-title">Curated, not crowded</h2>
         </div>
-        <div class="filter-bar" aria-label="Filter photographs">
-          <button class="filter-button active" type="button" data-filter="all">All</button>
-          <button class="filter-button" type="button" data-filter="street">Street</button>
-          <button class="filter-button" type="button" data-filter="mono">Mono</button>
-          <button class="filter-button" type="button" data-filter="trad">Tradition</button>
+        <div class="gallery-tools">
+          <div class="filter-bar" id="filterBar" aria-label="Filter photographs"></div>
+          <p class="gallery-status" id="galleryStatus" aria-live="polite"></p>
         </div>
       </div>
 
       <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+      <div class="gallery-footer">
+        <button class="load-more-button" id="loadMoreButton" type="button">Load More</button>
+      </div>
     </section>
 
     <section class="story-section" id="story" aria-labelledby="story-title">
@@ -75,7 +89,7 @@
           <span>Photographs</span>
         </div>
         <div>
-          <strong>03</strong>
+          <strong id="collectionCount">03</strong>
           <span>Collections</span>
         </div>
         <div>
