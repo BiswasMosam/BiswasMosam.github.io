@@ -388,7 +388,7 @@ h2 {
 
 .collection-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
   gap: clamp(0.9rem, 2vw, 1.25rem);
 }
 
@@ -459,7 +459,7 @@ h2 {
 .collection-card__title {
   margin: 0;
   font-family: Oswald, Arial, sans-serif;
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
   line-height: 0.9;
   letter-spacing: 0;
   text-transform: uppercase;
