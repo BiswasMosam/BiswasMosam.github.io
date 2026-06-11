@@ -272,8 +272,8 @@ h1 {
   width: clamp(8.5rem, 18vw, 18rem);
   aspect-ratio: var(--ratio, 4 / 5);
   border: 0;
-  padding: 0.5rem;
-  background: rgba(247, 241, 232, 0.92);
+  padding: 0;
+  background: transparent;
   box-shadow: 0 30px 70px var(--shadow);
   cursor: pointer;
   transform:
@@ -287,22 +287,12 @@ h1 {
   contain: layout paint;
 }
 
-.floating-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  transform: translateZ(-18px);
-}
-
 .floating-frame__inner {
   display: block;
   width: 100%;
   height: 100%;
-  transform: translate3d(0, 0, 0);
-  animation: gallery-float var(--float-speed, 8s) ease-in-out infinite alternate;
-  animation-delay: var(--float-delay, 0s);
-  will-change: transform;
+  padding: 0.5rem;
+  background: rgba(247, 241, 232, 0.92);
   backface-visibility: hidden;
 }
 
@@ -316,14 +306,6 @@ h1 {
   backface-visibility: hidden;
 }
 
-@keyframes gallery-float {
-  from {
-    transform: translate3d(0, -0.55rem, 0);
-  }
-  to {
-    transform: translate3d(0, 0.55rem, 0);
-  }
-}
 
 .collections-section,
 .work-section {

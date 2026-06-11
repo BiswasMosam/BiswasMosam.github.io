@@ -8,37 +8,58 @@ const INITIAL_VISIBLE_COUNT = 12;
 const LOAD_MORE_COUNT = 9;
 
 const fallbackPhotos = [
-  'Photographs/street1.webp', 'Photographs/street2.webp', 'Photographs/street3.webp',
-  'Photographs/street4.webp', 'Photographs/street5.webp', 'Photographs/street6.webp',
-  'Photographs/street7.webp', 'Photographs/street8.webp', 'Photographs/street9.webp',
-  'Photographs/street10.webp', 'Photographs/street11.webp', 'Photographs/street12.webp',
-  'Photographs/street13.webp', 'Photographs/street14.webp',
-  'Photographs/mono1.webp', 'Photographs/mono2.webp', 'Photographs/mono3.webp',
-  'Photographs/mono4.webp', 'Photographs/mono5.webp', 'Photographs/mono6.webp',
-  'Photographs/mono7.webp', 'Photographs/mono8.webp', 'Photographs/mono9.webp',
-  'Photographs/mono10.webp',
-  'Photographs/trad1.webp', 'Photographs/trad2.webp', 'Photographs/trad3.webp',
-  'Photographs/trad4.webp', 'Photographs/trad5.webp', 'Photographs/trad6.webp',
-  'Photographs/trad7.webp'
+  'photographs/con1.webp', 'photographs/con2.webp', 'photographs/con3.webp',
+  'photographs/con4.webp', 'photographs/con5.webp', 'photographs/con6.webp',
+  'photographs/con7.webp', 'photographs/con8.webp', 'photographs/con9.webp',
+  'photographs/con10.webp', 'photographs/con11.webp', 'photographs/con12.webp',
+  'photographs/con14.webp', 'photographs/con15.webp', 'photographs/con16.webp',
+  'photographs/con17.webp',
+  'photographs/mono1.webp', 'photographs/mono2.webp', 'photographs/mono3.webp',
+  'photographs/mono4.webp', 'photographs/mono5.webp', 'photographs/mono6.webp',
+  'photographs/mono7.webp', 'photographs/mono8.webp', 'photographs/mono9.webp',
+  'photographs/mono10.webp', 'photographs/mono11.webp', 'photographs/mono12.webp',
+  'photographs/mono13.webp', 'photographs/mono14.webp', 'photographs/mono15.webp',
+  'photographs/port1.webp', 'photographs/port2.webp', 'photographs/port3.webp',
+  'photographs/port4.webp', 'photographs/port5.webp', 'photographs/port6.webp',
+  'photographs/port7.webp', 'photographs/Port8.webp', 'photographs/port9.webp',
+  'photographs/port10.webp', 'photographs/port11.webp', 'photographs/port12.webp',
+  'photographs/port13.webp',
+  'photographs/street1.webp', 'photographs/street2.webp', 'photographs/street3.webp',
+  'photographs/street4.webp', 'photographs/street5.webp', 'photographs/street6.webp',
+  'photographs/street7.webp', 'photographs/street8.webp', 'photographs/street9.webp',
+  'photographs/street10.webp', 'photographs/street11.webp',
+  'photographs/trad1.webp', 'photographs/trad2.webp', 'photographs/trad3.webp',
+  'photographs/wild1.webp', 'photographs/wild2.webp', 'photographs/wild3.webp',
+  'photographs/wild4.webp', 'photographs/wild5.webp', 'photographs/wild6.webp',
+  'photographs/wild7.webp', 'photographs/wild8.webp', 'photographs/wild9.webp',
+  'photographs/wild10.webp', 'photographs/Wild11.webp', 'photographs/wild12.webp',
+  'photographs/wild13.webp', 'photographs/wild14.webp', 'photographs/wild15.webp',
+  'photographs/wild16.webp', 'photographs/wild17.webp', 'photographs/wild18.webp',
+  'photographs/wild19.webp', 'photographs/wild20.webp', 'photographs/wild21.webp',
+  'photographs/wild22.webp', 'photographs/wild23.webp', 'photographs/wild24.webp',
+  'photographs/wild25.webp', 'photographs/wild26.webp'
 ];
 
 const categoryLabels = {
   all: 'All',
+  con: 'Concert',
+  wild: 'Wildlife',
+  port: 'Portrait',
   mono: 'Monochrome',
-  street: 'Street',
-  trad: 'Tradition'
+  trad: 'Traditional',
+  street: 'Street'
 };
 
 const frameLayout = [
-  { x: '-34vw', y: '-42%', z: '-120px', rx: '2deg', ry: '18deg', rz: '-7deg', ratio: '4 / 5', speed: '8s' },
-  { x: '-12vw', y: '-52%', z: '110px', rx: '-3deg', ry: '-12deg', rz: '4deg', ratio: '3 / 4', speed: '7s' },
-  { x: '10vw', y: '-45%', z: '-40px', rx: '4deg', ry: '16deg', rz: '8deg', ratio: '5 / 4', speed: '9s' },
-  { x: '25vw', y: '-20%', z: '170px', rx: '-4deg', ry: '-16deg', rz: '-4deg', ratio: '4 / 5', speed: '7.5s' },
-  { x: '-28vw', y: '-2%', z: '160px', rx: '3deg', ry: '20deg', rz: '5deg', ratio: '5 / 4', speed: '8.5s' },
-  { x: '-4vw', y: '-4%', z: '260px', rx: '-2deg', ry: '-5deg', rz: '-1deg', ratio: '4 / 5', speed: '7.8s' },
-  { x: '18vw', y: '7%', z: '20px', rx: '5deg', ry: '13deg', rz: '7deg', ratio: '3 / 4', speed: '9.5s' },
-  { x: '-16vw', y: '30%', z: '-30px', rx: '-4deg', ry: '14deg', rz: '-6deg', ratio: '4 / 3', speed: '8.8s' },
-  { x: '7vw', y: '34%', z: '120px', rx: '3deg', ry: '-15deg', rz: '4deg', ratio: '5 / 4', speed: '7.2s' }
+  { x: '-34vw', y: '-42%', z: '-120px', rx: '2deg', ry: '18deg', rz: '-7deg', ratio: '4 / 5' },
+  { x: '-12vw', y: '-52%', z: '110px', rx: '-3deg', ry: '-12deg', rz: '4deg', ratio: '3 / 4' },
+  { x: '10vw', y: '-45%', z: '-40px', rx: '4deg', ry: '16deg', rz: '8deg', ratio: '5 / 4' },
+  { x: '25vw', y: '-20%', z: '170px', rx: '-4deg', ry: '-16deg', rz: '-4deg', ratio: '4 / 5' },
+  { x: '-28vw', y: '-2%', z: '160px', rx: '3deg', ry: '20deg', rz: '5deg', ratio: '5 / 4' },
+  { x: '-4vw', y: '-4%', z: '260px', rx: '-2deg', ry: '-5deg', rz: '-1deg', ratio: '4 / 5' },
+  { x: '18vw', y: '7%', z: '20px', rx: '5deg', ry: '13deg', rz: '7deg', ratio: '3 / 4' },
+  { x: '-16vw', y: '30%', z: '-30px', rx: '-4deg', ry: '14deg', rz: '-6deg', ratio: '4 / 3' },
+  { x: '7vw', y: '34%', z: '120px', rx: '3deg', ry: '-15deg', rz: '4deg', ratio: '5 / 4' }
 ];
 
 async function loadPhotoList() {
@@ -117,7 +138,7 @@ function getPhotoTitle(src, category = inferCategory(src)) {
 
 function getCollectionData() {
   const categories = [...new Set(allPhotos.map(photo => photo.category))].sort((a, b) => {
-    const preferredOrder = ['street', 'mono', 'trad'];
+    const preferredOrder = ['con', 'wild', 'port', 'mono', 'trad', 'street'];
     const aIndex = preferredOrder.indexOf(a);
     const bIndex = preferredOrder.indexOf(b);
 
@@ -159,8 +180,6 @@ function renderHeroScene() {
     frame.style.setProperty('--ry', layout.ry);
     frame.style.setProperty('--rz', layout.rz);
     frame.style.setProperty('--ratio', layout.ratio);
-    frame.style.setProperty('--float-speed', layout.speed);
-    frame.style.setProperty('--float-delay', `${index * -0.72}s`);
     frame.innerHTML = `
       <span class="floating-frame__inner">
         <img src="${photo.src}" alt="${photo.title}" loading="${index < 3 ? 'eager' : 'lazy'}">
