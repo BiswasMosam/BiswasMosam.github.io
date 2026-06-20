@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mosam-biswas-portfolio-v5';
+const CACHE_NAME = 'mosam-biswas-portfolio-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -38,6 +38,11 @@ self.addEventListener('fetch', (event) => {
   const request = event.request;
   const isNavigation = request.mode === 'navigate' || request.destination === 'document';
   const isScriptOrStyle = request.destination === 'script' || request.destination === 'style';
+
+  // Let the browser handle requests that explicitly opt out of caching
+  if (request.cache === 'no-store' || request.cache === 'reload') {
+    return;
+  }
 
   if (isNavigation) {
     event.respondWith(
