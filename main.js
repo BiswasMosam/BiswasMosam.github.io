@@ -1,706 +1,336 @@
-// Section fade-in on scroll
-const sections = document.querySelectorAll('section');
-const options = { threshold: 0.1 };
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, options);
-sections.forEach(section => {
-  observer.observe(section);
-});
+/* ============================================================
+   MOSAM BISWAS — PORTFOLIO v5
+   Preloader · reveals · cursor · work preview · parallax ·
+   clock · menu · copy email · certificate modal
+   ============================================================ */
 
-// Typing effect for hero section
-const text = '> Hi, I\'m Mosam Biswas';
-const typingElement = document.getElementById('typing-text');
-let index = 0;
-function type() {
-  if (!typingElement) return;
-  if (typingElement.dataset.typingStarted !== '1') typingElement.dataset.typingStarted = '1';
-  if (index === 0) typingElement.textContent = '';
-  if (index < text.length) {
-    typingElement.textContent = text.slice(0, index + 1);
-    index++;
-    setTimeout(type, 100);
-    return;
-  }
+(() => {
+  'use strict';
 
-  setTimeout(() => {
-    index = 0;
-    type();
-  }, 10000);
-}
-window.addEventListener('load', type);
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-function initHeroAppLogosTray() {
-  const tray = document.getElementById('appLogosTray');
-  if (!tray) return;
+  /* ---------- Preloader ---------- */
 
-  const slots = Array.from(tray.querySelectorAll('.app-logo-slot'));
-  if (slots.length < 4) return;
+  const preloader = document.getElementById('preloader');
+  const preloaderCount = document.getElementById('preloaderCount');
 
-  const logoSources = [
-    'logos/Apps/android-logo.png',
-    'logos/Apps/css-3.png',
-    'logos/Apps/figma.png',
-    'logos/Apps/github.png',
-    'logos/Apps/html.png',
-    'logos/Apps/java-script.png',
-    'logos/Apps/java.png',
-    'logos/Apps/mysql.png',
-    'logos/Apps/photoshop.png',
-    'logos/Apps/python.png',
-    'logos/Apps/typescript.png',
-    'logos/Apps/visual-basic.png'
-  ];
-
-  if (logoSources.length <= slots.length) return;
-
-  const buildAlt = (source) => {
-    const fileName = source.split('/').pop() || 'App';
-    const baseName = fileName.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
-    return `${baseName} logo`;
+  const finishLoading = () => {
+    document.body.classList.add('is-loaded');
   };
 
-  slots.forEach((slot, slotIndex) => {
-    const current = slot.querySelector('.app-logo-current');
-    const next = slot.querySelector('.app-logo-next');
-    if (!current || !next) return;
+  if (!preloader || prefersReduced) {
+    finishLoading();
+  } else {
+    const DURATION = 1000;
+    const start = performance.now();
 
-    const startSource = logoSources[slotIndex % logoSources.length];
-    current.src = startSource;
-    current.alt = buildAlt(startSource);
-    next.src = '';
-    next.alt = '';
-  });
-
-  let nextSourceIndex = slots.length % logoSources.length;
-  const consumeNextSource = () => {
-    const source = logoSources[nextSourceIndex % logoSources.length];
-    nextSourceIndex = (nextSourceIndex + 1) % logoSources.length;
-    return source;
-  };
-
-  const animateSlotSwap = (slot, incomingSource) => {
-    const current = slot.querySelector('.app-logo-current');
-    const next = slot.querySelector('.app-logo-next');
-    if (!current || !next || slot.classList.contains('is-animating')) return;
-
-    next.src = incomingSource;
-    next.alt = buildAlt(incomingSource);
-
-    slot.classList.remove('is-animating');
-    void slot.offsetWidth;
-    slot.classList.add('is-animating');
-
-    const completeSwap = () => {
-      current.src = incomingSource;
-      current.alt = next.alt;
-      next.src = '';
-      next.alt = '';
-      slot.classList.remove('is-animating');
-      next.removeEventListener('animationend', completeSwap);
+    const tick = (now) => {
+      const progress = Math.min((now - start) / DURATION, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      if (preloaderCount) {
+        preloaderCount.textContent = String(Math.round(eased * 100)).padStart(2, '0');
+      }
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        setTimeout(finishLoading, 150);
+      }
     };
 
-    next.addEventListener('animationend', completeSwap);
-  };
-
-  const runCycle = () => {
-    animateSlotSwap(slots[0], consumeNextSource());
-    setTimeout(() => {
-      animateSlotSwap(slots[1], consumeNextSource());
-    }, 420);
-    setTimeout(() => {
-      animateSlotSwap(slots[2], consumeNextSource());
-    }, 840);
-    setTimeout(() => {
-      animateSlotSwap(slots[3], consumeNextSource());
-    }, 1260);
-  };
-
-  setInterval(runCycle, 4400);
-}
-
-initHeroAppLogosTray();
-
-// Secret double-click on "Mosam Biswas" opens photography page (guard if element missing)
-const mosamLink = document.getElementById('mosam-link');
-if (mosamLink) {
-  mosamLink.ondblclick = function() {
-    window.open('sheichobi/sheichobi.html', '_blank');
-  };
-}
-
-// Certificate modal logic
-function openCertModal(src, altText) {
-  const modal = document.getElementById('certModal');
-  const modalImg = document.getElementById('certModalImg');
-  if (!modal || !modalImg) return;
-
-  modalImg.src = src;
-  if (altText) modalImg.alt = altText;
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-function closeCertModal() {
-  const modal = document.getElementById('certModal');
-  if (!modal) return;
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
-}
-const certModal = document.getElementById('certModal');
-if (certModal) {
-  certModal.onclick = function(e) {
-    if (e.target === this) closeCertModal();
-  };
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeCertModal();
-});
-
-// Contact: copy Gmail address
-document.addEventListener('click', async (e) => {
-  const copyBtn = e.target && e.target.closest ? e.target.closest('.contact-pill__copy') : null;
-  if (!copyBtn) return;
-
-  e.preventDefault();
-  e.stopPropagation();
-
-  const textToCopy = copyBtn.getAttribute('data-copy') || '';
-  if (!textToCopy) return;
-
-  try {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(textToCopy);
-    } else {
-      const temp = document.createElement('textarea');
-      temp.value = textToCopy;
-      temp.setAttribute('readonly', '');
-      temp.style.position = 'absolute';
-      temp.style.left = '-9999px';
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand('copy');
-      document.body.removeChild(temp);
-    }
-
-    if (!copyBtn.dataset.originalHtml) copyBtn.dataset.originalHtml = copyBtn.innerHTML;
-    copyBtn.innerHTML = '<i class="fa-solid fa-copy" aria-hidden="true"></i><span>Copied</span>';
-    setTimeout(() => {
-      copyBtn.innerHTML = copyBtn.dataset.originalHtml || '<i class="fa-solid fa-copy" aria-hidden="true"></i><span>Copy</span>';
-    }, 900);
-  } catch {
-    // no-op
+    requestAnimationFrame(tick);
   }
-});
 
-function blobPath(cx, cy, r, t, points = 32, wobble = 13, freq = 1.9) {
-  let d = '';
-  for (let i = 0; i < 360; i += 360 / points) {
-    let rad = (i * Math.PI) / 180;
-    let offset = Math.sin(rad * freq + t) * wobble;
-    let x = cx + Math.cos(rad) * (r + offset);
-    let y = cy + Math.sin(rad) * (r + offset);
-    d += (i === 0 ? 'M' : 'L') + x + ',' + y + ' ';
-  }
-  d += 'Z';
-  return d;
-}
+  /* ---------- Fit display lines edge-to-edge ---------- */
 
-function animateBlobs() {
-  const t = Date.now() / 900;
-  document.getElementById('blob1').setAttribute('d', blobPath(320 + Math.sin(t)*70, 220 + Math.cos(t/2.9)*40, 120, t));
-  document.getElementById('blob2').setAttribute('d', blobPath(700 + Math.cos(t/2)*60, 400 + Math.sin(t/2.9)*60, 140, t+2));
-  document.getElementById('blob3').setAttribute('d', blobPath(500 + Math.sin(t/1.5)*50, 600 + Math.cos(t/2.9)*50, 100, t+4));
-  document.getElementById('blob4').setAttribute('d', blobPath(900 + Math.sin(t/1.3)*50, 200 + Math.cos(t/2.9)*50, 90, t+6));
-  document.getElementById('blob5').setAttribute('d', blobPath(200 + Math.cos(t/1.7)*60, 650 + Math.sin(t/2.9)*60, 80, t+8));
-  document.getElementById('blob6').setAttribute('d', blobPath(600 + Math.sin(t/1.2)*55, 150 + Math.cos(t/2.9)*55, 85, t+10));
-  // Move silver blob to right bottom area
-  document.getElementById('blob7').setAttribute('d', blobPath(1050 + Math.sin(t/1.4)*70, 500 + Math.cos(t/2.9)*70, 75, t+12));
-  requestAnimationFrame(animateBlobs);
-}
-// Start animation only if blobs are present to avoid null errors
-if (document.getElementById('blob1')) {
-  animateBlobs();
-}
-
-function syncBlobBackgroundMode() {
-  const heroSection = document.getElementById('home');
-  if (!heroSection) return;
-
-  const triggerPoint = Math.max(48, heroSection.offsetHeight * 0.24);
-  const shouldUseBackgroundMode = window.scrollY > triggerPoint;
-
-  document.body.classList.toggle('blob-background-active', shouldUseBackgroundMode);
-}
-
-window.addEventListener('scroll', syncBlobBackgroundMode, { passive: true });
-window.addEventListener('resize', syncBlobBackgroundMode);
-window.addEventListener('load', syncBlobBackgroundMode);
-
-// Basic devtools deterrent (not a security boundary)
-function initInteractionGuards() {
-  document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    const key = (e.key || '').toLowerCase();
-    const ctrlOrMeta = e.ctrlKey || e.metaKey;
-
-    const blockedShortcut =
-      key === 'f12' ||
-      (ctrlOrMeta && e.shiftKey && (key === 'i' || key === 'j' || key === 'c' || key === 'k')) ||
-      (ctrlOrMeta && (key === 'u' || key === 's'));
-
-    if (blockedShortcut) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  });
-}
-
-initInteractionGuards();
-
-function initProjectsFanDeck() {
-  const section = document.querySelector('[data-projects-fan]');
-  const viewport = section ? section.querySelector('[data-projects-control]') : null;
-  const deck = section ? section.querySelector('[data-projects-deck]') : null;
-  const cards = deck ? Array.from(deck.querySelectorAll('[data-project-card]')) : [];
-
-  if (!section || !viewport || !deck || cards.length < 3) return;
-
-  const wrap = (value, size) => ((value % size) + size) % size;
-  const easeInOut = (t) => 0.5 - Math.cos(Math.PI * t) / 2;
-  const shortestSignedDelta = (index, center, total) => {
-    let delta = index - center;
-    if (delta > total / 2) delta -= total;
-    if (delta < -total / 2) delta += total;
-    return delta;
-  };
-
-  cards.forEach((card, index) => {
-    card.style.setProperty('--card-order', String(index));
-  });
-
-  let centerIndex = Math.floor(cards.length / 2);
-  let centerFloat = centerIndex;
-  let direction = 1;
-  let isControlMode = false;
-  let isHoverPaused = false;
-  let phase = 'hold';
-  let phaseElapsed = 0;
-  let lastTimestamp = 0;
-  let rafId = null;
-
-  const NORMAL_HOLD_MS = 10000;
-  const NORMAL_MOVE_MS = 900;
-  const CONTROL_MOVE_MS = 2000;
-
-  const renderDeck = (activeCenter, centerHovered = false) => {
-    const spread = Math.max(90, Math.min(170, viewport.clientWidth * 0.19));
-    const lift = Math.max(14, Math.min(28, viewport.clientHeight * 0.06));
-
-    cards.forEach((card, index) => {
-      const delta = shortestSignedDelta(index, activeCenter, cards.length);
-      const absDelta = Math.abs(delta);
-
-      card.classList.remove('is-center', 'is-side-1', 'is-side-2', 'is-left', 'is-right');
-
-      if (absDelta > 2.6) {
-        card.style.opacity = '0';
-        card.style.pointerEvents = 'none';
-        card.style.transform = 'translate3d(-50%, -50%, -320px) scale(0.6)';
-        card.style.zIndex = '0';
-        return;
-      }
-
-      const x = delta * spread;
-      const y = Math.pow(absDelta, 1.45) * lift;
-      const rotate = delta * 14;
-      let scale = 1 - absDelta * 0.12;
-      const z = 320 - absDelta * 120;
-      const opacity = 1 - absDelta * 0.16;
-
-      if (absDelta < 0.5) {
-        card.classList.add('is-center');
-        card.style.pointerEvents = 'auto';
-        if (centerHovered) scale += 0.06;
-      } else if (absDelta < 1.5) {
-        card.classList.add('is-side-1');
-        card.style.pointerEvents = 'none';
+  const fitLines = () => {
+    document.querySelectorAll('.hero__line').forEach((line) => {
+      const word = line.querySelector('.hero__word');
+      if (!word) return;
+      line.style.fontSize = '100px';
+      const width = word.getBoundingClientRect().width;
+      if (width > 0) {
+        line.style.fontSize = `${(100 * line.clientWidth / width).toFixed(2)}px`;
       } else {
-        card.classList.add('is-side-2');
-        card.style.pointerEvents = 'none';
+        line.style.fontSize = '';
       }
-
-      card.classList.add(delta < 0 ? 'is-left' : 'is-right');
-      card.style.opacity = String(Math.max(0.25, opacity));
-      card.style.zIndex = String(Math.round(100 - absDelta * 18));
-      card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), ${z}px) rotate(${rotate}deg) scale(${Math.max(0.72, scale)})`;
     });
   };
 
-  const restartMovePhase = () => {
-    centerIndex = wrap(Math.round(centerFloat), cards.length);
-    centerFloat = centerIndex;
-    phase = 'move';
-    phaseElapsed = 0;
-  };
+  fitLines();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitLines);
+  }
 
-  const tick = (timestamp) => {
-    if (!lastTimestamp) lastTimestamp = timestamp;
-    const delta = timestamp - lastTimestamp;
-    lastTimestamp = timestamp;
-
-    if (isHoverPaused) {
-      renderDeck(centerIndex, true);
-      rafId = requestAnimationFrame(tick);
-      return;
-    }
-
-    phaseElapsed += delta;
-
-    if (phase === 'hold') {
-      centerFloat = centerIndex;
-      renderDeck(centerFloat, false);
-
-      if (isControlMode) {
-        phase = 'move';
-        phaseElapsed = 0;
-      } else if (phaseElapsed >= NORMAL_HOLD_MS) {
-        phase = 'move';
-        phaseElapsed = 0;
-      }
-    } else {
-      const moveDuration = isControlMode ? CONTROL_MOVE_MS : NORMAL_MOVE_MS;
-      const progress = Math.min(phaseElapsed / moveDuration, 1);
-      const eased = easeInOut(progress);
-      centerFloat = centerIndex + direction * eased;
-      renderDeck(centerFloat, false);
-
-      if (progress >= 1) {
-        centerIndex = wrap(centerIndex + direction, cards.length);
-        centerFloat = centerIndex;
-
-        if (isControlMode) {
-          phase = 'move';
-          phaseElapsed = 0;
-        } else {
-          phase = 'hold';
-          phaseElapsed = 0;
-        }
-      }
-    }
-
-    rafId = requestAnimationFrame(tick);
-  };
-
-  cards.forEach((card) => {
-    const links = Array.from(card.querySelectorAll('a[href]'));
-
-    links.forEach((link) => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-      });
-
-      link.addEventListener('pointerdown', () => {
-        if (!card.classList.contains('is-center')) return;
-        isHoverPaused = true;
-        section.classList.add('projects-fan--paused');
-      });
-
-      link.addEventListener('mouseenter', () => {
-        if (!card.classList.contains('is-center')) return;
-        isHoverPaused = true;
-        section.classList.add('projects-fan--paused');
-      });
-
-      link.addEventListener('mouseleave', () => {
-        if (!isHoverPaused) return;
-        isHoverPaused = false;
-        section.classList.remove('projects-fan--paused');
-        lastTimestamp = performance.now();
-      });
-    });
-
-    card.addEventListener('mouseenter', () => {
-      if (!card.classList.contains('is-center')) return;
-      isHoverPaused = true;
-      section.classList.add('projects-fan--paused');
-    });
-
-    card.addEventListener('click', () => {
-      if (!card.classList.contains('is-center')) return;
-
-      const link = card.querySelector('.project-fan-card__body a[href]');
-      if (!link) return;
-
-      const href = link.getAttribute('href');
-      const target = link.getAttribute('target');
-      if (!href) return;
-
-      if (target === '_blank') {
-        window.open(href, '_blank', 'noopener,noreferrer');
-        return;
-      }
-
-      window.location.assign(href);
-    });
-
-    card.addEventListener('mouseleave', () => {
-      if (!isHoverPaused) return;
-      isHoverPaused = false;
-      section.classList.remove('projects-fan--paused');
-      lastTimestamp = performance.now();
-    });
+  let fitResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(fitResizeTimer);
+    fitResizeTimer = setTimeout(fitLines, 120);
   });
 
-  viewport.addEventListener('mousemove', (event) => {
-    const bounds = viewport.getBoundingClientRect();
-    const ratio = (event.clientX - bounds.left) / bounds.width;
+  /* ---------- Scroll reveals ---------- */
 
-    if (ratio < 0.38) {
-      if (direction !== -1 || !isControlMode) {
-        direction = -1;
-        isControlMode = true;
-        restartMovePhase();
-      }
-      return;
-    }
+  const revealTargets = document.querySelectorAll('[data-reveal]');
 
-    if (ratio > 0.62) {
-      if (direction !== 1 || !isControlMode) {
-        direction = 1;
-        isControlMode = true;
-        restartMovePhase();
-      }
-      return;
-    }
-
-    isControlMode = false;
-  });
-
-  viewport.addEventListener('mouseleave', () => {
-    isControlMode = false;
-  });
-
-  const startRotation = () => {
-    if (rafId) cancelAnimationFrame(rafId);
-    phase = 'hold';
-    phaseElapsed = 0;
-    lastTimestamp = 0;
-    section.classList.add('projects-fan--active');
-    renderDeck(centerIndex, false);
-    rafId = requestAnimationFrame(tick);
-  };
-
-  const revealObserver = new IntersectionObserver(
-    (entries, observerInstance) => {
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        section.classList.add('projects-fan--entered');
-        observerInstance.unobserve(section);
-
-        setTimeout(() => {
-          startRotation();
-        }, 1200);
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          observer.unobserve(entry.target);
+        }
       });
-    },
-    {
-      threshold: 0.2,
-      rootMargin: '0px 0px -10% 0px'
-    }
-  );
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
-  revealObserver.observe(section);
-}
-
-/*
-
-                              ::::::::::::::::::::                              
-                        -::::::::::::::::::::::::::::::-                        
-                     ::::::::::::::::::::::::::::::::::::::-                    
-                  :::::-+%@@+::::::::::::::::::::::-%#+-::::::-                 
-               :::::=%@@@@@@@-:::::::::::::::::::::%@@@@@%=:::::-               
-             :::::#@@@@@@@@#::::-*%@@@@@@@@@@@*-:::*@@@@@@@@@=::::-             
-           ::::-%@@@@@@@@=:::*@@@@@@@@@@@@@@@@@@@@*:::#@@@@@@@@+::::-           
-         :::::#@@@@@@@@+::-%@@@@@@@@@@@@@@@@@@@@@@@@%-:-#@@@@@@@@+::::=         
-        ::::+@@@@@@@@%-:-%@@@@@@@@@@@@@@@@@@@@@@@@@@@@%-:=%@@@@@@@%-:::-        
-       ::::*@@@@@@@@*::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::#@@@@@@@@+::::+      
-     ::::-%@@@@@@@@*::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*::%@@@@@@@@#::::=     
-    :::::%@@@@@@@@#::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::#@@@@@@@@#::::=    
-    ::::%@@@@@@@@@-:=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=:=@@@@@@@@@#::::@   
-   ::::*@@@@@@@@@*::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#::*@@@@@@@@@+::::+  
-  ::::+@@@@@@@@@@-::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%::-@@@@@@@@@@=:::-  
- :::::%@@@@@@@@@%-::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-::%@@@@@@@@@#::::+ 
- ::::+@@@@@@@@@@%-::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:::%@@@@@@@@@@=:::: 
-:::::@@@@@@@@@@@%-::%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%:::%@@@@@@@@@@%::::-
-::::=@@@@@@@@@@@@-::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#::-%@@@@@@@@@@@=:::=
-::::+@@@@@@@@@@@@*::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@=::+@@@@@@@@@@@@*:::=
-::::*@@@@@@@@@@@@@-::+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+:::%@@@@@@@@@@@@#:::-
-::::#@@@@@@@@@@@@@*:::*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*:::+@@@@@@@@@@@@@#::::
-::::#@@@@@@@@@@@@@@=:::=@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@+::::%@@@@@@@@@@@@@#::::
-::::*@@@@@@@@@@@@@@@-::::#@@@@@@@@@@@@@@@@@@@@@@@@@@@@%:::::%@@@@@@@@@@@@@@#:::-
-::::+@@@@@@@@@@@@%-:::::::-%@@@@@@@@@@@@@@@@@@@@@@@@%-:::::::*@@@@@@@@@@@@@*:::-
-::::=@@@@@@@@@%=:::::::::::::+@@@@@@@@@@@@@@@@@@@@@@@%-::::::::-#@@@@@@@@@@+:::=
-:::::%@@@@@@+:::::::::::::::::::-+%@@@@@@@@@@%+-:=%@@@@%-:::::::::=%@@@@@@@::::=
- ::::-%@@#-::::::::::::::::::::::::::::::::::::::::=%@@@@%+:::::::::-+%@@@+::::# 
- -::::==::::::::::::-#-::::::::::::::::::::::::::::::-#@@@@@*::::::::::-##::::+ 
-  ::::::::::::::::=@@@@@#-::::::::::::::::::::::::::::::*@@@@@#-:::::::::::::-  
-   :::::::::::::*@@@@@@@@@@@*-:::::::::::::::::::=*:::::::+%@@@@%-:::::::::::*  
-    :::::::::-%@@@@@*::+%@@@@@@@@%#+-:::::-=*%%@@@@@#:::::::-%@@@@%=::::::::%   
-    -::::::+%@@@@%=:::::::-+%@@@@@@@@@@@@@@@@@@@@@%=::::::::::-#@@@@@*:::::=    
-     -:::*@@@@@#-::::::::::::::-=+#%@@@@@@@%#*=-:::::::::::::::#@@@@*:::::+     
-      -*@@@@@*::::::::::::::::::::::::::::::::::::::::::::::-#@@@@%-::::-*      
-        #@%=:::::::::--:::::::::::::::::::::::::::::::::::=%@@@@%=:::::-        
-         :::::::::::#@@@#-:::::::::::::::::::::::::::::=%@@@@@%=::::::+         
-           -:::::::=@@@@@@@@%+:::::::::::::::::::::+%@@@@@@@%-::::::=           
-             :::::::::=%@@@@@@@@@%%%#**+++**#%%%@@@@@@@@@%=:::::::=             
-               -::::::::::=*%@@@@@@@@@@@@@@@@@@@@@@@@%+-::::::::=               
-                 =:::::::::::::-=+*#%%@@@@@@%%#*+=-::::::::::-+                 
-                    =-::::::::::::::::::::::::::::::::::::-+                    
-                        =-::::::::::::::::::::::::::::-*                        
-                              +-::::::::::::::::-+                              
-
-*/
-// 3D Model viewer enhancements
-let currentAnimationIndex = 0;
-let availableAnimations = [];
-
-// Function to play greeting animation
-function playGreeting() {
-  const modelViewer = document.getElementById('about-3d-model');
-  if (!modelViewer) return;
-  
-  if (availableAnimations.length > 0) {
-    // Play the first animation or cycle through them
-    const animationName = availableAnimations[currentAnimationIndex];
-    modelViewer.animationName = animationName;
-    modelViewer.play();
-    
-    // Cycle to next animation for next click
-    currentAnimationIndex = (currentAnimationIndex + 1) % availableAnimations.length;
-    
-    // Pause auto-rotate while animating
-    modelViewer.autoRotate = false;
-    
-    // Resume auto-rotate after animation
-    setTimeout(() => {
-      modelViewer.autoRotate = true;
-    }, 3000);
+    revealTargets.forEach((el) => revealObserver.observe(el));
   } else {
-    // If no animations, do a fun camera movement
-    animateCamera();
+    revealTargets.forEach((el) => el.classList.add('is-in'));
   }
-}
 
-// Animate camera as fallback
-function animateCamera() {
-  const modelViewer = document.getElementById('about-3d-model');
-  if (!modelViewer) return;
-  
-  const originalOrbit = modelViewer.getCameraOrbit();
-  
-  // Zoom in and rotate
-  modelViewer.cameraOrbit = '45deg 75deg 80%';
-  
-  setTimeout(() => {
-    modelViewer.cameraOrbit = '-45deg 75deg 80%';
-  }, 500);
-  
-  setTimeout(() => {
-    modelViewer.cameraOrbit = '0deg 75deg 105%';
-  }, 1000);
-}
+  /* ---------- Custom cursor ---------- */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initProjectsFanDeck();
+  const cursor = document.getElementById('cursor');
 
-  const modelViewer = document.getElementById('about-3d-model');
-  
-  if (modelViewer) {
-    // Add loading complete event
-    modelViewer.addEventListener('load', () => {
-      console.log('3D Model loaded successfully!');
-      
-      // Get available animations
-      availableAnimations = modelViewer.availableAnimations || [];
-      console.log('Available animations:', availableAnimations);
-      
-      // Auto-play first animation on load
-      if (availableAnimations.length > 0) {
-        setTimeout(() => {
-          playGreeting();
-        }, 1000);
+  if (cursor && finePointer && !prefersReduced) {
+    let targetX = -100;
+    let targetY = -100;
+    let x = -100;
+    let y = -100;
+    let cursorRafActive = false;
+
+    const renderCursor = () => {
+      x += (targetX - x) * 0.22;
+      y += (targetY - y) * 0.22;
+      cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      requestAnimationFrame(renderCursor);
+    };
+
+    window.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      if (!cursorRafActive) {
+        cursorRafActive = true;
+        x = targetX;
+        y = targetY;
+        cursor.classList.add('is-visible');
+        requestAnimationFrame(renderCursor);
+      }
+    }, { passive: true });
+
+    document.addEventListener('mouseover', (e) => {
+      const interactive = e.target.closest('a, button, [data-cursor]');
+      cursor.classList.toggle('is-link', Boolean(interactive));
+    });
+
+    document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
+    document.addEventListener('mouseenter', () => cursor.classList.add('is-visible'));
+  }
+
+  /* ---------- Local time (IST) ---------- */
+
+  const clocks = document.querySelectorAll('[data-clock]');
+
+  if (clocks.length) {
+    const formatter = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+
+    const updateClocks = () => {
+      const now = formatter.format(new Date());
+      clocks.forEach((el) => { el.textContent = now; });
+    };
+
+    updateClocks();
+    setInterval(updateClocks, 1000);
+  }
+
+  /* ---------- Fullscreen menu ---------- */
+
+  const menuBtn = document.getElementById('menuBtn');
+  const menuOverlay = document.getElementById('menuOverlay');
+
+  if (menuBtn && menuOverlay) {
+    const menuLabel = menuBtn.querySelector('[data-menu-label]');
+
+    const setMenu = (open) => {
+      document.body.classList.toggle('menu-open', open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuOverlay.setAttribute('aria-hidden', String(!open));
+      if (menuLabel) menuLabel.textContent = open ? 'Close' : 'Menu';
+    };
+
+    menuBtn.addEventListener('click', () => {
+      setMenu(!document.body.classList.contains('menu-open'));
+    });
+
+    menuOverlay.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setMenu(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false);
+    });
+  }
+
+  /* ---------- Work list: cursor-following preview ---------- */
+
+  const workList = document.getElementById('workList');
+  const workPreview = document.getElementById('workPreview');
+  const workPreviewStrip = document.getElementById('workPreviewStrip');
+
+  if (workList && workPreview && workPreviewStrip && finePointer && !prefersReduced) {
+    let previewX = 0;
+    let previewY = 0;
+    let previewTargetX = 0;
+    let previewTargetY = 0;
+    let previewRaf = null;
+
+    const renderPreview = () => {
+      previewX += (previewTargetX - previewX) * 0.12;
+      previewY += (previewTargetY - previewY) * 0.12;
+      workPreview.style.left = `${previewX}px`;
+      workPreview.style.top = `${previewY}px`;
+      previewRaf = requestAnimationFrame(renderPreview);
+    };
+
+    workList.addEventListener('mousemove', (e) => {
+      previewTargetX = Math.min(e.clientX + 28, window.innerWidth - workPreview.offsetWidth - 16);
+      previewTargetY = e.clientY - workPreview.offsetHeight / 2;
+    }, { passive: true });
+
+    workList.addEventListener('mouseenter', (e) => {
+      previewX = previewTargetX = e.clientX + 28;
+      previewY = previewTargetY = e.clientY - workPreview.offsetHeight / 2;
+      if (!previewRaf) previewRaf = requestAnimationFrame(renderPreview);
+    });
+
+    workList.addEventListener('mouseleave', () => {
+      workPreview.classList.remove('is-active');
+      if (previewRaf) {
+        cancelAnimationFrame(previewRaf);
+        previewRaf = null;
       }
     });
 
-    // Add error handling
-    modelViewer.addEventListener('error', (event) => {
-      console.error('Failed to load 3D model:', event);
-    });
-
-    // Add interaction events for enhanced UX
-    modelViewer.addEventListener('camera-change', () => {
-      // Model is being interacted with
-      modelViewer.style.filter = 'drop-shadow(0 0 30px rgba(124, 58, 237, 0.6))';
-    });
-
-    // Reset glow after interaction
-    let interactionTimeout;
-    modelViewer.addEventListener('camera-change', () => {
-      clearTimeout(interactionTimeout);
-      interactionTimeout = setTimeout(() => {
-        modelViewer.style.filter = '';
-      }, 1000);
-    });
-
-    // Add touch/click visual feedback
-    modelViewer.addEventListener('mousedown', () => {
-      modelViewer.style.transform = 'scale(0.98)';
-      modelViewer.style.transition = 'transform 0.1s ease';
-    });
-
-    modelViewer.addEventListener('mouseup', () => {
-      modelViewer.style.transform = 'scale(1)';
+    workList.querySelectorAll('.work-row').forEach((row) => {
+      row.addEventListener('mouseenter', () => {
+        const index = Number(row.dataset.preview || 0);
+        workPreviewStrip.style.transform = `translateY(${index * -100}%)`;
+        workPreview.classList.add('is-active');
+      });
     });
   }
 
-  // Badge hover effects with ripple
-  const badges = document.querySelectorAll('.about a[style*="border-radius: 9999px"]');
-  badges.forEach(badge => {
-    badge.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-3px) scale(1.05)';
-    });
-    badge.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0) scale(1)';
+  /* ---------- Parallax images ---------- */
+
+  const parallaxImages = Array.from(document.querySelectorAll('[data-parallax]'));
+
+  if (parallaxImages.length && !prefersReduced) {
+    let parallaxScheduled = false;
+
+    const renderParallax = () => {
+      parallaxScheduled = false;
+      const viewportCenter = window.innerHeight / 2;
+
+      parallaxImages.forEach((img) => {
+        const rect = img.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
+
+        const speed = parseFloat(img.dataset.parallax) || 0.1;
+        const offset = (rect.top + rect.height / 2 - viewportCenter) * -speed;
+        img.style.transform = `translateY(${offset.toFixed(1)}px) scale(1.12)`;
+      });
+    };
+
+    const requestParallax = () => {
+      if (!parallaxScheduled) {
+        parallaxScheduled = true;
+        requestAnimationFrame(renderParallax);
+      }
+    };
+
+    window.addEventListener('scroll', requestParallax, { passive: true });
+    window.addEventListener('resize', requestParallax);
+    requestParallax();
+  }
+
+  /* ---------- Copy email ---------- */
+
+  document.querySelectorAll('[data-copy]').forEach((btn) => {
+    const label = btn.querySelector('[data-copy-label]');
+    const originalText = label ? label.textContent : '';
+
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy') || '';
+      if (!text) return;
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const temp = document.createElement('textarea');
+          temp.value = text;
+          temp.setAttribute('readonly', '');
+          temp.style.position = 'absolute';
+          temp.style.left = '-9999px';
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand('copy');
+          document.body.removeChild(temp);
+        }
+
+        if (label) {
+          label.textContent = 'Copied ✓';
+          setTimeout(() => { label.textContent = originalText; }, 1400);
+        }
+      } catch {
+        /* clipboard unavailable — mailto link still works */
+      }
     });
   });
 
-  // Education cards parallax effect on hover
-  const eduCards = document.querySelectorAll('.about div[style*="border: 2px solid"]');
-  eduCards.forEach(card => {
-    card.addEventListener('mousemove', function(e) {
-      const rect = this.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-      
-      this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateX(10px) scale(1.02)`;
+  /* ---------- Certificate modal ---------- */
+
+  const certModal = document.getElementById('certModal');
+  const certModalImg = document.getElementById('certModalImg');
+  const certModalClose = document.getElementById('certModalClose');
+
+  if (certModal && certModalImg) {
+    const openModal = (src) => {
+      certModalImg.src = src;
+      certModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      certModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('[data-cert-open]').forEach((btn) => {
+      btn.addEventListener('click', () => openModal(btn.getAttribute('data-cert-open')));
     });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = '';
+
+    if (certModalClose) certModalClose.addEventListener('click', closeModal);
+
+    certModal.addEventListener('click', (e) => {
+      if (e.target === certModal) closeModal();
     });
-  });
-});
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
+
+  /* ---------- Console signature ---------- */
+
+  console.log(
+    '%cMosam Biswas%c — thanks for peeking under the hood.\nmosambiswas999@gmail.com',
+    'font-size:16px; font-weight:bold;',
+    'font-size:12px; opacity:0.7;'
+  );
+})();

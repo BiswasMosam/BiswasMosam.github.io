@@ -1,120 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shei Chobi | Photography Portfolio</title>
-  <meta name="description" content="Shei Chobi is a photography portfolio by Mosam Biswas featuring street, monochrome, and cultural frames." />
+  <title>SheiChobi — Photography by Mosam Biswas</title>
+  <meta name="description" content="SheiChobi — Bengali for 'that picture'. Street, portrait, monochrome, concert and wildlife photography by Mosam Biswas." />
+  <link rel="canonical" href="https://www.mosambiswas.com/sheichobi/sheichobi.html" />
+  <meta name="theme-color" content="#0b0b0a" />
   <link rel="icon" type="image/svg+xml" href="logos/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SheiChobi — Photography by Mosam Biswas" />
+  <meta property="og:description" content="Street, portrait, monochrome, concert and wildlife photography by Mosam Biswas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mosambiswas.com/sheichobi/sheichobi.html" />
+  <meta property="og:image" content="https://www.mosambiswas.com/sheichobi/Photographs/street1.webp" />
+
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Serif:ital@1&family=Manrope:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="sheichobi.css" />
 </head>
+
 <body>
-  <header class="site-header" aria-label="Primary navigation">
-    <a class="brand" href="#top" aria-label="Shei Chobi home">
-      <span class="brand-mark">SC</span>
-      <span class="brand-text">Shei Chobi</span>
-    </a>
+  <a class="skip-link" href="#collections">Skip to content</a>
 
-    <nav class="nav-links" aria-label="Portfolio sections">
+  <!-- Film grain -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Custom cursor (desktop only) -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="site-head">
+    <a class="site-head__brand" href="#top">Shei&nbsp;Chobi<sup>©</sup></a>
+    <nav class="site-head__nav" aria-label="Primary">
       <a href="#collections">Collections</a>
-      <a href="#work">Work</a>
-      <a href="#story">Story</a>
-      <a href="#contact">Contact</a>
+      <a href="#work">Archive</a>
+      <a href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </nav>
-
-    <a class="icon-link" href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noreferrer" aria-label="Shei Chobi on Instagram">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="" />
-    </a>
+    <a class="site-head__back mono" href="../index.html#photography">←&nbsp;Portfolio</a>
   </header>
 
   <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-backdrop" aria-hidden="true"></div>
-      <div class="hero-copy">
-        <p class="eyebrow">Photography Portfolio</p>
-        <h1 id="hero-title">Shei Chobi</h1>
-        <p class="hero-intro">Quiet streets, sharp contrasts, and living traditions framed with a cinematic eye.</p>
-        <div class="hero-actions">
-          <a class="primary-action" href="#collections">View Collections</a>
-          <a class="secondary-action" href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noreferrer">Instagram</a>
-        </div>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <h1 class="sr-only">SheiChobi — photography portfolio of Mosam Biswas</h1>
+
+      <div class="hero__top mono" data-reveal>
+        <span>The Darkroom — SheiChobi</span>
+        <span class="hero__top-mid">Bengali — “that picture”</span>
+        <span>Since 2022</span>
       </div>
 
-      <div class="hero-stage" aria-label="Featured photographs">
-        <div class="photo-scene" id="photoScene"></div>
+      <div class="hero__name" aria-hidden="true">
+        <span class="hero__line"><span class="hero__word">SHEI</span></span>
+        <span class="hero__line hero__line--outline"><span class="hero__word">CHOBI</span></span>
+      </div>
+
+      <div class="hero__foot">
+        <p class="hero__tag" data-reveal>
+          Quiet streets, sharp contrasts and living traditions — the way <em>I</em> saw them.
+          Photographs by <em>Mosam Biswas</em>.
+        </p>
+        <ul class="hero__stats mono" data-reveal>
+          <li><strong id="photoCount">84</strong> frames</li>
+          <li><strong id="collectionCount">06</strong> collections</li>
+          <li><strong>03</strong> years</li>
+        </ul>
+      </div>
+
+      <span class="hero__scroll mono" aria-hidden="true">( scroll )</span>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>Street&ensp;✦&ensp;Portraits&ensp;✦&ensp;Monochrome&ensp;✦&ensp;Concerts&ensp;✦&ensp;Wildlife&ensp;✦&ensp;Traditions&ensp;✦&ensp;</span>
+        <span>Street&ensp;✦&ensp;Portraits&ensp;✦&ensp;Monochrome&ensp;✦&ensp;Concerts&ensp;✦&ensp;Wildlife&ensp;✦&ensp;Traditions&ensp;✦&ensp;</span>
+      </div>
+    </div>
+
+    <!-- ============ COLLECTIONS ============ -->
+    <section id="collections" class="collections">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(01) — Collections</span>
+        <h2 class="sec-head__title" data-reveal>Six ways of <em>looking</em></h2>
+        <span class="sec-head__aside mono" data-reveal>Pick a lane</span>
+      </header>
+
+      <ul class="collection-list" id="collectionList" aria-label="Photo collections"></ul>
+
+      <!-- Cursor-following preview (desktop) -->
+      <div class="collection-preview" id="collectionPreview" aria-hidden="true">
+        <div class="collection-preview__strip" id="collectionPreviewStrip"></div>
       </div>
     </section>
 
-    <section class="collections-section" id="collections" aria-labelledby="collections-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Collections</p>
-          <h2 id="collections-title">Choose a visual lane</h2>
-        </div>
-        <p class="section-note">The gallery stays curated first. Open a collection, then expand only when you want more.</p>
-      </div>
+    <!-- ============ ARCHIVE ============ -->
+    <section id="work" class="archive">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(02) — Archive</span>
+        <h2 class="sec-head__title" data-reveal>Every <em>frame</em></h2>
+        <span class="sec-head__aside mono" id="galleryStatus" aria-live="polite" data-reveal></span>
+      </header>
 
-      <div class="collection-grid" id="collectionGrid" aria-live="polite"></div>
-    </section>
+      <div class="filter-bar mono" id="filterBar" aria-label="Filter photographs" data-reveal></div>
 
-    <section class="work-section" id="work" aria-labelledby="work-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Selected Frames</p>
-          <h2 id="work-title">Curated, not crowded</h2>
-        </div>
-        <div class="gallery-tools">
-          <div class="filter-bar" id="filterBar" aria-label="Filter photographs"></div>
-          <p class="gallery-status" id="galleryStatus" aria-live="polite"></p>
-        </div>
-      </div>
+      <div class="masonry" id="galleryGrid" aria-live="polite"></div>
 
-      <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
-      <div class="gallery-footer">
-        <button class="load-more-button" id="loadMoreButton" type="button">Load More</button>
+      <div class="archive__more">
+        <button class="btn btn--ghost" id="loadMoreButton" type="button">Load more</button>
       </div>
     </section>
 
-    <section class="story-section" id="story" aria-labelledby="story-title">
-      <div class="story-copy">
-        <p class="eyebrow">Visual Language</p>
-        <h2 id="story-title">Documentary feeling, gallery polish.</h2>
-      </div>
-      <div class="story-metrics" aria-label="Portfolio highlights">
-        <div>
-          <strong id="photoCount">31</strong>
-          <span>Photographs</span>
-        </div>
-        <div>
-          <strong id="collectionCount">03</strong>
-          <span>Collections</span>
-        </div>
-        <div>
-          <strong>360</strong>
-          <span>Visual Motion</span>
+    <!-- ============ CONTACT / FOOTER ============ -->
+    <section id="contact" class="outro">
+      <header class="sec-head sec-head--bare">
+        <span class="sec-head__label mono" data-reveal>(03) — Follow</span>
+      </header>
+
+      <div class="outro__hero">
+        <h2 class="outro__title" aria-label="Follow the light" data-reveal>
+          <span class="hero__line"><span class="hero__word">FOLLOW</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__word">THE&nbsp;LIGHT</span></span>
+        </h2>
+        <div class="outro__actions" data-reveal>
+          <a class="btn" href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noopener noreferrer">@shei_chobi&nbsp;↗</a>
+          <a class="btn btn--ghost" href="../index.html#photography">Back to portfolio</a>
         </div>
       </div>
+
+      <footer class="footer__base mono">
+        <span>© 2026 Mosam Biswas — SheiChobi</span>
+        <span><span data-clock>--:--:--</span> IST — Navi Mumbai</span>
+        <a href="#top" class="footer__top">Back to top&nbsp;↑</a>
+      </footer>
     </section>
   </main>
 
-  <footer class="site-footer" id="contact">
-    <span>Shei Chobi</span>
-    <a href="https://www.instagram.com/shei_chobi/" target="_blank" rel="noreferrer">@shei_chobi</a>
-  </footer>
-
-  <div id="photoModal" class="modal" aria-hidden="true" role="dialog" aria-label="Photograph preview">
-    <button class="modal-close" type="button" aria-label="Close preview">&times;</button>
-    <button class="modal-nav modal-prev" type="button" aria-label="Previous photograph">&#8249;</button>
-    <figure class="modal-frame">
+  <!-- Lightbox -->
+  <div id="photoModal" class="lightbox" aria-hidden="true" role="dialog" aria-label="Photograph preview">
+    <button class="lightbox__close" type="button" aria-label="Close preview">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Previous photograph">←</button>
+    <figure class="lightbox__frame">
       <img id="modalImg" src="" alt="" />
-      <figcaption id="modalCaption"></figcaption>
+      <figcaption class="mono">
+        <span id="modalCaption"></span>
+        <span id="modalCounter"></span>
+      </figcaption>
     </figure>
-    <button class="modal-nav modal-next" type="button" aria-label="Next photograph">&#8250;</button>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Next photograph">→</button>
   </div>
 
   <script src="sheichobi.js"></script>
 </body>
+
 </html>

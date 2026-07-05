@@ -1,5 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#0b0d0c"/>
-  <rect x="9" y="9" width="46" height="46" fill="none" stroke="#d9a857" stroke-width="3"/>
-  <text x="32" y="40" fill="#f7f1e8" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">SC</text>
+  <!-- SheiChobi — viewfinder mark. Palette: v5 editorial (bg #0b0b0a, ink #edebe4, accent #ff5227) -->
+  <rect width="64" height="64" rx="8" fill="#0b0b0a"/>
+  <g stroke="#edebe4" stroke-width="4.5" fill="none">
+    <path d="M12 24 V12 H24"/>
+    <path d="M40 12 H52 V24"/>
+    <path d="M52 40 V52 H40"/>
+    <path d="M24 52 H12 V40"/>
+  </g>
+  <circle cx="32" cy="32" r="7.5" fill="#ff5227"/>
 </svg>

@@ -21,14 +21,15 @@ Welcome to my personal portfolio! This project represents my journey as a develo
 
 ### ✨ Key Highlights
 
-- 🎯 **Modern UI/UX** - Sleek design with animated blob backgrounds and smooth transitions
-- ⚡ **Lightning Fast** - Pure HTML, CSS, and JavaScript with zero frameworks for optimal performance
-- 📱 **Fully Responsive** - Seamless experience across all devices and screen sizes
-- 🎨 **Dynamic Animations** - Custom SVG blob animations and interactive elements
-- 🔍 **SEO Optimized** - Meta tags, sitemap, and structured data for better visibility
-- ♿ **Accessible** - Semantic HTML and ARIA labels for inclusive design
-- 📸 **Photography Portfolio** - Dedicated section showcasing creative work
-- 🎓 **Certifications Showcase** - Interactive gallery of achievements and credentials
+- 🖋️ **Editorial design** - Massive edge-to-edge display typography (Syne + Instrument Serif), warm-black palette with a single vermilion accent, hairline grid
+- 🎬 **Micro-interactions** - Preloader with counter, custom blend-mode cursor, cursor-following project previews, row-inversion hovers, film grain, marquee
+- ⚡ **Lightning Fast** - Pure HTML, CSS, and Vanilla JavaScript — zero frameworks, zero icon/webfont libraries beyond Google Fonts
+- 📱 **Fully Responsive** - Seamless experience across all devices, with a fullscreen overlay menu on mobile
+- 🕰️ **Alive details** - Live IST clock in the header and footer, availability status, parallax photography strip
+- 🔍 **SEO Optimized** - Meta tags, Open Graph, JSON-LD structured data, sitemap
+- ♿ **Accessible** - Semantic HTML, skip link, focus states, `prefers-reduced-motion` support, no-JS fallback
+- 📸 **Photography Portfolio** - SheiChobi gallery teaser with parallax, linking to the full gallery
+- 🎓 **Research & Certifications** - IEEE publication feature block and interactive certificate gallery
 
 ---
 
@@ -46,10 +47,10 @@ Welcome to my personal portfolio! This project represents my journey as a develo
 ### Tech Stack
 
 - **Frontend**: Pure HTML5, CSS3, and Vanilla JavaScript
-- **Styling**: Custom CSS with modern animations and responsive design
-- **Icons**: Font Awesome for consistent iconography
+- **Typography**: Syne (display), Instrument Serif (accents), Manrope (body), Space Mono (labels) via Google Fonts
+- **Styling**: Hand-rolled design system — CSS custom properties, hairline grid, reduced-motion safe
 - **Deployment**: GitHub Pages with custom domain
-- **SEO**: XML sitemap, robots.txt, and meta tag optimization
+- **SEO**: XML sitemap, robots.txt, JSON-LD, and meta tag optimization
 
 ---
 
@@ -121,21 +122,26 @@ All you need is a modern web browser! No dependencies, build tools, or installat
 
 ### 🏠 Home
 
-- Animated SVG blob backgrounds with dynamic motion
-- Smooth scrolling navigation
-- Modern card-based layout
+- Preloader with counter, then a masked type reveal
+- Edge-to-edge fitted name typography (filled + outline lines)
+- Live IST clock, availability status, skills marquee
+
+### 💼 Selected Work
+
+- Indexed project list (01–09) with row-inversion hover
+- Cursor-following preview card per project (desktop)
+- Direct GitHub links for every project
 
 ### 👨‍💻 About
 
-- Professional bio and skills showcase
-- Education history with institution branding
+- Editorial two-column layout with sticky grayscale portrait
+- Facts grid (education, roles, community), stats strip, stack list
 - Downloadable resume
 
-### 💼 Experience
+### 🔬 Research
 
-- Timeline of professional journey
-- Research publications and contributions
-- Project highlights
+- IEEE publication feature block with abstract
+- DOI link, paper PDF, and certificate modal
 
 ### 🎓 Certifications
 
