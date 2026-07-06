@@ -60,19 +60,21 @@ Welcome to my personal portfolio! This project represents my journey as a develo
 BiswasMosam.github.io/
 ├── index.html              # Main landing page
 ├── certificates.html       # Certifications showcase
-├── style.css              # Global styles and animations
-├── main.js                # Core JavaScript functionality
-├── sitemap.xml            # SEO sitemap
-├── robots.txt             # Search engine directives
-├── CNAME                  # Custom domain configuration
-├── fonts/                 # Custom font files
-├── logos/                 # Brand and technology logos
-├── scripts/               # Additional JavaScript modules
-└── sheichobi/             # Photography portfolio section
+├── style.css               # Global styles and animations
+├── main.js                 # Core JavaScript functionality
+├── manifest.json           # PWA manifest
+├── service-worker.js       # Offline caching
+├── sitemap.xml             # SEO sitemap
+├── robots.txt              # Search engine directives
+├── CNAME                   # Custom domain configuration
+├── certificates/           # Certificate images
+├── logos/                  # Project preview images
+└── sheichobi/              # Photography portfolio section
     ├── sheichobi.html
     ├── sheichobi.css
     ├── sheichobi.js
-    └── Photographs/       # Photo gallery assets
+    ├── photos.json         # Photo archive data
+    └── Photographs/        # Photo gallery assets
 ```
 
 ---
@@ -151,9 +153,9 @@ All you need is a modern web browser! No dependencies, build tools, or installat
 
 ### 📸 Photography (Shei Chobi)
 
-- Tabbed photo categories
-- Lightbox gallery with keyboard navigation
-- Instagram integration
+- Collection index rows with cursor-following photo previews
+- Filterable masonry archive driven by `photos.json`
+- Lightbox gallery with keyboard navigation and counter
 
 ### 📞 Contact
 
@@ -214,7 +216,6 @@ You're free to use this project as inspiration or template for your own portfoli
 
 ## 🙏 Acknowledgments
 
-- [Font Awesome](https://fontawesome.com/) - For beautiful icons
 - [Google Fonts](https://fonts.google.com/) - For typography
 - [GitHub Pages](https://pages.github.com/) - For free hosting
 - [Shields.io](https://shields.io/) - For amazing badges
