@@ -326,6 +326,10 @@
     });
   }
 
+  /* ---------- Right-click guard ---------- */
+
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+
   /* ---------- Console signature ---------- */
 
   console.log(

@@ -453,6 +453,10 @@
     renderGallery();
   };
 
+  /* ---------- Right-click guard ---------- */
+
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
   } else {
