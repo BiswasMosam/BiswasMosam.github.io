@@ -206,9 +206,10 @@ html.js body.is-loaded .preloader {
     z-index: 10005;
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    border-radius: 999px;
     background: #fff;
     mix-blend-mode: difference;
+    overflow: hidden;
     pointer-events: none;
     transform: translate(-50%, -50%);
     transition: width 0.25s var(--ease), height 0.25s var(--ease), opacity 0.25s ease;
@@ -233,42 +234,31 @@ html.js body.is-loaded .preloader {
     transition: opacity 0.25s ease;
   }
 
-  /* Whisper mode — bubble sprouts a caption pill on [data-whisper] elements */
+  /* Whisper mode — the bubble itself morphs into a caption pill.
+     Pill width/height come from JS; base width/height transition animates the stretch. */
   .cursor.is-whisper {
     mix-blend-mode: normal;
-    background: var(--accent);
+    background: var(--ink);
   }
 
   .cursor__label {
     position: absolute;
+    top: 50%;
     left: 50%;
-    bottom: calc(100% + 14px);
-    padding: 0.5em 1em;
-    border-radius: 999px;
-    background: var(--ink);
-    color: var(--bg);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    line-height: 1.5;
+    line-height: 1;
     letter-spacing: 0.01em;
-    white-space: nowrap;
+    color: var(--bg);
     opacity: 0;
-    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(8px) scale(0.85);
-    transform-origin: bottom center;
-    transition: opacity 0.28s ease, transform 0.38s var(--ease);
+    transition: opacity 0.18s ease;
     pointer-events: none;
-  }
-
-  .cursor.is-flip .cursor__label {
-    bottom: auto;
-    top: calc(100% + 14px);
-    transform-origin: top center;
-    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(-8px) scale(0.85);
   }
 
   .cursor.is-whisper .cursor__label {
     opacity: 1;
-    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(0) scale(1);
   }
 }
 

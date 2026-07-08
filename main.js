@@ -105,11 +105,40 @@
     let lensTargetR = 0;
     let whisperOn = false;
     let lastWhisperEl = null;
+    let pillW = 0;
+    let pillOffY = 0;
+    let pillShiftX = 0;
+
+    const applyPillSize = () => {
+      cursor.style.width = `${pillW}px`;
+      cursor.style.height = '32px';
+    };
+
+    const clearCursorSize = () => {
+      cursor.style.width = '';
+      cursor.style.height = '';
+    };
 
     const renderCursor = () => {
       x += (targetX - x) * 0.22;
       y += (targetY - y) * 0.22;
-      cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+
+      /* Whisper: the bubble drifts up off the pointer and stays on-screen near edges */
+      const offTarget = whisperOn ? (targetY < 60 ? -34 : 26) : 0;
+      pillOffY += (offTarget - pillOffY) * 0.2;
+      let shiftTarget = 0;
+      if (whisperOn) {
+        const half = pillW / 2 + 10;
+        if (targetX < half) {
+          shiftTarget = half - targetX;
+        } else if (targetX > window.innerWidth - half) {
+          shiftTarget = window.innerWidth - half - targetX;
+        }
+      }
+      pillShiftX += (shiftTarget - pillShiftX) * 0.2;
+
+      cursor.style.transform =
+        `translate(${(x + pillShiftX).toFixed(1)}px, ${(y - pillOffY).toFixed(1)}px) translate(-50%, -50%)`;
 
       /* Lens: reveal the secret layer through a circle that tracks the bubble */
       lensR += (lensTargetR - lensR) * 0.16;
@@ -118,34 +147,25 @@
           const rect = lensEl.getBoundingClientRect();
           lensLayer.style.clipPath =
             `circle(${lensR.toFixed(1)}px at ${(x - rect.left).toFixed(1)}px ${(y - rect.top).toFixed(1)}px)`;
-          cursor.style.width = `${(lensR * 2).toFixed(1)}px`;
-          cursor.style.height = `${(lensR * 2).toFixed(1)}px`;
+          if (!whisperOn) {
+            cursor.style.width = `${(lensR * 2).toFixed(1)}px`;
+            cursor.style.height = `${(lensR * 2).toFixed(1)}px`;
+          }
         } else if (!lensTargetR) {
           lensLayer.style.clipPath = '';
           lensEl = null;
           lensLayer = null;
           lensR = 0;
           cursor.classList.remove('is-lens');
-          cursor.style.width = '';
-          cursor.style.height = '';
+          if (whisperOn) {
+            applyPillSize();
+          } else {
+            clearCursorSize();
+          }
         }
       }
 
       requestAnimationFrame(renderCursor);
-    };
-
-    /* Keep the whisper pill on-screen: shift near left/right edges, flip below near the top */
-    const placeWhisper = () => {
-      if (!whisperOn || !cursorLabel) return;
-      const half = cursorLabel.offsetWidth / 2 + 12;
-      let shift = 0;
-      if (targetX < half) {
-        shift = half - targetX;
-      } else if (targetX > window.innerWidth - half) {
-        shift = window.innerWidth - half - targetX;
-      }
-      cursor.style.setProperty('--whisper-shift', `${shift.toFixed(1)}px`);
-      cursor.classList.toggle('is-flip', targetY < 110);
     };
 
     window.addEventListener('mousemove', (e) => {
@@ -158,7 +178,6 @@
         cursor.classList.add('is-visible');
         requestAnimationFrame(renderCursor);
       }
-      placeWhisper();
     }, { passive: true });
 
     document.addEventListener('mouseover', (e) => {
@@ -189,14 +208,18 @@
           cursorLabel.textContent = variants[idx].trim();
           whisperEl.dataset.whisperIdx = String((idx + 1) % variants.length);
         }
+        pillW = Math.ceil(cursorLabel.offsetWidth) + 36;
+        applyPillSize();
         whisperOn = true;
       } else {
+        if (whisperOn && !lensLayer) {
+          clearCursorSize();
+        }
         whisperOn = false;
       }
       lastWhisperEl = whisperEl;
       cursor.classList.toggle('is-whisper', whisperOn);
       cursor.classList.toggle('is-link', Boolean(interactive));
-      placeWhisper();
     });
 
     document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
