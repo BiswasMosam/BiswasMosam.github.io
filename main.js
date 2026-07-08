@@ -92,6 +92,7 @@
   const cursor = document.getElementById('cursor');
 
   if (cursor && finePointer && !prefersReduced) {
+    const cursorLabel = document.getElementById('cursorLabel');
     const LENS_RADIUS = 78;
     let targetX = -100;
     let targetY = -100;
@@ -102,6 +103,8 @@
     let lensLayer = null;
     let lensR = 0;
     let lensTargetR = 0;
+    let whisperOn = false;
+    let lastWhisperEl = null;
 
     const renderCursor = () => {
       x += (targetX - x) * 0.22;
@@ -131,6 +134,20 @@
       requestAnimationFrame(renderCursor);
     };
 
+    /* Keep the whisper pill on-screen: shift near left/right edges, flip below near the top */
+    const placeWhisper = () => {
+      if (!whisperOn || !cursorLabel) return;
+      const half = cursorLabel.offsetWidth / 2 + 12;
+      let shift = 0;
+      if (targetX < half) {
+        shift = half - targetX;
+      } else if (targetX > window.innerWidth - half) {
+        shift = window.innerWidth - half - targetX;
+      }
+      cursor.style.setProperty('--whisper-shift', `${shift.toFixed(1)}px`);
+      cursor.classList.toggle('is-flip', targetY < 110);
+    };
+
     window.addEventListener('mousemove', (e) => {
       targetX = e.clientX;
       targetY = e.clientY;
@@ -141,11 +158,13 @@
         cursor.classList.add('is-visible');
         requestAnimationFrame(renderCursor);
       }
+      placeWhisper();
     }, { passive: true });
 
     document.addEventListener('mouseover', (e) => {
       const interactive = e.target.closest('a, button, [data-cursor]');
       const secret = interactive ? null : e.target.closest('[data-secret]');
+      const whisperEl = interactive || secret ? null : e.target.closest('[data-whisper]');
 
       if (secret) {
         const layer = secret.querySelector('.secret__layer');
@@ -162,7 +181,22 @@
         lensTargetR = 0;
       }
 
+      /* "||" in data-whisper separates variants; each re-hover shows the next one */
+      if (whisperEl && cursorLabel) {
+        if (whisperEl !== lastWhisperEl) {
+          const variants = (whisperEl.dataset.whisper || '').split('||');
+          const idx = Number(whisperEl.dataset.whisperIdx || 0) % variants.length;
+          cursorLabel.textContent = variants[idx].trim();
+          whisperEl.dataset.whisperIdx = String((idx + 1) % variants.length);
+        }
+        whisperOn = true;
+      } else {
+        whisperOn = false;
+      }
+      lastWhisperEl = whisperEl;
+      cursor.classList.toggle('is-whisper', whisperOn);
       cursor.classList.toggle('is-link', Boolean(interactive));
+      placeWhisper();
     });
 
     document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));

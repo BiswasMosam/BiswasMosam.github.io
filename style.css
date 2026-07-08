@@ -232,6 +232,44 @@ html.js body.is-loaded .preloader {
     border: 1px solid var(--accent);
     transition: opacity 0.25s ease;
   }
+
+  /* Whisper mode — bubble sprouts a caption pill on [data-whisper] elements */
+  .cursor.is-whisper {
+    mix-blend-mode: normal;
+    background: var(--accent);
+  }
+
+  .cursor__label {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 14px);
+    padding: 0.5em 1em;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(8px) scale(0.85);
+    transform-origin: bottom center;
+    transition: opacity 0.28s ease, transform 0.38s var(--ease);
+    pointer-events: none;
+  }
+
+  .cursor.is-flip .cursor__label {
+    bottom: auto;
+    top: calc(100% + 14px);
+    transform-origin: top center;
+    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(-8px) scale(0.85);
+  }
+
+  .cursor.is-whisper .cursor__label {
+    opacity: 1;
+    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(0) scale(1);
+  }
 }
 
 /* ---------- Secret text (revealed through the cursor lens) ---------- */
