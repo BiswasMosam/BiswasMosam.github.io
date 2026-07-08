@@ -91,7 +91,7 @@
   <div class="noise" aria-hidden="true"></div>
 
   <!-- Custom cursor (desktop only) -->
-  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursorLabel"></span></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
 
   <!-- Header -->
   <header class="site-head" id="siteHead">
@@ -139,18 +139,24 @@
         <span>Navi Mumbai, IN</span>
       </div>
 
-      <div class="hero__name" aria-hidden="true" data-whisper="মোসাম বিশ্বাস — that's Bengali">
+      <div class="hero__name" aria-hidden="true">
         <span class="hero__line"><span class="hero__word">MOSAM</span></span>
         <span class="hero__line hero__line--outline"><span class="hero__word">BISWAS</span></span>
       </div>
 
       <div class="hero__foot">
-        <p class="hero__tag" data-reveal>
-          An <em>AI &amp; data science</em> engineer-in-the-making — building machine-learning systems,
-          web platforms and Android apps, with <em>IEEE-published</em> research and a camera never far away.
+        <p class="hero__tag secret" data-reveal data-secret>
+          <span class="secret__base">
+            An <em>AI &amp; data science</em> engineer-in-the-making — building machine-learning systems,
+            web platforms and Android apps, with <em>IEEE-published</em> research and a camera never far away.
+          </span>
+          <span class="secret__layer" aria-hidden="true">
+            Translation: I turn ideas into things you can click, teach models to behave (mostly),
+            and photograph everything in between. The degree ends in 2026 — the building doesn't.
+          </span>
         </p>
         <div class="hero__side" data-reveal>
-          <p class="hero__status" data-whisper="yes, actually open — say hi"><span class="hero__status-dot"></span>Open to internships &amp; collaborations</p>
+          <p class="hero__status"><span class="hero__status-dot"></span>Open to internships &amp; collaborations</p>
           <div class="hero__links mono">
             <a href="https://github.com/BiswasMosam" target="_blank" rel="noopener noreferrer">GitHub&nbsp;↗</a>
             <a href="https://linkedin.com/in/mosambiswas" target="_blank" rel="noopener noreferrer">LinkedIn&nbsp;↗</a>
@@ -290,16 +296,23 @@
       </header>
 
       <div class="about__grid">
-        <figure class="about__portrait" data-reveal data-whisper="usually on the other side of the lens">
+        <figure class="about__portrait" data-reveal>
           <img src="profile.jpg" alt="Portrait of Mosam Biswas" loading="lazy" decoding="async" data-parallax="0.08" />
           <figcaption class="mono">Mosam Biswas — b. Navi Mumbai</figcaption>
         </figure>
 
         <div class="about__body">
-          <p class="about__lede" data-reveal data-whisper="tl;dr — I like shipping things">
-            I'm a final-year <strong>B.Tech AI &amp; Data Science</strong> student at RAIT, D.Y. Patil University —
-            and I've spent those years turning coursework into shipped software: ML pipelines,
-            Android apps, web tools and one peer-reviewed paper.
+          <p class="about__lede secret" data-reveal data-secret>
+            <span class="secret__base">
+              I'm a final-year <strong>B.Tech AI &amp; Data Science</strong> student at RAIT, D.Y. Patil University —
+              and I've spent those years turning coursework into shipped software: ML pipelines,
+              Android apps, web tools and one peer-reviewed paper.
+            </span>
+            <span class="secret__layer" aria-hidden="true">
+              The honest version — I learn by building, break things politely, then fix them
+              properly. Somewhere between the labs and the hackathons it all became a portfolio.
+              Curiosity did the rest.
+            </span>
           </p>
           <p class="about__text" data-reveal>
             I care about the whole loop — from a model's confusion matrix to the button a person
@@ -333,10 +346,10 @@
       </div>
 
       <ul class="about__stats" data-reveal>
-        <li data-whisper="group builds, solo builds, 2 a.m. ideas"><span class="about__stat-num">20<sup>+</sup></span><span class="mono">Projects shipped</span></li>
-        <li data-whisper="one badge at a time"><span class="about__stat-num">25<sup>+</sup></span><span class="mono">Google codelabs</span></li>
-        <li data-whisper="peer-reviewed, not just posted"><span class="about__stat-num">01</span><span class="mono">IEEE publication</span></li>
-        <li data-whisper="ask me about concert pits"><span class="about__stat-num">03<sup>yrs</sup></span><span class="mono">Behind the lens</span></li>
+        <li><span class="about__stat-num">20<sup>+</sup></span><span class="mono">Projects shipped</span></li>
+        <li><span class="about__stat-num">25<sup>+</sup></span><span class="mono">Google codelabs</span></li>
+        <li><span class="about__stat-num">01</span><span class="mono">IEEE publication</span></li>
+        <li><span class="about__stat-num">03<sup>yrs</sup></span><span class="mono">Behind the lens</span></li>
       </ul>
 
       <div class="about__stack" data-reveal>
@@ -363,7 +376,7 @@
       </header>
 
       <div class="research__card" data-reveal>
-        <p class="research__title" data-whisper="short version: logistic regression won">
+        <p class="research__title">
           “Comparative Analysis of Psychometric Data for Assessing Mental Health
           Testing Needs Using Machine Learning Models”
         </p>
@@ -371,12 +384,19 @@
           <span>IEEE — ICAIIHI 2025</span>
           <span>PHQ-9 · GAD-7 · SHAP</span>
         </div>
-        <p class="research__abstract">
-          Can supervised learning decide who should proceed to a full mental-health evaluation?
-          We benchmarked Logistic Regression, Random Forest, SVM, XGBoost and LightGBM on
-          psychometric responses — with cross-validation and SHAP interpretability. Logistic
-          Regression came out near-perfect <em>and</em> transparent enough to be clinically
-          meaningful for pre-screening.
+        <p class="research__abstract secret" data-secret>
+          <span class="secret__base">
+            Can supervised learning decide who should proceed to a full mental-health evaluation?
+            We benchmarked Logistic Regression, Random Forest, SVM, XGBoost and LightGBM on
+            psychometric responses — with cross-validation and SHAP interpretability. Logistic
+            Regression came out near-perfect <em>and</em> transparent enough to be clinically
+            meaningful for pre-screening.
+          </span>
+          <span class="secret__layer" aria-hidden="true">
+            Plain English: we asked five models to guess who should get a full mental-health
+            check-up. The simplest one — logistic regression — won, and it can explain every
+            call it makes. In a clinic, explainable beats clever. Sometimes boring wins.
+          </span>
         </p>
         <div class="research__actions">
           <a class="btn" href="https://doi.ieeecomputersociety.org/10.1109/ICAIIHI67124.2025.11403838" target="_blank" rel="noopener noreferrer">Read the paper&nbsp;↗</a>
@@ -395,11 +415,11 @@
       </header>
 
       <div class="photo__strip" data-reveal>
-        <figure data-whisper="street"><img src="sheichobi/Photographs/street1.webp" alt="Street photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.10" /></figure>
-        <figure data-whisper="portrait"><img src="sheichobi/Photographs/port2.webp" alt="Portrait photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.16" /></figure>
-        <figure data-whisper="wildlife"><img src="sheichobi/Photographs/wild5.webp" alt="Wildlife photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.07" /></figure>
-        <figure data-whisper="monochrome"><img src="sheichobi/Photographs/mono2.webp" alt="Monochrome photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.13" /></figure>
-        <figure data-whisper="concert"><img src="sheichobi/Photographs/con8.webp" alt="Concert photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.09" /></figure>
+        <figure><img src="sheichobi/Photographs/street1.webp" alt="Street photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.10" /></figure>
+        <figure><img src="sheichobi/Photographs/port2.webp" alt="Portrait photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.16" /></figure>
+        <figure><img src="sheichobi/Photographs/wild5.webp" alt="Wildlife photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.07" /></figure>
+        <figure><img src="sheichobi/Photographs/mono2.webp" alt="Monochrome photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.13" /></figure>
+        <figure><img src="sheichobi/Photographs/con8.webp" alt="Concert photograph from the SheiChobi collection" loading="lazy" decoding="async" data-parallax="0.09" /></figure>
       </div>
 
       <div class="photo__foot" data-reveal>
@@ -415,7 +435,7 @@
       </header>
 
       <div class="contact__hero">
-        <h2 class="contact__title" aria-label="Let's talk" data-reveal data-whisper="go on — it's one click">
+        <h2 class="contact__title" aria-label="Let's talk" data-reveal>
           <span class="hero__line"><span class="hero__word">LET'S</span></span>
           <span class="hero__line hero__line--outline"><span class="hero__word">TALK</span></span>
         </h2>
@@ -449,7 +469,7 @@
         </div>
         <div class="footer__base mono">
           <span>© 2026 Mosam Biswas</span>
-          <span data-whisper="no templates — even this bubble is handmade">Designed &amp; built by hand</span>
+          <span>Designed &amp; built by hand</span>
           <a href="#home" class="footer__top">Back to top&nbsp;↑</a>
         </div>
       </footer>

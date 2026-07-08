@@ -22,7 +22,7 @@ Welcome to my personal portfolio! This project represents my journey as a develo
 ### ✨ Key Highlights
 
 - 🖋️ **Editorial design** - Massive edge-to-edge display typography (Syne + Instrument Serif), warm-black palette with a single vermilion accent, hairline grid
-- 🎬 **Micro-interactions** - Preloader with counter, custom blend-mode cursor with hidden "whisper" texts on hover, cursor-following project previews, row-inversion hovers, film grain, marquee
+- 🎬 **Micro-interactions** - Preloader with counter, custom blend-mode cursor that turns into a "reading lens" revealing hidden alternate paragraphs, cursor-following project previews, row-inversion hovers, film grain, marquee
 - ⚡ **Lightning Fast** - Pure HTML, CSS, and Vanilla JavaScript — zero frameworks, zero icon/webfont libraries beyond Google Fonts
 - 📱 **Fully Responsive** - Seamless experience across all devices, with a fullscreen overlay menu on mobile
 - 🕰️ **Alive details** - Live IST clock in the header and footer, availability status, parallax photography strip

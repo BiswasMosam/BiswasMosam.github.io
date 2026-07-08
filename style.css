@@ -224,43 +224,41 @@ html.js body.is-loaded .preloader {
     height: 52px;
   }
 
-  /* Whisper mode — bubble reveals hidden text on [data-whisper] elements */
-  .cursor.is-whisper {
+  /* Lens mode — the bubble becomes a reading glass over [data-secret] text.
+     Width/height are driven per-frame from JS, so they are excluded here. */
+  .cursor.is-lens {
     mix-blend-mode: normal;
-    background: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    transition: opacity 0.25s ease;
   }
+}
 
-  .cursor__label {
-    position: absolute;
-    left: 50%;
-    bottom: calc(100% + 14px);
-    padding: 0.5em 1em;
-    border-radius: 999px;
-    background: var(--ink);
-    color: var(--bg);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    line-height: 1.5;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(8px) scale(0.85);
-    transform-origin: bottom center;
-    transition: opacity 0.28s ease, transform 0.38s var(--ease);
-    pointer-events: none;
-  }
+/* ---------- Secret text (revealed through the cursor lens) ---------- */
 
-  .cursor.is-flip .cursor__label {
-    bottom: auto;
-    top: calc(100% + 14px);
-    transform-origin: top center;
-    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(-8px) scale(0.85);
-  }
+.secret {
+  position: relative;
+}
 
-  .cursor.is-whisper .cursor__label {
-    opacity: 1;
-    transform: translateX(calc(-50% + var(--whisper-shift, 0px))) translateY(0) scale(1);
-  }
+.secret__base {
+  display: block;
+}
+
+.secret__layer {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--secret-bg, var(--bg));
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-style: italic;
+  clip-path: circle(0px at 50% 50%);
+  pointer-events: none;
+}
+
+.research__card .secret__layer {
+  --secret-bg: var(--bg-2);
 }
 
 /* ---------- Header ---------- */
