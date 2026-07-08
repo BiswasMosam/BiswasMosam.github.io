@@ -92,17 +92,33 @@
   const cursor = document.getElementById('cursor');
 
   if (cursor && finePointer && !prefersReduced) {
+    const cursorLabel = document.getElementById('cursorLabel');
     let targetX = -100;
     let targetY = -100;
     let x = -100;
     let y = -100;
     let cursorRafActive = false;
+    let whisperOn = false;
 
     const renderCursor = () => {
       x += (targetX - x) * 0.22;
       y += (targetY - y) * 0.22;
       cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
       requestAnimationFrame(renderCursor);
+    };
+
+    /* Keep the whisper pill on-screen: shift near left/right edges, flip below near the top */
+    const placeWhisper = () => {
+      if (!whisperOn || !cursorLabel) return;
+      const half = cursorLabel.offsetWidth / 2 + 12;
+      let shift = 0;
+      if (targetX < half) {
+        shift = half - targetX;
+      } else if (targetX > window.innerWidth - half) {
+        shift = window.innerWidth - half - targetX;
+      }
+      cursor.style.setProperty('--whisper-shift', `${shift.toFixed(1)}px`);
+      cursor.classList.toggle('is-flip', targetY < 110);
     };
 
     window.addEventListener('mousemove', (e) => {
@@ -115,11 +131,20 @@
         cursor.classList.add('is-visible');
         requestAnimationFrame(renderCursor);
       }
+      placeWhisper();
     }, { passive: true });
 
     document.addEventListener('mouseover', (e) => {
       const interactive = e.target.closest('a, button, [data-cursor]');
+      const whisper = interactive ? null : e.target.closest('[data-whisper]');
+
+      if (whisper && cursorLabel) {
+        cursorLabel.textContent = whisper.dataset.whisper;
+      }
+      whisperOn = Boolean(whisper && cursorLabel);
+      cursor.classList.toggle('is-whisper', whisperOn);
       cursor.classList.toggle('is-link', Boolean(interactive));
+      placeWhisper();
     });
 
     document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
