@@ -183,7 +183,15 @@
     document.addEventListener('mouseover', (e) => {
       const interactive = e.target.closest('a, button, [data-cursor]');
       const secret = interactive ? null : e.target.closest('[data-secret]');
-      const whisperEl = interactive || secret ? null : e.target.closest('[data-whisper]');
+      /* Links/buttons carrying their own data-whisper show the pill instead of the circle */
+      let whisperEl = null;
+      if (!secret) {
+        if (interactive) {
+          if (interactive.hasAttribute('data-whisper')) whisperEl = interactive;
+        } else {
+          whisperEl = e.target.closest('[data-whisper]');
+        }
+      }
 
       if (secret) {
         const layer = secret.querySelector('.secret__layer');
@@ -219,7 +227,7 @@
       }
       lastWhisperEl = whisperEl;
       cursor.classList.toggle('is-whisper', whisperOn);
-      cursor.classList.toggle('is-link', Boolean(interactive));
+      cursor.classList.toggle('is-link', Boolean(interactive) && !whisperOn);
     });
 
     document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
