@@ -1,6 +1,7 @@
 /* ============================================================
-   MOSAM BISWAS — PORTFOLIO v5
+   MOSAM BISWAS — PORTFOLIO v6
    Editorial dark · Syne / Instrument Serif / Manrope / Space Mono
+   v6: WebGL ember field + heavy motion (motion.js / shader.js)
    ============================================================ */
 
 :root {
@@ -33,13 +34,20 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+/* JS-driven inertial scroll takes over easing; native smooth would fight it */
+html.smooth {
+  scroll-behavior: auto;
 }
 
 body {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
-  background: var(--bg);
+  /* transparent so the fixed WebGL field (z-index:-1) shows through */
+  background: transparent;
   color: var(--ink);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -1411,10 +1419,150 @@ html.js .is-in .hero__word {
 }
 
 /* ============================================================
+   v6 — Ember field + heavy motion
+   Everything here is gated behind .has-motion (added by motion.js,
+   which bails on prefers-reduced-motion) or harmless without JS.
+   ============================================================ */
+
+/* WebGL ember field — sits behind everything */
+
+.field {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Scroll progress — hairline of vermilion along the top edge */
+
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 10002;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+/* Header hides going down, returns coming up */
+
+.site-head {
+  transition: transform 0.5s var(--ease);
+}
+
+.site-head.is-hidden {
+  transform: translateY(-110%);
+}
+
+.menu-btn {
+  transition: transform 0.3s var(--ease);
+}
+
+/* Hero / contact display type — per-letter cascade.
+   Letters rise inside the existing .hero__line overflow mask. */
+
+html.has-motion .hero__line.is-split .hero__word {
+  /* inline-flex: letters can never wrap, whatever the fitted size */
+  display: inline-flex;
+  transform: none;
+  transition: none;
+}
+
+html.has-motion .hero__line.is-split .hero__ltr {
+  display: inline-block;
+  /* stands in for the tracking lost at inline-block boundaries */
+  margin-right: -0.025em;
+  transform: translateY(118%) rotate(5deg);
+  transform-origin: 0 100%;
+  transition: transform 1.05s var(--ease);
+  transition-delay: calc(var(--i) * 0.05s);
+}
+
+html.has-motion body.is-loaded .hero .hero__ltr,
+html.has-motion .contact__title.is-in .hero__ltr {
+  transform: none;
+}
+
+/* Section titles — word-by-word stagger */
+
+html.has-motion .sec-head__title.is-split {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+html.has-motion .sec-head__title .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.75em) rotate(2.2deg);
+  transform-origin: 0 100%;
+  transition: opacity 0.7s var(--ease), transform 0.9s var(--ease);
+  transition-delay: calc(var(--i) * 70ms);
+}
+
+html.has-motion .sec-head__title.is-in .w {
+  opacity: 1;
+  transform: none;
+}
+
+/* Work rows — staggered entrance */
+
+html.has-motion .work-list li {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+  transition-delay: calc(var(--i) * 60ms);
+}
+
+html.has-motion .work-list.is-in li {
+  opacity: 1;
+  transform: none;
+}
+
+/* Photo strip — staggered clip reveal, top to bottom */
+
+html.has-motion .photo__strip figure {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.1s var(--ease);
+  transition-delay: calc(var(--i) * 90ms);
+}
+
+html.has-motion .photo__strip.is-in figure {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Marquee hands its animation to JS (velocity-driven) */
+
+.marquee.is-js .marquee__track {
+  animation: none;
+}
+
+/* Scroll hint bows out once you start moving */
+
+.hero__scroll {
+  transition: opacity 0.4s ease;
+}
+
+.hero__scroll.is-gone {
+  opacity: 0;
+}
+
+/* ============================================================
    Reduced motion
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
+  .field,
+  .progress {
+    display: none !important;
+  }
+
   html {
     scroll-behavior: auto;
   }

@@ -103,11 +103,35 @@
       const word = line.querySelector('.hero__word');
       if (!word) return;
       line.style.fontSize = '100px';
-      const width = word.getBoundingClientRect().width;
-      if (width > 0) {
-        line.style.fontSize = `${(100 * line.clientWidth / width).toFixed(2)}px`;
-      } else {
+      word.style.letterSpacing = '';
+      if (word.getBoundingClientRect().width <= 0) {
         line.style.fontSize = '';
+        return;
+      }
+      /* Iterative fit: px-resolved letter-spacing doesn't scale with
+         font-size, so corrective passes converge to the true edge. */
+      let size = 100;
+      for (let pass = 0; pass < 3; pass++) {
+        const width = word.getBoundingClientRect().width;
+        if (width <= 0) break;
+        size *= line.clientWidth / width;
+        line.style.fontSize = `${size.toFixed(2)}px`;
+        if (Math.abs(width - line.clientWidth) < 1) break;
+      }
+      /* Hero lines are height-capped: short words (SHEI) would otherwise
+         outgrow the viewport and push the hero foot off-screen. A capped
+         word is justified back to the edges with letter-spacing. */
+      const cap = window.innerHeight * 0.3;
+      if (line.closest('.hero') && size > cap) {
+        size = cap;
+        line.style.fontSize = `${size.toFixed(2)}px`;
+        const chars = (word.textContent || '').length;
+        if (chars > 1) {
+          word.style.letterSpacing = '0px';
+          const width = word.getBoundingClientRect().width;
+          const spacing = (line.clientWidth - width) / (chars - 1);
+          word.style.letterSpacing = `${Math.max(spacing, 0).toFixed(2)}px`;
+        }
       }
     });
   };

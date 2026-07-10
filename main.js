@@ -1,7 +1,8 @@
 /* ============================================================
-   MOSAM BISWAS — PORTFOLIO v5
+   MOSAM BISWAS — PORTFOLIO v6
    Preloader · reveals · cursor · work preview · parallax ·
    clock · menu · copy email · certificate modal
+   (v6 shader + heavy motion live in shader.js / motion.js)
    ============================================================ */
 
 (() => {
@@ -22,16 +23,35 @@
   if (!preloader || prefersReduced) {
     finishLoading();
   } else {
+    /* The count is a real load gate: it holds at 99 until fonts and
+       critical assets are in, so the curtain never lifts onto a page
+       that still shifts. MAX_WAIT caps slow networks — nobody gets
+       trapped on the preloader. */
     const DURATION = 1000;
+    const MAX_WAIT = 3500;
     const start = performance.now();
+    let assetsReady = false;
+
+    const fontsReady = (document.fonts && document.fonts.ready)
+      ? document.fonts.ready
+      : Promise.resolve();
+    const pageLoaded = (document.readyState === 'complete')
+      ? Promise.resolve()
+      : new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
+    const cap = new Promise((resolve) => setTimeout(resolve, MAX_WAIT));
+
+    Promise.race([Promise.all([fontsReady, pageLoaded]), cap])
+      .then(() => { assetsReady = true; });
 
     const tick = (now) => {
       const progress = Math.min((now - start) / DURATION, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
+      let count = Math.round(eased * 100);
+      if (!assetsReady) count = Math.min(count, 99);
       if (preloaderCount) {
-        preloaderCount.textContent = String(Math.round(eased * 100)).padStart(2, '0');
+        preloaderCount.textContent = String(count).padStart(2, '0');
       }
-      if (progress < 1) {
+      if (progress < 1 || !assetsReady) {
         requestAnimationFrame(tick);
       } else {
         setTimeout(finishLoading, 150);
@@ -48,16 +68,28 @@
       const word = line.querySelector('.hero__word');
       if (!word) return;
       line.style.fontSize = '100px';
-      const width = word.getBoundingClientRect().width;
-      if (width > 0) {
-        line.style.fontSize = `${(100 * line.clientWidth / width).toFixed(2)}px`;
-      } else {
+      if (word.getBoundingClientRect().width <= 0) {
         line.style.fontSize = '';
+        return;
+      }
+      /* Iterative fit: letter-spacing inherited in px (and strokes) don't
+         scale with font-size, so a single measure-and-scale lands wide.
+         A couple of corrective passes converge to the true edge. */
+      let size = 100;
+      for (let pass = 0; pass < 3; pass++) {
+        const width = word.getBoundingClientRect().width;
+        if (width <= 0) break;
+        size *= line.clientWidth / width;
+        line.style.fontSize = `${size.toFixed(2)}px`;
+        if (Math.abs(width - line.clientWidth) < 1) break;
       }
     });
   };
 
   fitLines();
+  /* motion.js re-fits after splitting the words into letters — the split
+     changes rendered width, so the fit must measure the final DOM */
+  window.__refitHero = fitLines;
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(fitLines);
   }

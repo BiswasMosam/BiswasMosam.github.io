@@ -939,3 +939,105 @@ html.js .is-in .hero__word {
     display: none !important;
   }
 }
+
+/* ============================================================
+   v6 — Darkroom motion
+   Gated behind .has-darkroom (added by darkroom.js, which bails
+   on prefers-reduced-motion) — inert without it.
+   ============================================================ */
+
+/* Hero — SHEI CHOBI develops like a print: overexposed and soft,
+   then settling into focus */
+
+html.has-darkroom .hero__word {
+  transform: none;
+  transition: none;
+  opacity: 0;
+  filter: blur(18px) brightness(2.3);
+}
+
+html.has-darkroom body.is-loaded .hero .hero__word,
+html.has-darkroom .is-in .hero__word {
+  opacity: 1;
+  filter: blur(0) brightness(1);
+  transition: opacity 0.9s ease, filter 1.7s ease;
+}
+
+html.has-darkroom body.is-loaded .hero .hero__line:nth-child(2) .hero__word,
+html.has-darkroom .is-in .hero__line:nth-child(2) .hero__word {
+  transition-delay: 0.25s;
+}
+
+/* Collections — contact-sheet strips slide into the light */
+
+html.has-darkroom .collection-list li {
+  opacity: 0;
+  transform: translateX(-26px);
+  filter: blur(6px);
+  transition: opacity 0.6s ease, transform 0.7s var(--ease), filter 0.7s ease;
+  transition-delay: calc(var(--i, 0) * 80ms);
+}
+
+html.has-darkroom .collection-list.is-in li {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Archive — each print goes through the developing bath */
+
+html.has-darkroom .photo-card {
+  opacity: 0;
+  filter: blur(14px) brightness(1.9) grayscale(1);
+}
+
+html.has-darkroom .photo-card.is-dev {
+  opacity: 1;
+  filter: none;
+  animation: develop 1.4s ease var(--d, 0s) backwards;
+  transition: filter 0.45s ease;
+}
+
+@keyframes develop {
+  0%   { opacity: 0; filter: blur(14px) brightness(1.9) grayscale(1); }
+  30%  { opacity: 1; }
+  100% { opacity: 1; filter: blur(0) brightness(1) grayscale(0); }
+}
+
+/* Focus pull — hover racks focus to one frame, the rest fall away */
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-darkroom .masonry:hover .photo-card.is-dev {
+    filter: blur(3px) brightness(0.75);
+  }
+
+  html.has-darkroom .masonry:hover .photo-card.is-dev:hover {
+    filter: none;
+  }
+}
+
+/* Lightbox — the aperture opens from the frame you clicked */
+
+html.has-darkroom .lightbox {
+  display: flex;
+  visibility: hidden;
+  clip-path: circle(0% at var(--cx, 50%) var(--cy, 50%));
+  transition: clip-path 0.55s var(--ease), visibility 0s linear 0.55s;
+}
+
+html.has-darkroom .lightbox.active {
+  visibility: visible;
+  clip-path: circle(141% at var(--cx, 50%) var(--cy, 50%));
+  transition: clip-path 0.65s var(--ease);
+}
+
+/* Shutter blink between photographs */
+
+html.has-darkroom .lightbox img.is-blink {
+  animation: shutter 0.45s ease;
+}
+
+@keyframes shutter {
+  0%   { opacity: 0; filter: brightness(2.4) blur(6px); }
+  100% { opacity: 1; filter: none; }
+}
