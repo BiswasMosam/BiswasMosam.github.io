@@ -4,7 +4,8 @@
    focus-pull hover over the contact sheet · aperture lightbox
    opening from the frame you clicked · shutter blink between
    photos · grain that breathes with scroll speed.
-   Hand-rolled, no libraries.
+   Hand-rolled, no libraries. The grain loop only runs while
+   scrolling and parks itself once velocity settles.
    ============================================================ */
 
 (() => {
@@ -95,31 +96,37 @@
     }).observe(lightboxImg, { attributes: true, attributeFilter: ['src'] });
   }
 
-  /* ---------- Scroll: motion blur on the sheet, grain breathes ---------- */
+  /* ---------- Scroll: grain breathes with scroll speed ---------- */
+  /* Opacity only — a filter here (e.g. blurring the sheet) forces the
+     browser to re-rasterize the whole grid every frame and janks scroll. */
 
   const noise = document.querySelector('.noise');
-  let lastY = window.scrollY;
-  let velocity = 0;
-  let lastBlur = 0;
 
-  const loop = () => {
-    const y = window.scrollY;
-    const raw = y - lastY;
-    lastY = y;
-    velocity += (raw - velocity) * 0.12;
+  if (noise) {
+    let lastY = window.scrollY;
+    let velocity = 0;
+    let rafId = null;
 
-    const speed = Math.abs(velocity);
-    const blur = Math.min(speed * 0.045, 2.6);
-    if (grid && Math.abs(blur - lastBlur) > 0.08) {
-      grid.style.filter = blur > 0.15 ? `blur(${blur.toFixed(2)}px)` : '';
-      lastBlur = blur;
-    }
-    if (noise) {
+    const loop = () => {
+      const y = window.scrollY;
+      const raw = y - lastY;
+      lastY = y;
+      velocity += (raw - velocity) * 0.12;
+
+      const speed = Math.abs(velocity);
       noise.style.opacity = (0.045 + Math.min(speed * 0.0011, 0.05)).toFixed(3);
-    }
 
-    requestAnimationFrame(loop);
-  };
+      if (speed > 0.1) {
+        rafId = requestAnimationFrame(loop);
+      } else {
+        noise.style.opacity = '';
+        velocity = 0;
+        rafId = null;
+      }
+    };
 
-  requestAnimationFrame(loop);
+    window.addEventListener('scroll', () => {
+      if (rafId === null) rafId = requestAnimationFrame(loop);
+    }, { passive: true });
+  }
 })();

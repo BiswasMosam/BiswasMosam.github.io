@@ -146,6 +146,7 @@ html.js [data-reveal].is-in {
   z-index: 9000;
   pointer-events: none;
   opacity: 0.045;
+  will-change: opacity;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -995,7 +996,7 @@ html.has-darkroom .photo-card.is-dev {
   opacity: 1;
   filter: none;
   animation: develop 1.4s ease var(--d, 0s) backwards;
-  transition: filter 0.45s ease;
+  transition: opacity 0.45s ease;
 }
 
 @keyframes develop {
@@ -1004,15 +1005,17 @@ html.has-darkroom .photo-card.is-dev {
   100% { opacity: 1; filter: blur(0) brightness(1) grayscale(0); }
 }
 
-/* Focus pull — hover racks focus to one frame, the rest fall away */
+/* Focus pull — hover racks focus to one frame, the rest fall away.
+   Opacity, not blur: blurring every visible card repaints the whole
+   sheet on each hover and stutters the page. */
 
 @media (hover: hover) and (pointer: fine) {
   html.has-darkroom .masonry:hover .photo-card.is-dev {
-    filter: blur(3px) brightness(0.75);
+    opacity: 0.4;
   }
 
   html.has-darkroom .masonry:hover .photo-card.is-dev:hover {
-    filter: none;
+    opacity: 1;
   }
 }
 

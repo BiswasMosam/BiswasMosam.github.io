@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mosam-biswas-portfolio-v12';
+const CACHE_NAME = 'mosam-biswas-portfolio-v13';
 const urlsToCache = [
   '/',
   '/index.html',

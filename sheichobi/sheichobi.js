@@ -68,6 +68,9 @@
     return number ? `${label} ${number.padStart(2, '0')}` : label;
   };
 
+  /* Grid + preview use downsized copies; the lightbox loads the original */
+  const getThumbSrc = (src) => src.replace(/^Photographs\//, 'Photographs/thumbs/');
+
   const normalizePhotos = (rawPhotos) => rawPhotos
     .map((item) => {
       const src = typeof item === 'string' ? item : item?.src;
@@ -75,9 +78,22 @@
       const category = (typeof item === 'object' && item.category)
         ? item.category.toLowerCase()
         : inferCategory(src);
-      return { src, category, title: getPhotoTitle(src, category) };
+      return { src, thumb: getThumbSrc(src), category, title: getPhotoTitle(src, category) };
     })
     .filter(Boolean);
+
+  const createPhotoImg = (photo, alt) => {
+    const img = document.createElement('img');
+    img.src = photo.thumb;
+    img.alt = alt;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.onerror = () => {
+      img.onerror = null;
+      img.src = photo.src;
+    };
+    return img;
+  };
 
   const getCollections = () => {
     const categories = [...new Set(allPhotos.map((photo) => photo.category))].sort((a, b) => {
@@ -88,7 +104,7 @@
 
     return categories.map((category) => {
       const photos = allPhotos.filter((photo) => photo.category === category);
-      return { category, label: getCategoryLabel(category), count: photos.length, cover: photos[0]?.src };
+      return { category, label: getCategoryLabel(category), count: photos.length, cover: photos[0] };
     });
   };
 
@@ -181,23 +197,32 @@
     let targetY = -100;
     let x = -100;
     let y = -100;
+    let cursorSeen = false;
     let cursorRafActive = false;
 
+    /* Eases toward the pointer, then parks until the next mousemove */
     const renderCursor = () => {
       x += (targetX - x) * 0.22;
       y += (targetY - y) * 0.22;
       cursor.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
-      requestAnimationFrame(renderCursor);
+      if (Math.abs(targetX - x) > 0.2 || Math.abs(targetY - y) > 0.2) {
+        requestAnimationFrame(renderCursor);
+      } else {
+        cursorRafActive = false;
+      }
     };
 
     window.addEventListener('mousemove', (e) => {
       targetX = e.clientX;
       targetY = e.clientY;
-      if (!cursorRafActive) {
-        cursorRafActive = true;
+      if (!cursorSeen) {
+        cursorSeen = true;
         x = targetX;
         y = targetY;
         cursor.classList.add('is-visible');
+      }
+      if (!cursorRafActive) {
+        cursorRafActive = true;
         requestAnimationFrame(renderCursor);
       }
     }, { passive: true });
@@ -266,9 +291,9 @@
       li.appendChild(row);
       collectionList.appendChild(li);
 
-      if (collectionPreviewStrip) {
+      if (collectionPreviewStrip && collection.cover) {
         const figure = document.createElement('figure');
-        figure.innerHTML = `<img src="${collection.cover}" alt="" loading="lazy" decoding="async" />`;
+        figure.appendChild(createPhotoImg(collection.cover, ''));
         collectionPreviewStrip.appendChild(figure);
       }
     });
@@ -360,7 +385,7 @@
       card.className = 'photo-card';
       card.dataset.title = photo.title;
       card.setAttribute('aria-label', `Open ${photo.title}`);
-      card.innerHTML = `<img src="${photo.src}" alt="${photo.title}" loading="lazy" decoding="async" />`;
+      card.appendChild(createPhotoImg(photo, photo.title));
       card.addEventListener('click', () => openLightbox(index));
       galleryGrid.appendChild(card);
     });

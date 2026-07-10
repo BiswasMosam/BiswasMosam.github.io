@@ -127,7 +127,7 @@ Also new in Vol. 06, all in `motion.js`, all gated behind an `html.has-motion` c
 | `LIVE MARQUEE` | The CSS ticker hands over to JS: base 42px/s ± a velocity term clamped at 860 — it accelerates with scroll and **reverses when you backtrack** |
 | `CHOREOGRAPHY` | Header hides going down / returns coming up; 2px vermilion scroll-progress hairline; hero lines drift apart (±220px); magnetic buttons; stat counters; scroll hint fades at 80px |
 
-**Page dialects** — `cert-motion.js` treats certificates as a *dossier*: redaction bars sweep PROOF OF WORK, features are stamped down with a vermilion flash, tiles file in with index-derived rotations, labels type themselves with a `▌` caret, and every certificate tilts in 3D with a cursor-tracking sheen. `sheichobi/darkroom.js` treats photographs as *prints*: they develop from `blur(14px) brightness(1.9) grayscale(1)`, hover racks focus while siblings blur, the lightbox opens as a `clip-path: circle()` **aperture from the exact click point**, a shutter blinks between photos, and the film grain breathes with scroll speed.
+**Page dialects** — `cert-motion.js` treats certificates as a *dossier*: redaction bars sweep PROOF OF WORK, features are stamped down with a vermilion flash, tiles file in with index-derived rotations, labels type themselves with a `▌` caret, and every certificate tilts in 3D with a cursor-tracking sheen. `sheichobi/darkroom.js` treats photographs as *prints*: they develop from `blur(14px) brightness(1.9) grayscale(1)`, hover racks focus to one frame while siblings fall back (opacity, so the sheet never repaints), the lightbox opens as a `clip-path: circle()` **aperture from the exact click point**, a shutter blinks between photos, and the film grain breathes with scroll speed — on a loop that only runs while scrolling.
 
 ---
 
@@ -183,7 +183,7 @@ Links grow the dot to a 52px halo in `mix-blend-mode: difference`; links with th
 | `ZERO DEPS` | No framework, no icon font, no analytics script — the only third-party bytes are four Google Fonts with preconnect hints |
 | `GPU MOTION` | Every animation is transform/opacity only — reveals, marquee, parallax, cursor — so nothing forces layout or paint |
 | `RAF DISCIPLINE` | Scroll and mousemove handlers are passive and coalesced into requestAnimationFrame; resize work is debounced |
-| `IMAGES` | Photography ships as WebP with lazy loading + async decoding; previews are CSS gradients instead of images |
+| `IMAGES` | Photography ships as WebP with lazy loading + async decoding; the SheiChobi grid serves 900px thumbnails (~6× lighter) and saves full resolution for the lightbox; previews are CSS gradients instead of images |
 | `SERVICE WORKER` | Registers only on mosambiswas.com; on dev origins old workers are unregistered and caches purged. In production: offline cache, SKIP_WAITING, one silent reload on controllerchange |
 | `REDUCED MOTION` | prefers-reduced-motion collapses all animation to 0.01ms, removes the shader canvas, kills the cursor and marquee — all four v6 engines bail before doing any work |
 | `GATED CSS` | Every v6 style block hides behind a JS-added class (`.has-motion`, `.has-dossier`, `.has-darkroom`) — without JS or with motion reduced, the stylesheet is inert and v5 reveals still work |
