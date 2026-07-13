@@ -402,6 +402,7 @@
       .skip-link,
       .btn,
       .rz-dl,
+      .contact-form,
       .research__actions,
       .footer__top {
         display: none !important;
@@ -410,6 +411,11 @@
       html.js [data-reveal] {
         opacity: 1 !important;
         transform: none !important;
+      }
+
+      /* If printed while the form is open, put LET'S TALK back */
+      .contact__hero.is-form .contact__title {
+        display: flex !important;
       }
 
       .hero--sub {
@@ -818,11 +824,39 @@
         <span>Response time · usually same day</span>
       </div>
 
-      <div class="contact__hero">
-        <h2 class="contact__title" aria-label="Let's talk" data-reveal data-whisper="go on, it's one click">
+      <div class="contact__hero" id="contactHero">
+        <h2 class="contact__title" id="contactTitle" role="button" tabindex="0" aria-expanded="false" aria-controls="contactForm" aria-label="Let's talk. Opens the contact form" data-reveal data-whisper="go on, it's one click">
           <span class="hero__line"><span class="hero__word">LET'S</span></span>
           <span class="hero__line hero__line--outline"><span class="hero__word">TALK</span></span>
         </h2>
+
+        <!-- Revealed when LET'S TALK is clicked; posts via FormSubmit -->
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="contact-form__head mono">
+            <span data-whisper="told you it was one click">( say hello )</span>
+            <button class="contact-form__close" id="contactFormClose" type="button">Never mind &times;</button>
+          </div>
+          <div class="contact-form__grid">
+            <label class="contact-form__field">
+              <span class="mono">Name</span>
+              <input type="text" name="name" autocomplete="name" required maxlength="100" placeholder="Your name" />
+            </label>
+            <label class="contact-form__field">
+              <span class="mono">Email</span>
+              <input type="email" name="email" autocomplete="email" required maxlength="200" placeholder="you@example.com" />
+            </label>
+            <label class="contact-form__field contact-form__field--full">
+              <span class="mono">Message</span>
+              <textarea name="message" rows="5" required maxlength="4000" placeholder="What are we building?"></textarea>
+            </label>
+          </div>
+          <input class="contact-form__honey" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="contact-form__actions">
+            <button class="btn" type="submit"><span data-send-label>Send it&nbsp;↗</span></button>
+            <span class="contact-form__status mono" id="contactFormStatus" role="status" aria-live="polite"></span>
+          </div>
+        </form>
+
         <a class="contact__email" href="mailto:mosambiswas999@gmail.com" data-copy-email data-whisper="click to copy||no mail app needed">mosambiswas999@gmail.com</a>
       </div>
 
