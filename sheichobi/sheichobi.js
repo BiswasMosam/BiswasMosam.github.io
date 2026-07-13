@@ -228,8 +228,11 @@
     }, { passive: true });
 
     document.addEventListener('mouseover', (e) => {
+      const overPhoto = e.target.closest('.photo-card, .lightbox__frame');
       const interactive = e.target.closest('a, button, [data-cursor]');
-      cursor.classList.toggle('is-link', Boolean(interactive));
+      /* Hide the inverting dot over photos; keep the link state elsewhere */
+      cursor.classList.toggle('is-photo', Boolean(overPhoto));
+      cursor.classList.toggle('is-link', Boolean(interactive) && !overPhoto);
     });
 
     document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));

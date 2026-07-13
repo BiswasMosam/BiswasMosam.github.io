@@ -182,6 +182,12 @@ html.js [data-reveal].is-in {
     width: 52px;
     height: 52px;
   }
+
+  /* Over a photograph the difference-blend dot would invert the image.
+     Hide the custom cursor entirely so nothing disturbs the frame. */
+  .cursor.is-photo {
+    opacity: 0;
+  }
 }
 
 /* ---------- Header ---------- */

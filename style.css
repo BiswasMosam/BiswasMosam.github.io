@@ -368,6 +368,24 @@ html.js body.is-loaded .preloader {
   transform-origin: left;
 }
 
+/* Résumé — the one nav item that's a call-to-action, not a section */
+.site-head__nav a.nav-resume {
+  padding: 0.32rem 0.95rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.site-head__nav a.nav-resume::after {
+  display: none;
+}
+
+.site-head__nav a.nav-resume:hover {
+  background: var(--accent);
+  color: #0b0b0a;
+}
+
 .site-head__meta {
   justify-self: end;
   color: rgba(255, 255, 255, 0.6);
@@ -505,6 +523,23 @@ section {
 
 .sec-head--bare {
   margin-bottom: clamp(1.6rem, 4vw, 3rem);
+}
+
+/* Stacks the aside directly beneath the title (left-aligned) rather than
+   parking it in the right column. */
+.sec-head--stack {
+  align-items: start;
+}
+
+.sec-head--stack .sec-head__title,
+.sec-head--stack .sec-head__aside {
+  grid-column: 1;
+}
+
+.sec-head--stack .sec-head__aside {
+  text-align: left;
+  padding-bottom: 0;
+  padding-top: 0.5rem;
 }
 
 /* ---------- Buttons ---------- */
@@ -654,6 +689,16 @@ html.js .is-in .hero__word {
   font-size: 0.86rem;
   color: var(--ink-dim);
   white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+a.hero__status:hover {
+  color: var(--ink);
+}
+
+a.hero__status:hover .hero__status-dot {
+  animation-duration: 0.9s;
 }
 
 .hero__status-dot {
@@ -847,32 +892,43 @@ html.js .is-in .hero__word {
   transition: transform 0.45s var(--ease);
 }
 
+/* Each card leads with the project's headline outcome — the one thing
+   the list row doesn't already say. */
 .work-preview__strip figure {
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem 1.15rem;
   background: var(--g, var(--bg-2));
 }
 
-.work-preview__strip figure span {
+.work-preview__tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.work-preview__stat {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: -0.01em;
-  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(2.6rem, 3.4vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.94);
   text-transform: uppercase;
 }
 
-.work-preview__strip .work-preview__img {
-  background: #fff;
-}
-
-.work-preview__strip .work-preview__img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.work-preview__line {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 26ch;
 }
 
 @media (pointer: coarse), (max-width: 900px) {
@@ -1164,9 +1220,163 @@ html.js .is-in .hero__word {
   transform-origin: left;
 }
 
-.contact__copy {
-  align-self: flex-start;
-  margin-top: 1.4rem;
+.contact__email.is-copied {
+  color: var(--accent);
+}
+
+.contact__email.is-copied::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Contact form (LET'S TALK morphs into it) ---------- */
+
+.contact__title {
+  cursor: pointer;
+}
+
+.contact-form {
+  display: none;
+  width: min(720px, 100%);
+  margin: auto 0;
+}
+
+.contact__hero.is-form .contact__title {
+  display: none;
+}
+
+.contact__hero.is-form .contact-form {
+  display: block;
+}
+
+.contact__hero.is-form .contact__email {
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+  margin-top: 2.2rem;
+}
+
+.contact-form__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.contact-form__close {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-dim);
+  transition: color 0.25s ease;
+}
+
+.contact-form__close:hover {
+  color: var(--accent);
+}
+
+.contact-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.4rem, 3vw, 2.2rem) 2.6rem;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.contact-form__field .mono {
+  color: var(--ink-faint);
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  padding: 0.45rem 0 0.7rem;
+  transition: border-color 0.3s ease;
+}
+
+.contact-form__field input:focus-visible,
+.contact-form__field textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact-form__field input::placeholder,
+.contact-form__field textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+.contact-form__field textarea {
+  resize: vertical;
+  min-height: 7.5rem;
+}
+
+.contact-form__honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.contact-form__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.contact-form__status {
+  color: var(--ink-dim);
+}
+
+/* Fields rise in one after the other, echoing the reveal system */
+@media (prefers-reduced-motion: no-preference) {
+  .contact__hero.is-form .contact-form__head,
+  .contact__hero.is-form .contact-form__field,
+  .contact__hero.is-form .contact-form__actions {
+    animation: contact-form-in 0.7s var(--ease) both;
+  }
+
+  .contact__hero.is-form .contact-form__field:nth-child(1) { animation-delay: 0.08s; }
+  .contact__hero.is-form .contact-form__field:nth-child(2) { animation-delay: 0.16s; }
+  .contact__hero.is-form .contact-form__field:nth-child(3) { animation-delay: 0.24s; }
+  .contact__hero.is-form .contact-form__actions { animation-delay: 0.32s; }
+}
+
+@keyframes contact-form-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-form__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .footer {

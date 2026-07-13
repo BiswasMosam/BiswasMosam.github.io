@@ -40,6 +40,7 @@ BiswasMosam.github.io/
 ├── shader.js           # v6 — WebGL ember field, hand-written GLSL
 ├── cert-motion.js      # v6 — dossier motion for the certificates
 ├── service-worker.js   # offline + silent updates (production only)
+├── resume.html         # the résumé as a page — same system, print stylesheet, PDF downloads
 ├── certificates.html   # certificate gallery + modal
 └── sheichobi/          # photography portfolio ("that picture" in Bengali)
     └── darkroom.js     # v6 — prints develop · focus pull · aperture lightbox
@@ -163,11 +164,12 @@ Links grow the dot to a 52px halo in `mix-blend-mode: difference`; links with th
 | `TYPE REVEAL` | Hero words sit at translateY(112%) inside overflow-hidden lines; loading flips them to 0 with a 0.12s stagger — the classic masked reveal, no library |
 | `SCROLL REVEALS` | IntersectionObserver (threshold 0.12, −6% bottom margin) adds .is-in once per element; gated behind an html.js class so no-JS users see everything instantly |
 | `WORK ROWS` | Hover inverts each row via a ::before that scaleY's from bottom, flipping text to background color while the index digit turns vermilion and the title slides 10px |
-| `PROJECT PREVIEW` | A cursor-following card (lerp 0.12) shows a vertical strip of 9 gradient figures; hovering row n translates the strip by n × −100% — desktop only |
+| `PROJECT PREVIEW` | A cursor-following stat card (lerp 0.12): each project leads with its headline outcome — 70% faster, 0.90 ROC-AUC, zero conflicts — over a per-project gradient; hovering row n translates the strip by n × −100% — desktop only |
 | `PARALLAX` | Images with data-parallax get translateY(offset × −speed) + scale(1.12) from a scroll-throttled rAF, skipping anything off-screen |
 | `MARQUEE` | Pure CSS fallback (duplicated track, 36s loop); on desktop with motion enabled, `motion.js` takes over and drives it by scroll velocity |
 | `LIVE CLOCK` | Intl.DateTimeFormat pinned to Asia/Kolkata ticks every second in header and footer — the site knows what time it is at home |
-| `COPY EMAIL` | navigator.clipboard with an execCommand('copy') textarea fallback; the button flips to "Copied ✓" for 1.4s |
+| `COPY EMAIL` | The email line itself is the copy control — click copies via navigator.clipboard and the type flashes "copied ✓" for 1.4s; no clipboard, denied permission, or a modified click all fall back to plain mailto |
+| `CONTACT FORM` | LET'S TALK is a button — clicking it swaps the giant type for a name/email/message form (fields stagger in, Escape restores). Posts to FormSubmit via fetch with a honeypot; no backend, no reload |
 | `MENU` | Fullscreen overlay slides down with staggered per-link delays (0.10s → 0.34s); Escape closes, body scroll locks |
 | `CERT MODAL` | Certificates open in a dimmed dialog (rgba(8,8,7,0.96)); close by ×, backdrop click, or Escape — the × rotates 90° on hover |
 | `PORTRAIT` | About photo is sticky and grayscale(1); hovering restores color — a small reward for reading |

@@ -398,40 +398,106 @@
     requestParallax();
   }
 
-  /* ---------- Copy email ---------- */
+  /* ---------- Copy-on-click email ---------- */
 
-  document.querySelectorAll('[data-copy]').forEach((btn) => {
-    const label = btn.querySelector('[data-copy-label]');
-    const originalText = label ? label.textContent : '';
+  document.querySelectorAll('[data-copy-email]').forEach((link) => {
+    const originalText = link.textContent;
+    let resetTimer;
 
-    btn.addEventListener('click', async () => {
-      const text = btn.getAttribute('data-copy') || '';
-      if (!text) return;
+    link.addEventListener('click', async (e) => {
+      /* Modified clicks (new tab etc.) keep normal link behavior */
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      /* No clipboard API → fall through to the mailto */
+      if (!navigator.clipboard || !navigator.clipboard.writeText) return;
 
+      e.preventDefault();
       try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(text);
-        } else {
-          const temp = document.createElement('textarea');
-          temp.value = text;
-          temp.setAttribute('readonly', '');
-          temp.style.position = 'absolute';
-          temp.style.left = '-9999px';
-          document.body.appendChild(temp);
-          temp.select();
-          document.execCommand('copy');
-          document.body.removeChild(temp);
-        }
-
-        if (label) {
-          label.textContent = 'Copied ✓';
-          setTimeout(() => { label.textContent = originalText; }, 1400);
-        }
+        await navigator.clipboard.writeText(link.getAttribute('href').replace('mailto:', ''));
+        link.classList.add('is-copied');
+        link.textContent = 'copied ✓';
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(() => {
+          link.textContent = originalText;
+          link.classList.remove('is-copied');
+        }, 1400);
       } catch {
-        /* clipboard unavailable — mailto link still works */
+        window.location.href = link.href;
       }
     });
   });
+
+  /* ---------- Contact form (LET'S TALK morphs into it) ---------- */
+
+  const contactHero = document.getElementById('contactHero');
+  const contactTitle = document.getElementById('contactTitle');
+  const contactForm = document.getElementById('contactForm');
+  const contactFormClose = document.getElementById('contactFormClose');
+  const contactFormStatus = document.getElementById('contactFormStatus');
+  const CONTACT_ENDPOINT = 'https://formsubmit.co/ajax/mosambiswas999@gmail.com';
+
+  if (contactHero && contactTitle && contactForm) {
+    const setStatus = (text) => {
+      if (contactFormStatus) contactFormStatus.textContent = text;
+    };
+
+    const openForm = () => {
+      contactHero.classList.add('is-form');
+      contactTitle.setAttribute('aria-expanded', 'true');
+      const first = contactForm.querySelector('input[name="name"]');
+      if (first) first.focus({ preventScroll: true });
+    };
+
+    const closeForm = () => {
+      contactHero.classList.remove('is-form');
+      contactTitle.setAttribute('aria-expanded', 'false');
+      setStatus('');
+      contactTitle.focus({ preventScroll: true });
+    };
+
+    contactTitle.addEventListener('click', openForm);
+    contactTitle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openForm();
+      }
+    });
+
+    if (contactFormClose) contactFormClose.addEventListener('click', closeForm);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && contactHero.classList.contains('is-form')) closeForm();
+    });
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!contactForm.reportValidity()) return;
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      setStatus('Sending…');
+
+      try {
+        const data = new FormData(contactForm);
+        data.append('_subject', 'New message via mosambiswas.com');
+        data.append('_template', 'table');
+        data.append('_captcha', 'false');
+
+        const res = await fetch(CONTACT_ENDPOINT, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: data
+        });
+        if (!res.ok) throw new Error(String(res.status));
+
+        contactForm.reset();
+        setStatus('Sent ✓ I usually reply the same day.');
+      } catch {
+        setStatus('Could not send. The email below works too ↓');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
 
   /* ---------- Certificate modal ---------- */
 

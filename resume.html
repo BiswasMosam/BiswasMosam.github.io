@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Résumé · Mosam Biswas</title>
+  <link rel="canonical" href="https://www.mosambiswas.com/resume.html" />
+
+  <meta name="description" content="Résumé of Mosam Biswas — a B.Tech AI & Data Science graduate and software developer working across deep learning, LLM applications and full-stack web & mobile, with published IEEE research and 20+ projects shipped." />
+  <meta name="author" content="Mosam Biswas" />
+  <meta name="robots" content="index, follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0b0b0a" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <meta property="og:title" content="Résumé · Mosam Biswas" />
+  <meta property="og:description" content="B.Tech AI & Data Science graduate and software developer. Deep learning, LLM applications, full-stack web & mobile, published IEEE research, 20+ projects shipped." />
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content="https://www.mosambiswas.com/resume.html" />
+  <meta property="og:image" content="https://www.mosambiswas.com/profile.jpg" />
+  <meta property="og:site_name" content="Mosam Biswas Portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Résumé · Mosam Biswas" />
+  <meta name="twitter:description" content="B.Tech AI & Data Science graduate and software developer. Published IEEE research, 20+ projects shipped." />
+  <meta name="twitter:image" content="https://www.mosambiswas.com/profile.jpg" />
+
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Serif:ital@1&family=Manrope:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="me" href="https://github.com/BiswasMosam" />
+  <link rel="me" href="https://linkedin.com/in/mosambiswas" />
+  <link rel="me" href="https://g.dev/MosamBiswas" />
+
+  <!-- Page-specific styles on top of the shared v6 system -->
+  <style>
+    .site-head__back {
+      justify-self: end;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.25s ease;
+    }
+
+    .site-head__back:hover {
+      color: #fff;
+    }
+
+    .hero--sub {
+      min-height: 100svh;
+    }
+
+    /* Sections share the work-list rhythm */
+    .rz {
+      padding-block: clamp(3.4rem, 8vw, 6rem);
+    }
+
+    /* ---------- Experience ---------- */
+
+    .xp-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .xp {
+      padding: clamp(1.5rem, 3vw, 2.2rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .xp:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .xp__head {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr auto;
+      align-items: baseline;
+      gap: 0.6rem 1.4rem;
+    }
+
+    .xp__idx {
+      color: var(--ink-faint);
+    }
+
+    .xp__role {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .xp__at {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink-dim);
+    }
+
+    .xp__at em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .xp__when {
+      justify-self: end;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .xp__points {
+      list-style: none;
+      margin: 1rem 0 0;
+      padding-left: calc(2.4rem + 1.4rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      max-width: 74ch;
+    }
+
+    .xp__points li {
+      position: relative;
+      padding-left: 1.4rem;
+      color: var(--ink-dim);
+    }
+
+    .xp__points li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+    }
+
+    .xp__points strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ---------- Selected work table ---------- */
+
+    .rz-work {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rz-work-row {
+      display: grid;
+      grid-template-columns: 2.4rem minmax(9rem, 1fr) 2.1fr minmax(9rem, auto);
+      gap: 0.5rem 1.6rem;
+      align-items: start;
+      padding: clamp(1.1rem, 2.4vw, 1.6rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .rz-work-row:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rz-work-row__idx {
+      color: var(--ink-faint);
+    }
+
+    .rz-work-row__name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1rem, 1.9vw, 1.3rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .rz-work-row__desc {
+      color: var(--ink-dim);
+      max-width: 52ch;
+    }
+
+    .rz-work-row__desc strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .rz-work-row__meta {
+      justify-self: end;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .rz-work-row__tech {
+      color: var(--ink-dim);
+    }
+
+    .rz-work-row__year {
+      color: var(--ink-faint);
+      letter-spacing: 0.2em;
+    }
+
+    /* ---------- Research ---------- */
+
+    .rz-research {
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      padding: clamp(1.6rem, 4vw, 2.8rem);
+      display: grid;
+      grid-template-columns: 2.4rem 1fr;
+      gap: 0.4rem 1.4rem;
+    }
+
+    .rz-research__idx {
+      color: var(--ink-faint);
+    }
+
+    .rz-research__title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .rz-research__body {
+      color: var(--ink-dim);
+      max-width: 74ch;
+    }
+
+    .rz-research__body strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .rz-research__meta {
+      grid-column: 2;
+      margin-top: 1.2rem;
+      color: var(--accent);
+      line-height: 1.6;
+    }
+
+    /* ---------- Education ---------- */
+
+    .rz-edu {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rz-edu-row {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr auto;
+      gap: 0.35rem 1.4rem;
+      align-items: baseline;
+      padding: clamp(1.1rem, 2.4vw, 1.5rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .rz-edu-row:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rz-edu-row__idx {
+      color: var(--ink-faint);
+    }
+
+    .rz-edu-row__name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1rem, 1.9vw, 1.3rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .rz-edu-row__detail {
+      grid-column: 2;
+      color: var(--ink-dim);
+      margin-top: 0.3rem;
+    }
+
+    .rz-edu-row__when {
+      justify-self: end;
+      white-space: nowrap;
+    }
+
+    /* ---------- Stack + Certifications (two columns) ---------- */
+
+    .rz-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2.4rem, 6vw, 5rem);
+      align-items: start;
+    }
+
+    .rz-stack-row {
+      display: grid;
+      grid-template-columns: minmax(6.5rem, auto) 1fr;
+      gap: 0.4rem 1.4rem;
+      padding: clamp(0.9rem, 2vw, 1.3rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .rz-stack-row:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rz-stack-row h3 {
+      color: var(--ink-faint);
+      font-weight: 400;
+      align-self: start;
+    }
+
+    .rz-stack-row p {
+      color: var(--ink);
+    }
+
+    .rz-cert-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1.4rem;
+      padding: clamp(0.9rem, 2vw, 1.3rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .rz-cert-row:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .rz-cert-row__name strong {
+      font-weight: 600;
+    }
+
+    .rz-cert-row__name span {
+      color: var(--ink-dim);
+    }
+
+    .rz-cert-row__by {
+      color: var(--ink-faint);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* ---------- Download buttons ---------- */
+
+    .rz-dl {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.3rem;
+    }
+
+    /* ---------- Contact foot ---------- */
+
+    .rz-foot-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: clamp(1.6rem, 4vw, 2.6rem);
+    }
+
+    /* ---------- Print / B&W PDF ----------
+       Ctrl+P (and the generated MosamBiswasResume-BW.pdf) renders the same
+       page as clean black type on white paper. */
+    @media print {
+      :root {
+        --bg: #fff;
+        --bg-2: #fff;
+        --ink: #000;
+        --ink-dim: #333;
+        --ink-faint: #777;
+        --line: #ccc;
+        --accent: #000;
+      }
+
+      html,
+      body {
+        background: #fff !important;
+        color: #000;
+      }
+
+      .field,
+      .noise,
+      .cursor,
+      .progress,
+      .site-head,
+      .skip-link,
+      .btn,
+      .rz-dl,
+      .research__actions,
+      .footer__top {
+        display: none !important;
+      }
+
+      html.js [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .hero--sub {
+        min-height: auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .hero__line--outline .hero__word {
+        color: #000;
+        -webkit-text-stroke: 0;
+      }
+
+      .hero__name,
+      .contact__title {
+        font-size: clamp(3rem, 11vw, 7.5rem);
+      }
+
+      .hero__status-dot {
+        background: #000;
+      }
+
+      .rz {
+        padding-block: 1.6rem;
+      }
+
+      .xp,
+      .rz-work-row,
+      .rz-edu-row,
+      .rz-research,
+      .rz-stack-row,
+      .rz-cert-row {
+        break-inside: avoid;
+      }
+
+      .rz-research {
+        border-color: #000;
+      }
+
+      .contact {
+        padding-block: 1.6rem;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .xp__head {
+        grid-template-columns: 2.2rem 1fr;
+      }
+
+      .xp__when {
+        grid-column: 2;
+        justify-self: start;
+        text-align: left;
+        color: var(--ink-faint);
+      }
+
+      .xp__points {
+        padding-left: 2.2rem;
+      }
+
+      .rz-work-row {
+        grid-template-columns: 2.2rem 1fr;
+      }
+
+      .rz-work-row__desc {
+        grid-column: 2;
+      }
+
+      .rz-work-row__meta {
+        grid-column: 2;
+        justify-self: start;
+        text-align: left;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .rz-edu-row {
+        grid-template-columns: 2.2rem 1fr;
+      }
+
+      .rz-edu-row__when {
+        grid-column: 2;
+        justify-self: start;
+      }
+
+      .rz-split {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#experience">Skip to content</a>
+
+  <!-- Ember field — hand-rolled WebGL, sits behind everything -->
+  <canvas class="field" id="field" aria-hidden="true"></canvas>
+
+  <!-- Scroll progress -->
+  <div class="progress" id="progressBar" aria-hidden="true"></div>
+
+  <!-- Film grain -->
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- Custom cursor (desktop only) -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursorLabel"></span></div>
+
+  <!-- Header -->
+  <header class="site-head" id="siteHead">
+    <a class="site-head__brand" href="index.html">Mosam&nbsp;Biswas<sup>©</sup></a>
+    <nav class="site-head__nav" aria-label="Primary">
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#research">Research</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="site-head__back" href="index.html">←&nbsp;Portfolio</a>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero hero--sub">
+      <h1 class="sr-only">Résumé of Mosam Biswas — AI & Data Science graduate and software developer</h1>
+
+      <div class="hero__top mono" data-reveal>
+        <span data-whisper="aka Janam Kundali">Résumé · Vol. 06</span>
+        <span class="hero__top-mid">AI / ML · Full-Stack · Research</span>
+        <span>B.Tech AI &amp; DS · Class of 2026</span>
+      </div>
+
+      <div class="hero__name" aria-hidden="true">
+        <span class="hero__line"><span class="hero__word">MOSAM</span></span>
+        <span class="hero__line hero__line--outline"><span class="hero__word">BISWAS</span></span>
+      </div>
+
+      <div class="hero__foot">
+        <p class="hero__tag" data-reveal>
+          A <em>B.Tech (AI &amp; Data Science)</em> graduate and software developer working across
+          deep learning, LLM applications and full-stack web &amp; mobile. Published IEEE researcher,
+          20+ projects shipped.
+        </p>
+        <div class="hero__side" data-reveal>
+          <a class="hero__status" href="#contact" data-whisper="yes, actually open"><span class="hero__status-dot"></span>Open to full-time roles &amp; internships</a>
+          <div class="hero__links mono">
+            <a href="mailto:mosambiswas999@gmail.com">mosambiswas999@gmail.com&nbsp;↗</a>
+            <a href="https://www.mosambiswas.com/" target="_blank" rel="noopener noreferrer">mosambiswas.com&nbsp;↗</a>
+            <a href="https://github.com/BiswasMosam" target="_blank" rel="noopener noreferrer">github.com/BiswasMosam&nbsp;↗</a>
+            <a href="https://linkedin.com/in/mosambiswas" target="_blank" rel="noopener noreferrer">linkedin.com/in/mosambiswas&nbsp;↗</a>
+          </div>
+          <div class="rz-dl" data-whisper="same résumé, two moods">
+            <a class="btn" href="MosamBiswasResume.pdf" target="_blank" rel="noopener noreferrer">PDF · Colored&nbsp;↗</a>
+            <a class="btn btn--ghost" href="MosamBiswasResume-BW.pdf" target="_blank" rel="noopener noreferrer">PDF · Black &amp; White&nbsp;↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="rz">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(01) · Experience</span>
+        <h2 class="sec-head__title" data-reveal>Where I've <em>worked</em></h2>
+        <span class="sec-head__aside mono" data-reveal>2024 / 2026</span>
+      </header>
+
+      <div class="xp-list">
+        <article class="xp" data-reveal>
+          <div class="xp__head">
+            <span class="xp__idx mono">01</span>
+            <h3 class="xp__role">Software Developer Intern <span class="xp__at">at <em>Sedna Technologies</em></span></h3>
+            <span class="xp__when mono">Jan / Apr 2026 · Mumbai</span>
+          </div>
+          <ul class="xp__points">
+            <li>Delivered work across <strong>4 client projects</strong> and independently built a full client-facing <strong>dashboard</strong> as a solo project.</li>
+            <li>Engaged directly with clients to gather requirements, resolve issues and ship features.</li>
+          </ul>
+        </article>
+
+        <article class="xp" data-reveal>
+          <div class="xp__head">
+            <span class="xp__idx mono">02</span>
+            <h3 class="xp__role">AI Trainee <span class="xp__at">at <em>Samsung Innovation Campus</em></span></h3>
+            <span class="xp__when mono">Nov 2025 / Mar 2026</span>
+          </div>
+          <ul class="xp__points">
+            <li>Completed a <strong>four-month industry-academia AI program</strong>: core AI concepts, practical ML workflows and real-world applications; co-certified by <strong>Samsung Southwest Asia &amp; TSSC</strong>.</li>
+          </ul>
+        </article>
+
+        <article class="xp" data-reveal>
+          <div class="xp__head">
+            <span class="xp__idx mono">03</span>
+            <h3 class="xp__role">Technical Head <span class="xp__at">at <em>Photocircle RAIT</em></span></h3>
+            <span class="xp__when mono">Jul 2024 / Jul 2025 · Navi Mumbai</span>
+          </div>
+          <ul class="xp__points">
+            <li>Led technical operations: equipment, media, events; ran <strong>3 workshops (75+ students)</strong>, 4 photo walks and 2 inter-college competitions, boosting participation by <strong>60%</strong>.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SELECTED WORK ============ -->
+    <section id="work" class="rz">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(02) · Selected Work</span>
+        <h2 class="sec-head__title" data-reveal>Six of <em>twenty-plus</em></h2>
+        <span class="sec-head__aside mono" data-reveal>2024 / 2025</span>
+      </header>
+
+      <div class="rz-work">
+        <div class="rz-work-row" data-reveal>
+          <span class="rz-work-row__idx mono">01</span>
+          <span class="rz-work-row__name">PixelForge</span>
+          <p class="rz-work-row__desc">Leukemia detection on C-NMC, <strong>84% acc, 0.90 ROC-AUC, 95% recall</strong>; custom GAN augments scarce medical data.</p>
+          <span class="rz-work-row__meta mono">
+            <span class="rz-work-row__tech">Python · PyTorch · GANs</span>
+            <span class="rz-work-row__year">2025</span>
+          </span>
+        </div>
+
+        <div class="rz-work-row" data-reveal>
+          <span class="rz-work-row__idx mono">02</span>
+          <span class="rz-work-row__name">MindFirst</span>
+          <p class="rz-work-row__desc">Mental-health screening for <strong>100+ students</strong>, chatbot + psychometrics at <strong>95% accuracy</strong>, drop-off cut <strong>30%</strong>.</p>
+          <span class="rz-work-row__meta mono">
+            <span class="rz-work-row__tech">Next.js · Flask · Prisma</span>
+            <span class="rz-work-row__year">2025</span>
+          </span>
+        </div>
+
+        <div class="rz-work-row" data-reveal>
+          <span class="rz-work-row__idx mono">03</span>
+          <span class="rz-work-row__name">Rail Mitra</span>
+          <p class="rz-work-row__desc">Railway platform &amp; track-assignment optimizer, <strong>constraint programming</strong> yields conflict-free schedules.</p>
+          <span class="rz-work-row__meta mono">
+            <span class="rz-work-row__tech">Python · OR-Tools · CP</span>
+            <span class="rz-work-row__year">2025</span>
+          </span>
+        </div>
+
+        <div class="rz-work-row" data-reveal>
+          <span class="rz-work-row__idx mono">04</span>
+          <span class="rz-work-row__name">IntelliStatement</span>
+          <p class="rz-work-row__desc">Bank-statement analyzer, <strong>LLM extraction</strong> from PDFs/images, insights via FastAPI + Streamlit.</p>
+          <span class="rz-work-row__meta mono">
+            <span class="rz-work-row__tech">FastAPI · Streamlit · LLM</span>
+            <span class="rz-work-row__year">2025</span>
+          </span>
+        </div>
+
+        <div class="rz-work-row" data-reveal>
+          <span class="rz-work-row__idx mono">05</span>
+          <span class="rz-work-row__name">Sim Sim</span>
+          <p class="rz-work-row__desc">Desktop AI assistant, conversational GUI + voice commands, <strong>70% faster</strong> task execution.</p>
+          <span class="rz-work-row__meta mono">
+            <span class="rz-work-row__tech">Python · PySide6</span>
+            <span class="rz-work-row__year">2024</span>
+          </span>
+        </div>
+
+        <div class="rz-work-row" data-reveal>
+          <span class="rz-work-row__idx mono">06</span>
+          <span class="rz-work-row__name">Committee Connect</span>
+          <p class="rz-work-row__desc">Android app for committee task &amp; attendance tracking with <strong>real-time Firebase sync</strong>.</p>
+          <span class="rz-work-row__meta mono">
+            <span class="rz-work-row__tech">Android · Java · Firebase</span>
+            <span class="rz-work-row__year">2024</span>
+          </span>
+        </div>
+      </div>
+
+      <p class="work-more mono" data-reveal style="margin-top:1.6rem">
+        + the full set on <a href="index.html#projects">the portfolio</a> and <a href="https://github.com/BiswasMosam" target="_blank" rel="noopener noreferrer">GitHub&nbsp;↗</a>
+      </p>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section id="research" class="rz">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(03) · Research</span>
+        <h2 class="sec-head__title" data-reveal>Published &amp; <em>presented</em></h2>
+      </header>
+
+      <article class="rz-research" data-reveal>
+        <span class="rz-research__idx mono">01</span>
+        <div>
+          <p class="rz-research__title">
+            Comparative Analysis of Psychometric Data for Assessing Mental Health
+            Testing Needs Using Machine Learning Models
+          </p>
+          <p class="rz-research__body">
+            Benchmarked <strong>5 ML models</strong> (Logistic Regression, Random Forest, SVM, XGBoost,
+            LightGBM) on PHQ-9 / GAD-7 psychometric data with cross-validation and <strong>SHAP</strong>
+            interpretability for clinically meaningful pre-screening.
+          </p>
+        </div>
+        <p class="rz-research__meta mono">
+          IEEE · ICAIIHI 2025 · 2nd Intl. Conf. on AI for Innovations in Healthcare Industries
+        </p>
+      </article>
+
+      <div class="research__actions" style="display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:1.4rem">
+        <a class="btn" href="https://doi.ieeecomputersociety.org/10.1109/ICAIIHI67124.2025.11403838" target="_blank" rel="noopener noreferrer">Read the paper&nbsp;↗</a>
+        <a class="btn btn--ghost" href="ResearchPaper.pdf" target="_blank" rel="noopener noreferrer">PDF</a>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="rz">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(04) · Education</span>
+        <h2 class="sec-head__title" data-reveal>The paper <em>trail</em></h2>
+      </header>
+
+      <div class="rz-edu">
+        <div class="rz-edu-row" data-reveal>
+          <span class="rz-edu-row__idx mono">01</span>
+          <span class="rz-edu-row__name">Ramrao Adik Institute of Technology</span>
+          <span class="rz-edu-row__when mono">2022 / 2026</span>
+          <span class="rz-edu-row__detail">B.Tech, AI &amp; Data Science · D.Y. Patil Deemed University · CGPA 7.5 · Navi Mumbai</span>
+        </div>
+
+        <div class="rz-edu-row" data-reveal>
+          <span class="rz-edu-row__idx mono">02</span>
+          <span class="rz-edu-row__name">Narayana Junior College · HSC</span>
+          <span class="rz-edu-row__when mono">2020 / 2022</span>
+          <span class="rz-edu-row__detail">12th Grade · 60.83% · Kalyan</span>
+        </div>
+
+        <div class="rz-edu-row" data-reveal>
+          <span class="rz-edu-row__idx mono">03</span>
+          <span class="rz-edu-row__name">Omkar International School · ICSE</span>
+          <span class="rz-edu-row__when mono">2010 / 2020</span>
+          <span class="rz-edu-row__detail">10th Grade · 88.20% · Dombivli</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STACK + CERTIFICATIONS ============ -->
+    <section class="rz">
+      <div class="rz-split">
+        <div>
+          <header class="sec-head sec-head--bare">
+            <span class="sec-head__label mono" data-reveal>(05) · Stack</span>
+          </header>
+          <div data-reveal>
+            <div class="rz-stack-row">
+              <h3 class="mono">Languages</h3>
+              <p>Python, Java, C, C++, JavaScript, HTML/CSS, SQL</p>
+            </div>
+            <div class="rz-stack-row">
+              <h3 class="mono">Frameworks</h3>
+              <p>PyTorch, TensorFlow, Flask, FastAPI, Next.js, React, Node.js, Streamlit</p>
+            </div>
+            <div class="rz-stack-row">
+              <h3 class="mono">Tools</h3>
+              <p>Git, Firebase, OR-Tools, Jupyter, Postman, Power BI, Android Studio</p>
+            </div>
+            <div class="rz-stack-row">
+              <h3 class="mono">Concepts</h3>
+              <p>Machine Learning, Deep Learning, GANs, LLM Integration, REST APIs</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <header class="sec-head sec-head--bare">
+            <span class="sec-head__label mono" data-reveal>(06) · Certifications</span>
+          </header>
+          <div data-reveal>
+            <div class="rz-cert-row">
+              <span class="rz-cert-row__name"><strong>AWS Academy Graduate</strong> <span>· Machine Learning</span></span>
+              <span class="rz-cert-row__by mono">AWS</span>
+            </div>
+            <div class="rz-cert-row">
+              <span class="rz-cert-row__name"><strong>Generative AI</strong></span>
+              <span class="rz-cert-row__by mono">edX</span>
+            </div>
+            <div class="rz-cert-row">
+              <span class="rz-cert-row__name"><strong>Android Compose Camp</strong></span>
+              <span class="rz-cert-row__by mono">GDSC RAIT</span>
+            </div>
+            <div class="rz-cert-row">
+              <span class="rz-cert-row__name"><strong>Industrial Approach to Java</strong></span>
+              <span class="rz-cert-row__by mono">CSI RAIT</span>
+            </div>
+          </div>
+          <p class="work-more mono" data-reveal style="margin-top:1.4rem">
+            + full record on <a href="certificates.html">certificates</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact">
+      <div class="rz-foot-top mono" data-reveal>
+        <span>( Open to full-time roles &amp; internships )</span>
+        <span>Response time · usually same day</span>
+      </div>
+
+      <div class="contact__hero">
+        <h2 class="contact__title" aria-label="Let's talk" data-reveal data-whisper="go on, it's one click">
+          <span class="hero__line"><span class="hero__word">LET'S</span></span>
+          <span class="hero__line hero__line--outline"><span class="hero__word">TALK</span></span>
+        </h2>
+        <a class="contact__email" href="mailto:mosambiswas999@gmail.com" data-copy-email data-whisper="click to copy||no mail app needed">mosambiswas999@gmail.com</a>
+      </div>
+
+      <footer class="footer">
+        <div class="footer__cols">
+          <div class="footer__col">
+            <h3 class="mono">Elsewhere</h3>
+            <a href="https://github.com/BiswasMosam" target="_blank" rel="noopener noreferrer">GitHub&nbsp;↗</a>
+            <a href="https://linkedin.com/in/mosambiswas" target="_blank" rel="noopener noreferrer">LinkedIn&nbsp;↗</a>
+            <a href="https://g.dev/MosamBiswas" target="_blank" rel="noopener noreferrer">Google&nbsp;Dev&nbsp;↗</a>
+          </div>
+          <div class="footer__col">
+            <h3 class="mono">Index</h3>
+            <a href="index.html">Portfolio</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="sheichobi/sheichobi.html">SheiChobi</a>
+            <a href="MosamBiswasResume.pdf" target="_blank" rel="noopener noreferrer">PDF · Colored</a>
+            <a href="MosamBiswasResume-BW.pdf" target="_blank" rel="noopener noreferrer">PDF · Black &amp; White</a>
+          </div>
+          <div class="footer__col">
+            <h3 class="mono">Local time</h3>
+            <p class="mono footer__clock"><span data-clock>--:--:--</span> IST</p>
+            <p class="mono">Navi Mumbai, India</p>
+          </div>
+        </div>
+        <div class="footer__base mono">
+          <span>© 2026 Mosam Biswas · Made with embers</span>
+          <a href="index.html">←&nbsp;Back to portfolio</a>
+          <a href="#top" class="footer__top">Back to top&nbsp;↑</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+  <script src="shader.js"></script>
+</body>
+
+</html>
