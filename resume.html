@@ -61,6 +61,29 @@
       min-height: 100svh;
     }
 
+    /* Four long contact links (vs the portfolio's three short ones):
+       let them wrap on desktop, stack them on small screens */
+    .hero__links {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      row-gap: 0.55rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero__links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.55rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero__top {
+        flex-wrap: wrap;
+        row-gap: 0.3rem;
+      }
+    }
+
     /* Sections share the work-list rhythm */
     .rz {
       padding-block: clamp(3.4rem, 8vw, 6rem);
