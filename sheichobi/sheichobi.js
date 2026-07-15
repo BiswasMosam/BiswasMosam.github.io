@@ -430,8 +430,15 @@
     const photo = activePhotos[activeIndex];
     if (!lightbox || !lightboxImg || !photo) return;
 
+    /* Hide the frame until the new original has loaded, otherwise the
+       previously shown photo lingers while the next one downloads. */
+    const reveal = () => lightboxImg.classList.remove('is-loading');
+    lightboxImg.classList.add('is-loading');
+    lightboxImg.onload = reveal;
+    lightboxImg.onerror = reveal;
     lightboxImg.src = photo.src;
     lightboxImg.alt = photo.title;
+    if (lightboxImg.complete && lightboxImg.naturalWidth > 0) reveal();
     if (lightboxCaption) lightboxCaption.textContent = photo.title;
     if (lightboxCounter) {
       lightboxCounter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(activePhotos.length).padStart(2, '0')}`;
