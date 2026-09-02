@@ -489,9 +489,19 @@
         });
         if (!res.ok) throw new Error(String(res.status));
 
+        /* FormSubmit answers 200 even when it refuses the message - an address
+           that was never confirmed, a submission it rejects - and says so only
+           in the body. Reading the status alone would show "Sent" for mail that
+           never left. */
+        const body = await res.json().catch(() => null);
+        if (!body || String(body.success) !== 'true') {
+          throw new Error((body && body.message) || 'rejected by FormSubmit');
+        }
+
         contactForm.reset();
         setStatus('Sent ✓ I usually reply the same day.');
-      } catch {
+      } catch (err) {
+        console.warn('Contact form:', err);
         setStatus('Could not send. The email below works too ↓');
       } finally {
         submitBtn.disabled = false;
