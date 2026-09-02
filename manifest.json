@@ -1,38 +1,65 @@
 {
+  "id": "/",
   "name": "Mosam Biswas Portfolio",
   "short_name": "Mosam Biswas",
-  "description": "Portfolio showcasing projects, AI work, and photography by Mosam Biswas",
+  "description": "The portfolio of Mosam Biswas: projects, research, resume and photography. Installs to the home screen and works with no internet.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
-  "orientation": "portrait-primary",
+  "background_color": "#0b0b0a",
+  "theme_color": "#0b0b0a",
+  "orientation": "any",
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/favicon.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
     {
-      "src": "/profile.jpg",
-      "sizes": "1280x720",
+      "src": "/screenshots/wide-work.jpg",
+      "sizes": "1280x800",
       "type": "image/jpeg",
-      "form_factor": "wide"
+      "form_factor": "wide",
+      "label": "Selected work"
     },
     {
-      "src": "/certificates/cert1.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
+      "src": "/screenshots/narrow-work.jpg",
+      "sizes": "720x1280",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Selected work"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Resume",
+      "short_name": "Resume",
+      "url": "/resume.html"
+    },
+    {
+      "name": "Certificates",
+      "short_name": "Certificates",
+      "url": "/certificates.html"
+    },
+    {
+      "name": "Photography",
+      "short_name": "SheiChobi",
+      "url": "/sheichobi/sheichobi.html"
     }
   ],
   "categories": ["portfolio", "technology", "photography"],

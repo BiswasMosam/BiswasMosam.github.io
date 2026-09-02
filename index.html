@@ -67,9 +67,8 @@
   </script>
 
   <script>document.documentElement.classList.add('js');</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Instrument+Serif:ital@1&family=Manrope:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet" />
+  <!-- Fonts are self-hosted so the page renders correctly with no network. -->
+  <link rel="stylesheet" href="/fonts.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="me" href="https://github.com/BiswasMosam" />
   <link rel="me" href="https://linkedin.com/in/mosambiswas" />
@@ -556,54 +555,7 @@
   <script src="motion.js"></script>
   <script src="shader.js"></script>
 
-  <!-- Service Worker Registration (production only · on dev origins any
-       previously registered worker is evicted so it can't serve stale files) -->
-  <script>
-    if ('serviceWorker' in navigator && !/(^|\.)mosambiswas\.com$/.test(location.hostname)) {
-      navigator.serviceWorker.getRegistrations()
-        .then((regs) => regs.forEach((reg) => reg.unregister()))
-        .catch(() => {});
-      if (window.caches) {
-        caches.keys().then((keys) => keys.forEach((key) => caches.delete(key))).catch(() => {});
-      }
-    } else if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js', { updateViaCache: 'none' })
-          .then((registration) => {
-            registration.update();
-
-            const notifyUpdate = () => {
-              if (registration.waiting) {
-                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-              }
-            };
-
-            registration.addEventListener('updatefound', () => {
-              const newWorker = registration.installing;
-              if (!newWorker) return;
-
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  notifyUpdate();
-                }
-              });
-            });
-
-            if (registration.waiting && navigator.serviceWorker.controller) {
-              notifyUpdate();
-            }
-          })
-          .catch(() => {});
-
-        let refreshing = false;
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          if (refreshing) return;
-          refreshing = true;
-          window.location.reload();
-        });
-      });
-    }
-  </script>
+  <script src="/sw-register.js"></script>
 </body>
 
 </html>
