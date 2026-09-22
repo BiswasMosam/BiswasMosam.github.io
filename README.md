@@ -48,7 +48,7 @@ BiswasMosam.github.io/
 
 <div align="center">
 
-**09** projects listed · **01** IEEE publication · **100** Lighthouse perf · **0kb** JS dependencies
+**10** projects listed · **01** IEEE publication · **100** Lighthouse perf · **0kb** JS dependencies
 
 </div>
 
@@ -65,7 +65,7 @@ Four Google Fonts, each with a strict role. Display type is fitted **edge-to-edg
 | **Manrope 400–600** | `BODY — PARAGRAPHS, FACTS, LEDES` | 1rem / 1.6 line-height, dimmed to 58% ink for long text. |
 | `Space Mono` | `LABELS — .MONO UTILITY CLASS` | 0.72rem, uppercase, +0.14em tracking. Indexes, clocks, whispers. |
 
-**Editorial devices** — Section headers follow a fixed grammar: a numbered mono label `(01) — Selected Work` above a Syne title where one word slips into *serif italic*. Nav links carry superscript counts (Work <sup>09</sup>), the second hero line renders as **outline text** via `-webkit-text-stroke` with a solid-color `@supports` fallback, and hairlines — 1px at 14% ink — rule every section like a printed spread.
+**Editorial devices** — Section headers follow a fixed grammar: a numbered mono label `(01) — Selected Work` above a Syne title where one word slips into *serif italic*. Nav links carry superscript counts (Work <sup>10</sup>), the second hero line renders as **outline text** via `-webkit-text-stroke` with a solid-color `@supports` fallback, and hairlines — 1px at 14% ink — rule every section like a printed spread.
 
 ---
 
