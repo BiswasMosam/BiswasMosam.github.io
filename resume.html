@@ -373,8 +373,47 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 1.4rem;
+      width: 100%;
+      text-align: left;
       padding: clamp(0.9rem, 2vw, 1.3rem) 0;
       border-top: 1px solid var(--line);
+    }
+
+    .rz-cert-row:hover .rz-cert-row__name strong,
+    .rz-cert-row:focus-visible .rz-cert-row__name strong {
+      color: var(--accent);
+    }
+
+    .rz-cert-row__go {
+      display: inline-block;
+      margin-left: 0.35em;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .rz-cert-row:hover .rz-cert-row__go,
+    .rz-cert-row:focus-visible .rz-cert-row__go {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    /* The work-list card, holding a certificate thumbnail instead of a stat */
+    .work-preview--cert {
+      width: min(20rem, 24vw);
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+    }
+
+    .work-preview--cert .work-preview__strip figure {
+      padding: 0.5rem;
+      background: var(--bg-2);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .work-preview--cert img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .rz-cert-row:last-child {
@@ -383,6 +422,7 @@
 
     .rz-cert-row__name strong {
       font-weight: 600;
+      transition: color 0.25s ease;
     }
 
     .rz-cert-row__name span {
@@ -443,6 +483,9 @@
       .skip-link,
       .btn,
       .rz-dl,
+      .rz-cert-row__go,
+      .work-preview,
+      .cert-modal,
       .contact-form,
       .research__actions,
       .footer__top {
@@ -802,31 +845,31 @@
           <header class="sec-head sec-head--bare">
             <span class="sec-head__label mono" data-reveal>(06) · Certifications</span>
           </header>
-          <div data-reveal>
-            <div class="rz-cert-row">
-              <span class="rz-cert-row__name"><strong>Samsung Innovation Campus</strong> <span>· AI</span></span>
-              <span class="rz-cert-row__by mono">Samsung · TSSC</span>
-            </div>
-            <div class="rz-cert-row">
-              <span class="rz-cert-row__name"><strong>AWS Academy Graduate</strong> <span>· Machine Learning</span></span>
-              <span class="rz-cert-row__by mono">AWS</span>
-            </div>
-            <div class="rz-cert-row">
-              <span class="rz-cert-row__name"><strong>Generative AI</strong></span>
-              <span class="rz-cert-row__by mono">edX</span>
-            </div>
-            <div class="rz-cert-row">
-              <span class="rz-cert-row__name"><strong>Agile &amp; Scrum Fundamentals</strong></span>
-              <span class="rz-cert-row__by mono"></span>
-            </div>
-            <div class="rz-cert-row">
-              <span class="rz-cert-row__name"><strong>Android Compose Camp</strong></span>
-              <span class="rz-cert-row__by mono">GDSC RAIT</span>
-            </div>
-            <div class="rz-cert-row">
-              <span class="rz-cert-row__name"><strong>Industrial Approach to Java</strong></span>
-              <span class="rz-cert-row__by mono">CSI RAIT</span>
-            </div>
+          <div id="certList" data-reveal>
+            <button class="rz-cert-row" type="button" data-cert-open="certificates/samsung-innovation-campus.png" data-preview="0">
+              <span class="rz-cert-row__name"><strong>Samsung Innovation Campus</strong> <span>· AI</span><span class="sr-only">, view certificate</span></span>
+              <span class="rz-cert-row__by mono">Samsung · TSSC <span class="rz-cert-row__go" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="rz-cert-row" type="button" data-cert-open="certificates/cert2.png" data-preview="1">
+              <span class="rz-cert-row__name"><strong>AWS Academy Graduate</strong> <span>· Machine Learning</span><span class="sr-only">, view certificate</span></span>
+              <span class="rz-cert-row__by mono">AWS <span class="rz-cert-row__go" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="rz-cert-row" type="button" data-cert-open="certificates/cert3.png" data-preview="2">
+              <span class="rz-cert-row__name"><strong>Generative AI</strong><span class="sr-only">, view certificate</span></span>
+              <span class="rz-cert-row__by mono">edX <span class="rz-cert-row__go" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="rz-cert-row" type="button" data-cert-open="certificates/cert4.png" data-preview="3">
+              <span class="rz-cert-row__name"><strong>Agile &amp; Scrum Fundamentals</strong><span class="sr-only">, view certificate</span></span>
+              <span class="rz-cert-row__by mono"><span class="rz-cert-row__go" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="rz-cert-row" type="button" data-cert-open="certificates/cert1.png" data-preview="4">
+              <span class="rz-cert-row__name"><strong>Android Compose Camp</strong><span class="sr-only">, view certificate</span></span>
+              <span class="rz-cert-row__by mono">GDSC RAIT <span class="rz-cert-row__go" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="rz-cert-row" type="button" data-cert-open="certificates/cert5.png" data-preview="5">
+              <span class="rz-cert-row__name"><strong>Industrial Approach to Java</strong><span class="sr-only">, view certificate</span></span>
+              <span class="rz-cert-row__by mono">CSI RAIT <span class="rz-cert-row__go" aria-hidden="true">↗</span></span>
+            </button>
           </div>
           <p class="work-more mono" data-reveal style="margin-top:1.4rem">
             + full record on <a href="certificates.html">certificates</a>
@@ -939,6 +982,24 @@
       </footer>
     </section>
   </main>
+
+  <!-- Certificate thumbnail that follows the cursor over the list (desktop) -->
+  <div class="work-preview work-preview--cert" id="certPreview" aria-hidden="true">
+    <div class="work-preview__strip" id="certPreviewStrip">
+      <figure><img src="certificates/thumbs/samsung-innovation-campus.webp" alt="" loading="lazy" decoding="async" /></figure>
+      <figure><img src="certificates/thumbs/cert2.webp" alt="" loading="lazy" decoding="async" /></figure>
+      <figure><img src="certificates/thumbs/cert3.webp" alt="" loading="lazy" decoding="async" /></figure>
+      <figure><img src="certificates/thumbs/cert4.webp" alt="" loading="lazy" decoding="async" /></figure>
+      <figure><img src="certificates/thumbs/cert1.webp" alt="" loading="lazy" decoding="async" /></figure>
+      <figure><img src="certificates/thumbs/cert5.webp" alt="" loading="lazy" decoding="async" /></figure>
+    </div>
+  </div>
+
+  <!-- Certificate modal -->
+  <div class="cert-modal" id="certModal" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button class="cert-modal__close" id="certModalClose" type="button" aria-label="Close">&times;</button>
+    <img id="certModalImg" src="" alt="Certificate preview" />
+  </div>
 
   <script src="main.js"></script>
   <script src="shader.js"></script>

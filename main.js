@@ -316,13 +316,14 @@
     });
   }
 
-  /* ---------- Work list: cursor-following preview ---------- */
+  /* ---------- Cursor-following previews ----------
+     The work list (portfolio) and the certificates (résumé) share one
+     mechanism: rows carry data-preview="n", hovering row n slides the
+     strip to its card. */
 
-  const workList = document.getElementById('workList');
-  const workPreview = document.getElementById('workPreview');
-  const workPreviewStrip = document.getElementById('workPreviewStrip');
+  const bindPreview = (list, preview, strip) => {
+    if (!list || !preview || !strip || !finePointer || prefersReduced) return;
 
-  if (workList && workPreview && workPreviewStrip && finePointer && !prefersReduced) {
     let previewX = 0;
     let previewY = 0;
     let previewTargetX = 0;
@@ -332,38 +333,57 @@
     const renderPreview = () => {
       previewX += (previewTargetX - previewX) * 0.12;
       previewY += (previewTargetY - previewY) * 0.12;
-      workPreview.style.left = `${previewX}px`;
-      workPreview.style.top = `${previewY}px`;
+      preview.style.left = `${previewX}px`;
+      preview.style.top = `${previewY}px`;
       previewRaf = requestAnimationFrame(renderPreview);
     };
 
-    workList.addEventListener('mousemove', (e) => {
-      previewTargetX = Math.min(e.clientX + 28, window.innerWidth - workPreview.offsetWidth - 16);
-      previewTargetY = e.clientY - workPreview.offsetHeight / 2;
-    }, { passive: true });
+    /* Right of the cursor when it fits, otherwise left, so the card never
+       sits on top of the row being read */
+    const aim = (e) => {
+      const right = e.clientX + 28;
+      previewTargetX = right + preview.offsetWidth > window.innerWidth - 16
+        ? e.clientX - 28 - preview.offsetWidth
+        : right;
+      previewTargetY = e.clientY - preview.offsetHeight / 2;
+    };
 
-    workList.addEventListener('mouseenter', (e) => {
-      previewX = previewTargetX = e.clientX + 28;
-      previewY = previewTargetY = e.clientY - workPreview.offsetHeight / 2;
+    list.addEventListener('mousemove', aim, { passive: true });
+
+    list.addEventListener('mouseenter', (e) => {
+      aim(e);
+      previewX = previewTargetX;
+      previewY = previewTargetY;
       if (!previewRaf) previewRaf = requestAnimationFrame(renderPreview);
     });
 
-    workList.addEventListener('mouseleave', () => {
-      workPreview.classList.remove('is-active');
+    list.addEventListener('mouseleave', () => {
+      preview.classList.remove('is-active');
       if (previewRaf) {
         cancelAnimationFrame(previewRaf);
         previewRaf = null;
       }
     });
 
-    workList.querySelectorAll('.work-row').forEach((row) => {
+    list.querySelectorAll('[data-preview]').forEach((row) => {
       row.addEventListener('mouseenter', () => {
         const index = Number(row.dataset.preview || 0);
-        workPreviewStrip.style.transform = `translateY(${index * -100}%)`;
-        workPreview.classList.add('is-active');
+        strip.style.transform = `translateY(${index * -100}%)`;
+        preview.classList.add('is-active');
       });
     });
-  }
+  };
+
+  bindPreview(
+    document.getElementById('workList'),
+    document.getElementById('workPreview'),
+    document.getElementById('workPreviewStrip')
+  );
+  bindPreview(
+    document.getElementById('certList'),
+    document.getElementById('certPreview'),
+    document.getElementById('certPreviewStrip')
+  );
 
   /* ---------- Parallax images ---------- */
 

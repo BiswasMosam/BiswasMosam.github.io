@@ -165,6 +165,7 @@ Links grow the dot to a 52px halo in `mix-blend-mode: difference`; links with th
 | `SCROLL REVEALS` | IntersectionObserver (threshold 0.12, −6% bottom margin) adds .is-in once per element; gated behind an html.js class so no-JS users see everything instantly |
 | `WORK ROWS` | Hover inverts each row via a ::before that scaleY's from bottom, flipping text to background color while the index digit turns vermilion and the title slides 10px |
 | `PROJECT PREVIEW` | A cursor-following stat card (lerp 0.12): each project leads with its headline outcome — 70% faster, 0.90 ROC-AUC, zero conflicts — over a per-project gradient; hovering row n translates the strip by n × −100% — desktop only |
+| `CERTIFICATE PREVIEW` | The résumé's certifications reuse the same cursor card, holding a 720px WebP thumbnail of each certificate; it opens left of the cursor when the right edge is too close. Clicking a row opens the full certificate in the shared modal, and Enter does the same from the keyboard. Desktop only for the card; the click works everywhere |
 | `PARALLAX` | Images with data-parallax get translateY(offset × −speed) + scale(1.12) from a scroll-throttled rAF, skipping anything off-screen |
 | `MARQUEE` | Pure CSS fallback (duplicated track, 36s loop); on desktop with motion enabled, `motion.js` takes over and drives it by scroll velocity |
 | `LIVE CLOCK` | Intl.DateTimeFormat pinned to Asia/Kolkata ticks every second in header and footer — the site knows what time it is at home |

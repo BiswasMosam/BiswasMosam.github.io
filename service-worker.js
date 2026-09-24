@@ -7,7 +7,7 @@
 
    Bump VERSION on every deploy. The name change is what evicts the old cache. */
 
-const VERSION = 'v22';
+const VERSION = 'v23';
 const CACHE = `mosam-biswas-portfolio-${VERSION}`;
 
 /* Everything needed to render all four pages with the network switched off.
@@ -79,6 +79,12 @@ const MEDIA = [
   '/certificates/cert7.png',
   '/certificates/research-photo.png',
   '/certificates/samsung-innovation-campus.png',
+  '/certificates/thumbs/cert1.webp',
+  '/certificates/thumbs/cert2.webp',
+  '/certificates/thumbs/cert3.webp',
+  '/certificates/thumbs/cert4.webp',
+  '/certificates/thumbs/cert5.webp',
+  '/certificates/thumbs/samsung-innovation-campus.webp',
 
   '/sheichobi/Photographs/con8.webp',
   '/sheichobi/Photographs/mono2.webp',
