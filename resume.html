@@ -7,7 +7,7 @@
   <title>Résumé · Mosam Biswas</title>
   <link rel="canonical" href="https://www.mosambiswas.com/resume.html" />
 
-  <meta name="description" content="Résumé of Mosam Biswas — a B.Tech AI & Data Science graduate and software developer working across deep learning, LLM applications and full-stack web & mobile, with published IEEE research and 20+ projects shipped." />
+  <meta name="description" content="Résumé of Mosam Biswas, a 2026 B.Tech AI & Data Science graduate and software engineer who builds AI systems and ships them as working software, with a software internship and IEEE-published ML research." />
   <meta name="author" content="Mosam Biswas" />
   <meta name="robots" content="index, follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -20,14 +20,14 @@
   <link rel="manifest" href="/manifest.json" />
 
   <meta property="og:title" content="Résumé · Mosam Biswas" />
-  <meta property="og:description" content="B.Tech AI & Data Science graduate and software developer. Deep learning, LLM applications, full-stack web & mobile, published IEEE research, 20+ projects shipped." />
+  <meta property="og:description" content="Software engineer, AI/ML and full-stack. 2026 B.Tech AI & Data Science graduate: an AI form-filling Chrome extension, a fully local voice assistant, IEEE-published research." />
   <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://www.mosambiswas.com/resume.html" />
   <meta property="og:image" content="https://www.mosambiswas.com/profile.jpg" />
   <meta property="og:site_name" content="Mosam Biswas Portfolio" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Résumé · Mosam Biswas" />
-  <meta name="twitter:description" content="B.Tech AI & Data Science graduate and software developer. Published IEEE research, 20+ projects shipped." />
+  <meta name="twitter:description" content="Software engineer, AI/ML and full-stack. 2026 B.Tech AI & Data Science graduate with IEEE-published research." />
   <meta name="twitter:image" content="https://www.mosambiswas.com/profile.jpg" />
 
   <script>document.documentElement.classList.add('js');</script>
@@ -206,6 +206,25 @@
       letter-spacing: -0.01em;
       text-transform: uppercase;
       line-height: 1.15;
+    }
+
+    .rz-work-row__name a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .rz-work-row__name a:hover {
+      color: var(--accent);
+    }
+
+    /* The shared badge is sized for the portfolio's huge row titles */
+    .rz-work-row__name .work-row__live {
+      font-size: 0.5em;
+    }
+
+    .rz-work-row__name .work-row__live a {
+      color: var(--accent);
     }
 
     .rz-work-row__desc {
@@ -397,8 +416,8 @@
     }
 
     /* ---------- Print / B&W PDF ----------
-       Ctrl+P (and the generated MosamBiswasResume-BW.pdf) renders the same
-       page as clean black type on white paper. */
+       Ctrl+P renders the same page as clean black type on white paper.
+       (MosamBiswasResume-BW.pdf is a separate LaTeX résumé, not this print.) */
     @media print {
       :root {
         --bg: #fff;
@@ -566,11 +585,11 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero hero--sub">
-      <h1 class="sr-only">Résumé of Mosam Biswas — AI & Data Science graduate and software developer</h1>
+      <h1 class="sr-only">Résumé of Mosam Biswas, software engineer in AI/ML and full-stack development</h1>
 
       <div class="hero__top mono" data-reveal>
         <span data-whisper="aka Janam Kundali">Résumé · Vol. 06</span>
-        <span class="hero__top-mid">AI / ML · Full-Stack · Research</span>
+        <span class="hero__top-mid">Software Engineer · AI / ML · Full-Stack</span>
         <span>B.Tech AI &amp; DS · Class of 2026</span>
       </div>
 
@@ -581,9 +600,9 @@
 
       <div class="hero__foot">
         <p class="hero__tag" data-reveal>
-          A <em>B.Tech (AI &amp; Data Science)</em> graduate and software developer working across
-          deep learning, LLM applications and full-stack web &amp; mobile. Published IEEE researcher,
-          20+ projects shipped.
+          A 2026 <em>B.Tech AI &amp; Data Science</em> graduate who builds AI systems and ships them as
+          working software: an AI form-filling Chrome extension, a fully local voice assistant, a mental
+          health platform used by 100+ students, and offline apps for two small businesses.
         </p>
         <div class="hero__side" data-reveal>
           <a class="hero__status" href="#contact" data-whisper="yes, actually open"><span class="hero__status-dot"></span>Open to full-time roles &amp; internships</a>
@@ -606,7 +625,7 @@
       <header class="sec-head">
         <span class="sec-head__label mono" data-reveal>(01) · Experience</span>
         <h2 class="sec-head__title" data-reveal>Where I've <em>worked</em></h2>
-        <span class="sec-head__aside mono" data-reveal>2024 / 2026</span>
+        <span class="sec-head__aside mono" data-reveal>2026</span>
       </header>
 
       <div class="xp-list">
@@ -617,30 +636,8 @@
             <span class="xp__when mono">Jan / Apr 2026 · Mumbai</span>
           </div>
           <ul class="xp__points">
-            <li>Delivered work across <strong>4 client projects</strong> and independently built a full client-facing <strong>dashboard</strong> as a solo project.</li>
-            <li>Engaged directly with clients to gather requirements, resolve issues and ship features.</li>
-          </ul>
-        </article>
-
-        <article class="xp" data-reveal>
-          <div class="xp__head">
-            <span class="xp__idx mono">02</span>
-            <h3 class="xp__role">AI Trainee <span class="xp__at">at <em>Samsung Innovation Campus</em></span></h3>
-            <span class="xp__when mono">Nov 2025 / Mar 2026</span>
-          </div>
-          <ul class="xp__points">
-            <li>Completed a <strong>four-month industry-academia AI program</strong>: core AI concepts, practical ML workflows and real-world applications; co-certified by <strong>Samsung Southwest Asia &amp; TSSC</strong>.</li>
-          </ul>
-        </article>
-
-        <article class="xp" data-reveal>
-          <div class="xp__head">
-            <span class="xp__idx mono">03</span>
-            <h3 class="xp__role">Technical Head <span class="xp__at">at <em>Photocircle RAIT</em></span></h3>
-            <span class="xp__when mono">Jul 2024 / Jul 2025 · Navi Mumbai</span>
-          </div>
-          <ul class="xp__points">
-            <li>Led technical operations: equipment, media, events; ran <strong>3 workshops (75+ students)</strong>, 4 photo walks and 2 inter-college competitions, boosting participation by <strong>60%</strong>.</li>
+            <li>Shipped work across <strong>4 client projects</strong>, working directly with clients to gather requirements and resolve issues.</li>
+            <li>Designed and built a <strong>client-facing dashboard solo</strong> with Angular, Flask and MySQL over REST APIs, owning it from requirements to handover (later submitted as my B.Tech dissertation).</li>
           </ul>
         </article>
       </div>
@@ -651,24 +648,34 @@
       <header class="sec-head">
         <span class="sec-head__label mono" data-reveal>(02) · Selected Work</span>
         <h2 class="sec-head__title" data-reveal>Six of <em>twenty-plus</em></h2>
-        <span class="sec-head__aside mono" data-reveal>2024 / 2025</span>
+        <span class="sec-head__aside mono" data-reveal>2025 / 2026</span>
       </header>
 
       <div class="rz-work">
         <div class="rz-work-row" data-reveal>
           <span class="rz-work-row__idx mono">01</span>
-          <span class="rz-work-row__name">PixelForge</span>
-          <p class="rz-work-row__desc">Leukemia detection on C-NMC, <strong>84% acc, 0.90 ROC-AUC, 95% recall</strong>; custom GAN augments scarce medical data.</p>
+          <span class="rz-work-row__name"><a href="https://github.com/BiswasMosam/fill.ai" target="_blank" rel="noopener noreferrer">fill.ai</a><sup class="work-row__live"><a href="https://www.mosambiswas.com/fill.ai/" target="_blank" rel="noopener noreferrer">Install</a></sup></span>
+          <p class="rz-work-row__desc">Chrome extension that <strong>fills web forms with AI</strong> from your resume. Every answer must <strong>cite a profile field</strong> or it is thrown out; <strong>92-check end-to-end suite</strong>, released by CI/CD.</p>
           <span class="rz-work-row__meta mono">
-            <span class="rz-work-row__tech">Python · PyTorch · GANs</span>
-            <span class="rz-work-row__year">2025</span>
+            <span class="rz-work-row__tech">JS · Chrome MV3 · LLMs</span>
+            <span class="rz-work-row__year">2026</span>
           </span>
         </div>
 
         <div class="rz-work-row" data-reveal>
           <span class="rz-work-row__idx mono">02</span>
-          <span class="rz-work-row__name">MindFirst</span>
-          <p class="rz-work-row__desc">Mental-health screening for <strong>100+ students</strong>, chatbot + psychometrics at <strong>95% accuracy</strong>, drop-off cut <strong>30%</strong>.</p>
+          <span class="rz-work-row__name"><a href="https://github.com/BiswasMosam/Aminal-Public" target="_blank" rel="noopener noreferrer">AMINAL</a></span>
+          <p class="rz-work-row__desc">Local-first voice assistant for Windows: speech, LLM intent, vision and text-to-speech <strong>fully on-device</strong>. <strong>29K lines of Python, 125 commands, 849 tests</strong>.</p>
+          <span class="rz-work-row__meta mono">
+            <span class="rz-work-row__tech">Python · Whisper · Ollama</span>
+            <span class="rz-work-row__year">2026</span>
+          </span>
+        </div>
+
+        <div class="rz-work-row" data-reveal>
+          <span class="rz-work-row__idx mono">03</span>
+          <span class="rz-work-row__name"><a href="https://github.com/BiswasMosam/Mind-First" target="_blank" rel="noopener noreferrer">MindFirst</a></span>
+          <p class="rz-work-row__desc">Mental health pre-screening for <strong>100+ students</strong>, chatbot + PHQ-9/GAD-7 at <strong>95% accuracy</strong>, drop-off cut <strong>30%</strong>.</p>
           <span class="rz-work-row__meta mono">
             <span class="rz-work-row__tech">Next.js · Flask · Prisma</span>
             <span class="rz-work-row__year">2025</span>
@@ -676,19 +683,9 @@
         </div>
 
         <div class="rz-work-row" data-reveal>
-          <span class="rz-work-row__idx mono">03</span>
-          <span class="rz-work-row__name">Rail Mitra</span>
-          <p class="rz-work-row__desc">Railway platform &amp; track-assignment optimizer, <strong>constraint programming</strong> yields conflict-free schedules.</p>
-          <span class="rz-work-row__meta mono">
-            <span class="rz-work-row__tech">Python · OR-Tools · CP</span>
-            <span class="rz-work-row__year">2025</span>
-          </span>
-        </div>
-
-        <div class="rz-work-row" data-reveal>
           <span class="rz-work-row__idx mono">04</span>
-          <span class="rz-work-row__name">IntelliStatement</span>
-          <p class="rz-work-row__desc">Bank-statement analyzer, <strong>LLM extraction</strong> from PDFs/images, insights via FastAPI + Streamlit.</p>
+          <span class="rz-work-row__name"><a href="https://github.com/BiswasMosam/LLM-bank-statement-analyzer" target="_blank" rel="noopener noreferrer">IntelliStatement</a></span>
+          <p class="rz-work-row__desc">Bank statement analyzer, <strong>LLM extraction</strong> from PDFs and images into structured data, insights via FastAPI + Streamlit.</p>
           <span class="rz-work-row__meta mono">
             <span class="rz-work-row__tech">FastAPI · Streamlit · LLM</span>
             <span class="rz-work-row__year">2025</span>
@@ -697,21 +694,21 @@
 
         <div class="rz-work-row" data-reveal>
           <span class="rz-work-row__idx mono">05</span>
-          <span class="rz-work-row__name">Sim Sim</span>
-          <p class="rz-work-row__desc">Desktop AI assistant, conversational GUI + voice commands, <strong>70% faster</strong> task execution.</p>
+          <span class="rz-work-row__name"><a href="https://github.com/BiswasMosam/PixelForge" target="_blank" rel="noopener noreferrer">PixelForge</a></span>
+          <p class="rz-work-row__desc">Leukemia cell classification on C-NMC at <strong>0.90 ROC-AUC, 95% recall</strong>; a custom spectral-norm GAN augments scarce data.</p>
           <span class="rz-work-row__meta mono">
-            <span class="rz-work-row__tech">Python · PySide6</span>
-            <span class="rz-work-row__year">2024</span>
+            <span class="rz-work-row__tech">Python · PyTorch · GANs</span>
+            <span class="rz-work-row__year">2025</span>
           </span>
         </div>
 
         <div class="rz-work-row" data-reveal>
           <span class="rz-work-row__idx mono">06</span>
-          <span class="rz-work-row__name">Committee Connect</span>
-          <p class="rz-work-row__desc">Android app for committee task &amp; attendance tracking with <strong>real-time Firebase sync</strong>.</p>
+          <span class="rz-work-row__name"><a href="https://github.com/BiswasMosam/Pops" target="_blank" rel="noopener noreferrer">Pops</a> &amp; <a href="https://github.com/BiswasMosam/Order-Control" target="_blank" rel="noopener noreferrer">Order Control</a></span>
+          <p class="rz-work-row__desc">Two <strong>offline Android apps</strong> for real small businesses: a fabrication firm's order tracker and a food stall order board, on relational SQLite.</p>
           <span class="rz-work-row__meta mono">
-            <span class="rz-work-row__tech">Android · Java · Firebase</span>
-            <span class="rz-work-row__year">2024</span>
+            <span class="rz-work-row__tech">Flutter · Dart · SQLite</span>
+            <span class="rz-work-row__year">2026</span>
           </span>
         </div>
       </div>
@@ -736,13 +733,14 @@
             Testing Needs Using Machine Learning Models
           </p>
           <p class="rz-research__body">
-            Benchmarked <strong>5 ML models</strong> (Logistic Regression, Random Forest, SVM, XGBoost,
-            LightGBM) on PHQ-9 / GAD-7 psychometric data with cross-validation and <strong>SHAP</strong>
-            interpretability for clinically meaningful pre-screening.
+            Benchmarked Logistic Regression, Random Forest, SVM, XGBoost and LightGBM on
+            <strong>28.5K PHQ-9 / GAD-7 records</strong> (stratified 5-fold CV, paired t-tests). Logistic
+            Regression led at <strong>99% accuracy</strong> with <strong>SHAP</strong> explanations, and the
+            pre-screening flow roughly halves screening overhead.
           </p>
         </div>
         <p class="rz-research__meta mono">
-          IEEE · ICAIIHI 2025 · 2nd Intl. Conf. on AI for Innovations in Healthcare Industries
+          Co-author · IEEE Xplore · Proc. ICAIIHI 2025 · 2nd Intl. Conf. on AI for Innovations in Healthcare Industries
         </p>
       </article>
 
@@ -764,21 +762,7 @@
           <span class="rz-edu-row__idx mono">01</span>
           <span class="rz-edu-row__name">Ramrao Adik Institute of Technology</span>
           <span class="rz-edu-row__when mono">2022 / 2026</span>
-          <span class="rz-edu-row__detail">B.Tech, AI &amp; Data Science · D.Y. Patil Deemed University · CGPA 7.5 · Navi Mumbai</span>
-        </div>
-
-        <div class="rz-edu-row" data-reveal>
-          <span class="rz-edu-row__idx mono">02</span>
-          <span class="rz-edu-row__name">Narayana Junior College · HSC</span>
-          <span class="rz-edu-row__when mono">2020 / 2022</span>
-          <span class="rz-edu-row__detail">12th Grade · 60.83% · Kalyan</span>
-        </div>
-
-        <div class="rz-edu-row" data-reveal>
-          <span class="rz-edu-row__idx mono">03</span>
-          <span class="rz-edu-row__name">Omkar International School · ICSE</span>
-          <span class="rz-edu-row__when mono">2010 / 2020</span>
-          <span class="rz-edu-row__detail">10th Grade · 88.20% · Dombivli</span>
+          <span class="rz-edu-row__detail">B.Tech in Computer Engineering (Major: Artificial Intelligence and Data Science) · D. Y. Patil Deemed to be University · CGPA 7.5 · Navi Mumbai</span>
         </div>
       </div>
     </section>
@@ -793,19 +777,23 @@
           <div data-reveal>
             <div class="rz-stack-row">
               <h3 class="mono">Languages</h3>
-              <p>Python, Java, C, C++, JavaScript, HTML/CSS, SQL</p>
+              <p>Python, Java, JavaScript, TypeScript, Dart, SQL, C++, C, HTML/CSS</p>
             </div>
             <div class="rz-stack-row">
-              <h3 class="mono">Frameworks</h3>
-              <p>PyTorch, TensorFlow, Flask, FastAPI, Next.js, React, Node.js, Streamlit</p>
+              <h3 class="mono">AI / ML</h3>
+              <p>PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM, SHAP, OpenCV, LLMs (OpenAI, Gemini, Claude, Ollama)</p>
+            </div>
+            <div class="rz-stack-row">
+              <h3 class="mono">Backend &amp; Web</h3>
+              <p>FastAPI, Flask, Node.js, Express.js, Next.js, React, Angular, REST APIs, WebSockets, Chrome Extensions</p>
+            </div>
+            <div class="rz-stack-row">
+              <h3 class="mono">Mobile &amp; DB</h3>
+              <p>Flutter, Android (Java), Firebase, MySQL, PostgreSQL, MongoDB, SQLite</p>
             </div>
             <div class="rz-stack-row">
               <h3 class="mono">Tools</h3>
-              <p>Git, Firebase, OR-Tools, Jupyter, Postman, Power BI, Android Studio</p>
-            </div>
-            <div class="rz-stack-row">
-              <h3 class="mono">Concepts</h3>
-              <p>Machine Learning, Deep Learning, GANs, LLM Integration, REST APIs</p>
+              <p>Git, GitHub Actions (CI/CD), AWS, Pandas, Postman, Google OR-Tools, Unit &amp; E2E Testing, Agile/Scrum</p>
             </div>
           </div>
         </div>
@@ -816,12 +804,20 @@
           </header>
           <div data-reveal>
             <div class="rz-cert-row">
+              <span class="rz-cert-row__name"><strong>Samsung Innovation Campus</strong> <span>· AI</span></span>
+              <span class="rz-cert-row__by mono">Samsung · TSSC</span>
+            </div>
+            <div class="rz-cert-row">
               <span class="rz-cert-row__name"><strong>AWS Academy Graduate</strong> <span>· Machine Learning</span></span>
               <span class="rz-cert-row__by mono">AWS</span>
             </div>
             <div class="rz-cert-row">
               <span class="rz-cert-row__name"><strong>Generative AI</strong></span>
               <span class="rz-cert-row__by mono">edX</span>
+            </div>
+            <div class="rz-cert-row">
+              <span class="rz-cert-row__name"><strong>Agile &amp; Scrum Fundamentals</strong></span>
+              <span class="rz-cert-row__by mono"></span>
             </div>
             <div class="rz-cert-row">
               <span class="rz-cert-row__name"><strong>Android Compose Camp</strong></span>
@@ -835,6 +831,37 @@
           <p class="work-more mono" data-reveal style="margin-top:1.4rem">
             + full record on <a href="certificates.html">certificates</a>
           </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LEADERSHIP & COMMUNITY ============ -->
+    <section class="rz">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(07) · Leadership &amp; Community</span>
+        <h2 class="sec-head__title" data-reveal>Beyond the <em>code</em></h2>
+      </header>
+
+      <div class="rz-edu">
+        <div class="rz-edu-row" data-reveal>
+          <span class="rz-edu-row__idx mono">01</span>
+          <span class="rz-edu-row__name">Technical Head · Photocircle RAIT</span>
+          <span class="rz-edu-row__when mono">2024 / 2025</span>
+          <span class="rz-edu-row__detail">Ran 3 workshops for 75+ students; participation up 60%.</span>
+        </div>
+
+        <div class="rz-edu-row" data-reveal>
+          <span class="rz-edu-row__idx mono">02</span>
+          <span class="rz-edu-row__name">Google Developer Groups</span>
+          <span class="rz-edu-row__when mono">Member</span>
+          <span class="rz-edu-row__detail">25+ codelabs completed · Google Cloud Innovator.</span>
+        </div>
+
+        <div class="rz-edu-row" data-reveal>
+          <span class="rz-edu-row__idx mono">03</span>
+          <span class="rz-edu-row__name">Hacktoberfest · SIH 2025</span>
+          <span class="rz-edu-row__when mono">Community</span>
+          <span class="rz-edu-row__detail">Hacktoberfest, and the Smart India Hackathon 2025 internal round.</span>
         </div>
       </div>
     </section>
