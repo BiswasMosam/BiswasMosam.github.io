@@ -189,7 +189,7 @@ Links grow the dot to a 52px halo in `mix-blend-mode: difference`; links with th
 - **Type a word** · with no field focused, `hire` opens the contact form and `mosam` turns the hero's letters over one by one (Web Animations, so the CSS transforms stay untouched).
 - **Print the homepage** · a `.print-card` that only exists on paper: name, contact, a QR code (inline SVG, generated once, no library) back to the site. `body:has(> .print-card)` hides everything else in print; other pages print as before.
 - **Darkroom safelight** · press `R` on SheiChobi and one fixed layer multiplies red over the page, the way a darkroom looks under its safelight. No filter on the photographs themselves.
-- **PixelShift, split** and **Fill.ai, once more** · `rgb` on PixelShift's start screen pulls its pixel wordmark apart into the three channels; `Alt Shift F` on Fill.ai's page refills its demo form. Both live in those repos and report here through `eggs.js`.
+- **PixelShift, split** and **Fill.ai, once more** · `rgb` on PixelShift's start screen pulls its pixel wordmark apart into the three channels; `Alt Shift F` on Fill.ai's page refills its demo form, or, when Fill.ai is installed and Chrome hands it the keys, counts the extension's own panel (`#fillai-root`) appearing on the page. Both live in those repos and report here through `eggs.js`.
 
 ---
 
