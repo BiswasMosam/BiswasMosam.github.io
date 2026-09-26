@@ -4,6 +4,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- GitHub Pages paths are case sensitive and it has no redirect settings,
+       so a wrong-case address (/fill.ai/ from before the Fill.ai rename, a
+       typed /pixelshift/) lands here. Forward it to the real path before the
+       page paints. Only the casing is corrected, so a path that is already
+       right never loops. -->
+  <script>
+    (() => {
+      const real = ['/Fill.ai/', '/PixelShift/', '/To-Do/', '/sheichobi/', '/help/', '/cv/',
+        '/resume.html', '/certificates.html', '/humans.txt'];
+      const path = location.pathname;
+      const lower = path.toLowerCase();
+      for (const to of real) {
+        const folder = to.endsWith('/');
+        const hit = lower === to.toLowerCase() ||
+          (folder && (lower === to.slice(0, -1).toLowerCase() || lower.startsWith(to.toLowerCase())));
+        if (!hit) continue;
+        const fixed = to + path.slice(to.length);
+        if (fixed !== path) location.replace(fixed + location.search + location.hash);
+        return;
+      }
+    })();
+  </script>
+
   <title>404 · Mosam Biswas</title>
   <meta name="description" content="This page does not exist. The rest of Mosam Biswas's portfolio does." />
   <meta name="robots" content="noindex" />
