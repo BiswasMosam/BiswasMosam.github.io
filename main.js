@@ -568,9 +568,25 @@
 
   /* ---------- Console signature ---------- */
 
+  /* For whoever opens dev tools. Text colour is left to the console so it
+     reads on light and dark themes; only the accent is set. */
+  const accent = 'color:#ff5227;';
+  const mono = 'font-family:"Space Mono",ui-monospace,monospace;';
   console.log(
-    '%cMosam Biswas%c — thanks for peeking under the hood.\nmosambiswas999@gmail.com',
-    'font-size:16px; font-weight:bold;',
-    'font-size:12px; opacity:0.7;'
+    '%c MOSAM BISWAS ',
+    'font:800 22px/1.6 Syne,system-ui,sans-serif; letter-spacing:.08em; color:#0b0b0a; background:#ff5227; padding:4px 10px;'
+  );
+  console.log(
+    '%cHi. You opened dev tools, so you are my kind of person.\n\n' +
+    '%cEverything here is written by hand: no framework, no build step, no libraries.\n' +
+    'The embers are one raw WebGL shader (shader.js). The mouse bubble is main.js.\n' +
+    'Read the lot: %chttps://github.com/BiswasMosam/BiswasMosam.github.io%c\n\n' +
+    'Credits: %c' + location.origin + '/humans.txt%c\n' +
+    'Hiring, or want to talk shop? %cmosambiswas999@gmail.com',
+    mono + 'font-size:13px; font-weight:bold;',
+    mono + 'font-size:12px; line-height:1.7;',
+    mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
+    mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
+    mono + 'font-size:12px;' + accent
   );
 })();

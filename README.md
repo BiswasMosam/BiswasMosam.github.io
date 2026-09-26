@@ -175,7 +175,10 @@ Links grow the dot to a 52px halo in `mix-blend-mode: difference`; links with th
 | `CERT MODAL` | Certificates open in a dimmed dialog (rgba(8,8,7,0.96)); close by ×, backdrop click, or Escape — the × rotates 90° on hover |
 | `PORTRAIT` | About photo is sticky and grayscale(1); hovering restores color — a small reward for reading |
 
-**Easter eggs** — A console signature greets anyone who opens DevTools (*"thanks for peeking under the hood"*), a giant ASCII-art portrait hides in an HTML comment at the end of index.html, the résumé whispers *"aka Janam Kundali"*, and the footer credit insists — correctly — that *"even this bubble is handmade."*
+**Easter eggs** — Open DevTools and the console says hi, with a link to this source and to the credits. A giant ASCII-art portrait hides in an HTML comment at the end of index.html, the résumé whispers *"aka Janam Kundali"*, and the footer credit insists — correctly — that *"even this bubble is handmade."*
+
+- **`404.html`** · a missing page gets the hero's solid-over-outline type, the ember field, and a small working terminal: `help`, `ls`, `cd resume`, `cat humans.txt`, `whoami`, tab completion and ↑↓ history. It reads the path you asked for and guesses the page you meant (`/resme` → *did you mean /resume.html?*). Output is built with `textContent` only, since the path is whatever the visitor typed. Every URL on it is absolute, because GitHub Pages serves it at any depth.
+- **[`/humans.txt`](https://www.mosambiswas.com/humans.txt)** · the [humanstxt.org](https://humanstxt.org) credits: who made the site, the four typefaces and their foundries, the tools. Every page links it with `<link rel="author">`.
 
 ---
 

@@ -1,0 +1,47 @@
+/* humanstxt.org */
+
+/* TEAM */
+
+    Design, code, words, photographs: Mosam Biswas
+    Role: Software engineer, AI / ML and full-stack
+    Site: https://www.mosambiswas.com
+    GitHub: https://github.com/BiswasMosam
+    LinkedIn: https://linkedin.com/in/mosambiswas
+    Contact: mosambiswas999 [at] gmail.com
+    From: Navi Mumbai, India
+
+/* THANKS */
+
+    The friend who read the whole site and told me to lose the dashes.
+    Everyone who opened dev tools to see how the embers work. Hello.
+
+/* SITE */
+
+    Last update: 2026/09/26
+    Language: English
+    Doctype: HTML5
+    Standards: HTML5, CSS3, WebGL 1, ES2020, Web App Manifest, Service Workers
+    Frameworks: none. No build step, no libraries. Every script is hand-rolled.
+
+    Code:
+        Ember field: a raw WebGL fragment shader, domain-warped smoke and embers
+        Motion: vanilla JS, inertial scroll, split-letter reveals, magnetic buttons
+        The mouse bubble: vanilla JS. It whispers over some headings and
+        turns into a lens over others. Go looking.
+        Offline: a service worker that precaches the whole site
+
+    Type (self-hosted, SIL Open Font License):
+        Syne by Bonjour Monde
+        Instrument Serif by Instrument
+        Manrope by Mikhail Sharanda
+        Space Mono by Colophon Foundry
+
+    Tools: VS Code, Git, Chrome DevTools, Figma, Photoshop
+    Hosting: GitHub Pages
+    Domain: Namecheap
+    Contact form: FormSubmit
+
+/* EASTER EGGS */
+
+    Open the console.
+    Visit a page that does not exist.
