@@ -22,7 +22,10 @@
           (folder && (lower === to.slice(0, -1).toLowerCase() || lower.startsWith(to.toLowerCase())));
         if (!hit) continue;
         const fixed = to + path.slice(to.length);
-        if (fixed !== path) location.replace(fixed + location.search + location.hash);
+        if (fixed !== path) {
+          window.__forwarding = true;
+          location.replace(fixed + location.search + location.hash);
+        }
         return;
       }
     })();
@@ -271,6 +274,7 @@
     </nav>
   </main>
 
+  <script src="/eggs.js"></script>
   <script>
     (() => {
       const out = document.getElementById('out');
@@ -377,6 +381,13 @@
         [/\.aws|\.ssh|id_rsa|credentials|\.sql$|\.bak$/i, 'no keys, no backups, no database dumps. Good try though.']
       ];
       const probe = probes.find(([pattern]) => pattern.test(asked));
+
+      /* Easter eggs: being lost is one; a bot's path, typed by a human, is another.
+         Not for wrong-case addresses, which are forwarded before this runs. */
+      if (window.eggs && !window.__forwarding) {
+        window.eggs.find('lost');
+        if (probe) setTimeout(() => window.eggs.find('bots'), 2200);
+      }
 
       if (probe) {
         const reply = document.getElementById('reply');

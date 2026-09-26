@@ -48,3 +48,6 @@
     In a terminal: curl -L mosambiswas.com/cv
     Some old cheat codes still work.
     Given up? Every one of them, spoiled: https://www.mosambiswas.com/help
+
+    You read the credits, so this file is an egg as well.
+    Claim it: https://www.mosambiswas.com/?humans

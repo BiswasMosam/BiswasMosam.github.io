@@ -7,7 +7,7 @@
 
    Bump VERSION on every deploy. The name change is what evicts the old cache. */
 
-const VERSION = 'v27';
+const VERSION = 'v28';
 const CACHE = `mosam-biswas-portfolio-${VERSION}`;
 
 /* Everything needed to render all four pages with the network switched off.
@@ -25,6 +25,7 @@ const SHELL = [
   '/sheichobi/sheichobi.css',
 
   '/main.js',
+  '/eggs.js',
   '/sw-register.js',
   '/motion.js',
   '/shader.js',

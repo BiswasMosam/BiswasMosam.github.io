@@ -368,7 +368,7 @@
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'filter-button';
-      button.textContent = filter.category === 'all' ? `All — ${allPhotos.length}` : `${filter.label} — ${filter.count}`;
+      button.textContent = filter.category === 'all' ? `All · ${allPhotos.length}` : `${filter.label} · ${filter.count}`;
       button.classList.toggle('active', activeFilter === filter.category);
       button.addEventListener('click', () => setActiveFilter(filter.category));
       filterBar.appendChild(button);
@@ -395,7 +395,7 @@
 
     if (galleryStatus) {
       const label = activeFilter === 'all' ? 'All collections' : getCategoryLabel(activeFilter);
-      galleryStatus.textContent = `${label} — ${visiblePhotos.length} of ${activePhotos.length}`;
+      galleryStatus.textContent = `${label} · ${visiblePhotos.length} of ${activePhotos.length}`;
     }
 
     if (loadMoreButton) {
@@ -512,9 +512,35 @@
     renderGallery();
   };
 
-  /* ---------- Right-click guard ---------- */
+  /* ---------- Right-click: the site's own menu (eggs.js) ---------- */
 
-  document.addEventListener('contextmenu', (e) => e.preventDefault());
+  if (window.eggs) {
+    window.eggs.contextMenu();
+  } else {
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+  }
+
+  /* ---------- Safelight (easter egg) ----------
+     Press R and the gallery goes red, the way a darkroom looks under its
+     safelight. One fixed layer multiplies red over everything: white turns
+     red, black stays black. No filters on the photographs themselves, so
+     scrolling costs the same as before. */
+
+  const safelight = document.createElement('div');
+  safelight.className = 'safelight';
+  safelight.setAttribute('aria-hidden', 'true');
+  const safelightLabel = document.createElement('p');
+  safelightLabel.className = 'safelight__label';
+  safelightLabel.textContent = 'Safelight on · press R to turn it off';
+  document.body.append(safelight, safelightLabel);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() !== 'r' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
+    const on = !document.documentElement.classList.contains('is-safelight');
+    document.documentElement.classList.toggle('is-safelight', on);
+    if (on && window.eggs) window.eggs.find('safelight');
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);

@@ -363,6 +363,80 @@
       text-decoration: none;
     }
 
+    /* ---------- your collection ---------- */
+
+    .shelf {
+      display: grid;
+      grid-template-columns: repeat(16, minmax(0, 1fr));
+      gap: 6px;
+      list-style: none;
+    }
+
+    .shelf a {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 1;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      transition: border-color 0.25s ease, color 0.25s ease, background-color 0.25s ease;
+    }
+
+    .shelf a:hover,
+    .shelf a:focus-visible {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .shelf a.is-found {
+      color: var(--bg);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .shelf a.is-new {
+      animation: egg-pop 0.7s cubic-bezier(0.3, 1.6, 0.5, 1);
+    }
+
+    @keyframes egg-pop {
+      40% { transform: scale(1.35); }
+    }
+
+    .collection__tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.6rem;
+    }
+
+    .collection__note {
+      margin-top: 1rem;
+      font-size: 0.66rem;
+    }
+
+    /* A found egg says so under its number */
+    .egg.is-found .egg__idx::after {
+      content: 'Found';
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.62rem;
+      color: var(--accent);
+    }
+
+    /* Spoiler-free: an unfound egg keeps its name and its "where", and hides the how */
+    body.hide-spoilers .egg:not(.is-found) :is(.egg__how, .egg__try, .whispers) {
+      filter: blur(7px);
+      opacity: 0.45;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    #eggTotal {
+      font-style: normal;
+    }
+
     @media (max-width: 1000px) {
       .egg {
         grid-template-columns: 3rem minmax(0, 1fr);
@@ -403,6 +477,10 @@
         min-width: 2.2rem;
         height: 2.2rem;
       }
+
+      .shelf {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+      }
     }
   </style>
 </head>
@@ -419,6 +497,7 @@
     <nav class="site-head__nav" aria-label="On this page">
       <a href="#browser">In the browser</a>
       <a href="#missing">On a missing page</a>
+      <a href="#elsewhere">Elsewhere</a>
       <a href="#terminal">In a terminal</a>
     </nav>
     <a class="site-head__back" href="/">←&nbsp;Portfolio</a>
@@ -433,7 +512,7 @@
       <div class="hero__top mono" data-reveal>
         <span data-whisper="you found the page that finds everything">Help · Easter eggs</span>
         <span class="hero__top-mid">Spoilers ahead</span>
-        <span>09 hidden things</span>
+        <span>16 hidden things</span>
       </div>
 
       <div class="hero__name" aria-hidden="true">
@@ -448,11 +527,28 @@
           it can be tried right here.
         </p>
         <nav class="hero__jump mono" data-reveal aria-label="Jump to">
+          <a href="#collection">00 · Your collection</a>
           <a href="#browser">01 · In the browser</a>
           <a href="#missing">02 · On a missing page</a>
-          <a href="#terminal">03 · In a terminal</a>
+          <a href="#elsewhere">03 · Elsewhere on the site</a>
+          <a href="#terminal">04 · In a terminal</a>
         </nav>
       </div>
+    </section>
+
+    <!-- ============ YOUR COLLECTION ============ -->
+    <section class="eg collection" id="collection">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(00) · Your collection</span>
+        <h2 class="sec-head__title" data-reveal><span id="foundCount">0</span> of <em><span id="eggTotal">16</span></em> found</h2>
+        <span class="sec-head__aside mono" id="lastFound" data-reveal>None yet</span>
+      </header>
+      <ol class="shelf" id="shelf" aria-label="Every egg, found or not"></ol>
+      <div class="collection__tools">
+        <button class="eg-btn" type="button" id="spoilers" aria-pressed="false"><b>◐</b> <span>Hide the steps for ones I haven't found</span></button>
+        <button class="eg-btn" type="button" id="forget"><b>↺</b> <span>Forget what I've found</span></button>
+      </div>
+      <p class="collection__note mono">Kept in this browser only. Nothing is sent anywhere.</p>
     </section>
 
     <!-- ============ IN THE BROWSER ============ -->
@@ -460,12 +556,12 @@
       <header class="sec-head">
         <span class="sec-head__label mono" data-reveal>(01) · In the browser</span>
         <h2 class="sec-head__title" data-reveal>Poke the <em>page</em></h2>
-        <span class="sec-head__aside mono" data-reveal>6 eggs</span>
+        <span class="sec-head__aside mono" data-reveal>10 eggs</span>
       </header>
 
       <ol class="eggs">
 
-        <li class="egg" id="konami">
+        <li class="egg" id="konami" data-egg="konami">
           <span class="egg__idx mono">01</span>
           <div>
             <h3 class="egg__title">The Konami <em>code</em></h3>
@@ -490,7 +586,7 @@
           </div>
         </li>
 
-        <li class="egg" id="whispers">
+        <li class="egg" id="whispers" data-egg="whisper">
           <span class="egg__idx mono">02</span>
           <div>
             <h3 class="egg__title">The bubble <em>whispers</em></h3>
@@ -521,7 +617,7 @@
           </div>
         </li>
 
-        <li class="egg" id="lens">
+        <li class="egg" id="lens" data-egg="lens">
           <span class="egg__idx mono">03</span>
           <div>
             <h3 class="egg__title">The <em>lens</em></h3>
@@ -544,18 +640,79 @@
           </div>
         </li>
 
-        <li class="egg" id="console">
+        <li class="egg" id="sleep" data-egg="sleep">
           <span class="egg__idx mono">04</span>
+          <div>
+            <h3 class="egg__title">The bubble falls <em>asleep</em></h3>
+            <p class="egg__what">Leave the mouse alone for half a minute and the bubble dozes off: it breathes slowly and snores two small z's. Move the mouse and it wakes with a start.</p>
+            <ol class="egg__how">
+              <li>On a computer, stop moving the mouse on any page with the bubble.</li>
+              <li>Wait thirty seconds.</li>
+              <li>Move it.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it here</span>
+              <p class="egg__what">Take your hand off the mouse for thirty seconds. This page has the bubble too.</p>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage, résumé, certificates, here</span></div>
+            <div><b>Needs</b><span>A mouse, and patience</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="words" data-egg="words">
+          <span class="egg__idx mono">05</span>
+          <div>
+            <h3 class="egg__title">Type a <em>word</em></h3>
+            <p class="egg__what">With no text box selected, a couple of words do something. <code>hire</code> opens the contact form. <code>mosam</code> turns the letters of the big name over, one after another.</p>
+            <ol class="egg__how">
+              <li>Click an empty part of the homepage so it has the keyboard.</li>
+              <li>Type <code>hire</code>, or <code>mosam</code>. Nothing needs to be selected.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it here</span>
+              <p class="egg__what">Type <code>mosam</code> and look at the big title at the top of this page. (<code>hire</code> takes you to the homepage's contact form.)</p>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage, résumé, here</span></div>
+            <div><b>Needs</b><span>A keyboard</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="rightclick" data-egg="rightclick">
+          <span class="egg__idx mono">06</span>
+          <div>
+            <h3 class="egg__title"><em>Right</em>-click</h3>
+            <p class="egg__what">Right-click is switched off on this site, but it doesn't just go dead. A small menu of the site's own opens instead: the source code, the credits, a button that copies my email, and this page with your count. Text boxes keep the browser's normal menu.</p>
+            <ol class="egg__how">
+              <li>Right-click anywhere on the homepage, the résumé, the certificates or the gallery.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it here</span>
+              <p class="egg__what">Right-click this line.</p>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Every main page, here</span></div>
+            <div><b>Needs</b><span>A mouse</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="console" data-egg="console">
+          <span class="egg__idx mono">07</span>
           <div>
             <h3 class="egg__title">A note in the <em>console</em></h3>
             <p class="egg__what">Open the developer tools and the site says hello, with a link to its source, the credits, and the terminal résumé.</p>
             <ol class="egg__how">
-              <li>Press <kbd>F12</kbd>, or <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> (<kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>I</kbd> on a Mac). Right-click is switched off on this site, so the menu route won't work.</li>
+              <li>Press <kbd>F12</kbd>, or <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> (<kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>I</kbd> on a Mac). Right-click opens the site's own menu here, not the browser's, so use the keys.</li>
               <li>Open the <em>Console</em> tab.</li>
+              <li>Type <code>egg()</code> and press <kbd>Enter</kbd> to count it.</li>
             </ol>
             <div class="egg__try">
               <span class="try-label mono">Try it here</span>
-              <p class="egg__what">This page left one for you when it loaded. Open the console now.</p>
+              <p class="egg__what">This page left one for you when it loaded. Open the console and type <code>egg()</code>.</p>
             </div>
           </div>
           <div class="egg__meta mono">
@@ -564,14 +721,37 @@
           </div>
         </li>
 
-        <li class="egg" id="portrait">
-          <span class="egg__idx mono">05</span>
+        <li class="egg" id="print" data-egg="print">
+          <span class="egg__idx mono">08</span>
+          <div>
+            <h3 class="egg__title"><em>Print</em> the homepage</h3>
+            <p class="egg__what">Print the homepage and the rest of the page steps aside for a one-page card: name, contact, and a QR code that leads back to the site. Every other page prints the way it always has.</p>
+            <ol class="egg__how">
+              <li>Open the homepage.</li>
+              <li>Press <kbd>Ctrl</kbd> <kbd>P</kbd> (<kbd>⌘</kbd> <kbd>P</kbd> on a Mac). The preview shows the card; no need to actually print it.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it</span>
+              <div class="row">
+                <a class="eg-btn" href="/"><b>→</b> Open the homepage</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage</span></div>
+            <div><b>Needs</b><span>A computer</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="portrait" data-egg="source">
+          <span class="egg__idx mono">09</span>
           <div>
             <h3 class="egg__title">A portrait in the <em>source</em></h3>
             <p class="egg__what">The homepage's HTML ends with a portrait drawn in text characters, tucked in a comment after the very last tag, where only people reading the source will ever see it.</p>
             <ol class="egg__how">
               <li>Open the homepage and press <kbd>Ctrl</kbd> <kbd>U</kbd> (<kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>U</kbd> on a Mac) to view its source.</li>
               <li>Scroll all the way to the bottom.</li>
+              <li>The comment starts with a link. Open it to claim the egg.</li>
             </ol>
             <div class="egg__try">
               <span class="try-label mono">No keyboard? It can be fetched here</span>
@@ -585,13 +765,14 @@
           </div>
         </li>
 
-        <li class="egg" id="humans">
-          <span class="egg__idx mono">06</span>
+        <li class="egg" id="humans" data-egg="humans">
+          <span class="egg__idx mono">10</span>
           <div>
             <h3 class="egg__title">humans<em>.txt</em></h3>
             <p class="egg__what">A plain text file that credits the people and tools behind the site, from the <a href="https://humanstxt.org" target="_blank" rel="noopener noreferrer">humanstxt.org</a> convention. It ends with a few hints, including one about old cheat codes.</p>
             <ol class="egg__how">
               <li>Go to <a href="/humans.txt">mosambiswas.com/humans.txt</a>.</li>
+              <li>The last lines hold a link that claims it.</li>
             </ol>
           </div>
           <div class="egg__meta mono">
@@ -613,8 +794,8 @@
 
       <ol class="eggs">
 
-        <li class="egg" id="terminal404">
-          <span class="egg__idx mono">07</span>
+        <li class="egg" id="terminal404" data-egg="lost">
+          <span class="egg__idx mono">11</span>
           <div>
             <h3 class="egg__title">A terminal on the <em>404</em></h3>
             <p class="egg__what">Any address that doesn't exist lands on a page with a small working terminal. It reads what you typed, guesses the page you meant, and takes real commands.</p>
@@ -638,8 +819,8 @@
           </div>
         </li>
 
-        <li class="egg" id="bots">
-          <span class="egg__idx mono">08</span>
+        <li class="egg" id="bots" data-egg="bots">
+          <span class="egg__idx mono">12</span>
           <div>
             <h3 class="egg__title">Bots get <em>answers</em></h3>
             <p class="egg__what">Bots crawl every site on the internet for WordPress logins, secret files and admin panels. This site has none of those, and the 404 terminal says so, each in its own way.</p>
@@ -668,18 +849,97 @@
       </ol>
     </section>
 
+    <!-- ============ ELSEWHERE ON THE SITE ============ -->
+    <section class="eg" id="elsewhere">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(03) · Elsewhere on the site</span>
+        <h2 class="sec-head__title" data-reveal>Look <em>around</em></h2>
+        <span class="sec-head__aside mono" data-reveal>3 eggs</span>
+      </header>
+
+      <ol class="eggs">
+
+        <li class="egg" id="safelight" data-egg="safelight">
+          <span class="egg__idx mono">13</span>
+          <div>
+            <h3 class="egg__title">The darkroom <em>safelight</em></h3>
+            <p class="egg__what">Photographs used to be printed in a darkroom lit by a dim red lamp, the safelight, which doesn't fog the paper. Press R in the gallery and SheiChobi goes red the same way. Press R again for the lights.</p>
+            <ol class="egg__how">
+              <li>Open SheiChobi, the photography page.</li>
+              <li>Press <kbd>R</kbd>.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it</span>
+              <div class="row">
+                <a class="eg-btn" href="/sheichobi/sheichobi.html"><b>→</b> Open SheiChobi</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>SheiChobi</span></div>
+            <div><b>Needs</b><span>A keyboard</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="rgb" data-egg="rgb">
+          <span class="egg__idx mono">14</span>
+          <div>
+            <h3 class="egg__title">PixelShift, <em>split</em></h3>
+            <p class="egg__what">PixelShift's name is drawn in pixels, and each pixel is red, green and blue light added together. Type <code>rgb</code> on its start screen and the name comes apart into those three colours, then snaps back into white.</p>
+            <ol class="egg__how">
+              <li>Open PixelShift, with no images loaded.</li>
+              <li>Type <code>rgb</code>.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it</span>
+              <div class="row">
+                <a class="eg-btn" href="/PixelShift/"><b>→</b> Open PixelShift</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>PixelShift, start screen</span></div>
+            <div><b>Needs</b><span>A keyboard</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="fillai" data-egg="fillai">
+          <span class="egg__idx mono">15</span>
+          <div>
+            <h3 class="egg__title">Fill.ai, <em>once more</em></h3>
+            <p class="egg__what">The form at the top of Fill.ai's page fills itself in ink when you arrive. Press Fill.ai's own shortcut on that page and it wipes the form and fills it again.</p>
+            <ol class="egg__how">
+              <li>Open Fill.ai's page.</li>
+              <li>Press <kbd>Alt</kbd> <kbd>Shift</kbd> <kbd>F</kbd>. If you have Fill.ai installed, Chrome gives those keys to the extension instead, and its real panel opens.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it</span>
+              <div class="row">
+                <a class="eg-btn" href="/Fill.ai/"><b>→</b> Open Fill.ai</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Fill.ai's page</span></div>
+            <div><b>Needs</b><span>A keyboard</span></div>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
     <!-- ============ IN A TERMINAL ============ -->
     <section class="eg" id="terminal">
       <header class="sec-head">
-        <span class="sec-head__label mono" data-reveal>(03) · In a terminal</span>
+        <span class="sec-head__label mono" data-reveal>(04) · In a terminal</span>
         <h2 class="sec-head__title" data-reveal>Leave the <em>browser</em></h2>
         <span class="sec-head__aside mono" data-reveal>1 egg</span>
       </header>
 
       <ol class="eggs">
 
-        <li class="egg" id="curl">
-          <span class="egg__idx mono">09</span>
+        <li class="egg" id="curl" data-egg="curl">
+          <span class="egg__idx mono">16</span>
           <div>
             <h3 class="egg__title">The résumé, by <em>curl</em></h3>
             <p class="egg__what">One command prints the whole résumé in a terminal, in colour, with the name in big block letters. Open the same address in a browser and it becomes a web page instead.</p>
@@ -687,6 +947,7 @@
               <li>Open a terminal: Terminal on a Mac or Linux, Windows Terminal or PowerShell on Windows.</li>
               <li>Run the command below. On Windows it has to be <code>curl.exe</code>: in PowerShell a plain <code>curl</code> is a different, built-in command.</li>
               <li>Keep the <code>-L</code>. It lets curl follow the site's redirects to the page.</li>
+              <li>The last line is a link. Open it in a browser to claim the egg.</li>
             </ol>
             <div class="egg__try">
               <span class="try-label mono">Copy, then paste into a terminal</span>
@@ -712,6 +973,7 @@
 
   </main>
 
+  <script src="/eggs.js"></script>
   <script src="/main.js"></script>
   <script src="/shader.js"></script>
   <script src="/sw-register.js"></script>
@@ -795,6 +1057,86 @@
           }).catch(() => {});
         });
       });
+
+      /* ---- your collection: what this browser has found (eggs.js) ---- */
+      if (window.eggs) {
+        const shelf = document.getElementById('shelf');
+        const count = document.getElementById('foundCount');
+        const last = document.getElementById('lastFound');
+        const rows = new Map([...document.querySelectorAll('.egg[data-egg]')].map((li) => [li.dataset.egg, li]));
+        document.getElementById('eggTotal').textContent = window.eggs.list.length;
+
+        window.eggs.list.forEach((egg, i) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          const row = rows.get(egg.id);
+          a.href = row ? '#' + row.id : '#';
+          a.dataset.egg = egg.id;
+          a.textContent = String(i + 1).padStart(2, '0');
+          li.append(a);
+          shelf.append(li);
+        });
+
+        const render = (fresh) => {
+          const found = window.eggs.found();
+          const ids = Object.keys(found);
+          count.textContent = ids.length;
+          shelf.querySelectorAll('a').forEach((a) => {
+            const egg = window.eggs.list.find((e) => e.id === a.dataset.egg);
+            const has = !!found[egg.id];
+            a.classList.toggle('is-found', has);
+            a.title = has ? egg.name : 'Not found yet';
+            a.setAttribute('aria-label', `${a.textContent}: ${has ? egg.name + ', found' : 'not found yet'}`);
+            if (fresh && egg.id === fresh) {
+              a.classList.remove('is-new');
+              void a.offsetWidth;
+              a.classList.add('is-new');
+            }
+          });
+          rows.forEach((li, id) => li.classList.toggle('is-found', !!found[id]));
+          const latest = ids.sort((a, b) => found[b].localeCompare(found[a]))[0];
+          last.textContent = ids.length === window.eggs.list.length
+            ? 'All of them. Take a bow.'
+            : latest ? 'Latest: ' + window.eggs.list.find((e) => e.id === latest).name : 'None yet';
+        };
+        render();
+        window.addEventListener('egg:found', (e) => render(e.detail && e.detail.id));
+        /* found in another tab: catch up when this one is looked at again */
+        window.addEventListener('storage', () => render());
+
+        const spoilers = document.getElementById('spoilers');
+        const setSpoilers = (on) => {
+          document.body.classList.toggle('hide-spoilers', on);
+          spoilers.setAttribute('aria-pressed', String(on));
+          spoilers.querySelector('span').textContent = on
+            ? 'Show the steps for every egg'
+            : "Hide the steps for ones I haven't found";
+          try { localStorage.setItem('mb:spoilers', on ? '1' : ''); } catch (e) { /* fine */ }
+        };
+        let hidden = false;
+        try { hidden = localStorage.getItem('mb:spoilers') === '1'; } catch (e) { /* fine */ }
+        setSpoilers(hidden);
+        spoilers.addEventListener('click', () => setSpoilers(!document.body.classList.contains('hide-spoilers')));
+
+        /* Forgetting takes two clicks, so it never happens by accident */
+        const forget = document.getElementById('forget');
+        let armed = 0;
+        forget.addEventListener('click', () => {
+          const label = forget.querySelector('span');
+          if (!armed) {
+            label.textContent = 'Sure? Click again to forget them all';
+            armed = setTimeout(() => { armed = 0; label.textContent = "Forget what I've found"; }, 3000);
+            return;
+          }
+          clearTimeout(armed);
+          armed = 0;
+          window.eggs.reset();
+          label.textContent = 'Forgotten. Happy hunting';
+          setTimeout(() => { label.textContent = "Forget what I've found"; }, 2200);
+        });
+      } else {
+        document.getElementById('collection').hidden = true;
+      }
     })();
   </script>
 </body>

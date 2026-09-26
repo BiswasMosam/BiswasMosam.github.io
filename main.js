@@ -200,9 +200,35 @@
       requestAnimationFrame(renderCursor);
     };
 
+    /* Leave the mouse alone for half a minute and the bubble dozes off.
+       Moving wakes it, with a little start, and that is the egg. Nothing
+       sleeps while it is whispering, reading through the lens, or hidden. */
+    const SLEEP_AFTER = 30000;
+    let sleepTimer = 0;
+
+    const doze = () => {
+      if (document.hidden || whisperOn || lensLayer || !cursor.classList.contains('is-visible')) {
+        sleepTimer = setTimeout(doze, SLEEP_AFTER);
+        return;
+      }
+      cursor.classList.add('is-asleep');
+    };
+
+    const wake = () => {
+      if (cursor.classList.contains('is-asleep')) {
+        cursor.classList.remove('is-asleep');
+        cursor.classList.add('is-waking');
+        setTimeout(() => cursor.classList.remove('is-waking'), 700);
+        if (window.eggs) window.eggs.find('sleep');
+      }
+      clearTimeout(sleepTimer);
+      sleepTimer = setTimeout(doze, SLEEP_AFTER);
+    };
+
     window.addEventListener('mousemove', (e) => {
       targetX = e.clientX;
       targetY = e.clientY;
+      wake();
       if (!cursorRafActive) {
         cursorRafActive = true;
         x = targetX;
@@ -235,6 +261,7 @@
           lensLayer = layer;
           lensTargetR = LENS_RADIUS;
           cursor.classList.add('is-lens');
+          if (window.eggs) window.eggs.find('lens');
         }
       } else {
         lensTargetR = 0;
@@ -251,6 +278,7 @@
         pillW = Math.ceil(cursorLabel.offsetWidth) + 36;
         applyPillSize();
         whisperOn = true;
+        if (window.eggs) window.eggs.find('whisper');
       } else {
         if (whisperOn && !lensLayer) {
           clearCursorSize();
@@ -261,6 +289,9 @@
       cursor.classList.toggle('is-whisper', whisperOn);
       cursor.classList.toggle('is-link', Boolean(interactive) && !whisperOn);
     });
+
+    window.addEventListener('wheel', wake, { passive: true });
+    document.addEventListener('keydown', wake);
 
     document.addEventListener('mouseleave', () => cursor.classList.remove('is-visible'));
     document.addEventListener('mouseenter', () => cursor.classList.add('is-visible'));
@@ -562,9 +593,79 @@
     });
   }
 
-  /* ---------- Right-click guard ---------- */
+  /* ---------- Right-click: our own menu (eggs.js) ---------- */
 
-  document.addEventListener('contextmenu', (e) => e.preventDefault());
+  if (window.eggs) {
+    window.eggs.contextMenu();
+  } else {
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+  }
+
+  /* ---------- Type a word ----------
+     No field focused, type "hire" and the contact form opens; type "mosam"
+     and the big name turns its letters over. */
+
+  let typed = '';
+
+  const flipName = () => {
+    const letters = document.querySelectorAll('.hero .hero__ltr');
+    const parts = letters.length ? letters : document.querySelectorAll('.hero .hero__word');
+    parts.forEach((el, i) => {
+      if (el.animate && !prefersReduced) {
+        el.animate(
+          [{ transform: 'perspective(700px) rotateX(0)' }, { transform: 'perspective(700px) rotateX(360deg)' }],
+          { duration: 900, delay: i * 55, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+        );
+      }
+    });
+  };
+
+  const openContact = () => {
+    const title = document.getElementById('contactTitle');
+    if (!title) {
+      location.href = '/#contact';
+      return;
+    }
+    title.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'center' });
+    setTimeout(() => {
+      if (title.getAttribute('aria-expanded') !== 'true') title.click();
+    }, prefersReduced ? 0 : 750);
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return;
+    if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
+    typed = (typed + e.key.toLowerCase()).slice(-8);
+    let hit = true;
+    if (typed.endsWith('hire')) openContact();
+    else if (typed.endsWith('mosam')) flipName();
+    else hit = false;
+    if (hit) {
+      typed = '';
+      if (window.eggs) window.eggs.find('words');
+    }
+  });
+
+  /* ---------- Print: the homepage prints as a card (see .print-card) ---------- */
+
+  if (document.querySelector('.print-card')) {
+    window.addEventListener('beforeprint', () => {
+      if (window.eggs) window.eggs.find('print');
+    });
+  }
+
+  /* ---------- Claims ----------
+     Some eggs live where no script runs: the page source, humans.txt, a
+     terminal. Each ends with a link back here, /?source, /?humans or
+     /?curl, and arriving through it counts. */
+
+  const claims = ['source', 'humans', 'curl'].filter((id) => new URLSearchParams(location.search).has(id));
+  if (claims.length) {
+    history.replaceState(null, '', location.pathname + location.hash);
+    window.addEventListener('load', () => {
+      setTimeout(() => claims.forEach((id) => window.eggs && window.eggs.find(id)), 1600);
+    });
+  }
 
   /* ---------- Konami code ---------- */
 
@@ -596,6 +697,8 @@
     konamiAt = key === konami[konamiAt] ? konamiAt + 1 : (key === konami[0] ? 1 : 0);
     if (konamiAt < konami.length) return;
     konamiAt = 0;
+    /* Only a real keyboard earns it; /help's "type it for me" button doesn't */
+    if (e.isTrusted && window.eggs) window.eggs.find('konami');
     const field = document.getElementById('field');
     if (field && !prefersReduced) {
       window.dispatchEvent(new CustomEvent('forge:overdrive'));
@@ -624,12 +727,24 @@
     'Read the lot: %chttps://github.com/BiswasMosam/BiswasMosam.github.io%c\n\n' +
     'Credits: %c' + location.origin + '/humans.txt%c\n' +
     'Prefer a terminal? %ccurl -L mosambiswas.com/cv%c\n' +
-    'Hiring, or want to talk shop? %cmosambiswas999@gmail.com',
+    'Hiring, or want to talk shop? %cmosambiswas999@gmail.com%c\n\n' +
+    'You found an easter egg. Type %cegg()%c to count it.',
     mono + 'font-size:13px; font-weight:bold;',
     mono + 'font-size:12px; line-height:1.7;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
-    mono + 'font-size:12px;' + accent
+    mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
+    mono + 'font-size:12px; font-weight:bold;' + accent, mono + 'font-size:12px;'
   );
+
+  /* The console egg: finding the note is half of it, answering is the rest. */
+  window.egg = () => {
+    const fresh = window.eggs ? window.eggs.find('console') : false;
+    const n = window.eggs ? Object.keys(window.eggs.found()).length : 0;
+    const total = window.eggs ? window.eggs.list.length : 16;
+    return fresh
+      ? `Counted. That's ${n} of ${total}. The rest are listed at ${location.origin}/help`
+      : `Already counted. ${n} of ${total} found so far.`;
+  };
 })();

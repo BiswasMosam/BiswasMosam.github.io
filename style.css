@@ -268,6 +268,50 @@ html.js body.is-loaded .preloader {
   .cursor.is-whisper .cursor__label {
     opacity: 1;
   }
+
+  /* Asleep (easter egg): the bubble breathes slowly and snores two small
+     z's. The breathing animates its size, never transform or scale: JS
+     writes the transform every frame, and `scale` multiplies that
+     translate too, which would drag the bubble toward the corner. */
+  .cursor.is-asleep {
+    overflow: visible;
+    animation: bubble-breathe 3.4s ease-in-out infinite;
+  }
+
+  .cursor.is-asleep::before,
+  .cursor.is-asleep::after {
+    content: 'z';
+    position: absolute;
+    left: 110%;
+    bottom: 40%;
+    font: 0.95rem/1 var(--font-mono);
+    color: #fff;
+    opacity: 0;
+    animation: bubble-zzz 2.8s ease-out infinite;
+  }
+
+  .cursor.is-asleep::after {
+    font-size: 0.72rem;
+    animation-delay: 1.4s;
+  }
+
+  .cursor.is-waking {
+    animation: bubble-wake 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+
+  @keyframes bubble-breathe {
+    50% { width: 8px; height: 8px; }
+  }
+
+  @keyframes bubble-zzz {
+    0% { opacity: 0; translate: 0 0; }
+    20% { opacity: 1; }
+    100% { opacity: 0; translate: 10px -26px; }
+  }
+
+  @keyframes bubble-wake {
+    40% { width: 26px; height: 26px; }
+  }
 }
 
 /* ---------- Secret text (revealed through the cursor lens) ---------- */
@@ -1773,6 +1817,99 @@ html.has-motion .photo__strip.is-in figure {
 
 .hero__scroll.is-gone {
   opacity: 0;
+}
+
+/* ---------- Print card (easter egg) ----------
+   Only index.html carries a .print-card. Printing that page hides
+   everything else and prints this: a one-page card with a QR code back
+   to the site. Other pages print as before (resume.html has its own). */
+
+.print-card {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 16mm;
+  }
+
+  html:has(.print-card),
+  html:has(.print-card) body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body:has(> .print-card) > :not(.print-card) {
+    display: none !important;
+  }
+
+  .print-card {
+    display: block;
+    color: #111;
+    font-family: var(--font-body);
+  }
+
+  .print-card__k {
+    font: 10pt/1.4 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ff5227;
+    padding-bottom: 8mm;
+    border-bottom: 0.4mm solid #111;
+  }
+
+  .print-card__name {
+    margin-top: 12mm;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 44pt;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .print-card__role {
+    margin-top: 5mm;
+    font-size: 13pt;
+  }
+
+  .print-card__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12mm;
+    margin-top: 16mm;
+  }
+
+  .print-card__links {
+    list-style: none;
+    font: 11pt/1.9 var(--font-mono);
+  }
+
+  .print-card__qr {
+    text-align: center;
+  }
+
+  .print-card__qr svg {
+    display: block;
+    width: 36mm;
+    height: 36mm;
+  }
+
+  .print-card__qr figcaption {
+    margin-top: 3mm;
+    font: 8pt/1.2 var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .print-card__foot {
+    margin-top: 16mm;
+    padding-top: 5mm;
+    border-top: 0.4mm solid #111;
+    font-size: 10pt;
+    color: #444;
+  }
 }
 
 /* ---------- Konami code toast (main.js) ---------- */
