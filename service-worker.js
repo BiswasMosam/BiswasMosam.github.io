@@ -7,7 +7,7 @@
 
    Bump VERSION on every deploy. The name change is what evicts the old cache. */
 
-const VERSION = 'v24';
+const VERSION = 'v25';
 const CACHE = `mosam-biswas-portfolio-${VERSION}`;
 
 /* Everything needed to render all four pages with the network switched off.

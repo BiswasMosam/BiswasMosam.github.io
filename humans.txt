@@ -45,3 +45,5 @@
 
     Open the console.
     Visit a page that does not exist.
+    In a terminal: curl -L mosambiswas.com/cv
+    Some old cheat codes still work.

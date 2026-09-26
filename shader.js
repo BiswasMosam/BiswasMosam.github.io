@@ -44,6 +44,7 @@ uniform vec2  uMouse;   /* canvas px, y-up */
 uniform float uMspd;    /* smoothed cursor speed 0..1.2 */
 uniform float uEnergy;  /* section energy + scroll velocity */
 uniform float uBurst;   /* preloader ignition, decays */
+uniform float uOver;    /* Konami overdrive 0..1: more of the smoke catches */
 
 float hash(vec2 p) {
   p = fract(p * vec2(123.34, 456.21));
@@ -101,7 +102,7 @@ void main() {
   col += vec3(0.93, 0.92, 0.89) * (f * f * f) * 0.13 * (0.35 + 0.65 * energy);
 
   /* Vermilion embers on the ridges */
-  float ridge = smoothstep(0.50, 0.86, f * (0.55 + 0.45 * q.x));
+  float ridge = smoothstep(0.50 - 0.24 * uOver, 0.86 - 0.22 * uOver, f * (0.55 + 0.45 * q.x));
   col += vec3(1.0, 0.32, 0.15) * ridge * 0.42 * energy;
 
   /* Warm undertone in the folds */
@@ -158,7 +159,8 @@ void main() {
     mouse: gl.getUniformLocation(program, 'uMouse'),
     mspd: gl.getUniformLocation(program, 'uMspd'),
     energy: gl.getUniformLocation(program, 'uEnergy'),
-    burst: gl.getUniformLocation(program, 'uBurst')
+    burst: gl.getUniformLocation(program, 'uBurst'),
+    over: gl.getUniformLocation(program, 'uOver')
   };
 
   /* Render at reduced resolution — the field is soft by nature */
@@ -183,6 +185,17 @@ void main() {
   let burst = 0;
   let ignited = false;
   let velocity = 0;
+
+  /* The Konami code (main.js): for a few seconds the smoke churns five times
+     faster and far more of it catches fire, then it all settles back. Time
+     is accumulated rather than read off the clock so the speed-up never
+     makes the smoke jump. */
+  let overdriveUntil = 0;
+  let over = 0;
+  let clock = 0;
+  window.addEventListener('forge:overdrive', () => {
+    overdriveUntil = performance.now() + 3200;
+  });
   let lastY = window.scrollY;
 
   window.addEventListener('mousemove', (e) => {
@@ -195,7 +208,6 @@ void main() {
   let slowFrames = 0;
   let degraded = false;
   let lastNow = performance.now();
-  const start = lastNow;
 
   const frame = (now) => {
     const dt = now - lastNow;
@@ -232,6 +244,9 @@ void main() {
     }
     burst *= 0.982;
 
+    over += ((now < overdriveUntil ? 1 : 0) - over) * (now < overdriveUntil ? 0.06 : 0.025);
+    clock += Math.min(Math.max(dt, 0), 100) / 1000 * (1 + 4 * over);
+
     /* Cursor warmth */
     const prevX = mouseX;
     const prevY = mouseY;
@@ -241,11 +256,12 @@ void main() {
     mspd += (Math.min(moved * 30, 1.2) - mspd) * 0.06;
 
     gl.uniform2f(uni.res, canvas.width, canvas.height);
-    gl.uniform1f(uni.time, (now - start) / 1000);
+    gl.uniform1f(uni.time, clock);
     gl.uniform2f(uni.mouse, mouseX * scale, canvas.height - mouseY * scale);
     gl.uniform1f(uni.mspd, mspd);
     gl.uniform1f(uni.energy, energy);
-    gl.uniform1f(uni.burst, burst);
+    gl.uniform1f(uni.burst, burst + over * 1.2);
+    gl.uniform1f(uni.over, over);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     requestAnimationFrame(frame);

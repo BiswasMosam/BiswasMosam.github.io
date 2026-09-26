@@ -566,6 +566,47 @@
 
   document.addEventListener('contextmenu', (e) => e.preventDefault());
 
+  /* ---------- Konami code ---------- */
+
+  /* ↑↑↓↓←→←→BA. Where the ember field runs, shader.js hears 'forge:overdrive'
+     and flares; everywhere else the code is at least acknowledged. */
+  const konami = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+  let konamiAt = 0;
+  let cheatToast = null;
+  let cheatTimer = 0;
+
+  const cheat = (text) => {
+    if (!cheatToast) {
+      cheatToast = document.createElement('div');
+      cheatToast.className = 'cheat mono';
+      cheatToast.setAttribute('role', 'status');
+      document.body.append(cheatToast);
+    }
+    cheatToast.textContent = text;
+    cheatToast.classList.remove('is-on');
+    void cheatToast.offsetWidth; /* restart the transition on a repeat */
+    cheatToast.classList.add('is-on');
+    clearTimeout(cheatTimer);
+    cheatTimer = setTimeout(() => cheatToast.classList.remove('is-on'), 3600);
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('input, textarea, select, [contenteditable]')) return;
+    const key = e.key.toLowerCase();
+    konamiAt = key === konami[konamiAt] ? konamiAt + 1 : (key === konami[0] ? 1 : 0);
+    if (konamiAt < konami.length) return;
+    konamiAt = 0;
+    const field = document.getElementById('field');
+    if (field && !prefersReduced) {
+      window.dispatchEvent(new CustomEvent('forge:overdrive'));
+      cheat('↑↑↓↓←→←→BA · forge overdrive');
+    } else if (prefersReduced) {
+      cheat('Cheat code accepted. The embers stay calm: you asked for less motion.');
+    } else {
+      cheat('Cheat code accepted. Nothing to set alight here, try the homepage.');
+    }
+  });
+
   /* ---------- Console signature ---------- */
 
   /* For whoever opens dev tools. Text colour is left to the console so it
@@ -582,9 +623,11 @@
     'The embers are one raw WebGL shader (shader.js). The mouse bubble is main.js.\n' +
     'Read the lot: %chttps://github.com/BiswasMosam/BiswasMosam.github.io%c\n\n' +
     'Credits: %c' + location.origin + '/humans.txt%c\n' +
+    'Prefer a terminal? %ccurl -L mosambiswas.com/cv%c\n' +
     'Hiring, or want to talk shop? %cmosambiswas999@gmail.com',
     mono + 'font-size:13px; font-weight:bold;',
     mono + 'font-size:12px; line-height:1.7;',
+    mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent

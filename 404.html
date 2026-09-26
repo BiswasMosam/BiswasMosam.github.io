@@ -230,7 +230,7 @@
       <div class="term__bar"><span>visitor@mosambiswas</span><span>type help</span></div>
       <div class="term__out" id="out" aria-live="polite">
         <p><span class="p">~ $</span> cd <span id="missing">this page</span></p>
-        <p class="dim">cd: no such file or directory</p>
+        <p class="dim" id="reply">cd: no such file or directory</p>
       </div>
       <form class="term__in" id="form" autocomplete="off">
         <label class="p" for="cmd">~ $</label>
@@ -255,13 +255,15 @@
 
       let path = location.pathname;
       try { path = decodeURIComponent(path); } catch (e) { /* keep it raw */ }
+      const asked = path;
       if (path.length > 60) path = path.slice(0, 57) + '...';
       document.getElementById('missing').textContent = path;
 
       /* Every place worth going, and the names people might type for it. */
       const places = [
         { to: '/', names: ['~', '/', 'home', 'index', 'index.html', '..'] },
-        { to: '/resume.html', names: ['resume', 'resume.html', 'cv', 'résumé'] },
+        { to: '/resume.html', names: ['resume', 'resume.html', 'résumé'] },
+        { to: '/cv/', names: ['cv', 'resume.txt', 'terminal'] },
         { to: '/#projects', names: ['work', 'projects'] },
         { to: '/#about', names: ['about'] },
         { to: '/#research', names: ['research', 'paper'] },
@@ -306,24 +308,28 @@
 
       /* Output is always built with textContent, never innerHTML: the path
          and the commands come from whoever is typing. */
-      const line = (parts, cls) => {
-        const p = document.createElement('p');
-        if (cls) p.className = cls;
+      const fill = (el, parts) => {
         [].concat(parts).forEach((part) => {
           if (typeof part === 'string') {
-            p.append(part);
+            el.append(part);
           } else if (part.href) {
             const a = document.createElement('a');
             a.href = part.href;
             a.textContent = part.text;
-            p.append(a);
+            el.append(a);
           } else {
             const s = document.createElement('span');
             s.className = part.cls;
             s.textContent = part.text;
-            p.append(s);
+            el.append(s);
           }
         });
+      };
+
+      const line = (parts, cls) => {
+        const p = document.createElement('p');
+        if (cls) p.className = cls;
+        fill(p, parts);
         out.append(p);
         scroll();
       };
@@ -333,11 +339,32 @@
         setTimeout(() => { location.href = place.to; }, 450);
       };
 
-      /* The missing path's last segment might be a typo of a real page. */
-      const last = path.split('/').filter(Boolean).pop() || '';
-      const hint = guess(last);
-      if (hint && hint.to !== '/') {
-        line(['did you mean ', { href: hint.to, text: hint.to }, '?'], 'dim');
+      /* Paths that bots probe all day. The bots only read the status code,
+         so these answers are for the rare person who tries one by hand. */
+      const probes = [
+        [/^\/(wp-|wordpress|xmlrpc\.php)/i, 'this is not WordPress. It is hand-written HTML, and there is nothing to log in to.'],
+        [/^\/\.env/i, 'no .env here. No backend, no database, no secrets. Just static files and a shader.'],
+        [/^\/\.git(\/|$)/i, ['no .git to scrape. The whole source is public anyway: ',
+          { href: 'https://github.com/BiswasMosam/BiswasMosam.github.io', text: 'github.com/BiswasMosam/BiswasMosam.github.io' }]],
+        [/^\/(admin|administrator|login|signin|dashboard|cpanel|phpmyadmin|pma)(\/|\.|$)/i, 'there is no admin panel. The admin is me, and I use VS Code.'],
+        [/\.(php|aspx?|jsp|cgi)$|^\/cgi-bin/i, 'server code, on GitHub Pages? Bold. This site has never run a line of it.'],
+        [/^\/(api|graphql)(\/|$)/i, ['no API. The closest thing is ', { href: '/humans.txt', text: '/humans.txt' }, '.']],
+        [/\.aws|\.ssh|id_rsa|credentials|\.sql$|\.bak$/i, 'no keys, no backups, no database dumps. Good try though.']
+      ];
+      const probe = probes.find(([pattern]) => pattern.test(asked));
+
+      if (probe) {
+        const reply = document.getElementById('reply');
+        reply.textContent = '';
+        reply.className = '';
+        fill(reply, ['cd: '].concat(probe[1]));
+      } else {
+        /* The missing path's last segment might be a typo of a real page. */
+        const last = path.split('/').filter(Boolean).pop() || '';
+        const hint = guess(last);
+        if (hint && hint.to !== '/') {
+          line(['did you mean ', { href: hint.to, text: hint.to }, '?'], 'dim');
+        }
       }
 
       const history = [];
@@ -348,11 +375,12 @@
           line('ls                 what is here', 'dim');
           line('cd <place>         go there (cd resume, cd work, cd ~)', 'dim');
           line('cat humans.txt     who made this', 'dim');
+          line('curl cv            the résumé, terminal edition', 'dim');
           line('whoami, pwd, date, echo, history, clear', 'dim');
         },
         ls: () => {
           const items = [
-            ['resume', '/resume.html'], ['work', '/#projects'], ['about', '/#about'],
+            ['resume', '/resume.html'], ['cv', '/cv/'], ['work', '/#projects'], ['about', '/#about'],
             ['research', '/#research'], ['certificates', '/certificates.html'],
             ['sheichobi', '/sheichobi/sheichobi.html'], ['contact', '/#contact'], ['humans.txt', '/humans.txt']
           ];
@@ -382,6 +410,13 @@
             return;
           }
           line('cat: ' + (arg || '') + ': no such file (try cat humans.txt)', 'dim');
+        },
+        curl: (arg) => {
+          if (/(^|\/)cv\/?$|mosambiswas/i.test(arg)) {
+            line(['in a real terminal it prints in colour: ', { cls: 'p', text: 'curl -L mosambiswas.com/cv' }], 'dim');
+            return go(find('cv'));
+          }
+          line(['curl: this one is pretend. In a real terminal, try ', { cls: 'p', text: 'curl -L mosambiswas.com/cv' }], 'dim');
         },
         whoami: () => line('visitor. probably a developer. definitely curious.', 'dim'),
         pwd: () => line(path + '   (which does not exist, which is how you got here)', 'dim'),
