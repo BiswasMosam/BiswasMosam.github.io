@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help · Easter eggs · Mosam Biswas</title>
+  <meta name="description" content="Everything hidden on mosambiswas.com, and how to find it." />
+  <!-- A spoiler page: reachable, linked from the 404 terminal and humans.txt,
+       but kept out of search results and the sitemap. -->
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0b0b0a" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="author" type="text/plain" href="/humans.txt" />
+
+  <script>document.documentElement.classList.add('js');</script>
+  <!-- This page lives one folder down, so every URL on it is absolute. -->
+  <link rel="stylesheet" href="/fonts.css" />
+  <link rel="stylesheet" href="/style.css" />
+
+  <style>
+    .site-head__back {
+      justify-self: end;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.25s ease;
+    }
+
+    .site-head__back:hover {
+      color: #fff;
+    }
+
+    .hero--sub {
+      min-height: 88svh;
+    }
+
+    .hero__jump {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+
+    .hero__jump a {
+      color: var(--ink-dim);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+
+    .hero__jump a:hover,
+    .hero__jump a:focus-visible {
+      color: var(--accent);
+    }
+
+    /* ---------- the eggs ---------- */
+
+    .eg {
+      padding-block: clamp(3.4rem, 8vw, 6rem);
+    }
+
+    .eggs {
+      list-style: none;
+    }
+
+    .egg {
+      display: grid;
+      grid-template-columns: 4rem minmax(0, 1fr) 15rem;
+      gap: 1rem 2.4rem;
+      padding: clamp(1.8rem, 4vw, 2.8rem) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .egg:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .egg__idx {
+      padding-top: 0.55rem;
+      color: var(--accent);
+    }
+
+    .egg__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      text-transform: uppercase;
+    }
+
+    .egg__title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--accent);
+    }
+
+    .egg__what {
+      margin-top: 0.7rem;
+      max-width: 58ch;
+      font-size: clamp(1rem, 1.4vw, 1.12rem);
+      line-height: 1.6;
+      color: var(--ink-dim);
+    }
+
+    .egg__what em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1em;
+      color: var(--ink);
+    }
+
+    .egg__how {
+      margin-top: 1.3rem;
+      max-width: 62ch;
+      padding-left: 1.3rem;
+      line-height: 1.7;
+    }
+
+    .egg__how li {
+      padding-left: 0.3rem;
+    }
+
+    .egg__how li::marker {
+      font-family: var(--font-mono);
+      font-size: 0.8em;
+      color: var(--accent);
+    }
+
+    .egg__how em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.08em;
+    }
+
+    kbd,
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.82em;
+      padding: 0.08em 0.4em;
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+      white-space: nowrap;
+    }
+
+    .egg__meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      padding-top: 0.6rem;
+      text-align: right;
+    }
+
+    .egg__meta b {
+      display: block;
+      font-weight: 400;
+      color: var(--ink-faint);
+    }
+
+    .egg__meta span {
+      color: var(--ink);
+    }
+
+    /* Paths are case-sensitive on GitHub Pages; don't let .mono capitalise them. */
+    .egg__meta .keep-case {
+      text-transform: none;
+      letter-spacing: 0.04em;
+    }
+
+    .egg__try {
+      margin-top: 1.6rem;
+    }
+
+    .try-label {
+      display: block;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
+
+    .egg a:not(.eg-btn) {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .egg a:not(.eg-btn):hover,
+    .egg a:not(.eg-btn):focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    /* Not the site's .btn: that one sets its label in capitals, and these
+       carry paths and commands, where case matters. */
+    .eg-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--ink);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      transition: border-color 0.25s ease, color 0.25s ease;
+    }
+
+    .eg-btn:hover,
+    .eg-btn:focus-visible {
+      border-color: var(--accent);
+    }
+
+    .eg-btn b {
+      font-weight: 400;
+      color: var(--accent);
+    }
+
+    .eg-btn.is-done {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Konami keycaps: they light up as the code is typed. */
+    .caps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .cap {
+      display: grid;
+      place-items: center;
+      min-width: 2.6rem;
+      height: 2.6rem;
+      padding: 0 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--ink-dim);
+      border: 1px solid var(--line);
+      transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .cap.is-on {
+      color: var(--bg);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .caps.is-miss .cap {
+      border-color: rgba(255, 82, 39, 0.45);
+    }
+
+    /* A live whisper and a live lens, so they can be tried right here. */
+    .demo {
+      display: inline-block;
+      padding: 0.9rem 1.1rem;
+      border: 1px dashed var(--line);
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+      color: var(--ink);
+    }
+
+    .demo.secret {
+      display: block;
+      max-width: 52ch;
+      font-family: var(--font-body);
+      font-style: normal;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink-dim);
+    }
+
+    .demo .secret__layer {
+      padding: 0.9rem 1.1rem;
+    }
+
+    .whispers {
+      margin-top: 1.1rem;
+      columns: 2 18rem;
+      column-gap: 2.4rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .whispers li {
+      break-inside: avoid;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--line);
+      list-style: none;
+    }
+
+    .whispers b {
+      display: block;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .whispers span {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.08em;
+      color: var(--accent);
+    }
+
+    .portrait {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      max-width: 100%;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: clamp(0.34rem, 1.05vw, 0.62rem);
+      line-height: 1.12;
+      color: var(--ink-dim);
+      border: 1px solid var(--line);
+      background: var(--bg-2);
+    }
+
+    .portrait.is-open {
+      display: block;
+    }
+
+    .eg-foot {
+      padding-block: 0 clamp(4rem, 10vw, 7rem);
+      color: var(--ink-dim);
+    }
+
+    .eg-foot p {
+      max-width: 52ch;
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      line-height: 1.6;
+    }
+
+    .eg-foot em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--ink);
+    }
+
+    .eg-foot a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 1000px) {
+      .egg {
+        grid-template-columns: 3rem minmax(0, 1fr);
+      }
+
+      .egg__meta {
+        grid-column: 2;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.4rem 1.6rem;
+        padding-top: 0;
+        text-align: left;
+      }
+
+      .egg__meta b {
+        display: inline;
+        margin-right: 0.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .egg {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.6rem;
+      }
+
+      .egg__idx,
+      .egg__meta {
+        grid-column: 1;
+        padding-top: 0;
+      }
+
+      .hero__jump {
+        align-items: flex-start;
+      }
+
+      .cap {
+        min-width: 2.2rem;
+        height: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <canvas class="field" id="field" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursorLabel"></span></div>
+
+  <header class="site-head" id="siteHead">
+    <a class="site-head__brand" href="/">Mosam&nbsp;Biswas<sup>©</sup></a>
+    <nav class="site-head__nav" aria-label="On this page">
+      <a href="#browser">In the browser</a>
+      <a href="#missing">On a missing page</a>
+      <a href="#terminal">In a terminal</a>
+    </nav>
+    <a class="site-head__back" href="/">←&nbsp;Portfolio</a>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero hero--sub">
+      <h1 class="sr-only">Help: every easter egg on mosambiswas.com, and how to find it</h1>
+
+      <div class="hero__top mono" data-reveal>
+        <span data-whisper="you found the page that finds everything">Help · Easter eggs</span>
+        <span class="hero__top-mid">Spoilers ahead</span>
+        <span>09 hidden things</span>
+      </div>
+
+      <div class="hero__name" aria-hidden="true">
+        <span class="hero__line"><span class="hero__word">EASTER</span></span>
+        <span class="hero__line hero__line--outline"><span class="hero__word">EGGS</span></span>
+      </div>
+
+      <div class="hero__foot">
+        <p class="hero__tag" data-reveal>
+          Everything hidden on this site, and how to find it. Most of it wants a mouse, a keyboard
+          or a terminal, and a little <em>curiosity</em>. Where something can be tried on this page,
+          it can be tried right here.
+        </p>
+        <nav class="hero__jump mono" data-reveal aria-label="Jump to">
+          <a href="#browser">01 · In the browser</a>
+          <a href="#missing">02 · On a missing page</a>
+          <a href="#terminal">03 · In a terminal</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ============ IN THE BROWSER ============ -->
+    <section class="eg" id="browser">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(01) · In the browser</span>
+        <h2 class="sec-head__title" data-reveal>Poke the <em>page</em></h2>
+        <span class="sec-head__aside mono" data-reveal>6 eggs</span>
+      </header>
+
+      <ol class="eggs">
+
+        <li class="egg" id="konami">
+          <span class="egg__idx mono">01</span>
+          <div>
+            <h3 class="egg__title">The Konami <em>code</em></h3>
+            <p class="egg__what">The ember field behind the site goes into <em>overdrive</em> for three seconds: the smoke churns five times faster and far more of it catches fire.</p>
+            <ol class="egg__how">
+              <li>Open the homepage, the résumé, or stay on this page.</li>
+              <li>Click an empty part of the page so it has the keyboard.</li>
+              <li>Type <kbd>↑</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> <kbd>←</kbd> <kbd>→</kbd> <kbd>B</kbd> <kbd>A</kbd>.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it here, the keys light up as you go</span>
+              <div class="caps" id="caps" aria-hidden="true">
+                <span class="cap">↑</span><span class="cap">↑</span><span class="cap">↓</span><span class="cap">↓</span><span class="cap">←</span><span class="cap">→</span><span class="cap">←</span><span class="cap">→</span><span class="cap">B</span><span class="cap">A</span>
+              </div>
+              <button class="eg-btn" type="button" id="playKonami"><b>▶</b> Type it for me</button>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage, résumé, here</span></div>
+            <div><b>Needs</b><span>A keyboard</span></div>
+            <div><b>Note</b><span>With animations off in your system settings, the embers stay still</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="whispers">
+          <span class="egg__idx mono">02</span>
+          <div>
+            <h3 class="egg__title">The bubble <em>whispers</em></h3>
+            <p class="egg__what">The round cursor, the mouse bubble, turns into a little pill with a note when it passes over certain words. Some have several notes: hover again for the next one.</p>
+            <ol class="egg__how">
+              <li>On a computer, move the mouse slowly over headings, numbers, links and photos.</li>
+              <li>When the bubble stretches into a pill, read it.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it here</span>
+              <span class="demo" data-whisper="yes, exactly like this||and again, a different note each time||okay, now go find the rest">Hover this line with your mouse</span>
+            </div>
+            <ul class="whispers">
+              <li><b>“Behind the lens” number, About</b><span>ask me about concert pits</span></li>
+              <li><b>© line in every footer</b><span>four different notes, keep hovering</span></li>
+              <li><b>“Designed &amp; built by hand”, footer</b><span>no templates, even this bubble is handmade</span></li>
+              <li><b>Any “Résumé” link</b><span>aka Janam Kundali</span></li>
+              <li><b>“Portfolio · Vol. 06”, top of the homepage</b><span>the smoke is hand-written GLSL</span></li>
+              <li><b>The portrait, About</b><span>yup, that's me</span></li>
+              <li><b>“Developer, researcher, photographer”</b><span>one note per word</span></li>
+              <li><b>The five photographs</b><span>their genre</span></li>
+            </ul>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage, résumé, certificates, here</span></div>
+            <div><b>Needs</b><span>A mouse</span></div>
+            <div><b>Count</b><span>27 across the site</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="lens">
+          <span class="egg__idx mono">03</span>
+          <div>
+            <h3 class="egg__title">The <em>lens</em></h3>
+            <p class="egg__what">Over a few paragraphs the bubble grows into a lens, and inside it the text is different: a plainer, more honest version of what the paragraph says. Sweep it across to read the whole thing.</p>
+            <ol class="egg__how">
+              <li>On the homepage, hover the line under the big name, the first paragraph of About, and the research summary.</li>
+              <li>Move slowly. The hidden text only shows inside the circle.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it here</span>
+              <p class="demo secret" data-secret>
+                <span class="secret__base">This paragraph looks ordinary. Hover it with your mouse and sweep the bubble slowly from left to right, the way you would read with a magnifying glass.</span>
+                <span class="secret__layer" aria-hidden="true">There you go. This is the lens. Three paragraphs on the homepage have a second version like this one, and the second version is always the honest one.</span>
+              </p>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage, 3 paragraphs, here</span></div>
+            <div><b>Needs</b><span>A mouse</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="console">
+          <span class="egg__idx mono">04</span>
+          <div>
+            <h3 class="egg__title">A note in the <em>console</em></h3>
+            <p class="egg__what">Open the developer tools and the site says hello, with a link to its source, the credits, and the terminal résumé.</p>
+            <ol class="egg__how">
+              <li>Press <kbd>F12</kbd>, or <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>I</kbd> (<kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>I</kbd> on a Mac). Right-click is switched off on this site, so the menu route won't work.</li>
+              <li>Open the <em>Console</em> tab.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it here</span>
+              <p class="egg__what">This page left one for you when it loaded. Open the console now.</p>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage, résumé, certificates, 404, here</span></div>
+            <div><b>Needs</b><span>A computer</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="portrait">
+          <span class="egg__idx mono">05</span>
+          <div>
+            <h3 class="egg__title">A portrait in the <em>source</em></h3>
+            <p class="egg__what">The homepage's HTML ends with a portrait drawn in text characters, tucked in a comment after the very last tag, where only people reading the source will ever see it.</p>
+            <ol class="egg__how">
+              <li>Open the homepage and press <kbd>Ctrl</kbd> <kbd>U</kbd> (<kbd>⌥</kbd> <kbd>⌘</kbd> <kbd>U</kbd> on a Mac) to view its source.</li>
+              <li>Scroll all the way to the bottom.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">No keyboard? It can be fetched here</span>
+              <button class="eg-btn" type="button" id="showPortrait" aria-controls="portraitOut" aria-expanded="false"><b>▶</b> Show the portrait</button>
+              <pre class="portrait" id="portraitOut" aria-label="Text-art portrait from the homepage's source"></pre>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Homepage source, the very end</span></div>
+            <div><b>Needs</b><span>View source</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="humans">
+          <span class="egg__idx mono">06</span>
+          <div>
+            <h3 class="egg__title">humans<em>.txt</em></h3>
+            <p class="egg__what">A plain text file that credits the people and tools behind the site, from the <a href="https://humanstxt.org" target="_blank" rel="noopener noreferrer">humanstxt.org</a> convention. It ends with a few hints, including one about old cheat codes.</p>
+            <ol class="egg__how">
+              <li>Go to <a href="/humans.txt">mosambiswas.com/humans.txt</a>.</li>
+            </ol>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span class="keep-case">/humans.txt</span></div>
+            <div><b>Needs</b><span>Nothing</span></div>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- ============ ON A MISSING PAGE ============ -->
+    <section class="eg" id="missing">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(02) · On a missing page</span>
+        <h2 class="sec-head__title" data-reveal>Get <em>lost</em></h2>
+        <span class="sec-head__aside mono" data-reveal>2 eggs</span>
+      </header>
+
+      <ol class="eggs">
+
+        <li class="egg" id="terminal404">
+          <span class="egg__idx mono">07</span>
+          <div>
+            <h3 class="egg__title">A terminal on the <em>404</em></h3>
+            <p class="egg__what">Any address that doesn't exist lands on a page with a small working terminal. It reads what you typed, guesses the page you meant, and takes real commands.</p>
+            <ol class="egg__how">
+              <li>Visit any address that isn't a page, like a typo of one that is.</li>
+              <li>Type <code>help</code> in the terminal and press <kbd>Enter</kbd>.</li>
+              <li>Worth trying: <code>ls</code>, <code>cd resume</code>, <code>cat humans.txt</code>, <code>curl cv</code>, <code>whoami</code>, <code>sudo rm -rf /</code>, <code>vim</code>. <kbd>Tab</kbd> completes, <kbd>↑</kbd> brings back what you typed.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try it</span>
+              <div class="row">
+                <a class="eg-btn" href="/resme"><b>→</b> /resme</a>
+                <a class="eg-btn" href="/certifcates"><b>→</b> /certifcates</a>
+                <a class="eg-btn" href="/this/page/is/not/here"><b>→</b> /this/page/is/not/here</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>Any missing address</span></div>
+            <div><b>Needs</b><span>Nothing, a keyboard helps</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="bots">
+          <span class="egg__idx mono">08</span>
+          <div>
+            <h3 class="egg__title">Bots get <em>answers</em></h3>
+            <p class="egg__what">Bots crawl every site on the internet for WordPress logins, secret files and admin panels. This site has none of those, and the 404 terminal says so, each in its own way.</p>
+            <ol class="egg__how">
+              <li>Visit one of the addresses bots always try.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Try one</span>
+              <div class="row">
+                <a class="eg-btn" href="/wp-admin"><b>→</b> /wp-admin</a>
+                <a class="eg-btn" href="/.env"><b>→</b> /.env</a>
+                <a class="eg-btn" href="/.git/config"><b>→</b> /.git/config</a>
+                <a class="eg-btn" href="/phpmyadmin"><b>→</b> /phpmyadmin</a>
+                <a class="eg-btn" href="/index.php"><b>→</b> /index.php</a>
+                <a class="eg-btn" href="/api/users"><b>→</b> /api/users</a>
+                <a class="eg-btn" href="/.ssh/id_rsa"><b>→</b> /.ssh/id_rsa</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span>The 404 page</span></div>
+            <div><b>Needs</b><span>Nothing</span></div>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <!-- ============ IN A TERMINAL ============ -->
+    <section class="eg" id="terminal">
+      <header class="sec-head">
+        <span class="sec-head__label mono" data-reveal>(03) · In a terminal</span>
+        <h2 class="sec-head__title" data-reveal>Leave the <em>browser</em></h2>
+        <span class="sec-head__aside mono" data-reveal>1 egg</span>
+      </header>
+
+      <ol class="eggs">
+
+        <li class="egg" id="curl">
+          <span class="egg__idx mono">09</span>
+          <div>
+            <h3 class="egg__title">The résumé, by <em>curl</em></h3>
+            <p class="egg__what">One command prints the whole résumé in a terminal, in colour, with the name in big block letters. Open the same address in a browser and it becomes a web page instead.</p>
+            <ol class="egg__how">
+              <li>Open a terminal: Terminal on a Mac or Linux, Windows Terminal or PowerShell on Windows.</li>
+              <li>Run the command below. On Windows it has to be <code>curl.exe</code>: in PowerShell a plain <code>curl</code> is a different, built-in command.</li>
+              <li>Keep the <code>-L</code>. It lets curl follow the site's redirects to the page.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Copy, then paste into a terminal</span>
+              <div class="row">
+                <button class="eg-btn" type="button" data-copy-text="curl -L mosambiswas.com/cv"><b>$</b> curl -L mosambiswas.com/cv</button>
+                <button class="eg-btn" type="button" data-copy-text="curl.exe -L mosambiswas.com/cv"><b>PS&gt;</b> curl.exe -L mosambiswas.com/cv</button>
+                <a class="eg-btn" href="/cv/"><b>→</b> Open it in the browser</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span class="keep-case">mosambiswas.com/cv</span></div>
+            <div><b>Needs</b><span>A terminal with curl</span></div>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+
+    <section class="eg-foot">
+      <p>Found something that isn't on this list? Then it's either a bug or a very good egg. Either way, <a href="mailto:mosambiswas999@gmail.com">tell me</a>. And if you came here first, <em>go back and find them yourself</em>. It's more fun.</p>
+    </section>
+
+  </main>
+
+  <script src="/main.js"></script>
+  <script src="/shader.js"></script>
+  <script src="/sw-register.js"></script>
+  <script>
+    (() => {
+      /* ---- Konami keycaps: mirror main.js's matcher, lighting a cap per key ---- */
+      const seq = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+      const caps = document.getElementById('caps');
+      const cells = [...caps.querySelectorAll('.cap')];
+      let at = 0;
+      let resetTimer = 0;
+
+      const show = (n, miss) => {
+        cells.forEach((c, i) => c.classList.toggle('is-on', i < n));
+        caps.classList.toggle('is-miss', !!miss);
+      };
+
+      document.addEventListener('keydown', (e) => {
+        if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
+        const key = e.key.toLowerCase();
+        const next = key === seq[at] ? at + 1 : (key === seq[0] ? 1 : 0);
+        const missed = next === 0 && at > 0;
+        at = next;
+        clearTimeout(resetTimer);
+        show(at, missed);
+        if (at === seq.length) {
+          at = 0;
+          resetTimer = setTimeout(() => show(0), 2600);
+        } else if (missed) {
+          resetTimer = setTimeout(() => caps.classList.remove('is-miss'), 500);
+        }
+      });
+
+      /* "Type it for me" sends the same key events a keyboard would, so the
+         real easter egg in main.js is what answers. */
+      document.getElementById('playKonami').addEventListener('click', (e) => {
+        const button = e.currentTarget;
+        button.disabled = true;
+        seq.forEach((key, i) => {
+          setTimeout(() => {
+            const name = key.startsWith('arrow') ? 'Arrow' + key.slice(5, 6).toUpperCase() + key.slice(6) : key;
+            document.body.dispatchEvent(new KeyboardEvent('keydown', { key: name, bubbles: true }));
+            if (i === seq.length - 1) setTimeout(() => { button.disabled = false; }, 800);
+          }, 160 * i);
+        });
+      });
+
+      /* ---- the portrait lives in a comment after </html> on the homepage ---- */
+      const portraitBtn = document.getElementById('showPortrait');
+      const portrait = document.getElementById('portraitOut');
+      portraitBtn.addEventListener('click', () => {
+        const open = !portrait.classList.contains('is-open');
+        portraitBtn.setAttribute('aria-expanded', String(open));
+        portraitBtn.lastChild.textContent = open ? ' Hide the portrait' : ' Show the portrait';
+        portrait.classList.toggle('is-open', open);
+        if (!open || portrait.textContent) return;
+        portrait.textContent = 'Fetching the homepage...';
+        fetch('/').then((r) => r.text()).then((html) => {
+          const end = html.lastIndexOf('-->');
+          const start = html.lastIndexOf('<!--', end);
+          portrait.textContent = start >= 0 && end > start
+            ? html.slice(start + 4, end).replace(/^\s*\n/, '').replace(/\s+$/, '')
+            : 'It moved. View the homepage source and look near the end.';
+        }).catch(() => {
+          portrait.textContent = 'Could not reach the homepage. View its source instead.';
+        });
+      });
+
+      /* ---- copy buttons ---- */
+      document.querySelectorAll('[data-copy-text]').forEach((button) => {
+        const original = button.innerHTML;
+        button.addEventListener('click', () => {
+          if (!navigator.clipboard) return;
+          navigator.clipboard.writeText(button.dataset.copyText).then(() => {
+            button.classList.add('is-done');
+            button.textContent = 'Copied, now paste it in a terminal';
+            setTimeout(() => {
+              button.classList.remove('is-done');
+              button.innerHTML = original;
+            }, 1800);
+          }).catch(() => {});
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>

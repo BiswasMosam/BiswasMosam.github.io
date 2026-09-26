@@ -264,6 +264,7 @@
         { to: '/', names: ['~', '/', 'home', 'index', 'index.html', '..'] },
         { to: '/resume.html', names: ['resume', 'resume.html', 'résumé'] },
         { to: '/cv/', names: ['cv', 'resume.txt', 'terminal'] },
+        { to: '/help/', names: ['help', 'eggs', 'easter-eggs'] },
         { to: '/#projects', names: ['work', 'projects'] },
         { to: '/#about', names: ['about'] },
         { to: '/#research', names: ['research', 'paper'] },
@@ -377,6 +378,7 @@
           line('cat humans.txt     who made this', 'dim');
           line('curl cv            the résumé, terminal edition', 'dim');
           line('whoami, pwd, date, echo, history, clear', 'dim');
+          line(['every easter egg on the site, spoiled: ', { href: '/help/', text: '/help' }], 'dim');
         },
         ls: () => {
           const items = [

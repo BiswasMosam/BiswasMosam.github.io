@@ -47,3 +47,4 @@
     Visit a page that does not exist.
     In a terminal: curl -L mosambiswas.com/cv
     Some old cheat codes still work.
+    Given up? Every one of them, spoiled: https://www.mosambiswas.com/help
