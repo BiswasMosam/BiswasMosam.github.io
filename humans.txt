@@ -36,8 +36,10 @@
         Manrope by Mikhail Sharanda
         Space Mono by Colophon Foundry
 
-    Tools: VS Code, Git, Chrome DevTools, Figma, Photoshop
-    Hosting: GitHub Pages
+    Tools: VS Code, Git, Chrome DevTools, Figma, Photoshop, Go
+    Hosting: GitHub Pages for the site; the bare domain is a small Go
+        server, Shellfolio, that answers curl and ssh (Charm's Wish and
+        Bubble Tea)
     Domain: Namecheap
     Contact form: FormSubmit
 
@@ -45,7 +47,7 @@
 
     Open the console.
     Visit a page that does not exist.
-    In a terminal: curl -L mosambiswas.com/cv
+    In a terminal: curl mosambiswas.com, or ssh mosambiswas.com
     Some old cheat codes still work.
     Given up? Every one of them, spoiled: https://www.mosambiswas.com/help
 

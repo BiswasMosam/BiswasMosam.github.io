@@ -32,7 +32,8 @@
     ['safelight', 'The darkroom safelight'],
     ['rgb', 'PixelShift, split'],
     ['fillai', 'Fill.ai, once more'],
-    ['curl', 'The résumé, by curl']
+    ['curl', 'The résumé, by curl'],
+    ['ssh', 'The portfolio over ssh']
   ];
   const KEY = 'mb:eggs';
 
@@ -120,17 +121,39 @@
     noteTimer = setTimeout(() => note.classList.remove('is-on'), 5500);
   };
 
-  const find = (id) => {
+  /* The note can wait (opts.delay, e.g. for a preloader); the record can't.
+     It is written at once, and the note is parked in sessionStorage until
+     shown, so a reload in between still gets to say "found". */
+  const PENDING = 'mb:eggs:pending';
+
+  const show = (id) => {
+    try { sessionStorage.removeItem(PENDING); } catch (e) { /* fine */ }
+    if (document.body) announce(id);
+    else document.addEventListener('DOMContentLoaded', () => announce(id), { once: true });
+  };
+
+  const find = (id, opts = {}) => {
     if (!EGGS.some(([key]) => key === id)) return false;
     const found = read();
     if (found[id]) return false;
     found[id] = new Date().toISOString();
     write(found);
     window.dispatchEvent(new CustomEvent('egg:found', { detail: { id } }));
-    if (document.body) announce(id);
-    else document.addEventListener('DOMContentLoaded', () => announce(id), { once: true });
+    if (opts.delay) {
+      try { sessionStorage.setItem(PENDING, id); } catch (e) { /* fine */ }
+      setTimeout(() => show(id), opts.delay);
+    } else {
+      show(id);
+    }
     return true;
   };
+
+  /* A note that was still waiting when the page reloaded */
+  let pending = null;
+  try { pending = sessionStorage.getItem(PENDING); } catch (e) { /* fine */ }
+  if (pending && read()[pending]) {
+    window.addEventListener('load', () => setTimeout(() => show(pending), 1200), { once: true });
+  }
 
   const reset = () => {
     write({});

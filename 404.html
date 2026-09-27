@@ -412,6 +412,7 @@
           line('cd <place>         go there (cd resume, cd work, cd ~)', 'dim');
           line('cat humans.txt     who made this', 'dim');
           line('curl cv            the résumé, terminal edition', 'dim');
+          line('ssh                the whole portfolio, as a terminal app', 'dim');
           line('whoami, pwd, date, echo, history, clear', 'dim');
           line(['every easter egg on the site, spoiled: ', { href: '/help/', text: '/help' }], 'dim');
         },
@@ -450,11 +451,12 @@
         },
         curl: (arg) => {
           if (/(^|\/)cv\/?$|mosambiswas/i.test(arg)) {
-            line(['in a real terminal it prints in colour: ', { cls: 'p', text: 'curl -L mosambiswas.com/cv' }], 'dim');
+            line(['in a real terminal it prints in colour: ', { cls: 'p', text: 'curl mosambiswas.com' }], 'dim');
             return go(find('cv'));
           }
-          line(['curl: this one is pretend. In a real terminal, try ', { cls: 'p', text: 'curl -L mosambiswas.com/cv' }], 'dim');
+          line(['curl: this one is pretend. In a real terminal, try ', { cls: 'p', text: 'curl mosambiswas.com' }], 'dim');
         },
+        ssh: () => line(['ssh: not from in here. Open a real terminal and run ', { cls: 'p', text: 'ssh mosambiswas.com' }], 'dim'),
         whoami: () => line('visitor. probably a developer. definitely curious.', 'dim'),
         pwd: () => line(path + '   (which does not exist, which is how you got here)', 'dim'),
         date: () => line(new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'full', timeStyle: 'short' }) + ' in Navi Mumbai', 'dim'),

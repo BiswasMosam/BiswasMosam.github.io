@@ -53,9 +53,14 @@
       })
       .catch(() => {});
 
+    /* Reload only when a new worker replaces an old one, so the page picks
+       up the new files. On a first visit there is nothing stale to replace,
+       and a reload there only interrupts the page (and lost the easter-egg
+       claim links, /?curl and friends, for first-time visitors). */
+    const hadController = Boolean(navigator.serviceWorker.controller);
     let refreshing = false;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (refreshing) return;
+      if (refreshing || !hadController) return;
       refreshing = true;
       window.location.reload();
     });

@@ -367,7 +367,8 @@
 
     .shelf {
       display: grid;
-      grid-template-columns: repeat(16, minmax(0, 1fr));
+      /* one column per egg, set from the list in eggs.js */
+      grid-template-columns: repeat(var(--eggs, 17), minmax(0, 1fr));
       gap: 6px;
       list-style: none;
     }
@@ -479,7 +480,7 @@
       }
 
       .shelf {
-        grid-template-columns: repeat(8, minmax(0, 1fr));
+        grid-template-columns: repeat(var(--half, 9), minmax(0, 1fr));
       }
     }
   </style>
@@ -512,7 +513,7 @@
       <div class="hero__top mono" data-reveal>
         <span data-whisper="you found the page that finds everything">Help · Easter eggs</span>
         <span class="hero__top-mid">Spoilers ahead</span>
-        <span>16 hidden things</span>
+        <span>17 hidden things</span>
       </div>
 
       <div class="hero__name" aria-hidden="true">
@@ -540,7 +541,7 @@
     <section class="eg collection" id="collection">
       <header class="sec-head">
         <span class="sec-head__label mono" data-reveal>(00) · Your collection</span>
-        <h2 class="sec-head__title" data-reveal><span id="foundCount">0</span> of <em><span id="eggTotal">16</span></em> found</h2>
+        <h2 class="sec-head__title" data-reveal><span id="foundCount">0</span> of <em><span id="eggTotal">17</span></em> found</h2>
         <span class="sec-head__aside mono" id="lastFound" data-reveal>None yet</span>
       </header>
       <ol class="shelf" id="shelf" aria-label="Every egg, found or not"></ol>
@@ -933,7 +934,7 @@
       <header class="sec-head">
         <span class="sec-head__label mono" data-reveal>(04) · In a terminal</span>
         <h2 class="sec-head__title" data-reveal>Leave the <em>browser</em></h2>
-        <span class="sec-head__aside mono" data-reveal>1 egg</span>
+        <span class="sec-head__aside mono" data-reveal>2 eggs</span>
       </header>
 
       <ol class="eggs">
@@ -942,13 +943,53 @@
           <span class="egg__idx mono">16</span>
           <div>
             <h3 class="egg__title">The résumé, by <em>curl</em></h3>
-            <p class="egg__what">One command prints the whole résumé in a terminal, in colour, with the name in big block letters. Open the same address in a browser and it becomes a web page instead.</p>
+            <p class="egg__what">One command prints the whole résumé in a terminal, in colour, with the name in big block letters. Browsers asking the same address still get the website.</p>
             <ol class="egg__how">
               <li>Open a terminal: Terminal on a Mac or Linux, Windows Terminal or PowerShell on Windows.</li>
               <li>Run the command below. On Windows it has to be <code>curl.exe</code>: in PowerShell a plain <code>curl</code> is a different, built-in command.</li>
-              <li>Keep the <code>-L</code>. It lets curl follow the site's redirects to the page.</li>
+              <li>Add <code>/plain</code> for a copy with no colour codes, to save to a file.</li>
               <li>The last line is a link. Open it in a browser to claim the egg.</li>
             </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Copy, then paste into a terminal</span>
+              <div class="row">
+                <button class="eg-btn" type="button" data-copy-text="curl mosambiswas.com"><b>$</b> curl mosambiswas.com</button>
+                <button class="eg-btn" type="button" data-copy-text="curl.exe mosambiswas.com"><b>PS&gt;</b> curl.exe mosambiswas.com</button>
+                <a class="eg-btn" href="/cv/"><b>→</b> Or read it in the browser</a>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span class="keep-case">mosambiswas.com</span></div>
+            <div><b>Needs</b><span>A terminal with curl</span></div>
+          </div>
+        </li>
+
+        <li class="egg" id="ssh" data-egg="ssh">
+          <span class="egg__idx mono">17</span>
+          <div>
+            <h3 class="egg__title">The portfolio over <em>ssh</em></h3>
+            <p class="egg__what">The whole portfolio as an app in your terminal: every project as a menu with its story, the About page, the résumé and the contact details, in four tabs. No password, no account; it only ever shows the portfolio.</p>
+            <ol class="egg__how">
+              <li>Open a terminal and run the command below. Windows 10 and 11 have <code>ssh</code> built in.</li>
+              <li>The first time, it asks whether to trust the server. Type <code>yes</code>.</li>
+              <li>Use <kbd>←</kbd> <kbd>→</kbd> or <kbd>1</kbd> to <kbd>4</kbd> for the tabs, <kbd>↑</kbd> <kbd>↓</kbd> to move, <kbd>c</kbd> to copy a link, <kbd>q</kbd> to leave.</li>
+              <li>The Contact tab, and the line it leaves when you quit, hold a link that claims the egg.</li>
+            </ol>
+            <div class="egg__try">
+              <span class="try-label mono">Copy, then paste into a terminal</span>
+              <div class="row">
+                <button class="eg-btn" type="button" data-copy-text="ssh mosambiswas.com"><b>$</b> ssh mosambiswas.com</button>
+              </div>
+            </div>
+          </div>
+          <div class="egg__meta mono">
+            <div><b>Where</b><span class="keep-case">mosambiswas.com</span></div>
+            <div><b>Needs</b><span>A terminal with ssh</span></div>
+          </div>
+        </li>
+
+      </ol>
             <div class="egg__try">
               <span class="try-label mono">Copy, then paste into a terminal</span>
               <div class="row">
@@ -1065,6 +1106,8 @@
         const last = document.getElementById('lastFound');
         const rows = new Map([...document.querySelectorAll('.egg[data-egg]')].map((li) => [li.dataset.egg, li]));
         document.getElementById('eggTotal').textContent = window.eggs.list.length;
+        shelf.style.setProperty('--eggs', window.eggs.list.length);
+        shelf.style.setProperty('--half', Math.ceil(window.eggs.list.length / 2));
 
         window.eggs.list.forEach((egg, i) => {
           const li = document.createElement('li');

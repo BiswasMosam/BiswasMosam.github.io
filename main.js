@@ -656,15 +656,14 @@
 
   /* ---------- Claims ----------
      Some eggs live where no script runs: the page source, humans.txt, a
-     terminal. Each ends with a link back here, /?source, /?humans or
+     terminal. Each ends with a link back here, /?source, /?humans, /?ssh or
      /?curl, and arriving through it counts. */
 
-  const claims = ['source', 'humans', 'curl'].filter((id) => new URLSearchParams(location.search).has(id));
+  const claims = ['source', 'humans', 'curl', 'ssh'].filter((id) => new URLSearchParams(location.search).has(id));
   if (claims.length) {
     history.replaceState(null, '', location.pathname + location.hash);
-    window.addEventListener('load', () => {
-      setTimeout(() => claims.forEach((id) => window.eggs && window.eggs.find(id)), 1600);
-    });
+    /* Recorded now, announced once the preloader has lifted */
+    claims.forEach((id) => window.eggs && window.eggs.find(id, { delay: 2600 }));
   }
 
   /* ---------- Konami code ---------- */
@@ -726,11 +725,12 @@
     'The embers are one raw WebGL shader (shader.js). The mouse bubble is main.js.\n' +
     'Read the lot: %chttps://github.com/BiswasMosam/BiswasMosam.github.io%c\n\n' +
     'Credits: %c' + location.origin + '/humans.txt%c\n' +
-    'Prefer a terminal? %ccurl -L mosambiswas.com/cv%c\n' +
+    'Prefer a terminal? %ccurl mosambiswas.com%c, or %cssh mosambiswas.com%c\n' +
     'Hiring, or want to talk shop? %cmosambiswas999@gmail.com%c\n\n' +
     'You found an easter egg. Type %cegg()%c to count it.',
     mono + 'font-size:13px; font-weight:bold;',
     mono + 'font-size:12px; line-height:1.7;',
+    mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',
     mono + 'font-size:12px;' + accent, mono + 'font-size:12px;',

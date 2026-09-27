@@ -11,7 +11,7 @@
   const pre = document.getElementById('cv');
   if (!pre) return;
 
-  const COMMAND = 'curl -L mosambiswas.com/cv';
+  const COMMAND = 'curl mosambiswas.com';
 
   /* The escape sequence that hides the HTML from terminals leaves its opener
      behind as a loose text node in <body>. */
