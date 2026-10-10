@@ -27,7 +27,7 @@ The only external dependency is Google Fonts. Everything else — the shader, th
 | `FRONTEND` | Pure HTML5, CSS3 (~1,590 lines), Vanilla JS (~1,290 lines across five scripts) + GLSL — no libraries |
 | `HOSTING` | GitHub Pages + custom domain via CNAME (www.mosambiswas.com) |
 | `PWA` | manifest.json + service worker: production-only in v6 (dev origins evict old workers + caches), SKIP_WAITING auto-update |
-| `SEO` | JSON-LD (WebSite + Person), Open Graph, Twitter cards, sitemap.xml, robots.txt, canonical URL |
+| `SEO` | JSON-LD (WebSite + Person), Open Graph, Twitter cards, sitemap.xml, robots.txt, canonical URL, [llms.txt](https://www.mosambiswas.com/llms.txt) + [llms-full.txt](https://www.mosambiswas.com/llms-full.txt) for language models |
 | `A11Y` | Semantic HTML, skip-link, sr-only h1, focus-visible rings, reduced-motion support, no-JS fallback |
 | `LICENSE` | MIT — open as a template for other portfolios |
 
@@ -42,6 +42,8 @@ BiswasMosam.github.io/
 ├── service-worker.js   # offline + silent updates (production only)
 ├── resume.html         # the résumé as a page — same system, print stylesheet, PDF downloads
 ├── certificates.html   # certificate gallery + modal
+├── llms.txt            # llmstxt.org index for language models: who, what, every link
+├── llms-full.txt       # the whole site as one Markdown file; edit it whenever the résumé or work list changes
 └── sheichobi/          # photography portfolio ("that picture" in Bengali)
     └── darkroom.js     # v6 — prints develop · focus pull · aperture lightbox
 ```

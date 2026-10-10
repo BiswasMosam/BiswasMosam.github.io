@@ -1,0 +1,54 @@
+# Mosam Biswas
+
+> Portfolio of Mosam Biswas, a software engineer in Navi Mumbai, India, working across AI / ML and full-stack development. A 2026 B.Tech AI & Data Science graduate of RAIT (D. Y. Patil Deemed to be University) with a software internship, a co-authored IEEE paper, and shipped work that ranges from a fully local voice assistant to an AI form-filling Chrome extension. Open to full-time roles and internships.
+
+- Role: Software engineer · AI / ML · Full-stack
+- Based in: Navi Mumbai, India (IST, UTC+5:30)
+- Status: Open to full-time roles and internships
+- Email: mosambiswas999@gmail.com
+- Everything on this site in one Markdown file: https://www.mosambiswas.com/llms-full.txt
+
+## Profile
+
+- [Portfolio](https://www.mosambiswas.com/): the homepage. Eleven selected projects, about, research, photography and a contact form
+- [Résumé](https://www.mosambiswas.com/resume.html): experience, six selected projects, research, education, stack, certifications and leadership
+- [Résumé PDF, one page](https://www.mosambiswas.com/MosamBiswasResume-BW.pdf): black and white, one page
+- [Résumé PDF, colored](https://www.mosambiswas.com/MosamBiswasResume.pdf): the same content in the site's design, two pages
+- [Certificates](https://www.mosambiswas.com/certificates.html): eleven certifications and recognitions, from an IEEE conference to Samsung's AI curriculum
+
+## Experience
+
+- [Software Developer Intern, Sedna Technologies](https://www.mosambiswas.com/resume.html#experience): Jan / Apr 2026, Mumbai. Shipped work across 4 client projects and built a client-facing dashboard solo (Angular, Flask, MySQL), later submitted as the B.Tech dissertation
+
+## Work
+
+- [AMINAL](https://github.com/BiswasMosam/Aminal-Public): local-first voice assistant for Windows. Speech, LLM intent, vision and text-to-speech fully on-device; 29K lines of Python, 125 commands, 849 tests. Python, Whisper, Ollama. 2026. The code is private; the public repo is the write-up
+- [Fill.ai](https://www.mosambiswas.com/Fill.ai/): AI form-filling Chrome extension. Every answer must cite a profile field or it is thrown out; 92-check end-to-end suite, released by CI/CD. JS, Chrome MV3, LLMs. 2026. Source: https://github.com/BiswasMosam/Fill.ai
+- [Sim Sim](https://github.com/BiswasMosam/SimSim-Virtual-Assistant): voice-driven AI desktop assistant, 70% faster task execution. Python, PySide6. 2024
+- [Rail Mitra](https://github.com/BiswasMosam/RailMind): railway platform and track optimizer; constraint programming hands back conflict-free schedules. Python, OR-Tools. 2025
+- [MindFirst](https://github.com/BiswasMosam/Mind-First): mental health pre-screening for 100+ students, chatbot + PHQ-9 / GAD-7 at 95% accuracy, drop-off cut 30%. Next.js, Flask, Prisma. 2025
+- [PixelForge](https://github.com/BiswasMosam/PixelForge): leukemia cell classification on C-NMC at 0.90 ROC-AUC and 95% recall; a custom spectral-norm GAN augments scarce data. PyTorch. 2025
+- [IntelliStatement](https://github.com/BiswasMosam/LLM-bank-statement-analyzer): LLM bank-statement analyzer, extraction from PDFs and images into structured data. FastAPI, Streamlit. 2025
+- [Committee Connect](https://github.com/BiswasMosam/CommitteesManagement): Android app for college committees, a four-person RAIT mini project synced over Firebase. Android, Java. 2024
+- [PixelShift](https://www.mosambiswas.com/PixelShift/): in-browser batch image converter, nothing is uploaded. Vanilla JS, Canvas. 2025. Live
+- [Flex Card](https://github.com/BiswasMosam/Flex-Card): Windows app that scans your hardware and exports a share-ready PNG spec card. Python, PyQt5. 2024
+- [To-Do](https://www.mosambiswas.com/To-Do/): full-stack task boards with sign-in, Node backend to front end. Node.js, JS. 2024. Live
+- [Pops](https://github.com/BiswasMosam/Pops) and [Order Control](https://github.com/BiswasMosam/Order-Control): two offline Android apps for real small businesses, a fabrication firm's order tracker and a food stall order board, on relational SQLite. Flutter, Dart. 2026
+
+## Research
+
+- [Comparative Analysis of Psychometric Data for Assessing Mental Health Testing Needs Using Machine Learning Models](https://doi.ieeecomputersociety.org/10.1109/ICAIIHI67124.2025.11403838): co-author, IEEE Xplore, Proc. ICAIIHI 2025. Five models benchmarked on 28.5K PHQ-9 / GAD-7 records; Logistic Regression led at 99% accuracy with SHAP explanations
+- [The paper as a PDF](https://www.mosambiswas.com/ResearchPaper.pdf)
+
+## Elsewhere
+
+- [GitHub](https://github.com/BiswasMosam): every public repository
+- [LinkedIn](https://linkedin.com/in/mosambiswas)
+- [Google Developer profile](https://g.dev/MosamBiswas): 25+ codelabs, Google Cloud Innovator
+
+## Optional
+
+- [SheiChobi](https://www.mosambiswas.com/sheichobi/sheichobi.html): the photography portfolio. Bengali for "that picture"; street, portraits, monochrome, concerts, wildlife and traditions, 84 frames since 2022
+- [Site source](https://github.com/BiswasMosam/BiswasMosam.github.io): how this site is built. Hand-written HTML, CSS and JS with no framework or build step, a WebGL ember shader, and an offline service worker
+- [Shellfolio](https://github.com/BiswasMosam/Shellfolio): the Go server on the bare domain. In a terminal, `curl mosambiswas.com` prints the résumé and `ssh mosambiswas.com` opens the portfolio as an app
+- [humans.txt](https://www.mosambiswas.com/humans.txt): credits for the site, its typefaces and its tools

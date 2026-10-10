@@ -1,0 +1,238 @@
+# Mosam Biswas
+
+> Portfolio of Mosam Biswas, a software engineer in Navi Mumbai, India, working across AI / ML and full-stack development. A 2026 B.Tech AI & Data Science graduate of RAIT (D. Y. Patil Deemed to be University) with a software internship, a co-authored IEEE paper, and shipped work that ranges from a fully local voice assistant to an AI form-filling Chrome extension. Open to full-time roles and internships.
+
+This is the whole of www.mosambiswas.com as one Markdown file, written for language models and for anyone who would rather read than scroll. The short index is https://www.mosambiswas.com/llms.txt. Last updated 11 October 2026.
+
+## At a glance
+
+- Name: Mosam Biswas
+- Role: Software engineer · AI / ML · Full-stack
+- Based in: Navi Mumbai, India (IST, UTC+5:30)
+- Education: B.Tech in Computer Engineering (Major: Artificial Intelligence and Data Science), Ramrao Adik Institute of Technology, D. Y. Patil Deemed to be University, 2022 / 2026
+- Experience: Software Developer Intern, Sedna Technologies, Mumbai, Jan / Apr 2026
+- Research: co-author of an IEEE-published paper, ICAIIHI 2025
+- Status: Open to full-time roles and internships
+- Email: mosambiswas999@gmail.com
+- Site: https://www.mosambiswas.com/
+- GitHub: https://github.com/BiswasMosam
+- LinkedIn: https://linkedin.com/in/mosambiswas
+- Google Developer profile: https://g.dev/MosamBiswas
+- Instagram: https://www.instagram.com/mosam.999/
+
+## About
+
+In Mosam's own words, from the homepage:
+
+> I'm a B.Tech AI & Data Science graduate from RAIT, D.Y. Patil University, and I spent those years turning coursework into shipped software: ML pipelines, Android apps, web tools and one peer-reviewed paper.
+>
+> I care about the whole loop, from a model's confusion matrix to the button a person actually presses. The messy middle, data cleaning, edge cases, the last 10 percent, is where most of the real work lives.
+
+The résumé's summary: a 2026 B.Tech AI & Data Science graduate who builds AI systems and ships them as working software: an AI form-filling Chrome extension, a fully local voice assistant, a mental health platform used by 100+ students, and offline apps for two small businesses.
+
+In numbers:
+
+- 20+ projects shipped
+- 25+ Google codelabs completed
+- 1 IEEE publication
+- 3 years behind the lens
+
+## Experience
+
+### Software Developer Intern · Sedna Technologies
+
+Jan / Apr 2026 · Mumbai
+
+- Shipped work across 4 client projects, working directly with clients to gather requirements and resolve issues.
+- Designed and built a client-facing dashboard solo with Angular, Flask and MySQL over REST APIs, owning it from requirements to handover. It was later submitted as the B.Tech dissertation.
+
+## Selected work
+
+The homepage lists eleven projects. The résumé picks six of them and adds Pops and Order Control, so all twelve are here. More experiments are on https://github.com/BiswasMosam.
+
+### AMINAL
+
+- What: Local-first voice assistant for Windows
+- Year: 2026
+- Stack: Python · Whisper · Ollama
+- Link: https://github.com/BiswasMosam/Aminal-Public
+
+Speech, LLM intent, vision and text-to-speech, all on-device: voice, vision and memory run on your own GPU and nothing leaves the machine. 29K lines of Python, 125 commands, 849 tests. An active project, still being extended. The source code is private; the public repository is a write-up of the architecture, capabilities, engineering notes and roadmap.
+
+### Fill.ai
+
+- What: AI form-filling Chrome extension
+- Year: 2026
+- Stack: JS · Chrome MV3 · LLMs
+- Install page: https://www.mosambiswas.com/Fill.ai/
+- Source: https://github.com/BiswasMosam/Fill.ai
+
+Fills web forms from your résumé. It learns from what you type, handles Google Forms and Select2, and refuses to invent: every answer must cite a profile field, and one with no field behind it never reaches the page. A 92-check end-to-end suite guards it, and releases go out through CI/CD.
+
+### Sim Sim
+
+- What: Voice-driven AI desktop assistant
+- Year: 2024
+- Stack: Python · PySide6
+- Link: https://github.com/BiswasMosam/SimSim-Virtual-Assistant
+
+An AI desktop assistant you can talk to or type at: voice commands for the quick things, a conversational GUI for the rest. 70% faster task execution.
+
+### Rail Mitra
+
+- What: Railway platform and track optimizer
+- Year: 2025
+- Stack: Python · Google OR-Tools
+- Link: https://github.com/BiswasMosam/RailMind
+
+Assigns trains to platforms and tracks with constraint programming, so the schedule it hands back has zero conflicts in it.
+
+### MindFirst
+
+- What: Mental health screening platform
+- Year: 2025
+- Stack: Next.js · Flask · Prisma
+- Link: https://github.com/BiswasMosam/Mind-First
+
+Mental health pre-screening for 100+ students: a chatbot plus PHQ-9 and GAD-7 questionnaires at 95% accuracy, and 30% fewer people dropping off halfway.
+
+### PixelForge
+
+- What: Medical imaging with CNNs and GANs
+- Year: 2025
+- Stack: Python · PyTorch · GANs
+- Link: https://github.com/BiswasMosam/PixelForge
+
+Leukemia cell classification on the C-NMC dataset at 0.90 ROC-AUC and 95% recall. Labelled cells are scarce, so a custom spectral-norm GAN generates more.
+
+### IntelliStatement
+
+- What: LLM bank statement analyzer
+- Year: 2025
+- Stack: FastAPI · Streamlit · LLM
+- Link: https://github.com/BiswasMosam/LLM-bank-statement-analyzer
+
+Reads bank statements from PDFs and photos, pulls every transaction into structured data with an LLM, then charts where the money went.
+
+### Committee Connect
+
+- What: Android app for college committees
+- Year: 2024
+- Stack: Android · Java · Firebase
+- Link: https://github.com/BiswasMosam/CommitteesManagement
+
+A native Android app for running college committees, built by a team of four as a RAIT mini project, with Firebase Realtime Database for sync.
+
+### PixelShift
+
+- What: In-browser batch image converter
+- Year: 2025
+- Stack: Vanilla JS · Canvas
+- Live: https://www.mosambiswas.com/PixelShift/
+
+Drop in a batch of images and convert them all without anything being uploaded. It runs entirely in the browser.
+
+### Flex Card
+
+- What: Hardware spec card generator
+- Year: 2024
+- Stack: Python · PyQt5
+- Link: https://github.com/BiswasMosam/Flex-Card
+
+A Windows desktop app that scans your hardware and exports a polished PNG summary card, ready to share.
+
+### To-Do
+
+- What: Full-stack task boards with sign-in
+- Year: 2024
+- Stack: Node.js · JS
+- Live: https://www.mosambiswas.com/To-Do/
+
+Task boards with sign-in, from the Node backend to the front end. Small, but the whole loop.
+
+### Pops and Order Control
+
+- What: Two offline Android apps for real small businesses
+- Year: 2026
+- Stack: Flutter · Dart · SQLite
+- Links: https://github.com/BiswasMosam/Pops and https://github.com/BiswasMosam/Order-Control
+
+Pops is the order tracker for a fabrication firm, and Order Control is the order board for a food stall. Both work fully offline on relational SQLite.
+
+## Research
+
+### Comparative Analysis of Psychometric Data for Assessing Mental Health Testing Needs Using Machine Learning Models
+
+- Role: Co-author
+- Venue: IEEE Xplore · Proceedings of ICAIIHI 2025, the 2nd International Conference on AI for Innovations in Healthcare Industries
+- Presented: December 2025, Paper ID 34, with a Certificate of Appreciation
+- Paper: https://doi.ieeecomputersociety.org/10.1109/ICAIIHI67124.2025.11403838
+- PDF: https://www.mosambiswas.com/ResearchPaper.pdf
+
+Can supervised learning decide who should go on to a full mental health evaluation? The paper benchmarks Logistic Regression, Random Forest, SVM, XGBoost and LightGBM on 28.5K PHQ-9 / GAD-7 records, with stratified 5-fold cross-validation and paired t-tests. Logistic Regression led at 99% accuracy, with SHAP explanations that make each call transparent enough to be clinically meaningful, and the pre-screening flow roughly halves screening overhead.
+
+## Education
+
+### Ramrao Adik Institute of Technology (RAIT)
+
+2022 / 2026 · Navi Mumbai
+
+B.Tech in Computer Engineering (Major: Artificial Intelligence and Data Science), D. Y. Patil Deemed to be University. CGPA 7.5.
+
+## Skills
+
+- Languages: Python, Java, JavaScript, TypeScript, Dart, SQL, C++, C, HTML/CSS
+- AI / ML: PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM, SHAP, OpenCV, LLMs (OpenAI, Gemini, Claude, Ollama)
+- Backend and web: FastAPI, Flask, Node.js, Express.js, Next.js, React, Angular, REST APIs, WebSockets, Chrome Extensions
+- Mobile and databases: Flutter, Android (Java), Firebase, MySQL, PostgreSQL, MongoDB, SQLite
+- Tools: Git, GitHub Actions (CI/CD), AWS, Pandas, Postman, Google OR-Tools, unit and end-to-end testing, Agile / Scrum
+
+## Certifications and recognitions
+
+Eleven in all, each viewable at https://www.mosambiswas.com/certificates.html.
+
+Featured:
+
+- Research Presentation, ICAIIHI 2025 · IEEE conference, Paper ID 34, December 2025
+- Software Development Internship · Sedna Technologies, three months, completed
+- Samsung Innovation Campus, Artificial Intelligence · Samsung Southwest Asia and the Telecom Sector Skill Council, Nov 2025 / Mar 2026, a four-month industry and academia curriculum
+
+Also:
+
+- Android Compose Camp · GDSC RAIT
+- AWS Academy Graduate, Machine Learning · AWS
+- Generative AI · edX
+- Agile & Scrum Fundamentals
+- Industry-Focused Java Workshop · CSI RAIT
+- Programmable Circuit Building
+- Hacktoberfest
+- Smart India Hackathon 2025, internal round · Team MindFirst, RAIT
+
+## Leadership and community
+
+- Technical Head, Photocircle RAIT, 2024 / 2025. Ran 3 workshops for 75+ students; participation up 60%.
+- Google Developer Groups member. 25+ codelabs completed, Google Cloud Innovator.
+- Hacktoberfest, and the Smart India Hackathon 2025 internal round.
+
+## Photography: SheiChobi
+
+https://www.mosambiswas.com/sheichobi/sheichobi.html
+
+SheiChobi is Bengali for "that picture". It is Mosam's photography portfolio: quiet streets, sharp contrasts and living traditions. 84 frames in six collections (street, portraits, monochrome, concerts, wildlife, traditions), shot since 2022. On Instagram as @shei_chobi.
+
+## About this site
+
+- Built by hand with no framework, no libraries and no build step: hand-written HTML, CSS and JavaScript.
+- The smoke and embers in the background are a raw WebGL fragment shader.
+- Installable as an offline app. A service worker precaches the whole site, résumé and type included, so it opens with no network.
+- Type: Syne, Instrument Serif, Manrope and Space Mono, all self-hosted.
+- Hosted on GitHub Pages. Source: https://github.com/BiswasMosam/BiswasMosam.github.io
+- The bare domain runs Shellfolio, a small Go server (https://github.com/BiswasMosam/Shellfolio). In a terminal, `curl mosambiswas.com` prints the résumé and `ssh mosambiswas.com` opens the whole portfolio as a terminal app. Browsers are sent on to www.
+- The site also hides a few easter eggs. They are left out of this file on purpose; https://www.mosambiswas.com/humans.txt has hints.
+
+## Contact
+
+- Email: mosambiswas999@gmail.com
+- Contact form: the LET'S TALK heading at https://www.mosambiswas.com/#contact opens it
+- Response time: usually the same day
+- Open to full-time roles and internships
