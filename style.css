@@ -57,6 +57,14 @@ html.js body:not(.is-loaded) {
   overflow: hidden;
 }
 
+/* Sideways spill (the hero name drifting apart, the portrait's parallax zoom)
+   is clipped here, not on body: phones ignore overflow-x on body, widen the
+   page and zoom out, leaving a gap down the right. clip, not hidden, so it
+   stays out of the scroll path and the sticky portrait keeps sticking. */
+main {
+  overflow-x: clip;
+}
+
 img {
   max-width: 100%;
   display: block;
