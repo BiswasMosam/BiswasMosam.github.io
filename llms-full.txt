@@ -2,7 +2,7 @@
 
 > Portfolio of Mosam Biswas, a software engineer in Navi Mumbai, India, working across AI / ML and full-stack development. A 2026 B.Tech AI & Data Science graduate of RAIT (D. Y. Patil Deemed to be University) with a software internship, a co-authored IEEE paper, and shipped work that ranges from a fully local voice assistant to an AI form-filling Chrome extension. Open to full-time roles and internships.
 
-This is the whole of www.mosambiswas.com as one Markdown file, written for language models and for anyone who would rather read than scroll. The short index is https://www.mosambiswas.com/llms.txt. Last updated 11 October 2026.
+This is the whole of www.mosambiswas.com as one Markdown file, written for language models and for anyone who would rather read than scroll. The short index is https://www.mosambiswas.com/llms.txt. Last updated 3 November 2026.
 
 ## At a glance
 
@@ -48,7 +48,7 @@ Jan / Apr 2026 · Mumbai
 
 ## Selected work
 
-The homepage lists eleven projects. The résumé picks six of them and adds Pops and Order Control, so all twelve are here. More experiments are on https://github.com/BiswasMosam.
+The homepage lists twelve projects. The résumé picks six of them and adds Pops and Order Control, so all thirteen are here. More experiments are on https://github.com/BiswasMosam.
 
 ### AMINAL
 
@@ -59,6 +59,15 @@ The homepage lists eleven projects. The résumé picks six of them and adds Pops
 
 Speech, LLM intent, vision and text-to-speech, all on-device: voice, vision and memory run on your own GPU and nothing leaves the machine. 29K lines of Python, 125 commands, 849 tests. An active project, still being extended. The source code is private; the public repository is a write-up of the architecture, capabilities, engineering notes and roadmap.
 
+### Locals
+
+- What: AI users that test your apps
+- Year: 2026
+- Stack: Python · Ollama · LLM agents · Playwright
+- Link: https://github.com/BiswasMosam/Locals
+
+A small town of AI users that lives on your own machine. Each local has a job, a workday and a reason to open your app. They use web apps in a real browser and Android apps on an emulator, get stuck where real people would, and say where it happened and what they did instead. 114 locals from 9 families of jobs, built from a desk study of published research and marked draft until people in those jobs confirm their profiles. Simulated users in the research come out too patient and too accurate, so human limits (patience, reading, slips, giving up) are enforced in code, not the prompt. A pixel art dashboard shows the town at work, and the same locals can sit in a class, an interview panel or a boardroom and mark a talk. It runs on a small local model, so nothing about the app under test leaves the machine.
+
 ### Fill.ai
 
 - What: AI form-filling Chrome extension
@@ -68,24 +77,6 @@ Speech, LLM intent, vision and text-to-speech, all on-device: voice, vision and 
 - Source: https://github.com/BiswasMosam/Fill.ai
 
 Fills web forms from your résumé. It learns from what you type, handles Google Forms and Select2, and refuses to invent: every answer must cite a profile field, and one with no field behind it never reaches the page. A 92-check end-to-end suite guards it, and releases go out through CI/CD.
-
-### Sim Sim
-
-- What: Voice-driven AI desktop assistant
-- Year: 2024
-- Stack: Python · PySide6
-- Link: https://github.com/BiswasMosam/SimSim-Virtual-Assistant
-
-An AI desktop assistant you can talk to or type at: voice commands for the quick things, a conversational GUI for the rest. 70% faster task execution.
-
-### Rail Mitra
-
-- What: Railway platform and track optimizer
-- Year: 2025
-- Stack: Python · Google OR-Tools
-- Link: https://github.com/BiswasMosam/RailMind
-
-Assigns trains to platforms and tracks with constraint programming, so the schedule it hands back has zero conflicts in it.
 
 ### MindFirst
 
@@ -105,6 +96,24 @@ Mental health pre-screening for 100+ students: a chatbot plus PHQ-9 and GAD-7 qu
 
 Leukemia cell classification on the C-NMC dataset at 0.90 ROC-AUC and 95% recall. Labelled cells are scarce, so a custom spectral-norm GAN generates more.
 
+### PixelShift
+
+- What: In-browser batch image converter
+- Year: 2025
+- Stack: Vanilla JS · Canvas
+- Live: https://www.mosambiswas.com/PixelShift/
+
+Drop in a batch of images and convert them all without anything being uploaded. It runs entirely in the browser.
+
+### Rail Mitra
+
+- What: Railway platform and track optimizer
+- Year: 2025
+- Stack: Python · Google OR-Tools
+- Link: https://github.com/BiswasMosam/RailMind
+
+Assigns trains to platforms and tracks with constraint programming, so the schedule it hands back has zero conflicts in it.
+
 ### IntelliStatement
 
 - What: LLM bank statement analyzer
@@ -123,14 +132,14 @@ Reads bank statements from PDFs and photos, pulls every transaction into structu
 
 A native Android app for running college committees, built by a team of four as a RAIT mini project, with Firebase Realtime Database for sync.
 
-### PixelShift
+### Sim Sim
 
-- What: In-browser batch image converter
-- Year: 2025
-- Stack: Vanilla JS · Canvas
-- Live: https://www.mosambiswas.com/PixelShift/
+- What: Voice-driven AI desktop assistant
+- Year: 2024
+- Stack: Python · PySide6
+- Link: https://github.com/BiswasMosam/SimSim-Virtual-Assistant
 
-Drop in a batch of images and convert them all without anything being uploaded. It runs entirely in the browser.
+An AI desktop assistant you can talk to or type at: voice commands for the quick things, a conversational GUI for the rest. 70% faster task execution.
 
 ### Flex Card
 
