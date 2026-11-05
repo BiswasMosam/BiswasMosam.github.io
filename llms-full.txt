@@ -28,7 +28,7 @@ In Mosam's own words, from the homepage:
 >
 > I care about the whole loop, from a model's confusion matrix to the button a person actually presses. The messy middle, data cleaning, edge cases, the last 10 percent, is where most of the real work lives.
 
-The résumé's summary: a 2026 B.Tech AI & Data Science graduate who builds AI systems and ships them as working software: an AI form-filling Chrome extension, a fully local voice assistant, a mental health platform used by 100+ students, and offline apps for two small businesses.
+The résumé's summary: a 2026 B.Tech AI & Data Science graduate who builds AI systems and ships them as working software: an AI form-filling Chrome extension, a fully local voice assistant, a mental health screening platform, and offline apps for two small businesses.
 
 In numbers:
 
@@ -65,6 +65,7 @@ Speech, LLM intent, vision and text-to-speech, all on-device: voice, vision and 
 - Year: 2026
 - Stack: Python · Ollama · LLM agents · Playwright
 - Link: https://github.com/BiswasMosam/Locals
+- Tests: https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml (79, on every push)
 
 A small town of AI users that lives on your own machine. Each local has a job, a workday and a reason to open your app. They use web apps in a real browser and Android apps on an emulator, get stuck where real people would, and say where it happened and what they did instead. 114 locals from 9 families of jobs, built from a desk study of published research and marked draft until people in those jobs confirm their profiles. Simulated users in the research come out too patient and too accurate, so human limits (patience, reading, slips, giving up) are enforced in code, not the prompt. A pixel art dashboard shows the town at work, and the same locals can sit in a class, an interview panel or a boardroom and mark a talk. It runs on a small local model, so nothing about the app under test leaves the machine.
 
@@ -75,8 +76,9 @@ A small town of AI users that lives on your own machine. Each local has a job, a
 - Stack: JS · Chrome MV3 · LLMs
 - Install page: https://www.mosambiswas.com/Fill.ai/
 - Source: https://github.com/BiswasMosam/Fill.ai
+- Tests: https://github.com/BiswasMosam/Fill.ai/actions/workflows/tests.yml (44 unit, 121 end-to-end, on every push)
 
-Fills web forms from your résumé. It learns from what you type, handles Google Forms and Select2, and refuses to invent: every answer must cite a profile field, and one with no field behind it never reaches the page. A 92-check end-to-end suite guards it, and releases go out through CI/CD.
+Fills web forms from your résumé. It learns from what you type, handles Google Forms and Select2, and refuses to invent: every answer must cite a profile field, and one with no field behind it never reaches the page. A 121-check end-to-end suite loads the real extension into Chrome and runs on every push, and releases go out through CI/CD.
 
 ### MindFirst
 
@@ -85,7 +87,7 @@ Fills web forms from your résumé. It learns from what you type, handles Google
 - Stack: Next.js · Flask · Prisma
 - Link: https://github.com/BiswasMosam/Mind-First
 
-Mental health pre-screening for 100+ students: a chatbot plus PHQ-9 and GAD-7 questionnaires at 95% accuracy, and 30% fewer people dropping off halfway.
+Mental health screening that starts before anyone knows what is wrong. A GAD-7 style pre-screen goes through a Random Forest that decides whether a deeper test is warranted; seven condition tests then narrow it down, and the results page hands back self-help material and a way to book a doctor.
 
 ### PixelForge
 
@@ -94,7 +96,7 @@ Mental health pre-screening for 100+ students: a chatbot plus PHQ-9 and GAD-7 qu
 - Stack: Python · PyTorch · GANs
 - Link: https://github.com/BiswasMosam/PixelForge
 
-Leukemia cell classification on the C-NMC dataset at 0.90 ROC-AUC and 95% recall. Labelled cells are scarce, so a custom spectral-norm GAN generates more.
+Leukemia cell classification on the C-NMC dataset at 0.89 ROC-AUC, 84% accuracy and 95% recall on 706 held out cells; the ROC curve and confusion matrix behind those numbers are in the repository. Labelled cells are scarce, so a custom spectral-norm GAN generates more.
 
 ### PixelShift
 
@@ -139,7 +141,7 @@ A native Android app for running college committees, built by a team of four as 
 - Stack: Python · PySide6
 - Link: https://github.com/BiswasMosam/SimSim-Virtual-Assistant
 
-An AI desktop assistant you can talk to or type at: voice commands for the quick things, a conversational GUI for the rest. 70% faster task execution.
+An AI desktop assistant you can talk to or type at: voice commands for the quick things, a conversational GUI for the rest. 23 commands, from alarms and news to WhatsApp and games.
 
 ### Flex Card
 
@@ -166,7 +168,17 @@ Task boards with sign-in, from the Node backend to the front end. Small, but the
 - Stack: Flutter · Dart · SQLite
 - Links: https://github.com/BiswasMosam/Pops and https://github.com/BiswasMosam/Order-Control
 
-Pops is the order tracker for a fabrication firm, and Order Control is the order board for a food stall. Both work fully offline on relational SQLite.
+Pops is the order tracker for a fabrication firm, and Order Control is the order board for a food stall. Both work fully offline on relational SQLite. Order Control's tests and static analysis run on every push: https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml
+
+## Proof
+
+What can be checked without taking anyone's word for it:
+
+- Tests that GitHub Actions runs on every push, with the latest result public: Fill.ai, 44 unit tests plus the 121-check end-to-end suite in Chrome (https://github.com/BiswasMosam/Fill.ai/actions/workflows/tests.yml); Locals, 79 tests, with Fill.ai built beside it (https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml); Dacx, 60 (https://github.com/BiswasMosam/Dacx/actions/workflows/tests.yml); Peghunt, 44 (https://github.com/BiswasMosam/Peghunt/actions/workflows/tests.yml); Order Control, 13 (https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml); Shellfolio, go vet, tests and the Linux build (https://github.com/BiswasMosam/Shellfolio/actions/workflows/tests.yml).
+- Fill.ai's releases are built and published by CI: https://github.com/BiswasMosam/Fill.ai/releases/latest
+- PixelForge's ROC curve (AUC = 0.89) and confusion matrix are in the repository: https://github.com/BiswasMosam/PixelForge#-results-stage-1
+- Running software anyone can open: `ssh mosambiswas.com` and `curl mosambiswas.com` (Shellfolio), https://www.mosambiswas.com/PixelShift/ and https://www.mosambiswas.com/To-Do/
+- The IEEE paper is on IEEE Xplore under its DOI, below.
 
 ## Research
 
