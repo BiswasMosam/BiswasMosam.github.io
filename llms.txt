@@ -23,7 +23,7 @@
 ## Work
 
 - [AMINAL](https://github.com/BiswasMosam/Aminal-Public): local-first voice assistant for Windows. Speech, LLM intent, vision and text-to-speech fully on-device; 29K lines of Python, 125 commands, 849 tests. Python, Whisper, Ollama. 2026. The code is private; the public repo is the write-up
-- [Locals](https://github.com/BiswasMosam/Locals): a town of AI users that test web and Android apps the way real people do, and say where they got stuck. 114 locals from 9 job families, built from published research and marked draft until people in those jobs confirm them; human limits are enforced in code, not the prompt, and everything runs on a local model. Python, Ollama, LLM agents, Playwright. 2026
+- [Locals](https://www.mosambiswas.com/Locals/): a town of AI users that test web and Android apps the way real people do, and say where they got stuck. 114 locals from 9 job families, built from published research and marked draft until people in those jobs confirm them; human limits are enforced in code, not the prompt, and everything runs on a local model. Python, Ollama, LLM agents, Playwright. 2026. Live
 - [Fill.ai](https://www.mosambiswas.com/Fill.ai/): AI form-filling Chrome extension. Every answer must cite a profile field or it is thrown out; a 121-check end-to-end suite runs in Chrome on every push, and releases go out through CI/CD. JS, Chrome MV3, LLMs. 2026. Source: https://github.com/BiswasMosam/Fill.ai
 - [MindFirst](https://github.com/BiswasMosam/Mind-First): mental health screening. A GAD-7 style pre-screen run through a Random Forest decides who takes one of 7 condition tests, then hands back self-help and a doctor booking. Next.js, Flask, Prisma. 2025
 - [PixelForge](https://github.com/BiswasMosam/PixelForge): leukemia cell classification on C-NMC at 0.89 ROC-AUC, 84% accuracy and 95% recall; a custom spectral-norm GAN augments scarce data. PyTorch. 2025
@@ -45,7 +45,7 @@
 - [Order Control tests](https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml): 13 tests and static analysis on every push
 - [Shellfolio tests](https://github.com/BiswasMosam/Shellfolio/actions/workflows/tests.yml): go vet, the tests and the Linux build on every push. The server itself is live: `ssh mosambiswas.com`
 - [PixelForge results](https://github.com/BiswasMosam/PixelForge#-results-stage-1): the ROC curve (AUC = 0.89) and the confusion matrix behind the numbers above are in the repository as PDFs, next to the notebook
-- Live apps anyone can open: [PixelShift](https://www.mosambiswas.com/PixelShift/), [To-Do](https://www.mosambiswas.com/To-Do/), [Fill.ai's latest release](https://github.com/BiswasMosam/Fill.ai/releases/latest)
+- Live apps anyone can open: [Locals' window on real kept days](https://www.mosambiswas.com/Locals/), [PixelShift](https://www.mosambiswas.com/PixelShift/), [To-Do](https://www.mosambiswas.com/To-Do/), [Fill.ai's latest release](https://github.com/BiswasMosam/Fill.ai/releases/latest)
 - The IEEE paper below is on IEEE Xplore under its DOI
 
 ## Research
