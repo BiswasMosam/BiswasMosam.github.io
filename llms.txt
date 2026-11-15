@@ -39,7 +39,7 @@
 ## Proof
 
 - [Fill.ai tests](https://github.com/BiswasMosam/Fill.ai/actions/workflows/tests.yml): GitHub Actions runs 44 unit tests and the 121-check end-to-end suite, which loads the real extension into Chrome, on every push. Releases are built by [a second workflow](https://github.com/BiswasMosam/Fill.ai/actions/workflows/publish.yml)
-- [Locals tests](https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml): 79 tests on every push, with Fill.ai built beside it so its task cards are checked against the real extension
+- [Locals tests](https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml): 133 tests on every push, with Fill.ai built beside it so its task cards are checked against the real extension
 - [Dacx tests](https://github.com/BiswasMosam/Dacx/actions/workflows/tests.yml): 60 tests and static analysis on every push, including the connection layer against a real local WebSocket server
 - [Peghunt tests](https://github.com/BiswasMosam/Peghunt/actions/workflows/tests.yml): 44 tests and static analysis on every push
 - [Order Control tests](https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml): 13 tests and static analysis on every push

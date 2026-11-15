@@ -66,9 +66,9 @@ Speech, LLM intent, vision and text-to-speech, all on-device: voice, vision and 
 - Stack: Python · Ollama · LLM agents · Playwright
 - Live: https://www.mosambiswas.com/Locals/
 - Source: https://github.com/BiswasMosam/Locals
-- Tests: https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml (79, on every push)
+- Tests: https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml (133, on every push)
 
-A small town of AI users that lives on your own machine. Each local has a job, a workday and a reason to open your app. They use web apps in a real browser and Android apps on an emulator, get stuck where real people would, and say where it happened and what they did instead. 114 locals from 9 families of jobs, built from a desk study of published research and marked draft until people in those jobs confirm their profiles. Simulated users in the research come out too patient and too accurate, so human limits (patience, reading, slips, giving up) are enforced in code, not the prompt. A pixel art dashboard shows the town at work, and the same locals can sit in a class, an interview panel or a boardroom and mark a talk. It runs on a small local model, so nothing about the app under test leaves the machine.
+A small town of AI users that lives on your own machine. Each local has a job, a workday and a reason to open your app. They use web apps in a real browser and Android apps on an emulator, get stuck where real people would, and say where it happened and what they did instead. 114 locals from 9 families of jobs, built from a desk study of published research and marked draft until people in those jobs confirm their profiles. Simulated users in the research come out too patient and too accurate, so human limits (patience, reading, slips, giving up) are enforced in code, not the prompt. A desktop window shows the town at work, and a copy of it runs in the browser on real kept days. The same locals can sit in a class, an interview panel or a boardroom and mark a talk. It runs on a small local model, so nothing about the app under test leaves the machine.
 
 ### Fill.ai
 
@@ -175,7 +175,7 @@ Pops is the order tracker for a fabrication firm, and Order Control is the order
 
 What can be checked without taking anyone's word for it:
 
-- Tests that GitHub Actions runs on every push, with the latest result public: Fill.ai, 44 unit tests plus the 121-check end-to-end suite in Chrome (https://github.com/BiswasMosam/Fill.ai/actions/workflows/tests.yml); Locals, 79 tests, with Fill.ai built beside it (https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml); Dacx, 60 (https://github.com/BiswasMosam/Dacx/actions/workflows/tests.yml); Peghunt, 44 (https://github.com/BiswasMosam/Peghunt/actions/workflows/tests.yml); Order Control, 13 (https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml); Shellfolio, go vet, tests and the Linux build (https://github.com/BiswasMosam/Shellfolio/actions/workflows/tests.yml).
+- Tests that GitHub Actions runs on every push, with the latest result public: Fill.ai, 44 unit tests plus the 121-check end-to-end suite in Chrome (https://github.com/BiswasMosam/Fill.ai/actions/workflows/tests.yml); Locals, 133 tests, with Fill.ai built beside it (https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml); Dacx, 60 (https://github.com/BiswasMosam/Dacx/actions/workflows/tests.yml); Peghunt, 44 (https://github.com/BiswasMosam/Peghunt/actions/workflows/tests.yml); Order Control, 13 (https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml); Shellfolio, go vet, tests and the Linux build (https://github.com/BiswasMosam/Shellfolio/actions/workflows/tests.yml).
 - Fill.ai's releases are built and published by CI: https://github.com/BiswasMosam/Fill.ai/releases/latest
 - PixelForge's ROC curve (AUC = 0.89) and confusion matrix are in the repository: https://github.com/BiswasMosam/PixelForge#-results-stage-1
 - Running software anyone can open: `ssh mosambiswas.com` and `curl mosambiswas.com` (Shellfolio), https://www.mosambiswas.com/PixelShift/ and https://www.mosambiswas.com/To-Do/
