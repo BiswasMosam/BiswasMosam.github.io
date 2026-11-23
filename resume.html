@@ -349,7 +349,9 @@
 
     .rz-stack-row {
       display: grid;
-      grid-template-columns: minmax(6.5rem, auto) 1fr;
+      /* one fixed label width so every row's text starts at the same x;
+         a longer label wraps instead of pushing its row out of line */
+      grid-template-columns: 7.6rem 1fr;
       gap: 0.4rem 1.4rem;
       padding: clamp(0.9rem, 2vw, 1.3rem) 0;
       border-top: 1px solid var(--line);
@@ -831,23 +833,23 @@
           <div data-reveal>
             <div class="rz-stack-row">
               <h3 class="mono">Languages</h3>
-              <p>Python, Java, JavaScript, TypeScript, Dart, SQL, C++, C, HTML/CSS</p>
+              <p>Python, JavaScript, TypeScript, Java, Dart, Go, SQL, C++, C, HTML/CSS</p>
             </div>
             <div class="rz-stack-row">
-              <h3 class="mono">AI / ML</h3>
-              <p>PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM, SHAP, OpenCV, LLMs (OpenAI, Gemini, Claude, Ollama)</p>
+              <h3 class="mono">AI / ML &amp; LLMs</h3>
+              <p>PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM, SHAP, OpenCV, GANs, LLM Agents, Ollama, OpenAI / Gemini / Claude APIs, Whisper, Local LLM Inference, Structured Outputs (JSON Schema)</p>
             </div>
             <div class="rz-stack-row">
               <h3 class="mono">Backend &amp; Web</h3>
               <p>FastAPI, Flask, Node.js, Express.js, Next.js, React, Angular, REST APIs, WebSockets, Chrome Extensions</p>
             </div>
             <div class="rz-stack-row">
-              <h3 class="mono">Mobile &amp; DB</h3>
-              <p>Flutter, Android (Java), Firebase, MySQL, PostgreSQL, MongoDB, SQLite</p>
+              <h3 class="mono">Mobile &amp; Data</h3>
+              <p>Flutter, Android (Java), SQLite, MySQL, PostgreSQL, MongoDB, Firebase, Prisma, Pandas, Streamlit</p>
             </div>
             <div class="rz-stack-row">
-              <h3 class="mono">Tools</h3>
-              <p>Git, GitHub Actions (CI/CD), AWS, Pandas, Postman, Google OR-Tools, Unit &amp; E2E Testing, Agile/Scrum</p>
+              <h3 class="mono">DevOps &amp; Practices</h3>
+              <p>Git, GitHub Actions (CI/CD), Linux, AWS, Unit &amp; E2E Testing, Postman, Agile/Scrum</p>
             </div>
           </div>
         </div>
