@@ -2,7 +2,7 @@
 
 > Portfolio of Mosam Biswas, a software engineer in Navi Mumbai, India, working across AI / ML and full-stack development. A 2026 B.Tech AI & Data Science graduate of RAIT (D. Y. Patil Deemed to be University) with a software internship, a co-authored IEEE paper, and shipped work that ranges from a fully local voice assistant to an AI form-filling Chrome extension. Open to full-time roles and internships.
 
-This is the whole of www.mosambiswas.com as one Markdown file, written for language models and for anyone who would rather read than scroll. The short index is https://www.mosambiswas.com/llms.txt. Last updated 3 November 2026.
+This is the whole of www.mosambiswas.com as one Markdown file, written for language models and for anyone who would rather read than scroll. The short index is https://www.mosambiswas.com/llms.txt. Last updated 23 November 2026.
 
 ## At a glance
 
@@ -48,7 +48,7 @@ Jan / Apr 2026 · Mumbai
 
 ## Selected work
 
-The homepage lists twelve projects. The résumé picks six of them and adds Pops and Order Control, so all thirteen are here. More experiments are on https://github.com/BiswasMosam.
+The homepage lists twelve projects. The résumé picks five of them and adds Pops and Order Control, and Shellfolio, so all fourteen are here. More experiments are on https://github.com/BiswasMosam.
 
 ### AMINAL
 
@@ -68,7 +68,7 @@ Speech, LLM intent, vision and text-to-speech, all on-device: voice, vision and 
 - Source: https://github.com/BiswasMosam/Locals
 - Tests: https://github.com/BiswasMosam/Locals/actions/workflows/tests.yml (133, on every push)
 
-A small town of AI users that lives on your own machine. Each local has a job, a workday and a reason to open your app. They use web apps in a real browser and Android apps on an emulator, get stuck where real people would, and say where it happened and what they did instead. 114 locals from 9 families of jobs, built from a desk study of published research and marked draft until people in those jobs confirm their profiles. Simulated users in the research come out too patient and too accurate, so human limits (patience, reading, slips, giving up) are enforced in code, not the prompt. A desktop window shows the town at work, and a copy of it runs in the browser on real kept days. The same locals can sit in a class, an interview panel or a boardroom and mark a talk. It runs on a small local model, so nothing about the app under test leaves the machine.
+A small town of AI users that lives on your own machine. Each local has a job, a workday and a reason to open your app. They use web apps in a real browser and Android apps on an emulator, get stuck where real people would, and say where it happened and what they did instead. 114 locals from 9 families of jobs, built from a desk study of published research and marked draft until people in those jobs confirm their profiles. Simulated users in the research come out too patient and too accurate, so human limits (patience, reading, slips, giving up) are enforced in code, not the prompt. Two-stage agents, which notice first and act second, finish 83% of tasks, close to the 78% real people manage across published usability studies, on a 4B local model; the method and its limits are in https://github.com/BiswasMosam/Locals/blob/master/study/validity.md. A desktop window shows the town at work, and a copy of it runs in the browser on real kept days. The same locals can sit in a class, an interview panel or a boardroom and mark a talk. It runs on a small local model, so nothing about the app under test leaves the machine.
 
 ### Fill.ai
 
@@ -169,7 +169,17 @@ Task boards with sign-in, from the Node backend to the front end. Small, but the
 - Stack: Flutter · Dart · SQLite
 - Links: https://github.com/BiswasMosam/Pops and https://github.com/BiswasMosam/Order-Control
 
-Pops is the order tracker for a fabrication firm, and Order Control is the order board for a food stall. Both work fully offline on relational SQLite. Order Control's tests and static analysis run on every push: https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml
+Pops is the order tracker that replaced a fabrication firm's paper diary, and Order Control is the order board for a food stall, on transactional SQLite. Both work fully offline. Order Control's 13 unit tests and static analysis run on every push: https://github.com/BiswasMosam/Order-Control/actions/workflows/tests.yml
+
+### Shellfolio
+
+- What: This portfolio in a terminal
+- Year: 2026
+- Stack: Go · SSH · Linux
+- Source: https://github.com/BiswasMosam/Shellfolio
+- Tests: https://github.com/BiswasMosam/Shellfolio/actions/workflows/tests.yml (go vet, the tests and the Linux build, on every push)
+
+`ssh mosambiswas.com` opens the portfolio as an app and `curl mosambiswas.com` prints the résumé. It is one Go binary on a Linux VPS, with auto-renewed TLS from Let's Encrypt, per-IP rate limiting, a cap on open sessions, and a systemd service that runs with the least privilege it needs.
 
 ## Proof
 
@@ -203,11 +213,11 @@ B.Tech in Computer Engineering (Major: Artificial Intelligence and Data Science)
 
 ## Skills
 
-- Languages: Python, Java, JavaScript, TypeScript, Dart, SQL, C++, C, HTML/CSS
-- AI / ML: PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM, SHAP, OpenCV, LLMs (OpenAI, Gemini, Claude, Ollama)
+- Languages: Python, JavaScript, TypeScript, Java, Dart, Go, SQL, C++, C, HTML/CSS
+- AI / ML and LLMs: PyTorch, TensorFlow, scikit-learn, XGBoost, LightGBM, SHAP, OpenCV, GANs, LLM agents, Ollama, OpenAI / Gemini / Claude APIs, Whisper, local LLM inference, structured outputs (JSON Schema)
 - Backend and web: FastAPI, Flask, Node.js, Express.js, Next.js, React, Angular, REST APIs, WebSockets, Chrome Extensions
-- Mobile and databases: Flutter, Android (Java), Firebase, MySQL, PostgreSQL, MongoDB, SQLite
-- Tools: Git, GitHub Actions (CI/CD), AWS, Pandas, Postman, Google OR-Tools, unit and end-to-end testing, Agile / Scrum
+- Mobile and data: Flutter, Android (Java), SQLite, MySQL, PostgreSQL, MongoDB, Firebase, Prisma, Pandas, Streamlit
+- DevOps and practices: Git, GitHub Actions (CI/CD), Linux, AWS, unit and end-to-end testing, Postman, Agile / Scrum
 
 ## Certifications and recognitions
 
